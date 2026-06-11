@@ -409,9 +409,9 @@ table 50007 "Cabecera FacturaE Recibida"
 
     procedure ImportarXmlFacturaE(StreamIn: InStream; FileName: Text)
     var
-        FacturaEXmlImport: Codeunit "FacturaE XML Import";
+        ImportOrchestrator: Codeunit "FacturaE Import Orchestrator";
     begin
-        FacturaEXmlImport.ImportXml(StreamIn, FileName);
+        ImportOrchestrator.ImportXmlStream(StreamIn, FileName);
     end;
 
     procedure fTraerDatosRespaldo(): Boolean

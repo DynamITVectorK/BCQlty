@@ -73,6 +73,20 @@ page 50066 "FacturasE Recibidas"
     {
         area(Processing)
         {
+            action(ImportPending)
+            {
+                ApplicationArea = All;
+                Caption = 'Importar pendientes';
+                Image = Import;
+
+                trigger OnAction()
+                var
+                    ImportOrchestrator: Codeunit "FacturaE Import Orchestrator";
+                begin
+                    ImportOrchestrator.ImportPending();
+                    CurrPage.Update(false);
+                end;
+            }
             action(ImportXml)
             {
                 ApplicationArea = All;
@@ -84,6 +98,20 @@ page 50066 "FacturasE Recibidas"
                     Rec.ImportarXmlFacturaE();
                     CurrPage.Update(false);
                 end;
+            }
+            action(Setup)
+            {
+                ApplicationArea = All;
+                Caption = 'Configuración importación';
+                Image = Setup;
+                RunObject = page "FacturaE Import Setup";
+            }
+            action(ImportLog)
+            {
+                ApplicationArea = All;
+                Caption = 'Log importación';
+                Image = Setup;
+                RunObject = page "FacturaE Import Log";
             }
             action(Approve)
             {

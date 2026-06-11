@@ -138,6 +138,7 @@ codeunit 50007 "FacturaE Recibida Mgt."
 
     procedure ImportBackupData(): Boolean
     var
+        ImportOrchestrator: Codeunit "FacturaE Import Orchestrator";
         Imported: Boolean;
         IsHandled: Boolean;
     begin
@@ -145,30 +146,22 @@ codeunit 50007 "FacturaE Recibida Mgt."
         if IsHandled then
             exit(Imported);
 
-        exit(ImportFacturaEXmlFromUpload());
+        exit(ImportOrchestrator.ImportPending());
     end;
 
     procedure ImportFacturaEXmlFromUpload(): Boolean
     var
-        FacturaEXmlImport: Codeunit "FacturaE XML Import";
-        XmlInStream: InStream;
-        FileName: Text;
+        ImportOrchestrator: Codeunit "FacturaE Import Orchestrator";
     begin
-        if not UploadIntoStream('Seleccione el XML FacturaE', '', 'XML (*.xml)|*.xml', FileName, XmlInStream) then
-            exit(false);
-
-        FacturaEXmlImport.ImportXml(XmlInStream, FileName);
-        exit(true);
+        exit(ImportOrchestrator.ImportManualUpload());
     end;
 
     procedure ImportBackupDataWithConfirmation()
     var
+        ImportOrchestrator: Codeunit "FacturaE Import Orchestrator";
         DataImported: Boolean;
     begin
-        if not Confirm(BackupConfirmQst) then
-            Error(ProcessCanceledErr);
-
-        DataImported := ImportBackupData();
+        DataImported := ImportOrchestrator.ConfirmAndImportPending();
         if DataImported then
             Message(BackupImportedMsg)
         else

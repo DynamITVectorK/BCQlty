@@ -1,4 +1,4 @@
-codeunit 50010 "FacturaE XML Import"
+codeunit 50112 "FacturaE XML Import"
 {
     procedure ImportXml(XmlInStream: InStream; FileName: Text): Code[20]
     var
