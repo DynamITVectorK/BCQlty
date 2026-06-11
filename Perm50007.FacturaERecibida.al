@@ -8,5 +8,7 @@ permissionset 50007 "FacturaE Recibida"
                   table "Cabecera FacturaE Recibida" = X,
                   table "Linea FacturaE Recibida" = X,
                   table "Tasa FacturaE Recibida" = X,
-                  codeunit "FacturaE Recibida Mgt." = X;
+                  codeunit "FacturaE Recibida Mgt." = X,
+                  codeunit "FacturaE XML Import" = X,
+                  page "FacturasE Recibidas" = X;
 }

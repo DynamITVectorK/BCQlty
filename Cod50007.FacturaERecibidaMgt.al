@@ -2,14 +2,15 @@ codeunit 50007 "FacturaE Recibida Mgt."
 {
     var
         VendorVatErr: Label 'El proveedor debe coincidir con el CIF del emisor.';
-        BackupConfirmQst: Label '¿Desea importar los datos que estén pendientes en la base de datos de respaldo?';
+        BackupConfirmQst: Label '¿Desea importar un XML FacturaE recibido?';
         ProcessCanceledErr: Label 'Proceso cancelado por el usuario.';
-        NoBackupDataMsg: Label 'No existe ningún registro sin traspasar en la Base de Datos de Respaldo.';
-        BackupImportedMsg: Label 'Datos importados correctamente.';
+        NoBackupDataMsg: Label 'No se importó ningún XML FacturaE.';
+        BackupImportedMsg: Label 'XML FacturaE importado correctamente.';
         RejectConfirmQst: Label '¿Desea rechazar esta factura?';
         InvoiceRejectedMsg: Label 'Factura rechazada correctamente.';
         PurchaseInvoiceCreatedMsg: Label 'Se ha generado la factura %1. Puede proceder a su revisión.';
         NoDocumentToOpenMsg: Label 'No hay ningún documento o URL disponible para abrir.';
+        MissingLineAccountErr: Label 'La línea FacturaE %1 no tiene Cuenta NAV. Informe la cuenta contable antes de generar la factura de compra.';
         RejectReasonPrefixLbl: Label 'RECHAZO', Locked = true;
 
     procedure LookupVendor(var FacturaE: Record "Cabecera FacturaE Recibida"): Boolean
@@ -141,7 +142,23 @@ codeunit 50007 "FacturaE Recibida Mgt."
         IsHandled: Boolean;
     begin
         OnImportBackupData(Imported, IsHandled);
-        exit(IsHandled and Imported);
+        if IsHandled then
+            exit(Imported);
+
+        exit(ImportFacturaEXmlFromUpload());
+    end;
+
+    procedure ImportFacturaEXmlFromUpload(): Boolean
+    var
+        FacturaEXmlImport: Codeunit "FacturaE XML Import";
+        XmlInStream: InStream;
+        FileName: Text;
+    begin
+        if not UploadIntoStream('Seleccione el XML FacturaE', '', 'XML (*.xml)|*.xml', FileName, XmlInStream) then
+            exit(false);
+
+        FacturaEXmlImport.ImportXml(XmlInStream, FileName);
+        exit(true);
     end;
 
     procedure ImportBackupDataWithConfirmation()
@@ -192,8 +209,10 @@ codeunit 50007 "FacturaE Recibida Mgt."
         IsHandled: Boolean;
     begin
         OnBeforeRegisterInvoice(FacturaE, PostDocument, PurchaseHeader, IsHandled);
-        if not IsHandled then
+        if not IsHandled then begin
             CreatePurchaseHeaderFromFacturaE(FacturaE, PurchaseHeader);
+            CreatePurchaseLinesFromFacturaE(FacturaE, PurchaseHeader);
+        end;
 
         if PostDocument then
             Codeunit.Run(Codeunit::"Purch.-Post (Yes/No)", PurchaseHeader)
@@ -340,6 +359,44 @@ codeunit 50007 "FacturaE Recibida Mgt."
         PurchaseHeader."ID Plataforma FacturaE" := FacturaE."ID Plataforma";
         PurchaseHeader."Numero FacturaE" := FacturaE."Numero";
         PurchaseHeader.Modify(true);
+    end;
+
+    local procedure CreatePurchaseLinesFromFacturaE(FacturaE: Record "Cabecera FacturaE Recibida"; PurchaseHeader: Record "Purchase Header")
+    var
+        LineaFacturaE: Record "Linea FacturaE Recibida";
+        PurchaseLine: Record "Purchase Line";
+        NextLineNo: Integer;
+    begin
+        LineaFacturaE.SetRange("ID Factura", FacturaE."ID Plataforma");
+        if not LineaFacturaE.FindSet() then
+            exit;
+
+        repeat
+            NextLineNo += 10000;
+            PurchaseLine.Init();
+            PurchaseLine."Document Type" := PurchaseHeader."Document Type";
+            PurchaseLine."Document No." := PurchaseHeader."No.";
+            PurchaseLine."Line No." := NextLineNo;
+            PurchaseLine.Insert(true);
+            if LineaFacturaE."Cuenta NAV" = '' then
+                Error(MissingLineAccountErr, LineaFacturaE."Line No.");
+
+            PurchaseLine.Validate(Type, PurchaseLine.Type::"G/L Account");
+            PurchaseLine.Validate("No.", LineaFacturaE."Cuenta NAV");
+            PurchaseLine.Validate(Description, LineaFacturaE.Description);
+            if LineaFacturaE.Quantity = 0 then
+                PurchaseLine.Validate(Quantity, 1)
+            else
+                PurchaseLine.Validate(Quantity, LineaFacturaE.Quantity);
+            if LineaFacturaE."Unit Price" <> 0 then
+                PurchaseLine.Validate("Direct Unit Cost", LineaFacturaE."Unit Price")
+            else
+                PurchaseLine.Validate("Direct Unit Cost", LineaFacturaE.Amount);
+            PurchaseLine."Dimension Set ID" := LineaFacturaE."Dimension Set ID";
+            PurchaseLine."Shortcut Dimension 1 Code" := LineaFacturaE."Shortcut Dimension 1 Code";
+            PurchaseLine."Shortcut Dimension 2 Code" := LineaFacturaE."Shortcut Dimension 2 Code";
+            PurchaseLine.Modify(true);
+        until LineaFacturaE.Next() = 0;
     end;
 
     local procedure BuildUrlToOpen(FileName: Text[250]; OpenContainer: Boolean): Text

@@ -257,6 +257,16 @@ table 50007 "Cabecera FacturaE Recibida"
             Editable = false;
             FieldClass = FlowField;
         }
+        field(48; "XML Original"; Blob)
+        {
+            Caption = 'XML Original';
+            DataClassification = CustomerContent;
+        }
+        field(49; "Nombre Fichero XML"; Text[250])
+        {
+            Caption = 'Nombre fichero XML';
+            DataClassification = CustomerContent;
+        }
         field(50000; "Approval Status"; Enum "FacturaE Approval Status")
         {
             Caption = 'Approval Status';
@@ -388,6 +398,20 @@ table 50007 "Cabecera FacturaE Recibida"
         FacturaEMgt: Codeunit "FacturaE Recibida Mgt.";
     begin
         exit(FacturaEMgt.ImportBackupData());
+    end;
+
+    procedure ImportarXmlFacturaE()
+    var
+        FacturaEMgt: Codeunit "FacturaE Recibida Mgt.";
+    begin
+        FacturaEMgt.ImportFacturaEXmlFromUpload();
+    end;
+
+    procedure ImportarXmlFacturaE(StreamIn: InStream; FileName: Text)
+    var
+        FacturaEXmlImport: Codeunit "FacturaE XML Import";
+    begin
+        FacturaEXmlImport.ImportXml(StreamIn, FileName);
     end;
 
     procedure fTraerDatosRespaldo(): Boolean
