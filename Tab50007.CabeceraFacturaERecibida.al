@@ -180,7 +180,10 @@ table 50007 "Cabecera FacturaE Recibida"
         field(38; "Documento en Curso"; Code[20])
         {
             Caption = 'Documento en Curso';
-            CalcFormula = lookup("Purchase Header"."No." where("Document Type" = filter(Invoice | "Credit Memo"), "ID Plataforma FacturaE" = field("ID Plataforma"), "Numero FacturaE" = field("Numero")));
+            CalcFormula = lookup("Purchase Header"."No." where(
+                "Document Type" = filter(Invoice | "Credit Memo"),
+                "ID Plataforma FacturaE" = field("ID Plataforma"),
+                "Numero FacturaE" = field("Numero")));
             Editable = false;
             FieldClass = FlowField;
         }

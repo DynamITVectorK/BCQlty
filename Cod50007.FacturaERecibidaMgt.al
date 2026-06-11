@@ -1,16 +1,15 @@
 codeunit 50007 "FacturaE Recibida Mgt."
 {
-    Access = Internal;
-
     var
         VendorVatErr: Label 'El proveedor debe coincidir con el CIF del emisor.';
-        CloudIntegrationErr: Label 'La integración heredada %1 usaba Automation, File local, SQL directo o DOM de cliente de NAV 2016. En Business Central SaaS debe implementarse mediante HttpClient, XmlDocument/JsonObject, SecretText/Isolated Storage y archivos/medios en la nube.';
         BackupConfirmQst: Label '¿Desea importar los datos que estén pendientes en la base de datos de respaldo?';
         ProcessCanceledErr: Label 'Proceso cancelado por el usuario.';
         NoBackupDataMsg: Label 'No existe ningún registro sin traspasar en la Base de Datos de Respaldo.';
         BackupImportedMsg: Label 'Datos importados correctamente.';
         RejectConfirmQst: Label '¿Desea rechazar esta factura?';
         InvoiceRejectedMsg: Label 'Factura rechazada correctamente.';
+        PurchaseInvoiceCreatedMsg: Label 'Se ha generado la factura %1. Puede proceder a su revisión.';
+        NoDocumentToOpenMsg: Label 'No hay ningún documento o URL disponible para abrir.';
         RejectReasonPrefixLbl: Label 'RECHAZO', Locked = true;
 
     procedure LookupVendor(var FacturaE: Record "Cabecera FacturaE Recibida"): Boolean
@@ -61,30 +60,72 @@ codeunit 50007 "FacturaE Recibida Mgt."
     end;
 
     procedure LookupExpediente(var FacturaE: Record "Cabecera FacturaE Recibida"): Boolean
+    var
+        IsHandled: Boolean;
+        LookupAccepted: Boolean;
     begin
-        exit(NotImplemented('Lookup de expedientes/lotes'));
+        OnLookupExpediente(FacturaE, LookupAccepted, IsHandled);
+        if IsHandled then
+            exit(LookupAccepted);
+
+        exit(false);
     end;
 
     procedure UpdateExpedienteOnLines(FacturaE: Record "Cabecera FacturaE Recibida")
+    var
+        LineaFacturaE: Record "Linea FacturaE Recibida";
     begin
-        NotImplemented('actualización de expediente en líneas FacturaE');
+        LineaFacturaE.SetRange("ID Factura", FacturaE."ID Plataforma");
+        if LineaFacturaE.FindSet(true) then
+            repeat
+                LineaFacturaE.Validate(Expediente, FacturaE.Expediente);
+                LineaFacturaE.Validate("Shortcut Dimension 1 Code", FacturaE."Shortcut Dimension 1 Code");
+                LineaFacturaE.Validate("Shortcut Dimension 2 Code", FacturaE."Shortcut Dimension 2 Code");
+                LineaFacturaE.Validate("Dimension Set ID", FacturaE."Dimension Set ID");
+                LineaFacturaE.Modify(true);
+            until LineaFacturaE.Next() = 0;
+
+        OnAfterUpdateExpedienteOnLines(FacturaE);
     end;
 
     procedure UpdateLoteOnLines(FacturaE: Record "Cabecera FacturaE Recibida")
+    var
+        LineaFacturaE: Record "Linea FacturaE Recibida";
     begin
-        NotImplemented('actualización de lote en líneas FacturaE');
+        LineaFacturaE.SetRange("ID Factura", FacturaE."ID Plataforma");
+        if LineaFacturaE.FindSet(true) then
+            repeat
+                LineaFacturaE.Validate(Lote, FacturaE.Lote);
+                LineaFacturaE.Modify(true);
+            until LineaFacturaE.Next() = 0;
+
+        OnAfterUpdateLoteOnLines(FacturaE);
     end;
 
     procedure DeleteRelatedLines(FacturaE: Record "Cabecera FacturaE Recibida")
+    var
+        LineaFacturaE: Record "Linea FacturaE Recibida";
+        TasaFacturaE: Record "Tasa FacturaE Recibida";
     begin
-        NotImplemented('borrado en cascada de líneas y tasas FacturaE');
+        LineaFacturaE.SetRange("ID Factura", FacturaE."ID Plataforma");
+        LineaFacturaE.DeleteAll(true);
+
+        TasaFacturaE.SetRange("ID Factura", FacturaE."ID Plataforma");
+        TasaFacturaE.DeleteAll(true);
+
+        OnAfterDeleteRelatedLines(FacturaE);
     end;
 
     procedure CheckInvoiceAmount(PurchaseHeader: Record "Purchase Header"; FacturaE: Record "Cabecera FacturaE Recibida")
     var
         PurchaseLine: Record "Purchase Line";
         PurchaseAmount: Decimal;
+        IsHandled: Boolean;
     begin
+        OnBeforeCheckInvoiceAmount(PurchaseHeader, FacturaE, IsHandled);
+        if IsHandled then
+            exit;
+
         PurchaseLine.SetRange("Document Type", PurchaseHeader."Document Type");
         PurchaseLine.SetRange("Document No.", PurchaseHeader."No.");
         PurchaseLine.CalcSums("Amount Including VAT");
@@ -95,8 +136,12 @@ codeunit 50007 "FacturaE Recibida Mgt."
     end;
 
     procedure ImportBackupData(): Boolean
+    var
+        Imported: Boolean;
+        IsHandled: Boolean;
     begin
-        exit(NotImplemented('importación desde base de datos de respaldo'));
+        OnImportBackupData(Imported, IsHandled);
+        exit(IsHandled and Imported);
     end;
 
     procedure ImportBackupDataWithConfirmation()
@@ -114,20 +159,48 @@ codeunit 50007 "FacturaE Recibida Mgt."
     end;
 
     procedure OpenExternalDocument(FileName: Text[250]; OpenContainer: Boolean)
+    var
+        UrlToOpen: Text;
     begin
-        NotImplemented('apertura de documentos Alfresco');
+        UrlToOpen := BuildUrlToOpen(FileName, OpenContainer);
+        if UrlToOpen = '' then begin
+            Message(NoDocumentToOpenMsg);
+            exit;
+        end;
+
+        Hyperlink(UrlToOpen);
     end;
 
     procedure ApproveEInvoice(var FacturaE: Record "Cabecera FacturaE Recibida")
+    var
+        IsHandled: Boolean;
     begin
+        OnBeforeApproveEInvoice(FacturaE, IsHandled);
+        if IsHandled then
+            exit;
+
         FacturaE.TestField(Rechazada, false);
         FacturaE."Approval Status" := FacturaE."Approval Status"::Approved;
         FacturaE.Modify(true);
+
+        OnAfterApproveEInvoice(FacturaE);
     end;
 
     procedure RegisterInvoice(var FacturaE: Record "Cabecera FacturaE Recibida"; PostDocument: Boolean)
+    var
+        PurchaseHeader: Record "Purchase Header";
+        IsHandled: Boolean;
     begin
-        NotImplemented('registro de factura de compra desde FacturaE');
+        OnBeforeRegisterInvoice(FacturaE, PostDocument, PurchaseHeader, IsHandled);
+        if not IsHandled then
+            CreatePurchaseHeaderFromFacturaE(FacturaE, PurchaseHeader);
+
+        if PostDocument then
+            Codeunit.Run(Codeunit::"Purch.-Post (Yes/No)", PurchaseHeader)
+        else
+            Message(PurchaseInvoiceCreatedMsg, PurchaseHeader."No.");
+
+        OnAfterRegisterInvoice(FacturaE, PurchaseHeader, PostDocument);
     end;
 
     procedure RejectInvoiceWithConfirmation(var FacturaE: Record "Cabecera FacturaE Recibida")
@@ -140,38 +213,167 @@ codeunit 50007 "FacturaE Recibida Mgt."
     end;
 
     procedure RejectInvoice(var FacturaE: Record "Cabecera FacturaE Recibida")
+    var
+        IsHandled: Boolean;
     begin
+        OnBeforeRejectInvoice(FacturaE, IsHandled);
+        if IsHandled then
+            exit;
+
         FacturaE.CalcFields("Documento en Curso", "Documento Registrado");
         FacturaE.TestField("Documento en Curso", '');
         FacturaE.TestField("Documento Registrado", '');
         FacturaE.Rechazada := true;
         FacturaE."Approval Status" := FacturaE."Approval Status"::Rejected;
         FacturaE.Modify(true);
+
+        OnAfterRejectInvoice(FacturaE);
     end;
 
     procedure ViewInvoice(var FacturaE: Record "Cabecera FacturaE Recibida")
+    var
+        PurchInvHeader: Record "Purch. Inv. Header";
     begin
-        NotImplemented('consulta de estado FacturaE');
+        if FacturaE."Documento PDF" <> '' then begin
+            OpenExternalDocument(FacturaE."Documento PDF", false);
+            exit;
+        end;
+
+        FacturaE.CalcFields("Documento Registrado");
+        if (FacturaE."Documento Registrado" <> '') and PurchInvHeader.Get(FacturaE."Documento Registrado") then begin
+            Page.Run(Page::"Posted Purchase Invoice", PurchInvHeader);
+            exit;
+        end;
+
+        if FacturaE."Documento Factura" <> '' then begin
+            OpenExternalDocument(FacturaE."Documento Factura", false);
+            exit;
+        end;
+
+        Message(NoDocumentToOpenMsg);
     end;
 
     procedure MoveToNextState(var FacturaE: Record "Cabecera FacturaE Recibida")
+    var
+        IsHandled: Boolean;
     begin
-        NotImplemented('avance de estado FacturaE');
+        OnBeforeMoveToNextState(FacturaE, IsHandled);
+        if IsHandled then
+            exit;
+
+        case FacturaE."Approval Status" of
+            FacturaE."Approval Status"::Blank:
+                FacturaE."Approval Status" := FacturaE."Approval Status"::"Approval Pending";
+            FacturaE."Approval Status"::"Approval Pending":
+                FacturaE."Approval Status" := FacturaE."Approval Status"::Approved;
+            FacturaE."Approval Status"::Approved:
+                exit;
+            FacturaE."Approval Status"::Rejected:
+                begin
+                    FacturaE.Rechazada := false;
+                    FacturaE."Approval Status" := FacturaE."Approval Status"::"Approval Pending";
+                end;
+        end;
+        FacturaE.Modify(true);
+
+        OnAfterMoveToNextState(FacturaE);
     end;
 
     procedure ReturnToReceived(var FacturaE: Record "Cabecera FacturaE Recibida")
+    var
+        IsHandled: Boolean;
     begin
-        NotImplemented('retorno de FacturaE a recibida');
+        OnBeforeReturnToReceived(FacturaE, IsHandled);
+        if IsHandled then
+            exit;
+
+        FacturaE.Rechazada := false;
+        FacturaE."Approval Status" := FacturaE."Approval Status"::Blank;
+        FacturaE.Modify(true);
+
+        OnAfterReturnToReceived(FacturaE);
     end;
 
     procedure LinesExist(InvoicePlatformId: Text[50]): Boolean
+    var
+        LineaFacturaE: Record "Linea FacturaE Recibida";
     begin
-        exit(NotImplemented('comprobación de líneas FacturaE'));
+        LineaFacturaE.SetRange("ID Factura", InvoicePlatformId);
+        exit(not LineaFacturaE.IsEmpty());
     end;
 
     procedure UpdateAllLineDim(InvoicePlatformId: Text[50]; NewParentDimSetID: Integer; OldParentDimSetID: Integer)
+    var
+        LineaFacturaE: Record "Linea FacturaE Recibida";
+        DimMgt: Codeunit DimensionManagement;
+        NewDimSetID: Integer;
     begin
-        NotImplemented('actualización de dimensiones en líneas FacturaE');
+        if NewParentDimSetID = OldParentDimSetID then
+            exit;
+
+        LineaFacturaE.SetRange("ID Factura", InvoicePlatformId);
+        if LineaFacturaE.FindSet(true) then
+            repeat
+                NewDimSetID := DimMgt.GetDeltaDimSetID(LineaFacturaE."Dimension Set ID", NewParentDimSetID, OldParentDimSetID);
+                if LineaFacturaE."Dimension Set ID" <> NewDimSetID then begin
+                    LineaFacturaE."Dimension Set ID" := NewDimSetID;
+                    DimMgt.UpdateGlobalDimFromDimSetID(LineaFacturaE."Dimension Set ID", LineaFacturaE."Shortcut Dimension 1 Code", LineaFacturaE."Shortcut Dimension 2 Code");
+                    LineaFacturaE.Modify(true);
+                end;
+            until LineaFacturaE.Next() = 0;
+    end;
+
+    local procedure CreatePurchaseHeaderFromFacturaE(var FacturaE: Record "Cabecera FacturaE Recibida"; var PurchaseHeader: Record "Purchase Header")
+    begin
+        FacturaE.TestField("Proveedor NAV");
+        FacturaE.CalcFields("Documento en Curso", "Documento Registrado");
+        FacturaE.TestField("Documento en Curso", '');
+        FacturaE.TestField("Documento Registrado", '');
+
+        PurchaseHeader.Init();
+        PurchaseHeader."Document Type" := PurchaseHeader."Document Type"::Invoice;
+        PurchaseHeader.Insert(true);
+        PurchaseHeader.Validate("Buy-from Vendor No.", FacturaE."Proveedor NAV");
+        PurchaseHeader.Validate("Vendor Invoice No.", CopyStr(FacturaE."Numero", 1, MaxStrLen(PurchaseHeader."Vendor Invoice No.")));
+        PurchaseHeader.Validate("Document Date", FacturaE."Fecha Devengo");
+        PurchaseHeader.Validate("Posting Date", WorkDate());
+        PurchaseHeader."ID Plataforma FacturaE" := FacturaE."ID Plataforma";
+        PurchaseHeader."Numero FacturaE" := FacturaE."Numero";
+        PurchaseHeader.Modify(true);
+    end;
+
+    local procedure BuildUrlToOpen(FileName: Text[250]; OpenContainer: Boolean): Text
+    var
+        Url: Text;
+        LastSlashPosition: Integer;
+    begin
+        Url := FileName;
+        if Url = '' then
+            exit('');
+
+        if OpenContainer then begin
+            LastSlashPosition := GetLastSlashPosition(Url);
+            if LastSlashPosition > 0 then
+                Url := CopyStr(Url, 1, LastSlashPosition);
+        end;
+
+        exit(Url);
+    end;
+
+    local procedure GetLastSlashPosition(Value: Text): Integer
+    var
+        Position: Integer;
+        LastPosition: Integer;
+        RemainingText: Text;
+    begin
+        RemainingText := Value;
+        while StrPos(RemainingText, '/') > 0 do begin
+            Position += StrPos(RemainingText, '/');
+            LastPosition := Position;
+            RemainingText := CopyStr(Value, Position + 1);
+        end;
+
+        exit(LastPosition);
     end;
 
     local procedure FilterVendorByVat(var Vendor: Record Vendor; VatRegistrationNo: Text[20])
@@ -207,7 +409,11 @@ codeunit 50007 "FacturaE Recibida Mgt."
         end;
     end;
 
-    local procedure AppendRejectDescription(var FacturaE: Record "Cabecera FacturaE Recibida"; var ExtendedTextLine: Record "Extended Text Line"; StandardTextCode: Code[10]; LanguageCode: Code[10])
+    local procedure AppendRejectDescription(
+        var FacturaE: Record "Cabecera FacturaE Recibida";
+        var ExtendedTextLine: Record "Extended Text Line";
+        StandardTextCode: Code[10];
+        LanguageCode: Code[10])
     begin
         ExtendedTextLine.Reset();
         ExtendedTextLine.SetRange("Table Name", ExtendedTextLine."Table Name"::"Standard Text");
@@ -233,11 +439,98 @@ codeunit 50007 "FacturaE Recibida Mgt."
 
     local procedure AppendDescriptionText(var FacturaE: Record "Cabecera FacturaE Recibida"; TextToAppend: Text)
     begin
-        FacturaE.Validate("Descripcion Rechazo", CopyStr(FacturaE."Descripcion Rechazo" + TextToAppend, 1, MaxStrLen(FacturaE."Descripcion Rechazo")));
+        FacturaE.Validate(
+            "Descripcion Rechazo",
+            CopyStr(FacturaE."Descripcion Rechazo" + TextToAppend, 1, MaxStrLen(FacturaE."Descripcion Rechazo")));
     end;
 
-    local procedure NotImplemented(IntegrationName: Text): Boolean
+    [IntegrationEvent(false, false)]
+    local procedure OnLookupExpediente(var FacturaE: Record "Cabecera FacturaE Recibida"; var LookupAccepted: Boolean; var IsHandled: Boolean)
     begin
-        Error(CloudIntegrationErr, IntegrationName);
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterUpdateExpedienteOnLines(FacturaE: Record "Cabecera FacturaE Recibida")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterUpdateLoteOnLines(FacturaE: Record "Cabecera FacturaE Recibida")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterDeleteRelatedLines(FacturaE: Record "Cabecera FacturaE Recibida")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeCheckInvoiceAmount(
+        PurchaseHeader: Record "Purchase Header";
+        FacturaE: Record "Cabecera FacturaE Recibida";
+        var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnImportBackupData(var Imported: Boolean; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeApproveEInvoice(var FacturaE: Record "Cabecera FacturaE Recibida"; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterApproveEInvoice(FacturaE: Record "Cabecera FacturaE Recibida")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeRegisterInvoice(
+        var FacturaE: Record "Cabecera FacturaE Recibida";
+        PostDocument: Boolean;
+        var PurchaseHeader: Record "Purchase Header";
+        var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterRegisterInvoice(
+        var FacturaE: Record "Cabecera FacturaE Recibida";
+        PurchaseHeader: Record "Purchase Header";
+        PostDocument: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeRejectInvoice(var FacturaE: Record "Cabecera FacturaE Recibida"; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterRejectInvoice(FacturaE: Record "Cabecera FacturaE Recibida")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeMoveToNextState(var FacturaE: Record "Cabecera FacturaE Recibida"; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterMoveToNextState(FacturaE: Record "Cabecera FacturaE Recibida")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeReturnToReceived(var FacturaE: Record "Cabecera FacturaE Recibida"; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterReturnToReceived(FacturaE: Record "Cabecera FacturaE Recibida")
+    begin
     end;
 }
