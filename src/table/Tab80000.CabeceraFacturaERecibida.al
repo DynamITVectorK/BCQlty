@@ -5,124 +5,124 @@ table 80000 "Cabecera FacturaE Recibida"
 
     fields
     {
-        field(1; "ID Plataforma"; Text[50])
+        field(1; ID_PLATAFORMA; Text[50])
         {
             Caption = 'ID Plataforma';
             DataClassification = CustomerContent;
         }
-        field(2; "Numero"; Text[20])
+        field(2; NUM; Text[20])
         {
             Caption = 'Número';
             DataClassification = CustomerContent;
         }
-        field(3; "Serie"; Text[20])
+        field(3; SERIE; Text[20])
         {
             Caption = 'Serie';
             DataClassification = CustomerContent;
         }
-        field(4; "Fecha Entrada"; Date)
+        field(4; FECHA_ENTRADA; Date)
         {
             Caption = 'Fecha Entrada';
             DataClassification = CustomerContent;
         }
-        field(5; "Fecha Devengo"; Date)
+        field(5; FECHA_DEVENGO; Date)
         {
             Caption = 'Fecha Devengo';
             DataClassification = CustomerContent;
         }
-        field(6; "Emisor CIF"; Text[20])
+        field(6; EMISOR_CIF; Text[20])
         {
             Caption = 'CIF Emisor';
             DataClassification = CustomerContent;
         }
-        field(7; "Emisor Nombre"; Text[100])
+        field(7; EMISOR_NOMBRE; Text[50])
         {
             Caption = 'Nombre Emisor';
             DataClassification = CustomerContent;
         }
-        field(8; "Emisor Direccion"; Text[100])
+        field(8; EMISOR_DIRECCION; Text[100])
         {
             Caption = 'Dirección Emisor';
             DataClassification = CustomerContent;
         }
-        field(9; "Emisor Ciudad"; Text[30])
+        field(9; EMISOR_CIUDAD; Text[30])
         {
             Caption = 'Ciudad Emisor';
             DataClassification = CustomerContent;
         }
-        field(10; "Emisor Provincia"; Text[30])
+        field(10; EMISOR_PROVINCIA; Text[30])
         {
             Caption = 'Provincia Emisor';
             DataClassification = CustomerContent;
         }
-        field(11; "Emisor CP"; Text[20])
+        field(11; EMISOR_CP; Text[20])
         {
             Caption = 'Cód. Postal Emisor';
             DataClassification = CustomerContent;
         }
-        field(12; "Emisor Telefono"; Text[20])
+        field(12; EMISOR_TELEFONO; Text[20])
         {
             Caption = 'Teléfono Emisor';
             DataClassification = CustomerContent;
         }
-        field(13; "Emisor Email"; Text[80])
+        field(13; EMISOR_EMAIL; Text[80])
         {
             Caption = 'Email Emisor';
             DataClassification = CustomerContent;
         }
-        field(14; "Receptor CIF"; Text[20])
+        field(14; RECEPTOR_CIF; Text[20])
         {
             Caption = 'CIF Receptor';
             DataClassification = CustomerContent;
         }
-        field(22; "Forma Pago"; Text[50])
+        field(22; FORMA_PAGO; Text[50])
         {
             Caption = 'Forma Pago';
             DataClassification = CustomerContent;
         }
-        field(23; "Fecha Pago"; Date)
+        field(23; FECHA_PAGO; Date)
         {
             Caption = 'Fecha Pago';
             DataClassification = CustomerContent;
         }
-        field(24; "IBAN Pago"; Text[34])
+        field(24; CCC_PAGO; Text[34])
         {
             Caption = 'IBAN Pago';
             DataClassification = CustomerContent;
         }
-        field(25; "Notas"; Text[250])
+        field(25; NOTAS; Text[250])
         {
             Caption = 'Notas';
             DataClassification = CustomerContent;
         }
-        field(26; "Contacto Nombre"; Text[50])
+        field(26; CONTACTO_NOMBRE; Text[50])
         {
             Caption = 'Nombre Contacto';
             DataClassification = CustomerContent;
         }
-        field(27; "Contacto Telefono"; Text[20])
+        field(27; CONTACTO_TELEFONO; Text[20])
         {
             Caption = 'Teléfono Contacto';
             DataClassification = CustomerContent;
         }
-        field(28; "Contacto Email"; Text[80])
+        field(28; CONTACTO_EMAIL; Text[80])
         {
             Caption = 'Email Contacto';
             DataClassification = CustomerContent;
         }
-        field(29; "Total Bases"; Decimal)
+        field(29; TOTAL_BASES; Decimal)
         {
             Caption = 'Total Bases';
             DataClassification = CustomerContent;
             AutoFormatType = 1;
         }
-        field(30; "Total Tasas"; Decimal)
+        field(30; TOTAL_TASAS; Decimal)
         {
             Caption = 'Total Tasas';
             DataClassification = CustomerContent;
             AutoFormatType = 1;
         }
-        field(31; "Total Pagar"; Decimal)
+        field(31; TOTAL_PAGAR; Decimal)
         {
             Caption = 'Total Pagar';
             DataClassification = CustomerContent;
@@ -155,22 +155,22 @@ table 80000 "Cabecera FacturaE Recibida"
                 FacturaEMgt.ValidateVendor(Rec);
             end;
         }
-        field(34; "Documentacion Adjunta"; Text[200])
+        field(34;"DOCUMENTACIÓN ADJUNTA";Text[200])
         {
             Caption = 'Documentación adjunta';
             DataClassification = CustomerContent;
         }
-        field(35; "Documento PDF"; Text[200])
+        field(35;"DOCUMENTO PDF";Text[200])
         {
             Caption = 'Documento PDF';
             DataClassification = CustomerContent;
         }
-        field(36; "Documento Factura"; Text[200])
+        field(36;"DOCUMENTO FACTURA";Text[200])
         {
             Caption = 'Documento Factura';
             DataClassification = CustomerContent;
         }
-        field(37; "Documento Registrado"; Code[20])
+        field(37;"Documento Registrado";Code[20])
         {
             Caption = 'Documento Registrado';
             CalcFormula = lookup("Purch. Inv. Header"."No." where("ID Plataforma FacturaE" = field("ID Plataforma"), "Numero FacturaE" = field("Numero")));
@@ -227,24 +227,24 @@ table 80000 "Cabecera FacturaE Recibida"
                 TestField(Rechazada, false);
             end;
         }
-        field(43; "Descripcion Rechazo"; Text[250])
+        field(43;"Descripción Rechazo";Text[250])
         {
             Caption = 'Descripción Rechazo';
             DataClassification = CustomerContent;
         }
-        field(44; "Fecha Importacion"; Date)
+        field(44;"Fecha Importación";Date)
         {
             Caption = 'Fecha Importación';
             DataClassification = SystemMetadata;
             Editable = false;
         }
-        field(45; "Hora Importacion"; Time)
+        field(45;"Hora Importación";Time)
         {
             Caption = 'Hora Importación';
             DataClassification = SystemMetadata;
             Editable = false;
         }
-        field(46; "Usuario Importacion"; Code[50])
+        field(46;"Usuario Importación";Text[250])
         {
             Caption = 'Usuario Importación';
             DataClassification = EndUserIdentifiableInformation;
@@ -272,7 +272,7 @@ table 80000 "Cabecera FacturaE Recibida"
             Caption = 'Approval Status';
             DataClassification = CustomerContent;
         }
-        field(50001; Expediente; Code[20])
+        field(50001;EXPEDIENTE;Text[20])
         {
             Caption = 'Expediente';
             DataClassification = CustomerContent;
@@ -343,14 +343,14 @@ table 80000 "Cabecera FacturaE Recibida"
 
     keys
     {
-        key(PK; "ID Plataforma", "Numero")
+        key(Key1;ID_PLATAFORMA,NUM)
         {
             Clustered = true;
         }
-        key(Importacion; "Fecha Importacion", "Hora Importacion")
+        key(Key2;"Fecha Importación","Hora Importación")
         {
         }
-        key(Approval; "Approval Status", Rechazada)
+        key(Key3;"Approval Status",Rechazada)
         {
         }
     }
