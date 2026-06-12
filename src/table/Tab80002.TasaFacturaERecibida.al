@@ -1,4 +1,4 @@
-table 50009 "Tasa FacturaE Recibida"
+table 80002 "Tasa FacturaE Recibida"
 {
     Caption = 'Tasa FacturaE Recibida';
     DataClassification = CustomerContent;

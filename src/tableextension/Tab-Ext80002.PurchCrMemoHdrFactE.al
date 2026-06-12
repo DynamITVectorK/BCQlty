@@ -1,4 +1,4 @@
-tableextension 50009 "Purch. Cr. Memo Hdr. FactE" extends "Purch. Cr. Memo Hdr."
+tableextension 80002 "Purch. Cr. Memo Hdr. FactE" extends "Purch. Cr. Memo Hdr."
 {
     fields
     {

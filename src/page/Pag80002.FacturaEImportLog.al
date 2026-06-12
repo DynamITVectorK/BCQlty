@@ -1,4 +1,4 @@
-page 50111 "FacturaE Import Log"
+page 80002 "FacturaE Import Log"
 {
     PageType = List;
     ApplicationArea = All;

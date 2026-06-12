@@ -1,4 +1,4 @@
-page 50066 "FacturasE Recibidas"
+page 80000 "FacturasE Recibidas"
 {
     PageType = List;
     ApplicationArea = All;

@@ -1,4 +1,4 @@
-table 50008 "Linea FacturaE Recibida"
+table 80001 "Linea FacturaE Recibida"
 {
     Caption = 'Línea FacturaE Recibida';
     DataClassification = CustomerContent;

@@ -1,4 +1,4 @@
-enum 50111 "FacturaE Import Status"
+enum 80002 "FacturaE Import Status"
 {
     Extensible = true;
     Caption = 'FacturaE Import Status';

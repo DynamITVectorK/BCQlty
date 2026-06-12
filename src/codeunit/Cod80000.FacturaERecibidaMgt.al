@@ -1,4 +1,4 @@
-codeunit 50007 "FacturaE Recibida Mgt."
+codeunit 80000 "FacturaE Recibida Mgt."
 {
     var
         VendorVatErr: Label 'El proveedor debe coincidir con el CIF del emisor.';

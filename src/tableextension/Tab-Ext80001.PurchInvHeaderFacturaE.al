@@ -1,4 +1,4 @@
-tableextension 50008 "Purch. Inv. Header FacturaE" extends "Purch. Inv. Header"
+tableextension 80001 "Purch. Inv. Header FacturaE" extends "Purch. Inv. Header"
 {
     fields
     {

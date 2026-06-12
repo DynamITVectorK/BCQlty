@@ -1,4 +1,4 @@
-permissionset 50007 "FacturaE Recibida"
+permissionset 80000 "FacturaE Recibida"
 {
     Assignable = true;
     Caption = 'FacturaE Recibida';

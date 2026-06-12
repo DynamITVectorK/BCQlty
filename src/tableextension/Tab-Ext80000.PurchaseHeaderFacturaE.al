@@ -1,4 +1,4 @@
-tableextension 50007 "Purchase Header FacturaE" extends "Purchase Header"
+tableextension 80000 "Purchase Header FacturaE" extends "Purchase Header"
 {
     fields
     {

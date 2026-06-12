@@ -1,4 +1,4 @@
-page 50110 "FacturaE Import Setup"
+page 80001 "FacturaE Import Setup"
 {
     PageType = Card;
     ApplicationArea = All;

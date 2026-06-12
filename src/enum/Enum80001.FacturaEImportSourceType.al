@@ -1,4 +1,4 @@
-enum 50110 "FacturaE Import Source Type"
+enum 80001 "FacturaE Import Source Type"
 {
     Extensible = true;
     Caption = 'FacturaE Import Source Type';

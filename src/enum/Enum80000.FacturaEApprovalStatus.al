@@ -1,4 +1,4 @@
-enum 50007 "FacturaE Approval Status"
+enum 80000 "FacturaE Approval Status"
 {
     Extensible = true;
     Caption = 'FacturaE Approval Status';

@@ -1,4 +1,4 @@
-table 50111 "FacturaE Import Log"
+table 80004 "FacturaE Import Log"
 {
     Caption = 'FacturaE Import Log';
     DataClassification = CustomerContent;

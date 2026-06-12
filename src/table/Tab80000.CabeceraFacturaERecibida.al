@@ -1,4 +1,4 @@
-table 50007 "Cabecera FacturaE Recibida"
+table 80000 "Cabecera FacturaE Recibida"
 {
     Caption = 'Cabecera FacturaE Recibida';
     DataClassification = CustomerContent;
