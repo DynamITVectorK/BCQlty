@@ -377,6 +377,9 @@ table 50007 "Cabecera FacturaE Recibida"
         NoDocumentToOpenMsg: Label 'No hay ningún documento o URL disponible para abrir.';
         PurchaseInvoiceCreatedMsg: Label 'Se ha generado la factura %1. Puede proceder a su revisión.';
         AmountMismatchErr: Label 'El importe de la factura (%1) no coincide con el total FacturaE (%2).';
+        PdfLinkDescriptionTxt: Label 'FacturaE - PDF', Locked = true;
+        XmlLinkDescriptionTxt: Label 'FacturaE - XML', Locked = true;
+        AttachmentLinkDescriptionTxt: Label 'FacturaE - documentación adjunta', Locked = true;
 
     procedure TraerBackup()
     begin
@@ -480,6 +483,27 @@ table 50007 "Cabecera FacturaE Recibida"
         OpenExternalDocument(Fichero, true);
     end;
 
+    procedure fCopiarDocumentosAlfresco(CabeceraFacturaERecibida: Record "Cabecera FacturaE Recibida"; var PurchaseHeader: Record "Purchase Header")
+    begin
+        CopiarDocumentosAlfresco(CabeceraFacturaERecibida, PurchaseHeader);
+    end;
+
+    procedure CopiarDocumentosAlfresco(CabeceraFacturaERecibida: Record "Cabecera FacturaE Recibida"; var PurchaseHeader: Record "Purchase Header")
+    var
+        IsHandled: Boolean;
+    begin
+        OnBeforeCopiarDocumentosAlfresco(CabeceraFacturaERecibida, PurchaseHeader, IsHandled);
+        if IsHandled then
+            exit;
+
+        AddFacturaELinkToPurchaseHeader(PurchaseHeader, CabeceraFacturaERecibida."DOCUMENTO PDF", PdfLinkDescriptionTxt, 'PDF');
+        AddFacturaELinkToPurchaseHeader(PurchaseHeader, CabeceraFacturaERecibida."DOCUMENTO FACTURA", XmlLinkDescriptionTxt, 'XML');
+        AddFacturaELinkToPurchaseHeader(PurchaseHeader, CabeceraFacturaERecibida."DOCUMENTACIÓN ADJUNTA", AttachmentLinkDescriptionTxt, 'ATTACHMENT');
+
+        PurchaseHeader.CopyLinks(CabeceraFacturaERecibida);
+        OnAfterCopiarDocumentosAlfresco(CabeceraFacturaERecibida, PurchaseHeader);
+    end;
+
     procedure ApproveEInvoice()
     var
         IsHandled: Boolean;
@@ -516,6 +540,8 @@ table 50007 "Cabecera FacturaE Recibida"
             PurchaseHeader.Validate("Posting Date", WorkDate());
             PurchaseHeader.Modify(true);
         end;
+
+        CopiarDocumentosAlfresco(FacturaE, PurchaseHeader);
 
         if RegistrarDocumento then
             Codeunit.Run(Codeunit::"Purch.-Post (Yes/No)", PurchaseHeader)
@@ -837,6 +863,28 @@ table 50007 "Cabecera FacturaE Recibida"
         Hyperlink(UrlToOpen);
     end;
 
+    local procedure AddFacturaELinkToPurchaseHeader(var PurchaseHeader: Record "Purchase Header"; LinkUrl: Text[200]; LinkDescription: Text[80]; LinkType: Code[20])
+    var
+        NormalizedLinkUrl: Text[2048];
+        IsHandled: Boolean;
+    begin
+        NormalizedLinkUrl := NormalizeExternalDocumentUrl(LinkUrl);
+        if NormalizedLinkUrl = '' then
+            exit;
+
+        OnBeforeAddFacturaELinkToPurchaseHeader(PurchaseHeader, NormalizedLinkUrl, LinkDescription, LinkType, IsHandled);
+        if IsHandled then
+            exit;
+
+        PurchaseHeader.AddLink(NormalizedLinkUrl, LinkDescription);
+        OnAfterAddFacturaELinkToPurchaseHeader(PurchaseHeader, NormalizedLinkUrl, LinkDescription, LinkType);
+    end;
+
+    local procedure NormalizeExternalDocumentUrl(LinkUrl: Text[200]) NormalizedLinkUrl: Text[2048]
+    begin
+        NormalizedLinkUrl := DelChr(LinkUrl, '<>');
+    end;
+
     local procedure GetLastSlashPosition(Value: Text): Integer
     var
         Position: Integer;
@@ -890,6 +938,26 @@ table 50007 "Cabecera FacturaE Recibida"
 
     [IntegrationEvent(false, false)]
     local procedure OnBeforeApproveEInvoice(var CabeceraFacturaERecibida: Record "Cabecera FacturaE Recibida"; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeCopiarDocumentosAlfresco(CabeceraFacturaERecibida: Record "Cabecera FacturaE Recibida"; var PurchaseHeader: Record "Purchase Header"; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeAddFacturaELinkToPurchaseHeader(var PurchaseHeader: Record "Purchase Header"; var LinkUrl: Text[2048]; var LinkDescription: Text[80]; LinkType: Code[20]; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterAddFacturaELinkToPurchaseHeader(var PurchaseHeader: Record "Purchase Header"; LinkUrl: Text[2048]; LinkDescription: Text[80]; LinkType: Code[20])
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterCopiarDocumentosAlfresco(CabeceraFacturaERecibida: Record "Cabecera FacturaE Recibida"; var PurchaseHeader: Record "Purchase Header")
     begin
     end;
 
