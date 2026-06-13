@@ -20,12 +20,10 @@ table 80005 "BD Respaldo Factura Recibida"
             Caption = 'Datos XML Original';
             DataClassification = CustomerContent;
         }
-        field(4; "Estado Navision"; Option)
+        field(4; "Estado Navision"; Enum "BD Respaldo Factura Estado Nav")
         {
             Caption = 'Estado Navision';
             DataClassification = CustomerContent;
-            OptionCaption = 'Pendiente,Importado,Con Errores';
-            OptionMembers = Pendiente,Importado,"Con Errores";
         }
         field(5; "Datos XML Adaptado"; Blob)
         {
