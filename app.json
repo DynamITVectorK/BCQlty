@@ -1,0 +1,30 @@
+{
+  "id": "c41328bb-0dac-4a7f-8e4e-f4d62b0e8b70",
+  "name": "BCQlty FacturaE",
+  "publisher": "DynamITVectorK",
+  "version": "1.0.0.0",
+  "brief": "FacturaE received invoice migration for Business Central SaaS.",
+  "description": "Refactored NAV 2016 FacturaE objects for Business Central SaaS compatibility.",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "26.0.0.0",
+  "application": "26.0.0.0",
+  "idRanges": [
+    {
+      "from": 80000,
+      "to": 99999
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "15.0",
+  "target": "Cloud"
+}
