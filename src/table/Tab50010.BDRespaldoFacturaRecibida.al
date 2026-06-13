@@ -1,25 +1,34 @@
-table 50010 "BD Respaldo Factura Recibida"
+table 80005 "BD Respaldo Factura Recibida"
 {
-    // I00298 Mod. S2G (JMG) 04-01-17: Ampliar el número de caracteres reemplazados.
-
+    Caption = 'BD Respaldo Factura Recibida';
+    DataClassification = CustomerContent;
 
     fields
     {
         field(1; "ID Factura"; Text[30])
         {
+            Caption = 'ID Factura';
+            DataClassification = CustomerContent;
         }
         field(2; Estado; Text[30])
         {
+            Caption = 'Estado';
+            DataClassification = CustomerContent;
         }
-        field(3; "Datos XML Original"; BLOB)
+        field(3; "Datos XML Original"; Blob)
         {
+            Caption = 'Datos XML Original';
+            DataClassification = CustomerContent;
         }
-        field(4; "Estado Navision"; Option)
+        field(4; "Estado Navision"; Enum "BD Respaldo Factura Estado Nav")
         {
-            OptionMembers = Pendiente,Importado,"Con Errores";
+            Caption = 'Estado Navision';
+            DataClassification = CustomerContent;
         }
-        field(5; "Datos XML Adaptado"; BLOB)
+        field(5; "Datos XML Adaptado"; Blob)
         {
+            Caption = 'Datos XML Adaptado';
+            DataClassification = CustomerContent;
         }
     }
 
@@ -31,142 +40,90 @@ table 50010 "BD Respaldo Factura Recibida"
         }
     }
 
-    fieldgroups
-    {
-    }
-
-    var
-        XMLNodeList: Automation;
-        vClientFileName: Text;
-
-    [Scope('Internal')]
     procedure fProcesarLineas()
     var
-        rlBDRespaldoFacturaRecibida: Record "50010";
-        rlBDRespaldoFacturaRecibidaMod: Record "50010";
-        xlFacturaRecibida: XMLport "50002";
-        vlInstream: InStream;
-        vlRuta: Text[250];
-        vlServerFileName: Text;
-        clFileMgt: Codeunit "419";
-        vlClientFileName: Text;
+        BDRespaldoFacturaRecibida: Record "BD Respaldo Factura Recibida";
+        BDRespaldoFacturaRecibidaMod: Record "BD Respaldo Factura Recibida";
+        ImportOrchestrator: Codeunit "FacturaE Import Orchestrator";
+        XmlInStream: InStream;
+        AdaptedXmlInStream: InStream;
     begin
-        CLEAR(rlBDRespaldoFacturaRecibida);
-        rlBDRespaldoFacturaRecibida.SETFILTER("Estado Navision", '%1|%2', rlBDRespaldoFacturaRecibida."Estado Navision"::Pendiente,
-                                              rlBDRespaldoFacturaRecibida."Estado Navision"::"Con Errores");
-        IF rlBDRespaldoFacturaRecibida.FINDSET THEN
-            REPEAT
-                CLEAR(rlBDRespaldoFacturaRecibidaMod);
-                rlBDRespaldoFacturaRecibidaMod.GET(rlBDRespaldoFacturaRecibida."ID Factura");
-                rlBDRespaldoFacturaRecibida.CALCFIELDS("Datos XML Original");
-                rlBDRespaldoFacturaRecibida."Datos XML Original".CREATEINSTREAM(vlInstream);
+        BDRespaldoFacturaRecibida.SetFilter("Estado Navision", '%1|%2', BDRespaldoFacturaRecibida."Estado Navision"::Pendiente,
+            BDRespaldoFacturaRecibida."Estado Navision"::"Con Errores");
+        if not BDRespaldoFacturaRecibida.FindSet() then
+            exit;
 
-                //***BGS 02/05/19: Inicio
-                //vlRuta := TEMPORARYPATH + rlBDRespaldoFacturaRecibida."ID Factura" + 'xml';
-                //rlBDRespaldoFacturaRecibida."Datos XML Original".EXPORT(vlRuta);
-                CLEAR(vlServerFileName);
-                vlServerFileName := clFileMgt.ServerTempFileName('xml');
-                rlBDRespaldoFacturaRecibida."Datos XML Original".EXPORT(vlServerFileName);
-                CLEAR(vlClientFileName);
-                vlClientFileName := clFileMgt.DownloadTempFile(vlServerFileName);
-                vlRuta := vlClientFileName;
-                //***BGS 02/05/19: Fin
+        repeat
+            BDRespaldoFacturaRecibida.CalcFields("Datos XML Original");
+            BDRespaldoFacturaRecibida."Datos XML Original".CreateInStream(XmlInStream, TextEncoding::UTF8);
 
-                fLeerXML(vlRuta, 'CONCEPTO', 'DESCRIPCION');
-                fLeerXML(vlRuta, 'FACTURA', 'OBSERVACIONES');
+            BDRespaldoFacturaRecibidaMod.Get(BDRespaldoFacturaRecibida."ID Factura");
+            AdaptXml(XmlInStream, BDRespaldoFacturaRecibidaMod);
+            BDRespaldoFacturaRecibidaMod.CalcFields("Datos XML Adaptado");
+            BDRespaldoFacturaRecibidaMod."Datos XML Adaptado".CreateInStream(AdaptedXmlInStream, TextEncoding::UTF8);
 
-                //***BGS 02/05/19: Inicio
-                CLEAR(vlServerFileName);
-                vlServerFileName := clFileMgt.UploadFileSilent(vlClientFileName);
-                vlRuta := vlServerFileName;
-                //***BGS 02/05/19: Fin
+            ImportOrchestrator.ImportXmlStream(AdaptedXmlInStream, BDRespaldoFacturaRecibidaMod."ID Factura" + '.xml');
 
-                rlBDRespaldoFacturaRecibidaMod."Datos XML Adaptado".IMPORT(vlRuta);
-                rlBDRespaldoFacturaRecibidaMod.CALCFIELDS("Datos XML Adaptado");
-                //rlBDRespaldoFacturaRecibidaMod."Datos XML Adaptado".EXPORT(
-                //          '\\tsclient\C\Compartida\XMLAdaptado' + rlBDRespaldoFacturaRecibidaMod."ID Factura" + '.xml');
-                rlBDRespaldoFacturaRecibidaMod."Datos XML Adaptado".CREATEINSTREAM(vlInstream);
-                rlBDRespaldoFacturaRecibidaMod.MODIFY;
-
-                CLEAR(xlFacturaRecibida);
-                xlFacturaRecibida.SETSOURCE(vlInstream);
-                xlFacturaRecibida.IMPORT;
-
-                rlBDRespaldoFacturaRecibidaMod."Estado Navision" := rlBDRespaldoFacturaRecibidaMod."Estado Navision"::Importado;
-                rlBDRespaldoFacturaRecibidaMod.MODIFY;
-
-            UNTIL rlBDRespaldoFacturaRecibida.NEXT = 0;
+            BDRespaldoFacturaRecibidaMod."Estado Navision" := BDRespaldoFacturaRecibidaMod."Estado Navision"::Importado;
+            BDRespaldoFacturaRecibidaMod.Modify(true);
+        until BDRespaldoFacturaRecibida.Next() = 0;
     end;
 
-    [Scope('Internal')]
-    procedure fLeerXML(pDirectorio: Text[250]; pRaiz: Text[250]; pElemento: Text[250])
+    procedure fLeerXML(var XmlInStream: InStream; var XmlOutStream: OutStream; pRaiz: Text; pElemento: Text)
     var
-        XMLDocument: Automation;
-        strInStream: InStream;
-        File: File;
-        i: Integer;
+        XmlDocument: XmlDocument;
     begin
-
-        IF ISCLEAR(XMLDocument) THEN
-            CREATE(XMLDocument, FALSE, TRUE);
-        XMLDocument.load(pDirectorio); //se carga el fichero
-        IF XMLDocument.hasChildNodes THEN
-            XMLNodeList := XMLDocument.getElementsByTagName(pRaiz);//'ns3:Facturae');
-        fRecorrerXML('', XMLNodeList, pElemento);
-        XMLDocument.save(pDirectorio);
+        XmlDocument.ReadFrom(XmlInStream, XmlDocument);
+        TruncateXmlElementText(XmlDocument, pRaiz, pElemento, 250);
+        XmlDocument.WriteTo(XmlOutStream);
     end;
 
-    [Scope('Internal')]
-    procedure fRecorrerXML(pElemento: Text[250]; pXMLNodeList: Automation; pElementomodificar: Text[30])
+    local procedure AdaptXml(var XmlInStream: InStream; var BDRespaldoFacturaRecibida: Record "BD Respaldo Factura Recibida")
     var
-        XMLNodeList: Automation;
-        XMLNode: Automation;
-        i: Integer;
-        XMLNodeList2: Automation;
-        XMLNode2: Automation;
-        vlBigText: BigText;
-        XMLNodeText: Automation;
+        XmlDocument: XmlDocument;
+        XmlOutStream: OutStream;
     begin
-        //Recorrer Nodos XML
-        XMLNodeList := pXMLNodeList;
-        FOR i := 0 TO XMLNodeList.length() - 1 DO BEGIN
-            XMLNode := XMLNodeList.item(i);
-            IF XMLNode.hasChildNodes THEN BEGIN
-                XMLNodeList2 := XMLNode.childNodes;
-                IF XMLNode.nodeName = pElementomodificar THEN BEGIN
-                    XMLNode2 := XMLNode.parentNode;
-                    XMLNodeText := XMLNode.childNodes.item(0);
-                    //I00298 Mod. S2G (JMG) 04-01-17: Ampliar el número de caracteres reemplazados.
-                    //XMLNodeText.replaceData(1,1000,XMLNodeText.substringData(1,250));
-                    XMLNodeText.replaceData(1, 8000, XMLNodeText.substringData(1, 250));
-                    //I00298 Mod. S2G (JMG) 04-01-17: Ampliar el número de caracteres reemplazados. Fin
-                    EXIT;
-                END
-                ELSE
-                    fRecorrerXML(XMLNode.nodeName, XMLNodeList2, pElementomodificar);
-            END
-            ELSE BEGIN
-                IF XMLNode.nodeName = pElementomodificar THEN BEGIN
-                    XMLNode2 := XMLNode.parentNode;
-                    IF XMLNode.text <> '' THEN BEGIN
-                        XMLNodeText := XMLNode.childNodes.item(0);
-                        //I00298 Mod. S2G (JMG) 04-01-17: Ampliar el número de caracteres reemplazados.
-                        //XMLNodeText.replaceData(1,1000,XMLNodeText.substringData(1,250));
-                        XMLNodeText.replaceData(1, 8000, XMLNodeText.substringData(1, 250));
-                        //I00298 Mod. S2G (JMG) 04-01-17: Ampliar el número de caracteres reemplazados. Fin
-                        EXIT;
-                    END;
-                END;
-            END;
-        END;
+        XmlDocument.ReadFrom(XmlInStream, XmlDocument);
+        TruncateXmlElementText(XmlDocument, 'CONCEPTO', 'DESCRIPCION', 250);
+        TruncateXmlElementText(XmlDocument, 'FACTURA', 'OBSERVACIONES', 250);
+
+        BDRespaldoFacturaRecibida."Datos XML Adaptado".CreateOutStream(XmlOutStream, TextEncoding::UTF8);
+        XmlDocument.WriteTo(XmlOutStream);
+        BDRespaldoFacturaRecibida.Modify(true);
     end;
 
-    [Scope('Internal')]
+    local procedure TruncateXmlElementText(var XmlDocument: XmlDocument; RootElementName: Text; ElementName: Text; MaxLength: Integer)
+    var
+        RootNodes: XmlNodeList;
+        RootNode: XmlNode;
+    begin
+        if not XmlDocument.SelectNodes(StrSubstNo('//*[local-name()="%1"]', RootElementName), RootNodes) then
+            exit;
+
+        foreach RootNode in RootNodes do
+            TruncateXmlElementText(RootNode, ElementName, MaxLength);
+    end;
+
+    local procedure TruncateXmlElementText(XmlNode: XmlNode; ElementName: Text; MaxLength: Integer)
+    var
+        ElementNodes: XmlNodeList;
+        ElementNode: XmlNode;
+        XmlElement: XmlElement;
+        ElementText: Text;
+    begin
+        if not XmlNode.SelectNodes(StrSubstNo('.//*[local-name()="%1"]', ElementName), ElementNodes) then
+            exit;
+
+        foreach ElementNode in ElementNodes do begin
+            XmlElement := ElementNode.AsXmlElement();
+            ElementText := XmlElement.InnerText();
+            if StrLen(ElementText) > MaxLength then
+                XmlElement.ReplaceNodes(CopyStr(ElementText, 1, MaxLength));
+        end;
+    end;
+
     procedure fSetClientFileName(pClientFileName: Text)
     begin
-        //***BGS 02/05/19: Inicio
-        vClientFileName := pClientFileName;
-        //***BGS 02/05/19: Fin
+        // Conservado por compatibilidad con llamadas C/AL migradas. En SaaS no se usan rutas de cliente/servidor.
     end;
 }
-
