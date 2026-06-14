@@ -388,10 +388,15 @@ table 50007 "Cabecera FacturaE Recibida"
 
     procedure fTraerBackup()
     var
+        BDRespaldoFacturaRecibida: Record "BD Respaldo Factura Recibida";
         Imported: Boolean;
         IsHandled: Boolean;
     begin
         OnImportBackupData(Rec, Imported, IsHandled);
+        if IsHandled then
+            exit;
+
+        BDRespaldoFacturaRecibida.fProcesarLineas();
     end;
 
     procedure TraerDatosRespaldo(): Boolean
@@ -401,10 +406,15 @@ table 50007 "Cabecera FacturaE Recibida"
 
     procedure fTraerDatosRespaldo(): Boolean
     var
+        BDRespaldoFacturaRecibida: Record "BD Respaldo Factura Recibida";
         Imported: Boolean;
         IsHandled: Boolean;
     begin
         OnImportBackupData(Rec, Imported, IsHandled);
+        if IsHandled then
+            exit(Imported);
+
+        Imported := BDRespaldoFacturaRecibida.fProcesarLineas();
         exit(Imported);
     end;
 

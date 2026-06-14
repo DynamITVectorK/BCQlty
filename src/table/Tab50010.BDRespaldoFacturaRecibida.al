@@ -40,7 +40,7 @@ table 80005 "BD Respaldo Factura Recibida"
         }
     }
 
-    procedure fProcesarLineas()
+    procedure fProcesarLineas(): Boolean
     var
         BDRespaldoFacturaRecibida: Record "BD Respaldo Factura Recibida";
         BDRespaldoFacturaRecibidaMod: Record "BD Respaldo Factura Recibida";
@@ -51,7 +51,7 @@ table 80005 "BD Respaldo Factura Recibida"
         BDRespaldoFacturaRecibida.SetFilter("Estado Navision", '%1|%2', BDRespaldoFacturaRecibida."Estado Navision"::Pendiente,
             BDRespaldoFacturaRecibida."Estado Navision"::"Con Errores");
         if not BDRespaldoFacturaRecibida.FindSet() then
-            exit;
+            exit(false);
 
         repeat
             BDRespaldoFacturaRecibida.CalcFields("Datos XML Original");
@@ -67,6 +67,8 @@ table 80005 "BD Respaldo Factura Recibida"
             BDRespaldoFacturaRecibidaMod."Estado Navision" := BDRespaldoFacturaRecibidaMod."Estado Navision"::Importado;
             BDRespaldoFacturaRecibidaMod.Modify(true);
         until BDRespaldoFacturaRecibida.Next() = 0;
+
+        exit(true);
     end;
 
     procedure fLeerXML(var XmlInStream: InStream; var XmlOutStream: OutStream; pRaiz: Text; pElemento: Text)
