@@ -383,9 +383,9 @@ table 80000 "Cabecera FacturaE Recibida"
 
     procedure TraerBackup()
     var
-        FacturaEMgt: Codeunit "FacturaE Recibida Mgt.";
+        BDRespaldoFacturaRecibida: Record "BD Respaldo Factura Recibida";
     begin
-        FacturaEMgt.ImportBackupData();
+        BDRespaldoFacturaRecibida.fProcesarLineas();
     end;
 
     procedure fTraerBackup()
@@ -395,9 +395,9 @@ table 80000 "Cabecera FacturaE Recibida"
 
     procedure TraerDatosRespaldo(): Boolean
     var
-        FacturaEMgt: Codeunit "FacturaE Recibida Mgt.";
+        BDRespaldoFacturaRecibida: Record "BD Respaldo Factura Recibida";
     begin
-        exit(FacturaEMgt.ImportBackupData());
+        exit(BDRespaldoFacturaRecibida.fProcesarLineas());
     end;
 
     procedure ImportarXmlFacturaE()
@@ -654,4 +654,3 @@ table 80000 "Cabecera FacturaE Recibida"
 }
     end;
 }
-
