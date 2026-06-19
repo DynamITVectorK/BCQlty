@@ -71,14 +71,23 @@ page 50027 "Codigos de retencion"
                     ApplicationArea = All;
                     Caption = 'Ledger E&ntries';
                     Image = CustomerLedger;
-                    Promoted = true;
-                    PromotedCategory = Process;
                     // TODO SaaS: revisar Page 50002 antes de sustituir por nombre; el RunPageLink usa campos genéricos Field2/Field13 y no coincide con la page custom identificada en el repo.
                     RunObject = Page 50002;
                     RunPageLink = Field2 = FIELD("Cod. Retencion"),
                                   Field13 = FIELD("Tipo tercero");
                     RunPageView = SORTING(Field2);
                     ShortCutKey = 'Ctrl+F7';
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(LedgerEntries_Promoted; LedgerEntries)
+                {
                 }
             }
         }
