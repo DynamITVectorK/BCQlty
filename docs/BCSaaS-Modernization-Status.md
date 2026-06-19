@@ -126,6 +126,29 @@ Patrones abordados:
 - Normalización de `systempart`, `Rec.`, `CurrPage` implícito y casing AL moderno.
 - Conservación del flujo funcional de creación y apertura de nueva lectura.
 
+### PR #24
+
+Pages incluidas:
+
+- `Pag50512.GestindelecturasdeAguaBO.al`
+
+Patrones abordados:
+
+- Sustitución de propiedades obsoletas `Promoted`, `PromotedCategory` y `PromotedIsBig` por `area(Promoted)` con `actionref`.
+- Actualización de `docs/BCSaaS-Migration-Guide.md` para dejar este patrón como obligatorio.
+
+### PR #25 / rama `modernize-pages-promoted-01`
+
+Pages incluidas:
+
+- `Pag50006.Contadores.al`
+- `Pag50027.Codigosderetencion.al`
+
+Patrones abordados:
+
+- Sustitución de `Promoted`, `PromotedCategory` y `PromotedIsBig` por `area(Promoted)` con `actionref`.
+- Conservación del `TODO SaaS` de `Pag50027` sobre `RunObject = Page 50002`, sin sustituir referencia custom no identificada.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales
