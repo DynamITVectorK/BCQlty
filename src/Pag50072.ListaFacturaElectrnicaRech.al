@@ -1,0 +1,280 @@
+page 50072 "Lista Factura Electrónica Rech"
+{
+    // ZAM0040 IAG 130521
+
+    Caption = 'Lista Facturacion Electrónica Rechazada';
+    CardPageID = "Cabecera FacturaE";
+    DeleteAllowed = false;
+    Editable = false;
+    InsertAllowed = false;
+    ModifyAllowed = false;
+    PageType = List;
+    SourceTable = Table50007;
+    SourceTableView = SORTING (Fecha Importación, Hora Importación)
+                      ORDER(Descending)
+                      WHERE (Rechazada = FILTER (Yes));
+
+    layout
+    {
+        area(content)
+        {
+            repeater()
+            {
+                field(ID_PLATAFORMA; ID_PLATAFORMA)
+                {
+                }
+                field(NUM; NUM)
+                {
+                }
+                field(SERIE; SERIE)
+                {
+                }
+                field(FECHA_ENTRADA; FECHA_ENTRADA)
+                {
+                }
+                field("Approval Status"; "Approval Status")
+                {
+                }
+                field(FECHA_DEVENGO; FECHA_DEVENGO)
+                {
+                }
+                field(EMISOR_CIF; EMISOR_CIF)
+                {
+                }
+                field(EMISOR_NOMBRE; EMISOR_NOMBRE)
+                {
+                }
+                field(EMISOR_DIRECCION; EMISOR_DIRECCION)
+                {
+                }
+                field(EMISOR_CIUDAD; EMISOR_CIUDAD)
+                {
+                }
+                field(EMISOR_PROVINCIA; EMISOR_PROVINCIA)
+                {
+                }
+                field(EMISOR_CP; EMISOR_CP)
+                {
+                }
+                field(EMISOR_TELEFONO; EMISOR_TELEFONO)
+                {
+                }
+                field(EMISOR_EMAIL; EMISOR_EMAIL)
+                {
+                }
+                field(RECEPTOR_CIF; RECEPTOR_CIF)
+                {
+                }
+                field(FORMA_PAGO; FORMA_PAGO)
+                {
+                }
+                field(FECHA_PAGO; FECHA_PAGO)
+                {
+                }
+                field(CCC_PAGO; CCC_PAGO)
+                {
+                }
+                field(NOTAS; NOTAS)
+                {
+                }
+                field(CONTACTO_NOMBRE; CONTACTO_NOMBRE)
+                {
+                }
+                field(CONTACTO_TELEFONO; CONTACTO_TELEFONO)
+                {
+                }
+                field(CONTACTO_EMAIL; CONTACTO_EMAIL)
+                {
+                }
+                field(TOTAL_BASES; TOTAL_BASES)
+                {
+                }
+                field(TOTAL_TASAS; TOTAL_TASAS)
+                {
+                }
+                field(TOTAL_PAGAR; TOTAL_PAGAR)
+                {
+                }
+                field("Documento Registrado"; "Documento Registrado")
+                {
+                }
+                field("Abono Registrado"; "Abono Registrado")
+                {
+                }
+                field("Documento en Curso"; "Documento en Curso")
+                {
+                }
+                field("Fecha Importación"; "Fecha Importación")
+                {
+                }
+                field("Hora Importación"; "Hora Importación")
+                {
+                }
+                field(EXPEDIENTE; EXPEDIENTE)
+                {
+                }
+            }
+        }
+    }
+
+    actions
+    {
+        area(processing)
+        {
+            action("Datos Respaldo")
+            {
+                Caption = 'Datos Respaldo';
+                Image = TestDatabase;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+
+                trigger OnAction()
+                var
+                    vlDatosNuevos: Boolean;
+                    lText50000: Label 'No existe ningún registro sin traspasar en la Base de Datos de Respaldo.';
+                    lText50001: Label 'Proceso cancelado por el usuario.';
+                    lText50002: Label '¿Desea importar los datos que estén pendientes en la base de datos de respaldo?';
+                    lText50003: Label 'Datos importados correctamente.';
+                begin
+                    //AOC; PASAR TODO A LA TABLA
+                    /*
+                    CLEAR(vlDatosNuevos);
+                    //Pregunta de confirmación
+                    IF NOT CONFIRM(lText50002) THEN
+                       ERROR(lText50001);
+                    //Llamada a la función que importa los datos de la base de datos de respaldo.
+                    vlDatosNuevos := fTraerDatosRespaldo;
+                    
+                    IF NOT vlDatosNuevos THEN BEGIN
+                       MESSAGE(lText50000);
+                    END
+                    ELSE BEGIN
+                       MESSAGE(lText50003);
+                    END;
+                    */
+
+                    fTraerDatosRespaldoPaso1;
+                    //FIN AOC
+
+                end;
+            }
+            action("Importar FacturaE")
+            {
+                Caption = 'Importar FacturaE';
+                Image = Import;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                RunObject = XMLport 50001;
+                Visible = false;
+            }
+        }
+    }
+
+    var
+        vText50001: Label '¿Desea rechazar esta factura?';
+        vText50002: Label 'Proceso cancelado por el usuario.';
+        vText50004: Label '¿ Desea enviar un correo de rechazo ?';
+
+    [Scope('Internal')]
+    procedure fRechazarFacturaE(pCabeceraFacturaERecibida: Record "50007")
+    var
+        locautXmlHttp: Automation;
+        locautXmlDoc: Automation;
+        vlRequestText: Text[1024];
+        rlGeneralLedgerSetup: Record "98";
+        vlFichero: File;
+        vlTextSOAPBegin: Label '<?xml version="1.0" encoding="utf-8"?> <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">';
+        vlTextSOAPEnd: Label '</soapenv:Body> </soapenv:Envelope>';
+        vlTextSOAPBegin2: Label '<soapenv:Header /><soapenv:Body>';
+        vlBigText: BigText;
+        vlInStream: InStream;
+        "vlContraseña": Text[1024];
+        vlXMLDomNode: Automation;
+        rlPurchasesPayablesSetup: Record "312";
+    begin
+        //Rechaza la factura en FacturaE
+        /*
+        //Comprobación datos necesarios.
+        CLEAR(rlGeneralLedgerSetup);
+        rlGeneralLedgerSetup.GET;
+        rlGeneralLedgerSetup.CALCFIELDS("Contraseña Synergy");
+        rlGeneralLedgerSetup.TESTFIELD("URL Servicio Solicitudes");
+        rlGeneralLedgerSetup.TESTFIELD("Usuario Synergy");
+        IF NOT rlGeneralLedgerSetup."Contraseña Synergy".HASVALUE THEN
+           ERROR(Text50000);
+        //Mod. S2G (JMG) 11-06-13: Añade máscara para contraseña.INICIO
+        CLEAR(vlBigText);
+        rlGeneralLedgerSetup.CALCFIELDS("Contraseña Synergy");
+        IF rlGeneralLedgerSetup."Contraseña Synergy".HASVALUE THEN BEGIN
+          rlGeneralLedgerSetup."Contraseña Synergy".CREATEINSTREAM(vlInStream);
+          vlBigText.READ(vlInStream);
+          vlBigText.GETSUBTEXT(vlContraseña,1,1024);
+        END;
+        //Mod. S2G (JMG) 11-06-13: Añade máscara para contraseña.FIN
+        */
+
+        CLEAR(rlPurchasesPayablesSetup);
+        rlPurchasesPayablesSetup.GET;
+        rlPurchasesPayablesSetup.TESTFIELD("URL Servicio Rechazo Facturae");
+
+        //Creación del mensaje SOAP.
+        CLEAR(locautXmlDoc);
+        CREATE(locautXmlDoc, FALSE, TRUE);
+        CLEAR(locautXmlHttp);
+        CREATE(locautXmlHttp, FALSE, TRUE);
+        locautXmlDoc.loadXML(vlTextSOAPBegin + vlTextSOAPBegin2 +
+                           '<setDocumentStatus>' +
+                             '<arg0>' +
+                             pCabeceraFacturaERecibida.ID_PLATAFORMA +
+                             '</arg0>' +
+                             '<arg1>' +
+                             'REJECTED' +
+                             '</arg1>' +
+                             '<arg2>' +
+                             pCabeceraFacturaERecibida."Motivo rechazo" +
+                             '</arg2>' +
+                           '</setDocumentStatus>' +
+                             vlTextSOAPEnd);
+
+        //locautXmlDoc.load('\\tsclient\C\Compartida\CambioEstado.xml');
+        //locautXmlDoc.save('\\tsclient\C\Compartida\MensajeCambioEstado.xml');
+
+        //Creación cabecera mensaje SOAP.
+        locautXmlHttp.Open('POST', rlPurchasesPayablesSetup."URL Servicio Rechazo Facturae");
+        //locautXmlHttp.SetCredentials(rlGeneralLedgerSetup."Usuario Synergy",vlContraseña,0);
+        locautXmlHttp.SetRequestHeader('Content-Type', 'text/xml; charset=utf-8');
+        locautXmlHttp.SetRequestHeader('SOAPAction', 'setDocumentStatus');
+        locautXmlHttp.Send(locautXmlDoc);
+
+        //Guarda datos
+        CLEAR(locautXmlDoc);
+        CREATE(locautXmlDoc, FALSE, TRUE);
+        locautXmlDoc.async := FALSE;
+        locautXmlDoc.load(locautXmlHttp.ResponseStream);
+        //locautXmlDoc.save('\\tsclient\C\Users\DTUser\Documents\RespuestaCambioEstado.xml');
+        //locautXmlDoc.save('\\tsclient\C\Compartida\RespuestaCambioEstado.xml');
+
+
+        vlXMLDomNode := locautXmlDoc.documentElement.selectSingleNode
+                            ('/soap:Envelope/soap:Body/ns2:setDocumentStatusResponse/return/errorMsg');
+        IF NOT ISCLEAR(vlXMLDomNode) THEN
+            ERROR(vlXMLDomNode.text);
+        /*
+        vlXMLDomNode := locautXmlDoc.documentElement.selectSingleNode
+                               ('/s:Envelope/s:Body/CreateResponse');
+        IF NOT ISCLEAR(vlXMLDomNode) THEN BEGIN
+           vlXMLDomNode := locautXmlDoc.documentElement.selectSingleNode
+                               ('//ErrorMsg');
+           MESSAGE(vlXMLDomNode.text);
+        END
+        ELSE BEGIN
+           ERROR(locautXmlDoc.documentElement.selectSingleNode
+                 ('/s:Envelope/s:Body/s:Fault').text);
+        END;
+        */
+
+    end;
+}
+

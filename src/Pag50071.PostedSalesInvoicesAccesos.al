@@ -1,0 +1,582 @@
+page 50071 "Posted Sales Invoices Accesos"
+{
+    // //***Z024 - 402 - AT- 03/03/2017 - Firma Electrónica de las facturas
+    //                                    Nueva opción para "Generar facturas seleccionadas en PDF"
+
+    Caption = 'Posted Sales Invoices';
+    CardPageID = "Posted Sales Invoice";
+    Editable = false;
+    PageType = List;
+    PromotedActionCategories = 'New,Process,Report,Invoice,Navigate';
+    SourceTable = Table112;
+    SourceTableView = WHERE (Concepto agrupador=FILTER(ACCESOS));
+
+    layout
+    {
+        area(content)
+        {
+            repeater()
+            {
+                field("No.";"No.")
+                {
+                }
+                field("Sell-to Customer No.";"Sell-to Customer No.")
+                {
+                }
+                field("Sell-to Customer Name";"Sell-to Customer Name")
+                {
+                }
+                field("Currency Code";"Currency Code")
+                {
+                }
+                field(Amount;Amount)
+                {
+
+                    trigger OnDrillDown()
+                    begin
+                        SETRANGE("No.");
+                        PAGE.RUNMODAL(PAGE::"Posted Sales Invoice",Rec)
+                    end;
+                }
+                field("Amount Including VAT";"Amount Including VAT")
+                {
+
+                    trigger OnDrillDown()
+                    begin
+                        SETRANGE("No.");
+                        PAGE.RUNMODAL(PAGE::"Posted Sales Invoice",Rec)
+                    end;
+                }
+                field("Sell-to Post Code";"Sell-to Post Code")
+                {
+                    Visible = false;
+                }
+                field("Sell-to Country/Region Code";"Sell-to Country/Region Code")
+                {
+                    Visible = false;
+                }
+                field("Sell-to Contact";"Sell-to Contact")
+                {
+                    Visible = false;
+                }
+                field("Bill-to Customer No.";"Bill-to Customer No.")
+                {
+                    Visible = false;
+                }
+                field("Bill-to Name";"Bill-to Name")
+                {
+                    Visible = false;
+                }
+                field("Bill-to Post Code";"Bill-to Post Code")
+                {
+                    Visible = false;
+                }
+                field("Bill-to Country/Region Code";"Bill-to Country/Region Code")
+                {
+                    Visible = false;
+                }
+                field("Bill-to Contact";"Bill-to Contact")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Code";"Ship-to Code")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Name";"Ship-to Name")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Post Code";"Ship-to Post Code")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Country/Region Code";"Ship-to Country/Region Code")
+                {
+                    Visible = false;
+                }
+                field("Ship-to Contact";"Ship-to Contact")
+                {
+                    Visible = false;
+                }
+                field("Posting Date";"Posting Date")
+                {
+                    Visible = false;
+                }
+                field("Salesperson Code";"Salesperson Code")
+                {
+                    Visible = false;
+                }
+                field("Shortcut Dimension 1 Code";"Shortcut Dimension 1 Code")
+                {
+                    Visible = false;
+                }
+                field("Shortcut Dimension 2 Code";"Shortcut Dimension 2 Code")
+                {
+                    Visible = false;
+                }
+                field("Location Code";"Location Code")
+                {
+                    Visible = true;
+                }
+                field("No. Printed";"No. Printed")
+                {
+                }
+                field("Document Date";"Document Date")
+                {
+                    Visible = false;
+                }
+                field("Payment Terms Code";"Payment Terms Code")
+                {
+                    Visible = false;
+                }
+                field("Due Date";"Due Date")
+                {
+                    Visible = false;
+                }
+                field("Payment Discount %";"Payment Discount %")
+                {
+                    Visible = false;
+                }
+                field("Shipment Method Code";"Shipment Method Code")
+                {
+                    Visible = false;
+                }
+                field("Shipment Date";"Shipment Date")
+                {
+                    Visible = false;
+                }
+                field("Document Exchange Status";"Document Exchange Status")
+                {
+                    StyleExpr = DocExchStatusStyle;
+
+                    trigger OnDrillDown()
+                    begin
+                        DocExchStatusDrillDown;
+                    end;
+                }
+                field("Coupled to CRM";"Coupled to CRM")
+                {
+                    Visible = CRMIntegrationEnabled;
+                }
+                field("E-Mail";"E-Mail")
+                {
+                }
+                field("Concepto agrupador";"Concepto agrupador")
+                {
+                }
+                field("Posting Description";"Posting Description")
+                {
+                }
+                field("VAT Registration No.";"VAT Registration No.")
+                {
+                }
+            }
+        }
+        area(factboxes)
+        {
+            part(IncomingDocAttachFactBox;193)
+            {
+                ShowFilter = false;
+            }
+            systempart(;Links)
+            {
+                Visible = false;
+            }
+            systempart(;Notes)
+            {
+                Visible = true;
+            }
+        }
+    }
+
+    actions
+    {
+        area(navigation)
+        {
+            group("&Invoice")
+            {
+                Caption = '&Invoice';
+                Image = Invoice;
+                action(Card)
+                {
+                    Caption = 'Card';
+                    Image = EditLines;
+                    ShortCutKey = 'Shift+F7';
+
+                    trigger OnAction()
+                    begin
+                        PAGE.RUN(PAGE::"Posted Sales Invoice",Rec)
+                    end;
+                }
+                action(Statistics)
+                {
+                    Caption = 'Statistics';
+                    Image = Statistics;
+                    Promoted = true;
+                    PromotedCategory = Category4;
+                    PromotedIsBig = true;
+                    RunObject = Page 397;
+                                    RunPageLink = No.=FIELD(No.);
+                    ShortCutKey = 'F7';
+                }
+                action("Co&mments")
+                {
+                    Caption = 'Co&mments';
+                    Image = ViewComments;
+                    Promoted = true;
+                    PromotedCategory = Category4;
+                    PromotedIsBig = true;
+                    RunObject = Page 67;
+                                    RunPageLink = Document Type=CONST(Posted Invoice),
+                                  No.=FIELD(No.);
+                }
+                action(Dimensions)
+                {
+                    AccessByPermission = TableData 348=R;
+                    Caption = 'Dimensions';
+                    Image = Dimensions;
+                    Promoted = true;
+                    PromotedCategory = Category4;
+                    PromotedIsBig = true;
+                    ShortCutKey = 'Shift+Ctrl+D';
+
+                    trigger OnAction()
+                    begin
+                        ShowDimensions;
+                    end;
+                }
+                action(IncomingDoc)
+                {
+                    AccessByPermission = TableData 130=R;
+                    Caption = 'Incoming Document';
+                    Image = Document;
+                    Promoted = true;
+                    PromotedCategory = Category4;
+
+                    trigger OnAction()
+                    var
+                        IncomingDocument: Record "130";
+                    begin
+                        IncomingDocument.ShowCard("No.","Posting Date");
+                    end;
+                }
+            }
+            group(ActionGroupCRM)
+            {
+                Caption = 'Dynamics CRM';
+                Visible = CRMIntegrationEnabled;
+                action(CRMGotoInvoice)
+                {
+                    Caption = 'Invoice';
+                    Enabled = CRMIsCoupledToRecord;
+                    Image = CoupledInvoice;
+                    ToolTip = 'Open the coupled Microsoft Dynamics CRM account.';
+
+                    trigger OnAction()
+                    var
+                        CRMIntegrationManagement: Codeunit "5330";
+                    begin
+                        CRMIntegrationManagement.ShowCRMEntityFromRecordID(RECORDID);
+                    end;
+                }
+                action(CreateInCRM)
+                {
+                    Caption = 'Create Invoice in Dynamics CRM';
+                    Enabled = NOT CRMIsCoupledToRecord;
+                    Image = NewInvoice;
+
+                    trigger OnAction()
+                    var
+                        SalesInvoiceHeader: Record "112";
+                        CRMIntegrationManagement: Codeunit "5330";
+                        CRMCouplingManagement: Codeunit "5331";
+                        SalesInvoiceHeaderRecordRef: RecordRef;
+                    begin
+                        CurrPage.SETSELECTIONFILTER(SalesInvoiceHeader);
+                        SalesInvoiceHeader.NEXT;
+
+                        IF SalesInvoiceHeader.COUNT = 1 THEN
+                          CRMIntegrationManagement.CreateNewRecordInCRM(RECORDID,FALSE)
+                        ELSE BEGIN
+                          SalesInvoiceHeaderRecordRef.GETTABLE(SalesInvoiceHeader);
+                          CRMIntegrationManagement.CreateNewRecordsInCRM(SalesInvoiceHeaderRecordRef);
+                        END;
+
+                        REPEAT
+                          IF CRMCouplingManagement.IsRecordCoupledToCRM(SalesInvoiceHeader.RECORDID) THEN BEGIN
+                            SalesInvoiceHeader.VALIDATE("Coupled to CRM",TRUE);
+                            SalesInvoiceHeader.MODIFY;
+                          END;
+                        UNTIL SalesInvoiceHeader.NEXT = 0;
+                    end;
+                }
+            }
+        }
+        area(processing)
+        {
+            action(SendCustom)
+            {
+                Caption = 'Send';
+                Ellipsis = true;
+                Image = SendToMultiple;
+                Promoted = true;
+                PromotedCategory = Category4;
+                PromotedIsBig = true;
+
+                trigger OnAction()
+                var
+                    SalesInvHeader: Record "112";
+                begin
+                    SalesInvHeader := Rec;
+                    CurrPage.SETSELECTIONFILTER(SalesInvHeader);
+                    SalesInvHeader.SendRecords;
+                end;
+            }
+            action("&Print")
+            {
+                Caption = '&Print';
+                Ellipsis = true;
+                Image = Print;
+                //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
+                //PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    SalesInvHeader: Record "112";
+                begin
+                    SalesInvHeader := Rec;
+                    CurrPage.SETSELECTIONFILTER(SalesInvHeader);
+                    SalesInvHeader.PrintRecords(TRUE);
+                end;
+            }
+            action("&Email")
+            {
+                Caption = '&Email';
+                Image = Email;
+                //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
+                //PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    SalesInvHeader: Record "112";
+                begin
+                    SalesInvHeader := Rec;
+                    CurrPage.SETSELECTIONFILTER(SalesInvHeader);
+                    SalesInvHeader.EmailRecords(TRUE);
+                end;
+            }
+            action("&Navigate")
+            {
+                Caption = '&Navigate';
+                Image = Navigate;
+                Promoted = true;
+                PromotedCategory = Category5;
+                PromotedIsBig = true;
+
+                trigger OnAction()
+                begin
+                    Navigate;
+                end;
+            }
+            action(ActivityLog)
+            {
+                Caption = 'Activity Log';
+                Image = Log;
+
+                trigger OnAction()
+                var
+                    ActivityLog: Record "710";
+                begin
+                    ActivityLog.ShowEntries(RECORDID);
+                end;
+            }
+            action("Generar facturas seleccionadas en PDF")
+            {
+                Caption = 'Generar facturas seleccionadas en PDF';
+                Image = SendEmailPDFNoAttach;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+
+                trigger OnAction()
+                begin
+                    //***Z024 - 402 - AT- 03/03/2017 - Inicio
+                    fExportarFacturaElectronicaPDF(TRUE);
+                    //***Z024 - 402 - AT- 03/03/2017 - Fin
+                end;
+            }
+            action("Generar facturas seleccionadas en PDF WEB")
+            {
+                Caption = 'Generar facturas seleccionadas en PDF WEB';
+                Image = SendEmailPDFNoAttach;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Visible = false;
+
+                trigger OnAction()
+                begin
+                    //***Z029 - AT - 16/01/18 - Inicio
+                    //fExportarFacturaWEB(TRUE);
+                    //***Z029 - AT - 16/01/18 - Fin
+                end;
+            }
+            action(CreateCreditMemo)
+            {
+                Caption = 'Create Corrective Credit Memo';
+                Image = CreateCreditMemo;
+                //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
+                //PromotedCategory = Category6;
+                Scope = Repeater;
+                ToolTip = 'Create a credit memo for this posted invoice that you complete and post manually to reverse the posted invoice.';
+
+                trigger OnAction()
+                var
+                    SalesHeader: Record "36";
+                    CorrectPostedSalesInvoice: Codeunit "1303";
+                begin
+                    CorrectPostedSalesInvoice.CreateCreditMemoCopyDocument(Rec,SalesHeader);
+                    PAGE.RUN(PAGE::"Sales Credit Memo",SalesHeader);
+                end;
+            }
+        }
+    }
+
+    trigger OnAfterGetCurrRecord()
+    var
+        CRMCouplingManagement: Codeunit "5331";
+    begin
+        DocExchStatusStyle := GetDocExchStatusStyle;
+        CurrPage.IncomingDocAttachFactBox.PAGE.LoadDataFromRecord(Rec);
+        CRMIsCoupledToRecord := CRMIntegrationEnabled AND CRMCouplingManagement.IsRecordCoupledToCRM(RECORDID);
+    end;
+
+    trigger OnAfterGetRecord()
+    begin
+        DocExchStatusStyle := GetDocExchStatusStyle;
+    end;
+
+    trigger OnOpenPage()
+    var
+        CRMIntegrationManagement: Codeunit "5330";
+    begin
+        SetSecurityFilterOnRespCenter;
+        CRMIntegrationEnabled := CRMIntegrationManagement.IsCRMIntegrationEnabled;
+    end;
+
+    var
+        DocExchStatusStyle: Text;
+        CRMIntegrationEnabled: Boolean;
+        CRMIsCoupledToRecord: Boolean;
+        tSalesInvHeader: Record "112";
+
+    [Scope('Internal')]
+    procedure fExportarFacturaElectronicaPDF(pSeleccionados: Boolean)
+    begin
+        //Función que exporta la o las facturas electrónicas a uno o varios PDF
+
+        //***Z024 - 402 - AT- 03/03/2017 - Inicio
+
+        //Limpiamos variable
+        CLEAR(tSalesInvHeader);
+
+        //Devolvemos seleccionados
+        IF pSeleccionados THEN
+          DevuelveSelecionados(tSalesInvHeader)
+        ELSE
+          fDevuelveFiltroNoExportadasPDF(tSalesInvHeader);
+
+        //Exportamos
+        fCrearPDFFacturaE(tSalesInvHeader);
+
+        //***Z024 - 402 - AT- 03/03/2017 - Fin
+    end;
+
+    [Scope('Internal')]
+    procedure fExportarFacturaWEB(pSeleccionados: Boolean)
+    begin
+        //Función que exporta la o las facturas electrónicas a uno o varios PDF
+
+        //***Z029 - AT - 16/01/18 - Inicio
+
+        //CLEAR(tSalesInvHeader);
+
+        //IF pSeleccionados THEN
+        //  DevuelveSelecionados(tSalesInvHeader)
+        //ELSE
+        //  fDevuelveFiltroNoExportadasPDF(tSalesInvHeader);
+
+        //fCrearPDFFacturaWEB(tSalesInvHeader);
+
+        //***Z029 - AT - 16/01/18 - Fin
+    end;
+
+    [Scope('Internal')]
+    procedure DevuelveSelecionados(var RecFactVra: Record "112")
+    begin
+        CurrPage.SETSELECTIONFILTER(RecFactVra);
+    end;
+
+    [Scope('Internal')]
+    procedure fDevuelveFiltroNoExportadasPDF(var RecFactVra: Record "112")
+    begin
+        //Función que devuelve el filtro de las facturas no exportadas
+
+        //***Z024 - 402 - AT- 03/03/2017 - Inicio
+        RecFactVra.SETRANGE("Factura E exportada PDF",FALSE);
+        //***Z024 - 402 - AT- 03/03/2017 - Fin
+    end;
+
+    [Scope('Internal')]
+    procedure fExportarFacturaEPDFDesdePagina()
+    var
+        tlSalesInvHeader2: Record "112";
+        tlSalesInvHeader3: Record "112";
+        vlGenerarPDF: Boolean;
+    begin
+        //Función que exporta la o las facturas electrónicas a uno o varios PDF pero desde la página
+        /*
+        //***Z024 - 402 - AT- 03/03/2017 - Inicio
+        
+        //Nos vamos recorriendo cada una de las facturas
+        IF tSalesInvHeader.FINDSET THEN BEGIN
+        
+          //Limpiamos Codeunit
+          CLEAR(clFuncionesGenerales2);
+        
+          //Inicializamos ventana de dialogo
+          //CLEAR(vDialog);
+          //vDialog.OPEN(Text50001);
+        
+          REPEAT
+            //Actualizamos ventana de diálogo
+            //vDialog.UPDATE(1,tSalesInvHeader."No.");
+        
+            //Filtro único
+            CLEAR(tlSalesInvHeader2);
+            tlSalesInvHeader2.SETRANGE("No.",tSalesInvHeader."No.");
+            IF tlSalesInvHeader2.FINDFIRST THEN;
+        
+            //Exportamos la factura y la marcamos como tal
+            clFuncionesGenerales2.fExportarFacturaE(tlSalesInvHeader2,1);
+            tlSalesInvHeader2.MODIFY;
+        
+            //COMMIT porque si exportamos muchas y hay algún error, el fichero se creará pero no quedará marcada la factura como exportada
+            COMMIT;
+        
+          UNTIL tSalesInvHeader.NEXT = 0;
+        
+          //Cerramos ventana de diálogo
+          //vDialog.CLOSE;
+        
+          //Mensaje
+          clFuncionesGenerales2.fMensaje(Text50000);
+        
+        END;
+        //***Z024 - 402 - AT- 03/03/2017 - Fin
+        */
+
+    end;
+}
+
