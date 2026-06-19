@@ -63,6 +63,27 @@ Patrones abordados:
 - Sustitución de `RunObject = Page <id>` por nombres cuando están identificados.
 - Conservación del circuito de aprobaciones y creación de lotes.
 
+### PR #20 / rama `modernize-pages-bc-saas-4`
+
+Pages incluidas:
+
+- `Pag50006.Contadores.al`
+- `Pag50027.Codigosderetencion.al`
+
+Documentación añadida:
+
+- `docs/BCSaaS-Modernization-Status.md`
+- `docs/BCSaaS-Migration-Guide.md`
+- `docs/Modernization-Decision-Log.md`
+- `docs/CHANGELOG.md`
+
+Patrones abordados:
+
+- `systempart(; ...)` sustituido por controles con nombre y `ApplicationArea`.
+- `RunObject = Page 50007` sustituido por `Page "Hist. Agua /Electricidad"`.
+- `CurrPage.EDITABLE` normalizado a `CurrPage.Editable`.
+- `RunObject = Page 50002` en `Pag50027` queda documentado como pendiente porque el `RunPageLink` usa `Field2`/`Field13` y no coincide con la page custom 50002 identificada en el repo.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales
@@ -84,6 +105,10 @@ Las pages `Pag50063`, `Pag50066`, `Pag50072` y `Pag50074` siguen siendo foco de 
 ### Referencias numéricas custom
 
 No se sustituyen referencias numéricas custom si el nombre de objeto no está identificado con seguridad o si existe riesgo de romper compilación.
+
+Caso abierto:
+
+- `Pag50027.Codigosderetencion.al` mantiene `RunObject = Page 50002` con `TODO SaaS` hasta confirmar el objeto real, porque el link usa campos genéricos.
 
 ## Validación pendiente
 
