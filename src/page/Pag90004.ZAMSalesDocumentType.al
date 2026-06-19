@@ -15,31 +15,31 @@ page 90004 ZAMSalesDocumentType
         {
             repeater(Group)
             {
-                field("Code"; ZAM_Code)
+                field("Code"; Rec.ZAM_Code)
                 {
                     ApplicationArea = All;
                 }
-                field(Description; ZAM_Description)
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                 }
-                field(Corrective; ZAM_Corrective)
+                field(Corrective; Rec.ZAM_Corrective)
                 {
                     ApplicationArea = All;
                 }
-                field(Simple; ZAM_Simple)
+                field(Simple; Rec.ZAM_Simple)
                 {
                     ApplicationArea = All;
                 }
-                field(Summary; ZAM_Summary)
+                field(Summary; Rec.ZAM_Summary)
                 {
                     ApplicationArea = All;
                 }
-                field(ZAMSimplified_doc_replacement; ZAMSimplified_doc_replacement1)
+                field(ZAMSimplified_doc_replacement; Rec.ZAMSimplified_doc_replacement1)
                 {
                     ApplicationArea = All;
                 }
-                field(ZAMSimplifiedRegimeEC; ZAMSimplifiedRegimeEC1)
+                field(ZAMSimplifiedRegimeEC; Rec.ZAMSimplifiedRegimeEC1)
                 {
                     ApplicationArea = All;
                 }

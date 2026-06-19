@@ -17,103 +17,103 @@ page 50007 "Hist. Agua /Electricidad"
         {
             repeater(Group)
             {
-                field(Area;Area)
+                field(Area; Rec.Area)
         {
             ApplicationArea = All;
         }
-                field("No. Contador";"No. Contador")
+                field("No. Contador"; Rec."No. Contador")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Puesto/Pabellon";"No. Puesto/Pabellon")
+                field("No. Puesto/Pabellon"; Rec."No. Puesto/Pabellon")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Orden de lectura";"No. Orden de lectura")
+                field("No. Orden de lectura"; Rec."No. Orden de lectura")
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre cliente";"Nombre cliente")
+                field("Nombre cliente"; Rec."Nombre cliente")
                 {
                     ApplicationArea = All;
                 }
-                field("No. contrato";"No. contrato")
+                field("No. contrato"; Rec."No. contrato")
                 {
                     ApplicationArea = All;
                 }
-                field("Potencia contratada";"Potencia contratada")
+                field("Potencia contratada"; Rec."Potencia contratada")
                 {
                     ApplicationArea = All;
                 }
-                field("Coeficiente TT";"Coeficiente TT")
+                field("Coeficiente TT"; Rec."Coeficiente TT")
                 {
                     ApplicationArea = All;
                 }
-                field("Código Incidencia";"Código Incidencia")
+                field("Código Incidencia"; Rec."Código Incidencia")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha lectura";"Fecha lectura")
+                field("Fecha lectura"; Rec."Fecha lectura")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura HP";"Lectura HP")
+                field("Lectura HP"; Rec."Lectura HP")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo HP";"Consumo HP")
+                field("Consumo HP"; Rec."Consumo HP")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura HLL";"Lectura HLL")
+                field("Lectura HLL"; Rec."Lectura HLL")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo HLL";"Consumo HLL")
+                field("Consumo HLL"; Rec."Consumo HLL")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura HV";"Lectura HV")
+                field("Lectura HV"; Rec."Lectura HV")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo HV";"Consumo HV")
+                field("Consumo HV"; Rec."Consumo HV")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura B2";"Lectura B2")
+                field("Lectura B2"; Rec."Lectura B2")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo B2";"Consumo B2")
+                field("Consumo B2"; Rec."Consumo B2")
                 {
                     ApplicationArea = All;
                 }
-                field(Total;Total)
+                field(Total; Rec.Total)
                 {
                     ApplicationArea = All;
                 }
-                field("No. Pre factura";"No. Pre factura")
+                field("No. Pre factura"; Rec."No. Pre factura")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Factura registrada";"No. Factura registrada")
+                field("No. Factura registrada"; Rec."No. Factura registrada")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha factura registrada";"Fecha factura registrada")
+                field("Fecha factura registrada"; Rec."Fecha factura registrada")
                 {
                     ApplicationArea = All;
                 }
-                field("Tarifa aplicada";"Tarifa aplicada")
+                field("Tarifa aplicada"; Rec."Tarifa aplicada")
                 {
                     ApplicationArea = All;
                 }
-                field(Pabellon;Pabellon)
+                field(Pabellon; Rec.Pabellon)
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo Consumo";"Tipo Consumo")
+                field("Tipo Consumo"; Rec."Tipo Consumo")
                 {
                     ApplicationArea = All;
                 }
@@ -252,7 +252,7 @@ page 50007 "Hist. Agua /Electricidad"
                         IF HayLecturasPosteriores(Rec) THEN
                           ERROR(LT50001);
                         IF CONFIRM(LT50002,FALSE,"No. Contador","Fecha lectura")THEN
-                            DELETE(TRUE);
+                            Rec.DELETE(TRUE);
                     end;
                 }
                 action("Nueva lectura ")

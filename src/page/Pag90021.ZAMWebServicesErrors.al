@@ -15,15 +15,15 @@ page 90021 ZAMWebServicesErrors
         {
             repeater(Group)
             {
-                field("Code"; ZAM_Code)
+                field("Code"; Rec.ZAM_Code)
                 {
                     ApplicationArea = All;
                 }
-                field(Description; ZAM_Description)
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                 }
-                field("Error Type"; "ZAM_Error Type")
+                field("Error Type"; Rec."ZAM_Error Type")
                 {
                     ApplicationArea = All;
                 }

@@ -10,15 +10,15 @@ page 50012 "Nombres tarifa"
         {
             repeater(Group)
             {
-                field("Codigo Tarifa"; "Codigo Tarifa")
+                field("Codigo Tarifa"; Rec."Codigo Tarifa")
                 {
                     ApplicationArea = All;
                 }
-                field("Descripción Tarifa"; "Descripción Tarifa")
+                field("Descripción Tarifa"; Rec."Descripción Tarifa")
                 {
                     ApplicationArea = All;
                 }
-                field(Tramos; Tramos)
+                field(Tramos; Rec.Tramos)
                 {
                     ApplicationArea = All;
                 }

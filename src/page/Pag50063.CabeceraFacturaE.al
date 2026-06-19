@@ -55,62 +55,62 @@ page 50063 "Cabecera FacturaE"
             group(General)
             {
                 Caption = 'General';
-                field(ID_PLATAFORMA; ID_PLATAFORMA)
+                field(ID_PLATAFORMA; Rec.ID_PLATAFORMA)
                 {
                     ApplicationArea = All;
                     Editable = ID_PLATAFORMAEditable;
                 }
-                field(NUM; NUM)
+                field(NUM; Rec.NUM)
                 {
                     ApplicationArea = All;
                     Editable = NUMEditable;
                 }
-                field(SERIE; SERIE)
+                field(SERIE; Rec.SERIE)
                 {
                     ApplicationArea = All;
                     Editable = SERIEEditable;
                 }
-                field(FECHA_ENTRADA; FECHA_ENTRADA)
+                field(FECHA_ENTRADA; Rec.FECHA_ENTRADA)
                 {
                     ApplicationArea = All;
                     Editable = FECHA_ENTRADAEditable;
                 }
-                field(FECHA_DEVENGO; FECHA_DEVENGO)
+                field(FECHA_DEVENGO; Rec.FECHA_DEVENGO)
                 {
                     ApplicationArea = All;
                     Editable = FECHA_DEVENGOEditable;
                 }
-                field(EMISOR_CIF; EMISOR_CIF)
+                field(EMISOR_CIF; Rec.EMISOR_CIF)
                 {
                     ApplicationArea = All;
                     Editable = EMISOR_CIFEditable;
                 }
-                field(EMISOR_NOMBRE; EMISOR_NOMBRE)
+                field(EMISOR_NOMBRE; Rec.EMISOR_NOMBRE)
                 {
                     ApplicationArea = All;
                     Editable = EMISOR_NOMBREEditable;
                 }
-                field(TOTAL_BASES; TOTAL_BASES)
+                field(TOTAL_BASES; Rec.TOTAL_BASES)
                 {
                     ApplicationArea = All;
                     Editable = TOTAL_BASESEditable;
                 }
-                field(TOTAL_TASAS; TOTAL_TASAS)
+                field(TOTAL_TASAS; Rec.TOTAL_TASAS)
                 {
                     ApplicationArea = All;
                     Editable = TOTAL_TASASEditable;
                 }
-                field(TOTAL_PAGAR; TOTAL_PAGAR)
+                field(TOTAL_PAGAR; Rec.TOTAL_PAGAR)
                 {
                     ApplicationArea = All;
                     Editable = TOTAL_PAGAREditable;
                 }
-                field(RECEPTOR_CIF; RECEPTOR_CIF)
+                field(RECEPTOR_CIF; Rec.RECEPTOR_CIF)
                 {
                     ApplicationArea = All;
                     Editable = RECEPTOR_CIFEditable;
                 }
-                field("Proveedor NAV"; "Proveedor NAV")
+                field("Proveedor NAV"; Rec."Proveedor NAV")
                 {
                     ApplicationArea = All;
                     Editable = VNuevo;
@@ -120,12 +120,12 @@ page 50063 "Cabecera FacturaE"
                         ProveedorNAVOnAfterValidate;
                     end;
                 }
-                field("Nombre proveedor"; "Nombre proveedor")
+                field("Nombre proveedor"; Rec."Nombre proveedor")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Documento en Curso"; "Documento en Curso")
+                field("Documento en Curso"; Rec."Documento en Curso")
                 {
                     ApplicationArea = All;
 
@@ -144,65 +144,65 @@ page 50063 "Cabecera FacturaE"
                         //I00189 Mod. S2G (EGR) 15-05-15: Fin.
                     end;
                 }
-                field(EXPEDIENTE; EXPEDIENTE)
+                field(EXPEDIENTE; Rec.EXPEDIENTE)
                 {
                     ApplicationArea = All;
                 }
-                field(Lote; Lote)
+                field(Lote; Rec.Lote)
                 {
                     ApplicationArea = All;
                 }
-                field(Rechazada; Rechazada)
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                }
-                field("Fecha Importación"; "Fecha Importación")
+                field(Rechazada; Rec.Rechazada)
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Hora Importación"; "Hora Importación")
+                field("Fecha Importación"; Rec."Fecha Importación")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field(FORMA_PAGO; FORMA_PAGO)
+                field("Hora Importación"; Rec."Hora Importación")
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field(FORMA_PAGO; Rec.FORMA_PAGO)
                 {
                     ApplicationArea = All;
                     Editable = FORMA_PAGOEditable;
                 }
-                field(FECHA_PAGO; FECHA_PAGO)
+                field(FECHA_PAGO; Rec.FECHA_PAGO)
                 {
                     ApplicationArea = All;
                     Editable = FECHA_PAGOEditable;
                 }
-                field(CCC_PAGO; CCC_PAGO)
+                field(CCC_PAGO; Rec.CCC_PAGO)
                 {
                     ApplicationArea = All;
                     Editable = CCC_PAGOEditable;
                 }
-                field(NOTAS; NOTAS)
+                field(NOTAS; Rec.NOTAS)
                 {
                     ApplicationArea = All;
                     Editable = NOTASEditable;
                 }
-                field(CONTACTO_NOMBRE; CONTACTO_NOMBRE)
+                field(CONTACTO_NOMBRE; Rec.CONTACTO_NOMBRE)
                 {
                     ApplicationArea = All;
                     Editable = CONTACTO_NOMBREEditable;
                 }
-                field(CONTACTO_TELEFONO; CONTACTO_TELEFONO)
+                field(CONTACTO_TELEFONO; Rec.CONTACTO_TELEFONO)
                 {
                     ApplicationArea = All;
                     Editable = CONTACTO_TELEFONOEditable;
                 }
-                field(CONTACTO_EMAIL; CONTACTO_EMAIL)
+                field(CONTACTO_EMAIL; Rec.CONTACTO_EMAIL)
                 {
                     ApplicationArea = All;
                     Editable = CONTACTO_EMAILEditable;
                 }
-                field("DOCUMENTACIÓN ADJUNTA"; "DOCUMENTACIÓN ADJUNTA")
+                field("DOCUMENTACIÓN ADJUNTA"; Rec."DOCUMENTACIÓN ADJUNTA")
                 {
                     ApplicationArea = All;
                     Editable = "DOCUMENTACIÓN ADJUNTAEditable";
@@ -216,7 +216,7 @@ page 50063 "Cabecera FacturaE"
                         //HYPERLINK('http://pregesdoc31/alfresco'+"DOCUMENTACIÓN ADJUNTA");
                     end;
                 }
-                field("DOCUMENTO PDF"; "DOCUMENTO PDF")
+                field("DOCUMENTO PDF"; Rec."DOCUMENTO PDF")
                 {
                     ApplicationArea = All;
                     Editable = "DOCUMENTO PDFEditable";
@@ -226,7 +226,7 @@ page 50063 "Cabecera FacturaE"
                         fAbrirDocumentoAlfresco("DOCUMENTO PDF");
                     end;
                 }
-                field("DOCUMENTO FACTURA"; "DOCUMENTO FACTURA")
+                field("DOCUMENTO FACTURA"; Rec."DOCUMENTO FACTURA")
                 {
                     ApplicationArea = All;
                     Editable = "DOCUMENTO FACTURAEditable";
@@ -236,7 +236,7 @@ page 50063 "Cabecera FacturaE"
                         fAbrirDocumentoAlfresco("DOCUMENTO FACTURA");
                     end;
                 }
-                field("Documento Registrado"; "Documento Registrado")
+                field("Documento Registrado"; Rec."Documento Registrado")
                 {
                     ApplicationArea = All;
 
@@ -248,18 +248,18 @@ page 50063 "Cabecera FacturaE"
                         END;
                     end;
                 }
-                field("Motivo rechazo"; "Motivo rechazo")
+                field("Motivo rechazo"; Rec."Motivo rechazo")
                 {
                     ApplicationArea = All;
                     Editable = VPteAprobar;
                 }
-                field("Descripción Rechazo"; "Descripción Rechazo")
+                field("Descripción Rechazo"; Rec."Descripción Rechazo")
                 {
                     ApplicationArea = All;
                     Editable = false;
                     MultiLine = true;
                 }
-                field("CIF Proveedor"; "CIF Proveedor")
+                field("CIF Proveedor"; Rec."CIF Proveedor")
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -272,32 +272,32 @@ page 50063 "Cabecera FacturaE"
             group("Datos Emisor")
             {
                 Caption = 'Datos Emisor';
-                field(EMISOR_DIRECCION; EMISOR_DIRECCION)
+                field(EMISOR_DIRECCION; Rec.EMISOR_DIRECCION)
                 {
                     ApplicationArea = All;
                     Editable = EMISOR_DIRECCIONEditable;
                 }
-                field(EMISOR_CIUDAD; EMISOR_CIUDAD)
+                field(EMISOR_CIUDAD; Rec.EMISOR_CIUDAD)
                 {
                     ApplicationArea = All;
                     Editable = EMISOR_CIUDADEditable;
                 }
-                field(EMISOR_PROVINCIA; EMISOR_PROVINCIA)
+                field(EMISOR_PROVINCIA; Rec.EMISOR_PROVINCIA)
                 {
                     ApplicationArea = All;
                     Editable = EMISOR_PROVINCIAEditable;
                 }
-                field(EMISOR_CP; EMISOR_CP)
+                field(EMISOR_CP; Rec.EMISOR_CP)
                 {
                     ApplicationArea = All;
                     Editable = EMISOR_CPEditable;
                 }
-                field(EMISOR_TELEFONO; EMISOR_TELEFONO)
+                field(EMISOR_TELEFONO; Rec.EMISOR_TELEFONO)
                 {
                     ApplicationArea = All;
                     Editable = EMISOR_TELEFONOEditable;
                 }
-                field(EMISOR_EMAIL; EMISOR_EMAIL)
+                field(EMISOR_EMAIL; Rec.EMISOR_EMAIL)
                 {
                     ApplicationArea = All;
                     Editable = EMISOR_EMAILEditable;
@@ -338,16 +338,16 @@ page 50063 "Cabecera FacturaE"
                 begin
                     //***AOC PASAR TODO A LA TABLA
                     /*
-                    TESTFIELD(Rechazada,FALSE);
+                    Rec.TESTFIELD(Rechazada,FALSE);
                     
-                    CALCFIELDS("Documento en Curso","Documento Registrado");
-                    TESTFIELD("Documento en Curso",'');
-                    TESTFIELD("Documento Registrado",'');
-                    TESTFIELD("Motivo rechazo");
+                    Rec.CALCFIELDS("Documento en Curso","Documento Registrado");
+                    Rec.TESTFIELD("Documento en Curso",'');
+                    Rec.TESTFIELD("Documento Registrado",'');
+                    Rec.TESTFIELD("Motivo rechazo");
                     IF NOT CONFIRM(vText50001) THEN
                        ERROR(vText50002);
                     Rechazada := TRUE;
-                    MODIFY;
+                    Rec.MODIFY;
                     
                     //Mod. S2G (FTD) 21-01-14: Envio de email de "Facturas recibidas rechazadas" (botón Rechazar)
                     IF CONFIRM((vText50004),TRUE) THEN BEGIN
@@ -682,7 +682,7 @@ page 50063 "Cabecera FacturaE"
             ERROR(lText50006);
 
         //>IPP Z004      CIMUBISA-08 IPP 2018.01.26 Gestión de FacturaE
-        TESTFIELD("Approval Status", "Approval Status"::Approved);
+        Rec.TESTFIELD("Approval Status", "Approval Status"::Approved);
         //<IPP Z004      CIMUBISA-08 IPP 2018.01.26 Gestión de FacturaE
 
         CLEAR(rlPurchInvHeader);
@@ -710,7 +710,7 @@ page 50063 "Cabecera FacturaE"
                 ERROR(lText50001);
         END;
 
-        CALCFIELDS("CIF Proveedor");
+        Rec.CALCFIELDS("CIF Proveedor");
         //Mod. S2G (JMG) 11-09-14: Añade un filtro para los CIFs con prefijo de país.
         //IF "CIF Proveedor" <> EMISOR_CIF THEN
         IF ("CIF Proveedor" <> EMISOR_CIF) AND ("CIF Proveedor" <> rlLineasFacturaERecibida.fQuitarPaisCIF(EMISOR_CIF)) THEN
@@ -732,7 +732,7 @@ page 50063 "Cabecera FacturaE"
         rlVendor.SETRANGE("VAT Registration No.",pFactura.EMISOR_CIF);
         rlVendor.FINDFIRST;
         */
-        TESTFIELD("Proveedor NAV");
+        Rec.TESTFIELD("Proveedor NAV");
         rlPurchaseHeader.VALIDATE("Buy-from Vendor No.", "Proveedor NAV");
         //I00218 Mod. S2G (EGR) 07-07-15: Completar Nº abono proveedor cuando lo que se genera es un abono.
         IF pFactura.TOTAL_PAGAR > 0 THEN
@@ -1125,7 +1125,7 @@ page 50063 "Cabecera FacturaE"
         IF pRegistrar THEN BEGIN
             CODEUNIT.RUN(CODEUNIT::"Purch.-Post (Yes/No)", rlPurchaseHeader);
             Registrada := TRUE;
-            MODIFY;
+            Rec.MODIFY;
         END
         ELSE BEGIN
             MESSAGE(vText50000, rlPurchaseHeader."No.");
@@ -1890,7 +1890,7 @@ page 50063 "Cabecera FacturaE"
 
     local procedure CIFProveedorOnFormat()
     begin
-        CALCFIELDS("CIF Proveedor");
+        Rec.CALCFIELDS("CIF Proveedor");
         IF "CIF Proveedor" <> EMISOR_CIF THEN BEGIN
             "CIF ProveedorEmphasize" := TRUE;
         END

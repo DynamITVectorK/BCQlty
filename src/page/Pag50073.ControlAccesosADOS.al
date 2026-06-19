@@ -10,23 +10,23 @@ page 50073 "Control Accesos ADOS"
         {
             repeater(Group)
             {
-                field(Fecha; Fecha)
+                field(Fecha; Rec.Fecha)
                 {
                     ApplicationArea = All;
                 }
-                field(Tique; Tique)
+                field(Tique; Rec.Tique)
                 {
                     ApplicationArea = All;
                 }
-                field(Sesion; Sesion)
+                field(Sesion; Rec.Sesion)
                 {
                     ApplicationArea = All;
                 }
-                field(Tratado; Tratado)
+                field(Tratado; Rec.Tratado)
                 {
                     ApplicationArea = All;
                 }
-                field(FechaTratado; FechaTratado)
+                field(FechaTratado; Rec.FechaTratado)
                 {
                     ApplicationArea = All;
                 }

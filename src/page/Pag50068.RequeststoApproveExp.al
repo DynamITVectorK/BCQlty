@@ -17,31 +17,31 @@ page 50068 "Requests to Approve Exp"
         {
             repeater()
             {
-                field("Document No.";"Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Sender ID";"Sender ID")
+                field("Sender ID"; Rec."Sender ID")
                 {
                     ApplicationArea = All;
                 }
-                field("Date-Time Sent for Approval";"Date-Time Sent for Approval")
+                field("Date-Time Sent for Approval"; Rec."Date-Time Sent for Approval")
                 {
                     ApplicationArea = All;
                 }
-                field(Amount;Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                 }
-                field(Status;Status)
+                field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
                 }
-                field("Last Date-Time Modified";"Last Date-Time Modified")
+                field("Last Date-Time Modified"; Rec."Last Date-Time Modified")
                 {
                     ApplicationArea = All;
                 }
-                field("Last Modified By User ID";"Last Modified By User ID")
+                field("Last Modified By User ID"; Rec."Last Modified By User ID")
                 {
                     ApplicationArea = All;
                 }
@@ -188,7 +188,7 @@ page 50068 "Requests to Approve Exp"
 
                     trigger OnAction()
                     begin
-                        SETRANGE(Status,Status::Open);
+                        Rec.SETRANGE(Status,Status::Open);
                         ShowAllEntries := FALSE;
                     end;
                 }
@@ -200,7 +200,7 @@ page 50068 "Requests to Approve Exp"
 
                     trigger OnAction()
                     begin
-                        SETRANGE(Status);
+                        Rec.SETRANGE(Status);
                         ShowAllEntries := TRUE;
                     end;
                 }
@@ -222,9 +222,9 @@ page 50068 "Requests to Approve Exp"
     begin
         //MESSAGE('PONER PAGE NO EDITABLE TRAS PRUEBAS');
         FILTERGROUP(2);
-        SETRANGE("Approver ID",USERID);
+        Rec.SETRANGE("Approver ID",USERID);
         FILTERGROUP(0);
-        SETRANGE(Status,Status::Open);
+        Rec.SETRANGE(Status,Status::Open);
     end;
 
     var

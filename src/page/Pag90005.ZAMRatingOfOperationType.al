@@ -15,15 +15,15 @@ page 90005 ZAMRatingOfOperationType
         {
             repeater(Group)
             {
-                field("Code"; ZAM_Code)
+                field("Code"; Rec.ZAM_Code)
                 {
                     ApplicationArea = All;
                 }
-                field(Description; ZAM_Description)
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                 }
-                field("Reverse Charge Supplies"; "ZAM_Reverse Charge Supplies")
+                field("Reverse Charge Supplies"; Rec."ZAM_Reverse Charge Supplies")
                 {
                     ApplicationArea = All;
                 }

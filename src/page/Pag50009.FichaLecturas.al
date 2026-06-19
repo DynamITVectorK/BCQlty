@@ -19,51 +19,51 @@ page 50009 "Ficha Lecturas"
             group("Lectura Electricidad")
             {
                 Visible = eselectricidad;
-                field("No. Contador"; "No. Contador")
+                field("No. Contador"; Rec."No. Contador")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Puesto/Pabellon"; "No. Puesto/Pabellon")
+                field("No. Puesto/Pabellon"; Rec."No. Puesto/Pabellon")
                 {
                     ApplicationArea = All;
                 }
-                field("Tarifa aplicada"; "Tarifa aplicada")
+                field("Tarifa aplicada"; Rec."Tarifa aplicada")
                 {
                     ApplicationArea = All;
                 }
-                field("Coeficiente TT"; "Coeficiente TT")
+                field("Coeficiente TT"; Rec."Coeficiente TT")
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre cliente"; "Nombre cliente")
+                field("Nombre cliente"; Rec."Nombre cliente")
                 {
                     ApplicationArea = All;
                 }
-                field("No. contrato"; "No. contrato")
+                field("No. contrato"; Rec."No. contrato")
                 {
                     ApplicationArea = All;
                 }
-                field("Potencia contratada"; "Potencia contratada")
+                field("Potencia contratada"; Rec."Potencia contratada")
                 {
                     ApplicationArea = All;
                 }
-                field("% desviación +/- aviso"; "% desviación +/- aviso")
+                field("% desviación +/- aviso"; Rec."% desviación +/- aviso")
                 {
                     ApplicationArea = All;
                 }
-                field(Condensadores; Condensadores)
+                field(Condensadores; Rec.Condensadores)
                 {
                     ApplicationArea = All;
                 }
-                field(Pabellon; Pabellon)
+                field(Pabellon; Rec.Pabellon)
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo Consumo"; "Tipo Consumo")
+                field("Tipo Consumo"; Rec."Tipo Consumo")
                 {
                     ApplicationArea = All;
                 }
-                field("Descripcion Ubicacion Contador"; "Descripcion Ubicacion Contador")
+                field("Descripcion Ubicacion Contador"; Rec."Descripcion Ubicacion Contador")
                 {
                     ApplicationArea = All;
                     MultiLine = true;
@@ -72,42 +72,47 @@ page 50009 "Ficha Lecturas"
             group("Lectura Agua")
             {
                 Visible = EsAgua;
-                field("ANº Contador (DF*)>"; "No. Contador")
+                field("ANº Contador (DF*)>"; Rec."No. Contador")
                 {
+                    ApplicationArea = All;
                     Caption = 'Nº Contador';
                 }
-                field("ANº Puesto/Pabellon (DF*)>"; "No. Puesto/Pabellon")
+                field("ANº Puesto/Pabellon (DF*)>"; Rec."No. Puesto/Pabellon")
                 {
+                    ApplicationArea = All;
                     Caption = 'Nº Puesto/Pabellon';
                 }
-                field("ATarifa aplicada>"; "Tarifa aplicada")
+                field("ATarifa aplicada>"; Rec."Tarifa aplicada")
                 {
                     ApplicationArea = All;
                     Caption = 'Tarifa aplicada';
                 }
-                field("ANombre cliente (DF*)>"; "Nombre cliente")
+                field("ANombre cliente (DF*)>"; Rec."Nombre cliente")
                 {
+                    ApplicationArea = All;
                     Caption = 'Nombre cliente';
                 }
-                field("ANº contrato (DF*)>"; "No. contrato")
+                field("ANº contrato (DF*)>"; Rec."No. contrato")
                 {
+                    ApplicationArea = All;
                     Caption = 'Nº contrato';
                 }
-                field("A% desviación +/- aviso (DF*)>"; "% desviación +/- aviso")
+                field("A% desviación +/- aviso (DF*)>"; Rec."% desviación +/- aviso")
                 {
+                    ApplicationArea = All;
                     Caption = '% desviación +/- para aviso';
                 }
-                field(PabellonAgua; Pabellon)
+                field(PabellonAgua; Rec.Pabellon)
                 {
                     ApplicationArea = All;
                     Caption = 'Pabellon';
                 }
-                field("Tipo Consumo Agua"; "Tipo Consumo")
+                field("Tipo Consumo Agua"; Rec."Tipo Consumo")
                 {
                     ApplicationArea = All;
                     Caption = 'Tipo Consumo';
                 }
-                field(DescripcionUbicacionContadorAgua; "Descripcion Ubicacion Contador")
+                field(DescripcionUbicacionContadorAgua; Rec."Descripcion Ubicacion Contador")
                 {
                     ApplicationArea = All;
                     Caption = 'Descripcion Ubicacion Contador';
@@ -119,7 +124,7 @@ page 50009 "Ficha Lecturas"
                 //The GridLayout property is only supported on controls of type Grid
                 //GridLayout = Columns;
                 Visible = EsElectricidad;
-                field(MeterNotAccess; Nuevo_MeterNotAcces)
+                field(MeterNotAccess; Rec.Nuevo_MeterNotAcces)
                 {
                     ApplicationArea = All;
                     Caption = 'Meter Not Accesible For Reading';
@@ -143,12 +148,12 @@ page 50009 "Ficha Lecturas"
                         //ZAM_MEP END
                     end;
                 }
-                field(Nuevo_Fechalectura; Nuevo_Fechalectura)
+                field(Nuevo_Fechalectura; Rec.Nuevo_Fechalectura)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha Lectura';
                 }
-                field(Nuevo_LecturaHP; Nuevo_LecturaHP)
+                field(Nuevo_LecturaHP; Rec.Nuevo_LecturaHP)
                 {
                     ApplicationArea = All;
                     Caption = 'Lectura HP';
@@ -158,7 +163,7 @@ page 50009 "Ficha Lecturas"
                         ActConsumosAux
                     end;
                 }
-                field(Nuevo_LecturaHLL; Nuevo_LecturaHLL)
+                field(Nuevo_LecturaHLL; Rec.Nuevo_LecturaHLL)
                 {
                     ApplicationArea = All;
                     Caption = 'Lectura HLL';
@@ -168,7 +173,7 @@ page 50009 "Ficha Lecturas"
                         ActConsumosAux
                     end;
                 }
-                field(Nuevo_LecturaHV; Nuevo_LecturaHV)
+                field(Nuevo_LecturaHV; Rec.Nuevo_LecturaHV)
                 {
                     ApplicationArea = All;
                     Caption = 'Lectura HV';
@@ -178,7 +183,7 @@ page 50009 "Ficha Lecturas"
                         ActConsumosAux
                     end;
                 }
-                field(Nuevo_LecturaB2; Nuevo_LecturaB2)
+                field(Nuevo_LecturaB2; Rec.Nuevo_LecturaB2)
                 {
                     ApplicationArea = All;
                     Caption = 'Lectura B2';
@@ -188,7 +193,7 @@ page 50009 "Ficha Lecturas"
                         ActConsumosAux
                     end;
                 }
-                field(Nuevo_CódigoIncidencia; Nuevo_CódigoIncidencia)
+                field(Nuevo_CódigoIncidencia; Rec.Nuevo_CódigoIncidencia)
                 {
                     ApplicationArea = All;
                     Caption = 'Código Incidencia';
@@ -204,7 +209,7 @@ page 50009 "Ficha Lecturas"
                         END
                     end;
                 }
-                field(NuevoTotal; NuevoTotal)
+                field(NuevoTotal; Rec.NuevoTotal)
                 {
                     ApplicationArea = All;
                     Caption = 'Total';
@@ -212,25 +217,25 @@ page 50009 "Ficha Lecturas"
                     Style = Strong;
                     StyleExpr = TRUE;
                 }
-                field(Nuevo_ConsumoHP; Nuevo_ConsumoHP)
+                field(Nuevo_ConsumoHP; Rec.Nuevo_ConsumoHP)
                 {
                     ApplicationArea = All;
                     Caption = 'Consumo HP';
                     Editable = false;
                 }
-                field(Nuevo_ConsumoHLL; Nuevo_ConsumoHLL)
+                field(Nuevo_ConsumoHLL; Rec.Nuevo_ConsumoHLL)
                 {
                     ApplicationArea = All;
                     Caption = 'Consumo HLL';
                     Editable = false;
                 }
-                field(Nuevo_ConsumoHV; Nuevo_ConsumoHV)
+                field(Nuevo_ConsumoHV; Rec.Nuevo_ConsumoHV)
                 {
                     ApplicationArea = All;
                     Caption = 'Consumo HV';
                     Editable = false;
                 }
-                field(Nuevo_ConsumoB2; Nuevo_ConsumoB2)
+                field(Nuevo_ConsumoB2; Rec.Nuevo_ConsumoB2)
                 {
                     ApplicationArea = All;
                     Caption = 'Consumo B2';
@@ -242,7 +247,7 @@ page 50009 "Ficha Lecturas"
                 //The GridLayout property is only supported on controls of type Grid
                 //GridLayout = Columns;
                 Visible = EsAgua;
-                field(ZAM_MeterNotAccForReadingWater; Nuevo_MeterNotAcces)
+                field(ZAM_MeterNotAccForReadingWater; Rec.Nuevo_MeterNotAcces)
                 {
                     ApplicationArea = All;
                     Caption = 'Meter Not Accesible For Reading';
@@ -263,12 +268,12 @@ page 50009 "Ficha Lecturas"
                         //ZAM_MEP END
                     end;
                 }
-                field(fl; Nuevo_Fechalectura)
+                field(fl; Rec.Nuevo_Fechalectura)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha Lectura';
                 }
-                field(_T1; Nuevo_LecturaHP)
+                field(_T1; Rec.Nuevo_LecturaHP)
                 {
                     ApplicationArea = All;
                     Caption = 'Lectura T1';
@@ -278,7 +283,7 @@ page 50009 "Ficha Lecturas"
                         ActConsumosAux
                     end;
                 }
-                field(LInc; Nuevo_CódigoIncidencia)
+                field(LInc; Rec.Nuevo_CódigoIncidencia)
                 {
                     ApplicationArea = All;
                     Caption = 'Código Incidencia';
@@ -293,7 +298,7 @@ page 50009 "Ficha Lecturas"
                         END
                     end;
                 }
-                field(Tot; NuevoTotal)
+                field(Tot; Rec.NuevoTotal)
                 {
                     ApplicationArea = All;
                     Caption = 'Total';
@@ -301,7 +306,7 @@ page 50009 "Ficha Lecturas"
                     Style = Strong;
                     StyleExpr = TRUE;
                 }
-                field(C_T1; Nuevo_ConsumoHP)
+                field(C_T1; Rec.Nuevo_ConsumoHP)
                 {
                     ApplicationArea = All;
                     Caption = 'Consumo T1';
@@ -312,53 +317,53 @@ page 50009 "Ficha Lecturas"
             {
                 Caption = 'ELECTRICIDAD';
                 Visible = eselectricidad;
-                field("Fecha lectura"; "Fecha lectura")
+                field("Fecha lectura"; Rec."Fecha lectura")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Factura registrada"; "No. Factura registrada")
+                field("No. Factura registrada"; Rec."No. Factura registrada")
                 {
                     ApplicationArea = All;
                 }
-                field("Código Incidencia"; "Código Incidencia")
+                field("Código Incidencia"; Rec."Código Incidencia")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura HP"; "Lectura HP")
+                field("Lectura HP"; Rec."Lectura HP")
                 {
                     ApplicationArea = All;
                     Caption = 'Lectura HP';
                 }
-                field("Consumo HP"; "Consumo HP")
+                field("Consumo HP"; Rec."Consumo HP")
                 {
                     ApplicationArea = All;
                     Caption = 'Consumo HP';
                 }
-                field("Lectura HLL"; "Lectura HLL")
+                field("Lectura HLL"; Rec."Lectura HLL")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo HLL"; "Consumo HLL")
+                field("Consumo HLL"; Rec."Consumo HLL")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura HV"; "Lectura HV")
+                field("Lectura HV"; Rec."Lectura HV")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo HV"; "Consumo HV")
+                field("Consumo HV"; Rec."Consumo HV")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura B2"; "Lectura B2")
+                field("Lectura B2"; Rec."Lectura B2")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo B2"; "Consumo B2")
+                field("Consumo B2"; Rec."Consumo B2")
                 {
                     ApplicationArea = All;
                 }
-                field(Total; Total)
+                field(Total; Rec.Total)
                 {
                     ApplicationArea = All;
                 }
@@ -367,32 +372,32 @@ page 50009 "Ficha Lecturas"
             {
                 Caption = 'AGUA';
                 Visible = EsAgua;
-                field("<Fecha lecturaA>"; "Fecha lectura")
+                field("<Fecha lecturaA>"; Rec."Fecha lectura")
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha lectura';
                 }
-                field("<Nº Factura registradaA>"; "No. Factura registrada")
+                field("<Nº Factura registradaA>"; Rec."No. Factura registrada")
                 {
                     ApplicationArea = All;
                     Caption = 'Nº Factura registrada';
                 }
-                field("<Código IncidenciaA>"; "Código Incidencia")
+                field("<Código IncidenciaA>"; Rec."Código Incidencia")
                 {
                     ApplicationArea = All;
                     Caption = 'Código Incidencia';
                 }
-                field("<Lectura HPA>"; "Lectura HP")
+                field("<Lectura HPA>"; Rec."Lectura HP")
                 {
                     ApplicationArea = All;
                     Caption = 'Lectura T1';
                 }
-                field("<Consumo HPA>"; "Consumo HP")
+                field("<Consumo HPA>"; Rec."Consumo HP")
                 {
                     ApplicationArea = All;
                     Caption = 'Consumo T1';
                 }
-                field("<TotalA>"; Total)
+                field("<TotalA>"; Rec.Total)
                 {
                     ApplicationArea = All;
                     Caption = 'Total';
@@ -1053,7 +1058,7 @@ page 50009 "Ficha Lecturas"
                     LectTB.NEXT(-1)
                 END
         END;
-        SETFILTER("No. movimiento", filtro);
+        Rec.SETFILTER("No. movimiento", filtro);
         CurrPage.UPDATE;
     end;
 

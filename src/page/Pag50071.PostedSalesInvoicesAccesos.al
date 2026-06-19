@@ -18,167 +18,167 @@ page 50071 "Posted Sales Invoices Accesos"
         {
             repeater()
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Sell-to Customer No.";"Sell-to Customer No.")
+                field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Sell-to Customer Name";"Sell-to Customer Name")
+                field("Sell-to Customer Name"; Rec."Sell-to Customer Name")
                 {
                     ApplicationArea = All;
                 }
-                field("Currency Code";"Currency Code")
+                field("Currency Code"; Rec."Currency Code")
                 {
                     ApplicationArea = All;
                 }
-                field(Amount;Amount)
-                {
-                    ApplicationArea = All;
-
-                    trigger OnDrillDown()
-                    begin
-                        SETRANGE("No.");
-                        PAGE.RUNMODAL(132,Rec)
-                    end;
-                }
-                field("Amount Including VAT";"Amount Including VAT")
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
 
                     trigger OnDrillDown()
                     begin
-                        SETRANGE("No.");
+                        Rec.SETRANGE("No.");
                         PAGE.RUNMODAL(132,Rec)
                     end;
                 }
-                field("Sell-to Post Code";"Sell-to Post Code")
+                field("Amount Including VAT"; Rec."Amount Including VAT")
+                {
+                    ApplicationArea = All;
+
+                    trigger OnDrillDown()
+                    begin
+                        Rec.SETRANGE("No.");
+                        PAGE.RUNMODAL(132,Rec)
+                    end;
+                }
+                field("Sell-to Post Code"; Rec."Sell-to Post Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Sell-to Country/Region Code";"Sell-to Country/Region Code")
+                field("Sell-to Country/Region Code"; Rec."Sell-to Country/Region Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Sell-to Contact";"Sell-to Contact")
+                field("Sell-to Contact"; Rec."Sell-to Contact")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Bill-to Customer No.";"Bill-to Customer No.")
+                field("Bill-to Customer No."; Rec."Bill-to Customer No.")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Bill-to Name";"Bill-to Name")
+                field("Bill-to Name"; Rec."Bill-to Name")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Bill-to Post Code";"Bill-to Post Code")
+                field("Bill-to Post Code"; Rec."Bill-to Post Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Bill-to Country/Region Code";"Bill-to Country/Region Code")
+                field("Bill-to Country/Region Code"; Rec."Bill-to Country/Region Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Bill-to Contact";"Bill-to Contact")
+                field("Bill-to Contact"; Rec."Bill-to Contact")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Ship-to Code";"Ship-to Code")
+                field("Ship-to Code"; Rec."Ship-to Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Ship-to Name";"Ship-to Name")
+                field("Ship-to Name"; Rec."Ship-to Name")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Ship-to Post Code";"Ship-to Post Code")
+                field("Ship-to Post Code"; Rec."Ship-to Post Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Ship-to Country/Region Code";"Ship-to Country/Region Code")
+                field("Ship-to Country/Region Code"; Rec."Ship-to Country/Region Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Ship-to Contact";"Ship-to Contact")
+                field("Ship-to Contact"; Rec."Ship-to Contact")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Posting Date";"Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Salesperson Code";"Salesperson Code")
+                field("Salesperson Code"; Rec."Salesperson Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Shortcut Dimension 1 Code";"Shortcut Dimension 1 Code")
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Shortcut Dimension 2 Code";"Shortcut Dimension 2 Code")
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Location Code";"Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = All;
                     Visible = true;
                 }
-                field("No. Printed";"No. Printed")
+                field("No. Printed"; Rec."No. Printed")
                 {
                     ApplicationArea = All;
                 }
-                field("Document Date";"Document Date")
-                {
-                    ApplicationArea = All;
-                    Visible = false;
-                }
-                field("Payment Terms Code";"Payment Terms Code")
+                field("Document Date"; Rec."Document Date")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Due Date";"Due Date")
+                field("Payment Terms Code"; Rec."Payment Terms Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Payment Discount %";"Payment Discount %")
+                field("Due Date"; Rec."Due Date")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Shipment Method Code";"Shipment Method Code")
+                field("Payment Discount %"; Rec."Payment Discount %")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Shipment Date";"Shipment Date")
+                field("Shipment Method Code"; Rec."Shipment Method Code")
                 {
                     ApplicationArea = All;
                     Visible = false;
                 }
-                field("Document Exchange Status";"Document Exchange Status")
+                field("Shipment Date"; Rec."Shipment Date")
+                {
+                    ApplicationArea = All;
+                    Visible = false;
+                }
+                field("Document Exchange Status"; Rec."Document Exchange Status")
                 {
                     ApplicationArea = All;
                     StyleExpr = DocExchStatusStyle;
@@ -188,24 +188,24 @@ page 50071 "Posted Sales Invoices Accesos"
                         DocExchStatusDrillDown;
                     end;
                 }
-                field("Coupled to CRM";"Coupled to CRM")
+                field("Coupled to CRM"; Rec."Coupled to CRM")
                 {
                     ApplicationArea = All;
                     Visible = CRMIntegrationEnabled;
                 }
-                field("E-Mail";"E-Mail")
+                field("E-Mail"; Rec."E-Mail")
                 {
                     ApplicationArea = All;
                 }
-                field("Concepto agrupador";"Concepto agrupador")
+                field("Concepto agrupador"; Rec."Concepto agrupador")
                 {
                     ApplicationArea = All;
                 }
-                field("Posting Description";"Posting Description")
+                field("Posting Description"; Rec."Posting Description")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Registration No.";"VAT Registration No.")
+                field("VAT Registration No."; Rec."VAT Registration No.")
                 {
                     ApplicationArea = All;
                 }

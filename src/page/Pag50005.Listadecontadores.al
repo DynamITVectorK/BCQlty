@@ -15,60 +15,60 @@ page 50005 "Lista de contadores"
         {
             repeater(Group)
             {
-                field("No. Contador"; "No. Contador")
+                field("No. Contador"; Rec."No. Contador")
                 {
                     ApplicationArea = All;
                 }
-                field("No. puesto"; "No. puesto")
+                field("No. puesto"; Rec."No. puesto")
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo contador"; "Tipo contador")
+                field("Tipo contador"; Rec."Tipo contador")
                 {
                     ApplicationArea = All;
                 }
-                field(Estado; Estado)
+                field(Estado; Rec.Estado)
                 {
                     ApplicationArea = All;
                 }
-                field("No. Contrato"; "No. Contrato")
+                field("No. Contrato"; Rec."No. Contrato")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Orden de lectura"; "No. Orden de lectura")
+                field("No. Orden de lectura"; Rec."No. Orden de lectura")
                 {
                     ApplicationArea = All;
                 }
-                field(Tarifa; Tarifa)
+                field(Tarifa; Rec.Tarifa)
                 {
                     ApplicationArea = All;
                 }
-                field("% desviación +/- para aviso"; "% desviación +/- para aviso")
+                field("% desviación +/- para aviso"; Rec."% desviación +/- para aviso")
                 {
                     ApplicationArea = All;
                 }
-                field(Area;Area)
+                field(Area; Rec.Area)
         {
             ApplicationArea = All;
         }
-                field("Nombre cliente";"Nombre cliente")
+                field("Nombre cliente"; Rec."Nombre cliente")
                 {
                     ApplicationArea = All;
                 }
-                field(Destino;Destino)
+                field(Destino; Rec.Destino)
                 {
                     ApplicationArea = All;
                 }
-                field(Coeficiente2;Coeficiente2)
+                field(Coeficiente2; Rec.Coeficiente2)
                 {
                     ApplicationArea = All;
                     Editable = true;
                 }
-                field("Camara reserva diaria";"Camara reserva diaria")
+                field("Camara reserva diaria"; Rec."Camara reserva diaria")
                 {
                     ApplicationArea = All;
                 }
-                field(Condensadores;Condensadores)
+                field(Condensadores; Rec.Condensadores)
                 {
                     ApplicationArea = All;
                 }

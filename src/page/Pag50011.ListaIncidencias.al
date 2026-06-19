@@ -14,31 +14,31 @@ page 50011 "Lista Incidencias"
         {
             repeater(Group)
             {
-                field("No. incidencia"; "No. incidencia")
+                field("No. incidencia"; Rec."No. incidencia")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Contador"; "No. Contador")
+                field("No. Contador"; Rec."No. Contador")
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo incidencia"; "Tipo incidencia")
+                field("Tipo incidencia"; Rec."Tipo incidencia")
                 {
                     ApplicationArea = All;
                 }
-                field("Área incidencia"; "Área incidencia")
+                field("Área incidencia"; Rec."Área incidencia")
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre cliente"; "Nombre cliente")
+                field("Nombre cliente"; Rec."Nombre cliente")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Puesto/Pabellón"; "No. Puesto/Pabellón")
+                field("No. Puesto/Pabellón"; Rec."No. Puesto/Pabellón")
                 {
                     ApplicationArea = All;
                 }
-                field("No. contrato"; "No. contrato")
+                field("No. contrato"; Rec."No. contrato")
                 {
                     ApplicationArea = All;
                 }

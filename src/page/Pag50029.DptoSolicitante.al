@@ -11,35 +11,35 @@ page 50029 "Dpto. Solicitante"
         {
             repeater(Group)
             {
-                field("Cod. Dpto"; "Cod. Dpto")
+                field("Cod. Dpto"; Rec."Cod. Dpto")
                 {
                     ApplicationArea = All;
                 }
-                field(Descripción; Descripción)
+                field(Descripción; Rec.Descripción)
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 1"; "Aprobador 1")
+                field("Aprobador 1"; Rec."Aprobador 1")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 2"; "Aprobador 2")
+                field("Aprobador 2"; Rec."Aprobador 2")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 3"; "Aprobador 3")
+                field("Aprobador 3"; Rec."Aprobador 3")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 4"; "Aprobador 4")
+                field("Aprobador 4"; Rec."Aprobador 4")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 5"; "Aprobador 5")
+                field("Aprobador 5"; Rec."Aprobador 5")
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo Aprobador"; "Tipo Aprobador")
+                field("Tipo Aprobador"; Rec."Tipo Aprobador")
                 {
                     ApplicationArea = All;
                 }

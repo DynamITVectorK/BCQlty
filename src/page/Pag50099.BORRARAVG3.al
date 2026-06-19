@@ -11,340 +11,353 @@ page 50099 "BORRAR_AVG3"
         {
             repeater(Group)
             {
-                field("Entry No."; "Entry No.")
+                field("Entry No."; Rec."Entry No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Customer No."; "Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Posting Date"; "Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Document Type"; "Document Type")
+                field("Document Type"; Rec."Document Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Document No."; "Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                 }
-                field("Currency Code"; "Currency Code")
+                field("Currency Code"; Rec."Currency Code")
                 {
                     ApplicationArea = All;
                 }
-                field(Amount; Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                 }
-                field("Remaining Amount"; "Remaining Amount")
+                field("Remaining Amount"; Rec."Remaining Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Original Amt. (LCY)"; "Original Amt. (LCY)")
+                field("Original Amt. (LCY)"; Rec."Original Amt. (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Remaining Amt. (LCY)"; "Remaining Amt. (LCY)")
+                field("Remaining Amt. (LCY)"; Rec."Remaining Amt. (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Amount (LCY)"; "Amount (LCY)")
+                field("Amount (LCY)"; Rec."Amount (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Sales (LCY)"; "Sales (LCY)")
+                field("Sales (LCY)"; Rec."Sales (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Profit (LCY)"; "Profit (LCY)")
+                field("Profit (LCY)"; Rec."Profit (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Inv. Discount (LCY)"; "Inv. Discount (LCY)")
+                field("Inv. Discount (LCY)"; Rec."Inv. Discount (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Sell-to Customer No."; "Sell-to Customer No.")
+                field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Customer Posting Group"; "Customer Posting Group")
+                field("Customer Posting Group"; Rec."Customer Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("Global Dimension 1 Code"; "Global Dimension 1 Code")
+                field("Global Dimension 1 Code"; Rec."Global Dimension 1 Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Global Dimension 2 Code"; "Global Dimension 2 Code")
+                field("Global Dimension 2 Code"; Rec."Global Dimension 2 Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Salesperson Code"; "Salesperson Code")
+                field("Salesperson Code"; Rec."Salesperson Code")
                 {
                     ApplicationArea = All;
                 }
-                field("User ID"; "User ID")
+                field("User ID"; Rec."User ID")
                 {
                     ApplicationArea = All;
                 }
-                field("Source Code"; "Source Code")
+                field("Source Code"; Rec."Source Code")
                 {
                     ApplicationArea = All;
                 }
-                field("On Hold"; "On Hold")
+                field("On Hold"; Rec."On Hold")
                 {
                     ApplicationArea = All;
                 }
-                field("Applies-to Doc. Type"; "Applies-to Doc. Type")
+                field("Applies-to Doc. Type"; Rec."Applies-to Doc. Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Applies-to Doc. No."; "Applies-to Doc. No.")
+                field("Applies-to Doc. No."; Rec."Applies-to Doc. No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Open; Open)
+                field(Open; Rec.Open)
                 {
                     ApplicationArea = All;
                 }
-                field("Due Date"; "Due Date")
+                field("Due Date"; Rec."Due Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Pmt. Discount Date"; "Pmt. Discount Date")
+                field("Pmt. Discount Date"; Rec."Pmt. Discount Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Original Pmt. Disc. Possible"; "Original Pmt. Disc. Possible")
+                field("Original Pmt. Disc. Possible"; Rec."Original Pmt. Disc. Possible")
                 {
                     ApplicationArea = All;
                 }
-                field("Pmt. Disc. Given (LCY)"; "Pmt. Disc. Given (LCY)")
+                field("Pmt. Disc. Given (LCY)"; Rec."Pmt. Disc. Given (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field(Positive; Positive)
+                field(Positive; Rec.Positive)
                 {
                     ApplicationArea = All;
                 }
-                field("Closed by Entry No."; "Closed by Entry No.")
+                field("Closed by Entry No."; Rec."Closed by Entry No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Closed at Date"; "Closed at Date")
+                field("Closed at Date"; Rec."Closed at Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Closed by Amount"; "Closed by Amount")
+                field("Closed by Amount"; Rec."Closed by Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Applies-to ID"; "Applies-to ID")
+                field("Applies-to ID"; Rec."Applies-to ID")
                 {
                     ApplicationArea = All;
                 }
-                field("Journal Batch Name"; "Journal Batch Name")
+                field("Journal Batch Name"; Rec."Journal Batch Name")
                 {
                     ApplicationArea = All;
                 }
-                field("Reason Code"; "Reason Code")
+                field("Reason Code"; Rec."Reason Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Bal. Account Type"; "Bal. Account Type")
+                field("Bal. Account Type"; Rec."Bal. Account Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Bal. Account No."; "Bal. Account No.")
+                field("Bal. Account No."; Rec."Bal. Account No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Transaction No."; "Transaction No.")
+                field("Transaction No."; Rec."Transaction No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Closed by Amount (LCY)"; "Closed by Amount (LCY)")
+                field("Closed by Amount (LCY)"; Rec."Closed by Amount (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Debit Amount"; "Debit Amount")
+                field("Debit Amount"; Rec."Debit Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Credit Amount"; "Credit Amount")
+                field("Credit Amount"; Rec."Credit Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Debit Amount (LCY)"; "Debit Amount (LCY)")
+                field("Debit Amount (LCY)"; Rec."Debit Amount (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Credit Amount (LCY)"; "Credit Amount (LCY)")
+                field("Credit Amount (LCY)"; Rec."Credit Amount (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Document Date"; "Document Date")
+                field("Document Date"; Rec."Document Date")
                 {
                     ApplicationArea = All;
                 }
-                field("External Document No."; "External Document No.")
+                field("External Document No."; Rec."External Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Calculate Interest"; "Calculate Interest")
+                field("Calculate Interest"; Rec."Calculate Interest")
                 {
                     ApplicationArea = All;
                 }
-                field("Closing Interest Calculated"; "Closing Interest Calculated")
+                field("Closing Interest Calculated"; Rec."Closing Interest Calculated")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Series"; "No. Series")
+                field("No. Series"; Rec."No. Series")
                 {
                     ApplicationArea = All;
                 }
-                field("Closed by Currency Code"; "Closed by Currency Code")
+                field("Closed by Currency Code"; Rec."Closed by Currency Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Closed by Currency Amount"; "Closed by Currency Amount")
+                field("Closed by Currency Amount"; Rec."Closed by Currency Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Adjusted Currency Factor"; "Adjusted Currency Factor")
+                field("Adjusted Currency Factor"; Rec."Adjusted Currency Factor")
                 {
                     ApplicationArea = All;
                 }
-                field("Original Currency Factor"; "Original Currency Factor")
+                field("Original Currency Factor"; Rec."Original Currency Factor")
                 {
                     ApplicationArea = All;
                 }
-                field("Original Amount"; "Original Amount")
+                field("Original Amount"; Rec."Original Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Date Filter"; "Date Filter")
+                field("Date Filter"; Rec."Date Filter")
                 {
                     ApplicationArea = All;
                 }
-                field("Remaining Pmt. Disc. Possible"; "Remaining Pmt. Disc. Possible")
+                field("Remaining Pmt. Disc. Possible"; Rec."Remaining Pmt. Disc. Possible")
                 {
                     ApplicationArea = All;
                 }
-                field("Pmt. Disc. Tolerance Date"; "Pmt. Disc. Tolerance Date")
+                field("Pmt. Disc. Tolerance Date"; Rec."Pmt. Disc. Tolerance Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Max. Payment Tolerance"; "Max. Payment Tolerance")
+                field("Max. Payment Tolerance"; Rec."Max. Payment Tolerance")
                 {
                     ApplicationArea = All;
                 }
-                field("Last Issued Reminder Level"; "Last Issued Reminder Level")
+                field("Last Issued Reminder Level"; Rec."Last Issued Reminder Level")
                 {
                     ApplicationArea = All;
                 }
-                field("Accepted Payment Tolerance"; "Accepted Payment Tolerance")
+                field("Accepted Payment Tolerance"; Rec."Accepted Payment Tolerance")
                 {
                     ApplicationArea = All;
                 }
-                field("Accepted Pmt. Disc. Tolerance"; "Accepted Pmt. Disc. Tolerance")
+                field("Accepted Pmt. Disc. Tolerance"; Rec."Accepted Pmt. Disc. Tolerance")
                 {
                     ApplicationArea = All;
                 }
-                field("Pmt. Tolerance (LCY)"; "Pmt. Tolerance (LCY)")
+                field("Pmt. Tolerance (LCY)"; Rec."Pmt. Tolerance (LCY)")
                 {
+                    ApplicationArea = All;
                 }
-                field("Amount to Apply"; "Amount to Apply")
+                field("Amount to Apply"; Rec."Amount to Apply")
                 {
                     ApplicationArea = All;
                 }
-                field("IC Partner Code"; "IC Partner Code")
+                field("IC Partner Code"; Rec."IC Partner Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Applying Entry"; "Applying Entry")
+                field("Applying Entry"; Rec."Applying Entry")
                 {
                     ApplicationArea = All;
                 }
-                field(Reversed; Reversed)
+                field(Reversed; Rec.Reversed)
                 {
                     ApplicationArea = All;
                 }
-                field("Reversed by Entry No."; "Reversed by Entry No.")
+                field("Reversed by Entry No."; Rec."Reversed by Entry No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Reversed Entry No."; "Reversed Entry No.")
+                field("Reversed Entry No."; Rec."Reversed Entry No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Prepayment; Prepayment)
+                field(Prepayment; Rec.Prepayment)
                 {
                     ApplicationArea = All;
                 }
-                field("Payment Terms Code"; "Payment Terms Code")
+                field("Payment Terms Code"; Rec."Payment Terms Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Payment Method Code"; "Payment Method Code")
+                field("Payment Method Code"; Rec."Payment Method Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Applies-to Ext. Doc. No."; "Applies-to Ext. Doc. No.")
+                field("Applies-to Ext. Doc. No."; Rec."Applies-to Ext. Doc. No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Recipient Bank Account"; "Recipient Bank Account")
+                field("Recipient Bank Account"; Rec."Recipient Bank Account")
                 {
                     ApplicationArea = All;
                 }
-                field("Message to Recipient"; "Message to Recipient")
+                field("Message to Recipient"; Rec."Message to Recipient")
                 {
                     ApplicationArea = All;
                 }
-                field("Exported to Payment File"; "Exported to Payment File")
+                field("Exported to Payment File"; Rec."Exported to Payment File")
                 {
                     ApplicationArea = All;
                 }
-                field("Dimension Set ID"; "Dimension Set ID")
+                field("Dimension Set ID"; Rec."Dimension Set ID")
                 {
                     ApplicationArea = All;
                 }
-                field("Direct Debit Mandate ID"; "Direct Debit Mandate ID")
+                field("Direct Debit Mandate ID"; Rec."Direct Debit Mandate ID")
                 {
                     ApplicationArea = All;
                 }
-                field("External Document Nr"; "External Document Nr")
+                field("External Document Nr"; Rec."External Document Nr")
                 {
                     ApplicationArea = All;
                 }
-                field(ClienteBloqueado; ClienteBloqueado)
+                field(ClienteBloqueado; Rec.ClienteBloqueado)
                 {
                     ApplicationArea = All;
                 }
-                field(ContraseñaWeb; ContraseñaWeb)
+                field(ContraseñaWeb; Rec.ContraseñaWeb)
                 {
                     ApplicationArea = All;
                 }
-                field("Bill No."; "Bill No.")
+                field("Bill No."; Rec."Bill No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Document Situation"; "Document Situation")
+                field("Document Situation"; Rec."Document Situation")
                 {
                     ApplicationArea = All;
                 }
-                field("Applies-to Bill No."; "Applies-to Bill No.")
+                field("Applies-to Bill No."; Rec."Applies-to Bill No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Document Status"; "Document Status")
+                field("Document Status"; Rec."Document Status")
                 {
                     ApplicationArea = All;
                 }
-                field("Remaining Amount (LCY) stats."; "Remaining Amount (LCY) stats.")
+                field("Remaining Amount (LCY) stats."; Rec."Remaining Amount (LCY) stats.")
                 {
+                    ApplicationArea = All;
                 }
-                field("Amount (LCY) stats."; "Amount (LCY) stats.")
+                field("Amount (LCY) stats."; Rec."Amount (LCY) stats.")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

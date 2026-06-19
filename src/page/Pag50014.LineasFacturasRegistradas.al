@@ -11,155 +11,155 @@ page 50014 "Lineas Facturas Registradas"
         {
             repeater(Group)
             {
-                field("Posting Date"; "Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Sell-to Customer No."; "Sell-to Customer No.")
+                field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre Cliente"; "Nombre Cliente")
+                field("Nombre Cliente"; Rec."Nombre Cliente")
                 {
                     ApplicationArea = All;
                 }
-                field("Item Category Code"; "Item Category Code")
+                field("Item Category Code"; Rec."Item Category Code")
                 {
                     ApplicationArea = All;
                 }
-                field("No. contador"; "No. contador")
+                field("No. contador"; Rec."No. contador")
                 {
                     ApplicationArea = All;
                 }
-                field("Document No."; "Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Type; Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = All;
                 }
-                field("No."; "No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                 }
-                field("Description 2"; "Description 2")
+                field("Description 2"; Rec."Description 2")
                 {
                     ApplicationArea = All;
                 }
-                field("Unit of Measure"; "Unit of Measure")
+                field("Unit of Measure"; Rec."Unit of Measure")
                 {
                     ApplicationArea = All;
                 }
-                field(Quantity; Quantity)
+                field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
                 }
-                field("Unit Price"; "Unit Price")
+                field("Unit Price"; Rec."Unit Price")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT %"; "VAT %")
+                field("VAT %"; Rec."VAT %")
                 {
                     ApplicationArea = All;
                 }
-                field("Line Discount %"; "Line Discount %")
+                field("Line Discount %"; Rec."Line Discount %")
                 {
                     ApplicationArea = All;
                 }
-                field("Line Discount Amount"; "Line Discount Amount")
+                field("Line Discount Amount"; Rec."Line Discount Amount")
                 {
                     ApplicationArea = All;
                 }
-                field(Amount; Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                 }
-                field("Amount Including VAT"; "Amount Including VAT")
+                field("Amount Including VAT"; Rec."Amount Including VAT")
                 {
                     ApplicationArea = All;
                 }
-                field("Inv. Discount Amount"; "Inv. Discount Amount")
+                field("Inv. Discount Amount"; Rec."Inv. Discount Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Shortcut Dimension 1 Code"; "Shortcut Dimension 1 Code")
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Shortcut Dimension 2 Code"; "Shortcut Dimension 2 Code")
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Bill-to Customer No."; "Bill-to Customer No.")
+                field("Bill-to Customer No."; Rec."Bill-to Customer No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Posting Group"; "Posting Group")
+                field("Posting Group"; Rec."Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("Gen. Bus. Posting Group"; "Gen. Bus. Posting Group")
+                field("Gen. Bus. Posting Group"; Rec."Gen. Bus. Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("Gen. Prod. Posting Group"; "Gen. Prod. Posting Group")
+                field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Bus. Posting Group"; "VAT Bus. Posting Group")
+                field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Prod. Posting Group"; "VAT Prod. Posting Group")
+                field("VAT Prod. Posting Group"; Rec."VAT Prod. Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Base Amount"; "VAT Base Amount")
+                field("VAT Base Amount"; Rec."VAT Base Amount")
                 {
                     ApplicationArea = All;
                 }
-                field(Coeficiente; Coeficiente)
+                field(Coeficiente; Rec.Coeficiente)
                 {
                     ApplicationArea = All;
                 }
-                field(Tarifa; Tarifa)
+                field(Tarifa; Rec.Tarifa)
                 {
                     ApplicationArea = All;
                 }
-                field(Condensador; Condensador)
+                field(Condensador; Rec.Condensador)
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha inicio servicio"; "Fecha inicio servicio")
+                field("Fecha inicio servicio"; Rec."Fecha inicio servicio")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha fin servicio"; "Fecha fin servicio")
+                field("Fecha fin servicio"; Rec."Fecha fin servicio")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha lectura"; "Fecha lectura")
+                field("Fecha lectura"; Rec."Fecha lectura")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura anterior"; "Lectura anterior")
+                field("Lectura anterior"; Rec."Lectura anterior")
                 {
                     ApplicationArea = All;
                 }
-                field("Lectura actual"; "Lectura actual")
+                field("Lectura actual"; Rec."Lectura actual")
                 {
                     ApplicationArea = All;
                 }
-                field("Cantidad mensual"; "Cantidad mensual")
+                field("Cantidad mensual"; Rec."Cantidad mensual")
                 {
                     ApplicationArea = All;
                 }
-                field(HastaTramo; HastaTramo)
+                field(HastaTramo; Rec.HastaTramo)
                 {
                     ApplicationArea = All;
                 }

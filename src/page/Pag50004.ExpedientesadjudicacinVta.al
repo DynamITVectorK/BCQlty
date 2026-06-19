@@ -13,7 +13,7 @@ page 50004 "Expedientes adjudicación Vta"
         {
             group(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
 
@@ -23,88 +23,88 @@ page 50004 "Expedientes adjudicación Vta"
                           CurrPage.UPDATE;
                     end;
                 }
-                field(Ejercicio;Ejercicio)
+                field(Ejercicio; Rec.Ejercicio)
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha expediente";"Fecha expediente")
+                field("Fecha expediente"; Rec."Fecha expediente")
                 {
                     ApplicationArea = All;
                 }
-                field(Descripción;Descripción)
+                field(Descripción; Rec.Descripción)
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo trabajo";"Tipo trabajo")
+                field("Tipo trabajo"; Rec."Tipo trabajo")
                 {
                     ApplicationArea = All;
                 }
-                field("Dpto. solicitante";"Dpto. solicitante")
+                field("Dpto. solicitante"; Rec."Dpto. solicitante")
                 {
                     ApplicationArea = All;
                 }
-                field(Estado;Estado)
+                field(Estado; Rec.Estado)
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha publicación";"Fecha publicación")
+                field("Fecha publicación"; Rec."Fecha publicación")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha propuesta";"Fecha propuesta")
+                field("Fecha propuesta"; Rec."Fecha propuesta")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha apertura plicas";"Fecha apertura plicas")
+                field("Fecha apertura plicas"; Rec."Fecha apertura plicas")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe del presupuesto";"Importe del presupuesto")
+                field("Importe del presupuesto"; Rec."Importe del presupuesto")
                 {
                     ApplicationArea = All;
                 }
-                field("Bases expediente";"Bases expediente")
+                field("Bases expediente"; Rec."Bases expediente")
                 {
                     ApplicationArea = All;
                 }
-                field("Organo de decisión";"Organo de decisión")
+                field("Organo de decisión"; Rec."Organo de decisión")
                 {
                     ApplicationArea = All;
                 }
-                field("Adjudicatario Vta";"Adjudicatario Vta")
+                field("Adjudicatario Vta"; Rec."Adjudicatario Vta")
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre Adjudicatario Vta";"Nombre Adjudicatario Vta")
+                field("Nombre Adjudicatario Vta"; Rec."Nombre Adjudicatario Vta")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Importe adjudicado";"Importe adjudicado")
+                field("Importe adjudicado"; Rec."Importe adjudicado")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha adjudicación";"Fecha adjudicación")
+                field("Fecha adjudicación"; Rec."Fecha adjudicación")
                 {
                     ApplicationArea = All;
                 }
-                field(Lote;Lote)
+                field(Lote; Rec.Lote)
                 {
                     ApplicationArea = All;
                 }
-                field("Importe lote";"Importe lote")
+                field("Importe lote"; Rec."Importe lote")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha inicio del contrato";"Fecha inicio del contrato")
+                field("Fecha inicio del contrato"; Rec."Fecha inicio del contrato")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha finalización contrato";"Fecha finalización contrato")
+                field("Fecha finalización contrato"; Rec."Fecha finalización contrato")
                 {
                     ApplicationArea = All;
                 }
-                field(Prórroga;Prórroga)
+                field(Prórroga; Rec.Prórroga)
                 {
                     ApplicationArea = All;
 
@@ -113,17 +113,17 @@ page 50004 "Expedientes adjudicación Vta"
                         fEditarProrroga;
                     end;
                 }
-                field("Fecha prórroga";"Fecha prórroga")
+                field("Fecha prórroga"; Rec."Fecha prórroga")
                 {
                     ApplicationArea = All;
                     Editable = vEditarProrroga;
                 }
-                field("No. prórroga";"No. prórroga")
+                field("No. prórroga"; Rec."No. prórroga")
                 {
                     ApplicationArea = All;
                     Editable = vEditarProrroga;
                 }
-                field("Fecha cierre expediente";"Fecha cierre expediente")
+                field("Fecha cierre expediente"; Rec."Fecha cierre expediente")
                 {
                     ApplicationArea = All;
                 }
@@ -177,12 +177,12 @@ page 50004 "Expedientes adjudicación Vta"
 
     trigger OnAfterGetCurrRecord()
     begin
-        CALCFIELDS("Nombre Adjudicatario","Nombre Adjudicatario Vta");
+        Rec.CALCFIELDS("Nombre Adjudicatario","Nombre Adjudicatario Vta");
     end;
 
     trigger OnAfterGetRecord()
     begin
-        CALCFIELDS("Nombre Adjudicatario","Nombre Adjudicatario Vta");
+        Rec.CALCFIELDS("Nombre Adjudicatario","Nombre Adjudicatario Vta");
     end;
 
     var

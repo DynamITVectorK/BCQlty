@@ -13,31 +13,31 @@ page 50027 "Codigos de retencion"
         {
             repeater(Group)
             {
-                field("Cod. Retencion"; "Cod. Retencion")
+                field("Cod. Retencion"; Rec."Cod. Retencion")
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo tercero"; "Tipo tercero")
+                field("Tipo tercero"; Rec."Tipo tercero")
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo Retencion"; "Tipo Retencion")
+                field("Tipo Retencion"; Rec."Tipo Retencion")
                 {
                     ApplicationArea = All;
                 }
-                field(Descripcion; Descripcion)
+                field(Descripcion; Rec.Descripcion)
                 {
                     ApplicationArea = All;
                 }
-                field("% Retencion"; "% Retencion")
+                field("% Retencion"; Rec."% Retencion")
                 {
                     ApplicationArea = All;
                 }
-                field("% retencion libre"; "% retencion libre")
+                field("% retencion libre"; Rec."% retencion libre")
                 {
                     ApplicationArea = All;
                 }
-                field("Cuenta contable"; "Cuenta contable")
+                field("Cuenta contable"; Rec."Cuenta contable")
                 {
                     ApplicationArea = All;
                 }

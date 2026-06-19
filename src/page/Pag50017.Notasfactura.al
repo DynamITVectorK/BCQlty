@@ -15,7 +15,7 @@ page 50017 "Notas factura"
         {
             repeater(Group)
             {
-                field("Table Name"; "Table Name")
+                field("Table Name"; Rec."Table Name")
                 {
                     ApplicationArea = All;
                     Visible = false;
@@ -26,7 +26,7 @@ page 50017 "Notas factura"
                         CurrPage.UPDATE(FALSE);
                     end;
                 }
-                field(Comment; Comment)
+                field(Comment; Rec.Comment)
                 {
                     ApplicationArea = All;
 

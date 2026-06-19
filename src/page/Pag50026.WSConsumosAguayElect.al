@@ -16,47 +16,47 @@ page 50026 "WS Consumos Agua y Elect"
         {
             repeater(Group)
             {
-                field(Area;Area)
+                field(Area; Rec.Area)
         {
             ApplicationArea = All;
         }
-                field("No. Contador";"No. Contador")
+                field("No. Contador"; Rec."No. Contador")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Puesto/Pabellon";"No. Puesto/Pabellon")
+                field("No. Puesto/Pabellon"; Rec."No. Puesto/Pabellon")
                 {
                     ApplicationArea = All;
                 }
-                field("Tarifa aplicada";"Tarifa aplicada")
+                field("Tarifa aplicada"; Rec."Tarifa aplicada")
                 {
                     ApplicationArea = All;
                 }
-                field("Potencia contratada";"Potencia contratada")
+                field("Potencia contratada"; Rec."Potencia contratada")
                 {
                     ApplicationArea = All;
                 }
-                field("Coeficiente TT";"Coeficiente TT")
+                field("Coeficiente TT"; Rec."Coeficiente TT")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha lectura";"Fecha lectura")
+                field("Fecha lectura"; Rec."Fecha lectura")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo HP";"Consumo HP")
+                field("Consumo HP"; Rec."Consumo HP")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo HLL";"Consumo HLL")
+                field("Consumo HLL"; Rec."Consumo HLL")
                 {
                     ApplicationArea = All;
                 }
-                field("Consumo HV";"Consumo HV")
+                field("Consumo HV"; Rec."Consumo HV")
                 {
                     ApplicationArea = All;
                 }
-                field(Total;Total)
+                field(Total; Rec.Total)
                 {
                     ApplicationArea = All;
                 }
@@ -76,11 +76,11 @@ page 50026 "WS Consumos Agua y Elect"
         tSalesReceivablesSetup.GET;
         CLEAR(vlLimitDate);
         vlLimitDate := CALCDATE('-' +FORMAT(tSalesReceivablesSetup."Plazo desde para lecturas WEB"),WORKDATE);
-        SETFILTER("Fecha lectura",'>%1', vlLimitDate);
-        SETFILTER("Fecha factura registrada", '<>%1', 0D);
-        CALCFIELDS("No Cliente",ClienteBloqueado,ContraseñaWeb);
-        SETRANGE(ClienteBloqueado,FALSE);
-        SETFILTER(ContraseñaWeb,'<>%1', '');
+        Rec.SETFILTER("Fecha lectura",'>%1', vlLimitDate);
+        Rec.SETFILTER("Fecha factura registrada", '<>%1', 0D);
+        Rec.CALCFIELDS("No Cliente",ClienteBloqueado,ContraseñaWeb);
+        Rec.SETRANGE(ClienteBloqueado,FALSE);
+        Rec.SETFILTER(ContraseñaWeb,'<>%1', '');
     end;
 
     var

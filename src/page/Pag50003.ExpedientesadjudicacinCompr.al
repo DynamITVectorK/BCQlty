@@ -30,7 +30,7 @@ page 50003 "Expedientes adjudicación Compr"
         {
             group(General)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
 
@@ -40,82 +40,82 @@ page 50003 "Expedientes adjudicación Compr"
                           CurrPage.UPDATE;
                     end;
                 }
-                field(Ejercicio;Ejercicio)
+                field(Ejercicio; Rec.Ejercicio)
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha expediente";"Fecha expediente")
+                field("Fecha expediente"; Rec."Fecha expediente")
                 {
                     ApplicationArea = All;
                 }
-                field(Descripción;Descripción)
+                field(Descripción; Rec.Descripción)
                 {
                     ApplicationArea = All;
                 }
-                field("Tipo trabajo";"Tipo trabajo")
+                field("Tipo trabajo"; Rec."Tipo trabajo")
                 {
                     ApplicationArea = All;
                 }
-                field("Dpto. solicitante Fact";"Dpto. solicitante")
+                field("Dpto. solicitante Fact"; Rec."Dpto. solicitante")
                 {
                     ApplicationArea = All;
                     Caption = 'Dpto. solicitante Fact';
                 }
-                field("Dpto. solicitante Exp";"Dpto. solicitante Exp")
+                field("Dpto. solicitante Exp"; Rec."Dpto. solicitante Exp")
                 {
                     ApplicationArea = All;
                 }
-                field(Estado;Estado)
+                field(Estado; Rec.Estado)
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha publicación";"Fecha publicación")
+                field("Fecha publicación"; Rec."Fecha publicación")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha propuesta";"Fecha propuesta")
+                field("Fecha propuesta"; Rec."Fecha propuesta")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha apertura plicas";"Fecha apertura plicas")
+                field("Fecha apertura plicas"; Rec."Fecha apertura plicas")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe del presupuesto";"Importe del presupuesto")
+                field("Importe del presupuesto"; Rec."Importe del presupuesto")
                 {
                     ApplicationArea = All;
                 }
-                field("Bases expediente";"Bases expediente")
+                field("Bases expediente"; Rec."Bases expediente")
                 {
                     ApplicationArea = All;
                     Caption = 'Bases expediente';
                     Editable = false;
                 }
-                field("Organo de decisión";"Organo de decisión")
+                field("Organo de decisión"; Rec."Organo de decisión")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe adjudicado";"Importe adjudicado")
+                field("Importe adjudicado"; Rec."Importe adjudicado")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha adjudicación";"Fecha adjudicación")
+                field("Fecha adjudicación"; Rec."Fecha adjudicación")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha inicio del contrato";"Fecha inicio del contrato")
+                field("Fecha inicio del contrato"; Rec."Fecha inicio del contrato")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha finalización contrato";"Fecha finalización contrato")
+                field("Fecha finalización contrato"; Rec."Fecha finalización contrato")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha cierre expediente";"Fecha cierre expediente")
+                field("Fecha cierre expediente"; Rec."Fecha cierre expediente")
                 {
                     ApplicationArea = All;
                 }
-                field("Cuenta Contable";"Cuenta Contable")
+                field("Cuenta Contable"; Rec."Cuenta Contable")
                 {
                     ApplicationArea = All;
                 }
@@ -127,23 +127,23 @@ page 50003 "Expedientes adjudicación Compr"
             group("Aprobaciones Factura")
             {
                 Caption = 'Aprobaciones Factura';
-                field("Aprobador 1";"Aprobador 1")
+                field("Aprobador 1"; Rec."Aprobador 1")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 2";"Aprobador 2")
+                field("Aprobador 2"; Rec."Aprobador 2")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 3";"Aprobador 3")
+                field("Aprobador 3"; Rec."Aprobador 3")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 4";"Aprobador 4")
+                field("Aprobador 4"; Rec."Aprobador 4")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 5";"Aprobador 5")
+                field("Aprobador 5"; Rec."Aprobador 5")
                 {
                     ApplicationArea = All;
                 }
@@ -151,23 +151,23 @@ page 50003 "Expedientes adjudicación Compr"
             group("Aprobaciones Expedientes")
             {
                 Caption = 'Aprobaciones Expedientes';
-                field("Aprobador 1 Exp";"Aprobador 1 Exp")
+                field("Aprobador 1 Exp"; Rec."Aprobador 1 Exp")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 2 Exp";"Aprobador 2 Exp")
+                field("Aprobador 2 Exp"; Rec."Aprobador 2 Exp")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 3 Exp";"Aprobador 3 Exp")
+                field("Aprobador 3 Exp"; Rec."Aprobador 3 Exp")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 4 Exp";"Aprobador 4 Exp")
+                field("Aprobador 4 Exp"; Rec."Aprobador 4 Exp")
                 {
                     ApplicationArea = All;
                 }
-                field("Aprobador 5 Exp";"Aprobador 5 Exp")
+                field("Aprobador 5 Exp"; Rec."Aprobador 5 Exp")
                 {
                     ApplicationArea = All;
                 }
@@ -267,7 +267,7 @@ page 50003 "Expedientes adjudicación Compr"
                         ApprovalsMgt.SendExpApprovalsMail(Rec,NUMAPROBACION);  //zam038 IAG 220720
 
                         MESSAGE(Text50001);
-                        VALIDATE(Estado,Estado::"Adj.Provisional");
+                        Rec.VALIDATE(Estado,Estado::"Adj.Provisional");
                         //FIN Z035 - JRB - 05/05/2020 - Aprobaciones en expedientes
                     end;
                 }
@@ -468,7 +468,7 @@ page 50003 "Expedientes adjudicación Compr"
     trigger OnAfterGetRecord()
     begin
         //ZAM0038 IAG 20072020 campo prorroga puesto a flowfield
-        CALCFIELDS(Prórroga);
+        Rec.CALCFIELDS(Prórroga);
     end;
 
     var

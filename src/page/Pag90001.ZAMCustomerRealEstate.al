@@ -15,40 +15,40 @@ page 90001 "ZAM_CustomerRealEstate"
         {
             repeater(Group)
             {
-                field("Real Estate No."; "ZAM_Real Estate No.")
+                field("Real Estate No."; Rec."ZAM_Real Estate No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Description; ZAM_Description)
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                 }
-                field(Situation; ZAM_Situation)
+                field(Situation; Rec.ZAM_Situation)
                 {
                     ApplicationArea = All;
                     LookupPageID = ZAM_CustomerRealEstate;
                 }
-                field("Property Registration No."; "ZAM_Property Registration No.")
+                field("Property Registration No."; Rec."ZAM_Property Registration No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Address; ZAM_Address)
+                field(Address; Rec.ZAM_Address)
                 {
                     ApplicationArea = All;
                 }
-                field(City; ZAM_City)
+                field(City; Rec.ZAM_City)
                 {
                     ApplicationArea = All;
                 }
-                field("Post Code"; "ZAM_Post Code")
+                field("Post Code"; Rec."ZAM_Post Code")
                 {
                     ApplicationArea = All;
                 }
-                field(County; ZAM_County)
+                field(County; Rec.ZAM_County)
                 {
                     ApplicationArea = All;
                 }
-                field("Country/Region Code"; "ZAM_Country/Region Code")
+                field("Country/Region Code"; Rec."ZAM_Country/Region Code")
                 {
                     ApplicationArea = All;
                 }

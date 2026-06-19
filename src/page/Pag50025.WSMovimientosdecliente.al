@@ -18,35 +18,35 @@ page 50025 "WS Movimientos de cliente"
         {
             repeater(Group)
             {
-                field("Customer No.";"Customer No.")
+                field("Customer No."; Rec."Customer No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Posting Date";"Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Document Type";"Document Type")
+                field("Document Type"; Rec."Document Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Document No.";"Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                 }
-                field(Amount;Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                 }
-                field("Remaining Amount";"Remaining Amount")
+                field("Remaining Amount"; Rec."Remaining Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Due Date";"Due Date")
+                field("Due Date"; Rec."Due Date")
                 {
                     ApplicationArea = All;
                 }
@@ -61,9 +61,9 @@ page 50025 "WS Movimientos de cliente"
     trigger OnOpenPage()
     begin
 
-        CALCFIELDS(ClienteBloqueado,ContraseñaWeb);
-        SETRANGE(ClienteBloqueado,FALSE);
-        SETFILTER(ContraseñaWeb,'<>%1', '');
+        Rec.CALCFIELDS(ClienteBloqueado,ContraseñaWeb);
+        Rec.SETRANGE(ClienteBloqueado,FALSE);
+        Rec.SETFILTER(ContraseñaWeb,'<>%1', '');
     end;
 }
 
