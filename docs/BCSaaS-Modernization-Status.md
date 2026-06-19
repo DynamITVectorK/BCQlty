@@ -149,6 +149,18 @@ Patrones abordados:
 - Sustitución de `Promoted`, `PromotedCategory` y `PromotedIsBig` por `area(Promoted)` con `actionref`.
 - Conservación del `TODO SaaS` de `Pag50027` sobre `RunObject = Page 50002`, sin sustituir referencia custom no identificada.
 
+### PR #26 / rama `modernize-pages-promoted-02`
+
+Pages incluidas:
+
+- `Pag50031.procesodefactura.al`
+
+Patrones abordados:
+
+- Sustitución de `Promoted = true` por `area(Promoted)` con `actionref`.
+- Normalización de `SourceTableView` conservando la tabla virtual original.
+- Conservación de la llamada funcional `RegistroFacturaAdos`.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales
