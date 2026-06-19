@@ -7,15 +7,15 @@ page 50068 "Requests to Approve Exp"
     Permissions = TableData 454 = rimd;
     RefreshOnActivate = true;
     SourceTable = "Approval Entry";
-    SourceTableView = SORTING (Due Date)
+    SourceTableView = SORTING("Due Date")
                       ORDER(Ascending)
-                      WHERE (Document Type=FILTER(Expediente));
+                      WHERE("Document Type" = FILTER(Expediente));
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(Group)
             {
                 field("Document No."; Rec."Document No.")
                 {
@@ -49,26 +49,30 @@ page 50068 "Requests to Approve Exp"
         }
         area(factboxes)
         {
-            part(;9104)
+            part(ApprovalFactBox; 9104)
             {
-                SubPageLink = Table ID=FIELD(Table ID),
-                              Document Type=FIELD(Document Type),
-                              Document No.=FIELD(Document No.);
+                ApplicationArea = All;
+                SubPageLink = "Table ID" = FIELD("Table ID"),
+                              "Document Type" = FIELD("Document Type"),
+                              "Document No." = FIELD("Document No.");
             }
-            part(Change;1527)
+            part(Change; 1527)
             {
+                ApplicationArea = All;
                 Editable = false;
                 Enabled = false;
                 ShowFilter = false;
                 UpdatePropagation = SubPart;
                 Visible = ShowChangeFactBox;
             }
-            systempart(;Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
-            systempart(;Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
         }
@@ -94,7 +98,7 @@ page 50068 "Requests to Approve Exp"
 
                     trigger OnAction()
                     begin
-                        ShowRecord;
+                        ShowRecord();
                     end;
                 }
                 action(Comments)
@@ -111,9 +115,9 @@ page 50068 "Requests to Approve Exp"
                     var
                         ApprovalCommentLine: Record "Approval Comment Line";
                     begin
-                        ApprovalCommentLine.SETRANGE("Table ID","Table ID");
-                        ApprovalCommentLine.SETRANGE("Record ID to Approve","Record ID to Approve");
-                        PAGE.RUN(PAGE::"Approval Comments",ApprovalCommentLine);
+                        ApprovalCommentLine.SetRange("Table ID", Rec."Table ID");
+                        ApprovalCommentLine.SetRange("Record ID to Approve", Rec."Record ID to Approve");
+                        Page.Run(Page::"Approval Comments", ApprovalCommentLine);
                     end;
                 }
             }
@@ -135,7 +139,7 @@ page 50068 "Requests to Approve Exp"
                     ApprovalEntry: Record "Approval Entry";
                     ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
-                    CurrPage.SETSELECTIONFILTER(ApprovalEntry);
+                    CurrPage.SetSelectionFilter(ApprovalEntry);
                     ApprovalsMgmt.ApproveApprovalRequests(ApprovalEntry);
                 end;
             }
@@ -154,7 +158,7 @@ page 50068 "Requests to Approve Exp"
                     ApprovalEntry: Record "Approval Entry";
                     ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
-                    CurrPage.SETSELECTIONFILTER(ApprovalEntry);
+                    CurrPage.SetSelectionFilter(ApprovalEntry);
                     ApprovalsMgmt.RejectApprovalRequests(ApprovalEntry);
                 end;
             }
@@ -173,7 +177,7 @@ page 50068 "Requests to Approve Exp"
                     ApprovalEntry: Record "Approval Entry";
                     ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
-                    CurrPage.SETSELECTIONFILTER(ApprovalEntry);
+                    CurrPage.SetSelectionFilter(ApprovalEntry);
                     ApprovalsMgmt.DelegateApprovalRequests(ApprovalEntry);
                 end;
             }
@@ -188,8 +192,8 @@ page 50068 "Requests to Approve Exp"
 
                     trigger OnAction()
                     begin
-                        Rec.SETRANGE(Status,Status::Open);
-                        ShowAllEntries := FALSE;
+                        Rec.SetRange(Status, Rec.Status::Open);
+                        ShowAllEntries := false;
                     end;
                 }
                 action(AllRequests)
@@ -200,8 +204,8 @@ page 50068 "Requests to Approve Exp"
 
                     trigger OnAction()
                     begin
-                        Rec.SETRANGE(Status);
-                        ShowAllEntries := TRUE;
+                        Rec.SetRange(Status);
+                        ShowAllEntries := true;
                     end;
                 }
             }
@@ -210,21 +214,20 @@ page 50068 "Requests to Approve Exp"
 
     trigger OnAfterGetCurrRecord()
     begin
-        ShowChangeFactBox := CurrPage.Change.PAGE.SetFilterFromApprovalEntry(Rec);
+        ShowChangeFactBox := CurrPage.Change.Page.SetFilterFromApprovalEntry(Rec);
     end;
 
     trigger OnAfterGetRecord()
     begin
-        SetDateStyle;
+        SetDateStyle();
     end;
 
     trigger OnOpenPage()
     begin
-        //MESSAGE('PONER PAGE NO EDITABLE TRAS PRUEBAS');
-        FILTERGROUP(2);
-        Rec.SETRANGE("Approver ID",USERID);
-        FILTERGROUP(0);
-        Rec.SETRANGE(Status,Status::Open);
+        Rec.FilterGroup(2);
+        Rec.SetRange("Approver ID", UserId());
+        Rec.FilterGroup(0);
+        Rec.SetRange(Status, Rec.Status::Open);
     end;
 
     var
@@ -235,8 +238,7 @@ page 50068 "Requests to Approve Exp"
     local procedure SetDateStyle()
     begin
         DateStyle := '';
-        IF IsOverdue THEN
-          DateStyle := 'Attention';
+        if IsOverdue() then
+            DateStyle := 'Attention';
     end;
 }
-
