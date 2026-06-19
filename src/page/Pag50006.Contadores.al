@@ -113,10 +113,19 @@ page 50006 Contadores
                 {
                     ApplicationArea = All;
                     Image = History;
-                    Promoted = true;
-                    PromotedIsBig = true;
                     RunObject = Page "Hist. Agua /Electricidad";
                     RunPageLink = "No. Contador" = FIELD("No. Contador");
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Lecturas)
+            {
+                Caption = 'Lecturas';
+
+                actionref(HistoricoLecturas_Promoted; "Histórico de Lecturas")
+                {
                 }
             }
         }
