@@ -45,12 +45,14 @@ page 50027 "Codigos de retencion"
         }
         area(factboxes)
         {
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
         }
@@ -71,9 +73,10 @@ page 50027 "Codigos de retencion"
                     Image = CustomerLedger;
                     Promoted = true;
                     PromotedCategory = Process;
+                    // TODO SaaS: revisar Page 50002 antes de sustituir por nombre; el RunPageLink usa campos genéricos Field2/Field13 y no coincide con la page custom identificada en el repo.
                     RunObject = Page 50002;
-                    RunPageLink = Field2 = FIELD (Cod. Retencion),
-                                  Field13=FIELD(Tipo tercero);
+                    RunPageLink = Field2 = FIELD("Cod. Retencion"),
+                                  Field13 = FIELD("Tipo tercero");
                     RunPageView = SORTING(Field2);
                     ShortCutKey = 'Ctrl+F7';
                 }
@@ -83,7 +86,6 @@ page 50027 "Codigos de retencion"
 
     trigger OnOpenPage()
     begin
-        CurrPage.EDITABLE(CurrPage.LOOKUPMODE = FALSE);
+        CurrPage.Editable(CurrPage.LookupMode = false);
     end;
 }
-
