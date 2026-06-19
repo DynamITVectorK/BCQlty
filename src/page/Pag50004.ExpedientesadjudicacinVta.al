@@ -5,7 +5,7 @@ page 50004 "Expedientes adjudicación Vta"
     PageType = Card;
     UsageCategory = Administration;
     SourceTable = 50001;
-    SourceTableView = WHERE (Tipo Contratación=FILTER(Ventas));
+    SourceTableView = WHERE("Tipo Contratación" = FILTER(Ventas));
 
     layout
     {
@@ -19,8 +19,8 @@ page 50004 "Expedientes adjudicación Vta"
 
                     trigger OnAssistEdit()
                     begin
-                        IF AssistEdit(xRec) THEN
-                          CurrPage.UPDATE;
+                        if Rec.AssistEdit(xRec) then
+                            CurrPage.Update();
                     end;
                 }
                 field(Ejercicio; Rec.Ejercicio)
@@ -110,7 +110,7 @@ page 50004 "Expedientes adjudicación Vta"
 
                     trigger OnValidate()
                     begin
-                        fEditarProrroga;
+                        fEditarProrroga();
                     end;
                 }
                 field("Fecha prórroga"; Rec."Fecha prórroga")
@@ -146,8 +146,8 @@ page 50004 "Expedientes adjudicación Vta"
                     Promoted = true;
                     PromotedCategory = Category4;
                     PromotedIsBig = true;
-                    RunObject = Page 9300;
-                                    RunPageLink = No. expediente adjudicacion=FIELD(No.);
+                    RunObject = Page "Sales Quotes";
+                    RunPageLink = "No. expediente adjudicacion" = FIELD("No.");
 
                     trigger OnAction()
                     var
@@ -164,9 +164,9 @@ page 50004 "Expedientes adjudicación Vta"
                     trigger OnAction()
                     begin
                         //***Z004 - 400 - AT- 25/10/2016 - Inicio
-                        IF CONFIRM('Esta acción archivará todas las ofertas del expediente. Previamente se debería haber adjudicado la oferta ganadora. ¿Está seguro de continuar?') THEN BEGIN
-                          fArchivarOfertasVta;
-                        END;
+                        if Confirm('Esta acción archivará todas las ofertas del expediente. Previamente se debería haber adjudicado la oferta ganadora. ¿Está seguro de continuar?') then begin
+                            Rec.fArchivarOfertasVta();
+                        end;
 
                         //***Z004 - 400 - AT- 25/10/2016 - Fin
                     end;
@@ -177,12 +177,12 @@ page 50004 "Expedientes adjudicación Vta"
 
     trigger OnAfterGetCurrRecord()
     begin
-        Rec.CALCFIELDS("Nombre Adjudicatario","Nombre Adjudicatario Vta");
+        Rec.CalcFields("Nombre Adjudicatario", "Nombre Adjudicatario Vta");
     end;
 
     trigger OnAfterGetRecord()
     begin
-        Rec.CALCFIELDS("Nombre Adjudicatario","Nombre Adjudicatario Vta");
+        Rec.CalcFields("Nombre Adjudicatario", "Nombre Adjudicatario Vta");
     end;
 
     var
@@ -192,13 +192,12 @@ page 50004 "Expedientes adjudicación Vta"
     [Scope('Internal')]
     procedure fEditarProrroga()
     begin
-        IF Prórroga THEN
-            vEditarProrroga := TRUE
-        ELSE BEGIN
-            "Fecha prórroga" := 0D;
-            "No. prórroga" := 0;
-            vEditarProrroga := FALSE;
-        END;
+        if Rec.Prórroga then
+            vEditarProrroga := true
+        else begin
+            Rec."Fecha prórroga" := 0D;
+            Rec."No. prórroga" := 0;
+            vEditarProrroga := false;
+        end;
     end;
 }
-
