@@ -4,9 +4,9 @@ page 50065 "Documentos pendientes aprobar"
     PageType = List;
     UsageCategory = Administration;
     SourceTable = "Approval Entry";
-    SourceTableView = SORTING (Approver ID, Status)
+    SourceTableView = SORTING("Approver ID", Status)
                       ORDER(Ascending)
-                      WHERE (Status = FILTER (Open));
+                      WHERE(Status = FILTER(Open));
 
     layout
     {
@@ -74,7 +74,7 @@ page 50065 "Documentos pendientes aprobar"
 
                     trigger OnAction()
                     begin
-                        ShowRecord;
+                        ShowRecord();
                     end;
                 }
                 action(Comments)
@@ -91,9 +91,9 @@ page 50065 "Documentos pendientes aprobar"
                     var
                         ApprovalCommentLine: Record "Approval Comment Line";
                     begin
-                        ApprovalCommentLine.SETRANGE("Table ID", "Table ID");
-                        ApprovalCommentLine.SETRANGE("Record ID to Approve", "Record ID to Approve");
-                        PAGE.RUN(PAGE::"Approval Comments", ApprovalCommentLine);
+                        ApprovalCommentLine.SetRange("Table ID", Rec."Table ID");
+                        ApprovalCommentLine.SetRange("Record ID to Approve", Rec."Record ID to Approve");
+                        Page.Run(Page::"Approval Comments", ApprovalCommentLine);
                     end;
                 }
             }
@@ -116,7 +116,7 @@ page 50065 "Documentos pendientes aprobar"
                     ApprovalEntry: Record "Approval Entry";
                     ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
-                    CurrPage.SETSELECTIONFILTER(ApprovalEntry);
+                    CurrPage.SetSelectionFilter(ApprovalEntry);
                     ApprovalsMgmt.ApproveApprovalRequests(ApprovalEntry);
                 end;
             }
@@ -136,7 +136,7 @@ page 50065 "Documentos pendientes aprobar"
                     ApprovalEntry: Record "Approval Entry";
                     ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
-                    CurrPage.SETSELECTIONFILTER(ApprovalEntry);
+                    CurrPage.SetSelectionFilter(ApprovalEntry);
                     ApprovalsMgmt.RejectApprovalRequests(ApprovalEntry);
                 end;
             }
@@ -156,11 +156,10 @@ page 50065 "Documentos pendientes aprobar"
                     ApprovalEntry: Record "Approval Entry";
                     ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
-                    CurrPage.SETSELECTIONFILTER(ApprovalEntry);
+                    CurrPage.SetSelectionFilter(ApprovalEntry);
                     ApprovalsMgmt.DelegateApprovalRequests(ApprovalEntry);
                 end;
             }
         }
     }
 }
-

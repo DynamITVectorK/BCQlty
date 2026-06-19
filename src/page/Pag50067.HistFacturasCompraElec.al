@@ -6,13 +6,13 @@ page 50067 "Hist. Facturas Compra Elec."
     PageType = List;
     UsageCategory = Administration;
     SourceTable = "Purch. Inv. Header";
-    SourceTableView = WHERE (ID Plataforma FacturaE=FILTER(<>''));
+    SourceTableView = WHERE("ID Plataforma FacturaE" = FILTER(<> ''));
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(Group)
             {
                 field("No."; Rec."No.")
                 {
@@ -41,8 +41,8 @@ page 50067 "Hist. Facturas Compra Elec."
 
                     trigger OnDrillDown()
                     begin
-                        Rec.SETRANGE("No.");
-                        PAGE.RUNMODAL(138,Rec)
+                        Rec.SetRange("No.");
+                        Page.RunModal(Page::"Posted Purchase Invoice", Rec);
                     end;
                 }
                 field("Amount Including VAT"; Rec."Amount Including VAT")
@@ -51,8 +51,8 @@ page 50067 "Hist. Facturas Compra Elec."
 
                     trigger OnDrillDown()
                     begin
-                        Rec.SETRANGE("No.");
-                        PAGE.RUNMODAL(138,Rec)
+                        Rec.SetRange("No.");
+                        Page.RunModal(Page::"Posted Purchase Invoice", Rec);
                     end;
                 }
                 field("Buy-from Post Code"; Rec."Buy-from Post Code")
@@ -187,16 +187,19 @@ page 50067 "Hist. Facturas Compra Elec."
         }
         area(factboxes)
         {
-            part(IncomingDocAttachFactBox;193)
+            part(IncomingDocAttachFactBox; "Incoming Doc. Attach. FactBox")
             {
+                ApplicationArea = All;
                 ShowFilter = false;
             }
-            systempart(;Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
-            systempart(;Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
                 Visible = true;
             }
         }
@@ -217,8 +220,8 @@ page 50067 "Hist. Facturas Compra Elec."
                     Image = Statistics;
                     Promoted = true;
                     PromotedCategory = Process;
-                    RunObject = Page 400;
-                                    RunPageLink = No.=FIELD(No.);
+                    RunObject = Page "Purchase Invoice Statistics";
+                    RunPageLink = "No." = FIELD("No.");
                     ShortCutKey = 'F7';
                 }
                 action("Co&mments")
@@ -226,27 +229,27 @@ page 50067 "Hist. Facturas Compra Elec."
                     ApplicationArea = All;
                     Caption = 'Co&mments';
                     Image = ViewComments;
-                    RunObject = Page 66;
-                                    RunPageLink = Document Type=CONST(Posted Invoice),
-                                  No.=FIELD(No.);
+                    RunObject = Page "Purch. Comment Sheet";
+                    RunPageLink = "Document Type" = CONST("Posted Invoice"),
+                                  "No." = FIELD("No.");
                 }
                 action(Dimensions)
                 {
                     ApplicationArea = All;
-                    AccessByPermission = TableData 348=R;
+                    AccessByPermission = TableData 348 = R;
                     Caption = 'Dimensions';
                     Image = Dimensions;
                     ShortCutKey = 'Shift+Ctrl+D';
 
                     trigger OnAction()
                     begin
-                        ShowDimensions;
+                        ShowDimensions();
                     end;
                 }
                 action(IncomingDoc)
                 {
                     ApplicationArea = All;
-                    AccessByPermission = TableData 130=R;
+                    AccessByPermission = TableData 130 = R;
                     Caption = 'Incoming Document';
                     Image = Document;
 
@@ -254,7 +257,7 @@ page 50067 "Hist. Facturas Compra Elec."
                     var
                         IncomingDocument: Record "Incoming Document";
                     begin
-                        IncomingDocument.ShowCard("No.","Posting Date");
+                        IncomingDocument.ShowCard(Rec."No.", Rec."Posting Date");
                     end;
                 }
             }
@@ -274,8 +277,8 @@ page 50067 "Hist. Facturas Compra Elec."
                 var
                     PurchInvHeader: Record "Purch. Inv. Header";
                 begin
-                    CurrPage.SETSELECTIONFILTER(PurchInvHeader);
-                    PurchInvHeader.PrintRecords(TRUE);
+                    CurrPage.SetSelectionFilter(PurchInvHeader);
+                    PurchInvHeader.PrintRecords(true);
                 end;
             }
             action("&Navigate")
@@ -288,7 +291,7 @@ page 50067 "Hist. Facturas Compra Elec."
 
                 trigger OnAction()
                 begin
-                    Navigate;
+                    Navigate();
                 end;
             }
         }
@@ -296,12 +299,11 @@ page 50067 "Hist. Facturas Compra Elec."
 
     trigger OnAfterGetCurrRecord()
     begin
-        CurrPage.IncomingDocAttachFactBox.PAGE.LoadDataFromRecord(Rec);
+        CurrPage.IncomingDocAttachFactBox.Page.LoadDataFromRecord(Rec);
     end;
 
     trigger OnOpenPage()
     begin
-        SetSecurityFilterOnRespCenter;
+        SetSecurityFilterOnRespCenter();
     end;
 }
-
