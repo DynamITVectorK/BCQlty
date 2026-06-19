@@ -8,9 +8,9 @@ page 50008 "Gestión de lecturas "
     UsageCategory = Administration;
     PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
     SourceTable = 50002;
-    SourceTableView = SORTING (No. Orden de lectura)
+    SourceTableView = SORTING("No. Orden de lectura")
                       ORDER(Ascending)
-                      WHERE (Estado = CONST (Activo));
+                      WHERE(Estado = CONST(Activo));
 
     layout
     {
@@ -58,8 +58,9 @@ page 50008 "Gestión de lecturas "
         }
         area(factboxes)
         {
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -81,40 +82,38 @@ page 50008 "Gestión de lecturas "
 
                     trigger OnAction()
                     var
-                        PageLectura: Page 50007;
                         RLect: Record 50003;
-                        vlFechaLect: Date;
                     begin
-                        IF "No. Contador" = '' THEN
-                            ERROR(GT50000);
-                        CLEAR(LectTB);
+                        if Rec."No. Contador" = '' then
+                            Error(GT50000);
+
+                        Clear(LectTB);
                         //LectTB.SETCURRENTKEY("Nº Contador (DF*)","Nº movimiento");
-                        LectTB.SETCURRENTKEY("No. Contador", "Fecha lectura");
-                        LectTB.SETRANGE(LectTB."No. Contador", "No. Contador");
-                        IF NOT LectTB.FINDFIRST THEN
-                            CrearLineaLectura;
+                        LectTB.SetCurrentKey("No. Contador", "Fecha lectura");
+                        LectTB.SetRange("No. Contador", Rec."No. Contador");
+                        if not LectTB.FindFirst() then
+                            CrearLineaLectura();
 
-                        ConfVtas.GET;
-                        IF ConfVtas."Cantidad últimas lectura" <> 0 THEN BEGIN
-
-                            IF LectTB.COUNT < ConfVtas."Cantidad últimas lectura" THEN
-                                registros := Rec.COUNT
-                            ELSE
+                        ConfVtas.Get();
+                        if ConfVtas."Cantidad últimas lectura" <> 0 then begin
+                            if LectTB.Count() < ConfVtas."Cantidad últimas lectura" then
+                                registros := Rec.Count()
+                            else
                                 registros := ConfVtas."Cantidad últimas lectura";
 
-                            IF LectTB.FINDLAST THEN
-                                FOR i := 1 TO registros - 1 DO BEGIN
-                                    LectTB.NEXT(-1)
-                                END;
-                        END;
+                            if LectTB.FindLast() then
+                                for i := 1 to registros - 1 do
+                                    LectTB.Next(-1);
+                        end;
+
                         //LectTB.MARKEDONLY(TRUE);
-                        RLect.SETCURRENTKEY("No. Contador", "Fecha lectura");
-                        RLect.SETRANGE("No. Contador", "No. Contador");
-                        RLect.SETFILTER("Fecha lectura", '%1..', LectTB."Fecha lectura");
-                        PgLecturas.ContadorALeer("No. Contador");
-                        PgLecturas.SETTABLEVIEW(RLect);
-                        PgLecturas.SETRECORD(RLect);
-                        PgLecturas.RUN;
+                        RLect.SetCurrentKey("No. Contador", "Fecha lectura");
+                        RLect.SetRange("No. Contador", Rec."No. Contador");
+                        RLect.SetFilter("Fecha lectura", '%1..', LectTB."Fecha lectura");
+                        PgLecturas.ContadorALeer(Rec."No. Contador");
+                        PgLecturas.SetTableView(RLect);
+                        PgLecturas.SetRecord(RLect);
+                        PgLecturas.Run();
                     end;
                 }
                 action("Ficha Contador")
@@ -124,8 +123,8 @@ page 50008 "Gestión de lecturas "
                     Promoted = true;
                     PromotedCategory = Category4;
                     PromotedIsBig = true;
-                    RunObject = Page 50006;
-                    RunPageLink = No. Contador=FIELD(No. Contador);
+                    RunObject = Page Contadores;
+                    RunPageLink = "No. Contador" = FIELD("No. Contador");
                 }
                 action(Contratos)
                 {
@@ -138,15 +137,15 @@ page 50008 "Gestión de lecturas "
 
                     trigger OnAction()
                     var
-                        ped: Record "Sales Header";
+                        SalesHeader: Record "Sales Header";
                     begin
-                        ped.SETCURRENTKEY("Document Type","Sell-to Contact No.");
-                        ped.SETRANGE("Document Type", ped."Document Type"::Order);
-                        ped.SETRANGE("No.", "No. Contrato");
-                        IF ped.FINDFIRST THEN
-                          PAGE.RUN(42,ped)
-                        ELSE
-                          MESSAGE('No hay contrato para %1', "No. Contador")
+                        SalesHeader.SetCurrentKey("Document Type", "Sell-to Contact No.");
+                        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
+                        SalesHeader.SetRange("No.", Rec."No. Contrato");
+                        if SalesHeader.FindFirst() then
+                            Page.Run(Page::"Sales Order", SalesHeader)
+                        else
+                            Message(NoContractMsg, Rec."No. Contador");
                     end;
                 }
                 action("Histórico de Lecturas")
@@ -156,8 +155,8 @@ page 50008 "Gestión de lecturas "
                     Promoted = true;
                     PromotedCategory = Category4;
                     PromotedIsBig = true;
-                    RunObject = Page 50007;
-                                    RunPageLink = No. Contador=FIELD(No. Contador);
+                    RunObject = Page "Hist. Agua /Electricidad";
+                    RunPageLink = "No. Contador" = FIELD("No. Contador");
                 }
             }
         }
@@ -169,13 +168,11 @@ page 50008 "Gestión de lecturas "
         ConfVtas: Record "Sales & Receivables Setup";
         registros: Integer;
         i: Integer;
-        PgLecturas: Page 50009;
-                        GT50000: Label 'Por favor, seleccione un contador';
+        PgLecturas: Page "Ficha Lecturas";
+        GT50000: Label 'Por favor, seleccione un contador';
+        NoContractMsg: Label 'No hay contrato para %1';
 
     local procedure CrearLineaLectura()
-    var
-        AUXLectTB: Record 50003;
-        tlLectTB: Record 50003;
     begin
         /*CLEAR(AUXLectTB);
         IF AUXLectTB.FINDLAST THEN
@@ -183,10 +180,8 @@ page 50008 "Gestión de lecturas "
         ELSE
           numlin:= AUXLectTB."Nº movimiento" + 1000;
           */
-        LectTB.INIT;
-        LectTB.VALIDATE("No. Contador","No. Contador");
-        LectTB.INSERT;
-
+        LectTB.Init();
+        LectTB.Validate("No. Contador", Rec."No. Contador");
+        LectTB.Insert();
     end;
 }
-
