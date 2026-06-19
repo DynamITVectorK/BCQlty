@@ -85,18 +85,42 @@ systempart(Links; Links)
 
 ### 7. Promoted actions
 
-Cuando el cambio sea seguro, migrar a:
+Las propiedades legacy siguientes no deben quedar en pages modernizadas porque el analyzer objetivo las marca como obsoletas:
 
 ```al
-area(Promoted)
+Promoted = true;
+PromotedCategory = Category4;
+PromotedIsBig = true;
+```
+
+El patrón obligatorio es mover la promoción al área `Promoted` mediante `actionref`:
+
+```al
+actions
 {
-    actionref(MyAction_Promoted; MyAction)
+    area(processing)
     {
+        action(MyAction)
+        {
+            ApplicationArea = All;
+            Caption = 'My Action';
+            Image = Process;
+        }
+    }
+
+    area(Promoted)
+    {
+        group(Category_Process)
+        {
+            Caption = 'Process';
+
+            actionref(MyAction_Promoted; MyAction)
+            {
+            }
+        }
     }
 }
 ```
-
-En PRs conservadores se puede mantener `Promoted = true` si la prioridad es no alterar comportamiento ni layout de acciones.
 
 ## Checklist de revisión de cada page
 
@@ -108,6 +132,7 @@ En PRs conservadores se puede mantener `Promoted = true` si la prioridad es no a
 - [ ] `systempart(; ...)` corregido.
 - [ ] `Rec.` normalizado en triggers.
 - [ ] `CurrPage` normalizado.
+- [ ] `Promoted`, `PromotedCategory` y `PromotedIsBig` sustituidos por `actionref`.
 - [ ] `ApplicationArea` presente en controles nuevos o modificados.
 - [ ] Documentación actualizada en el PR.
 - [ ] Compilación AL-Go pendiente o validada.
