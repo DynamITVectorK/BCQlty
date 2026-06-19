@@ -2,8 +2,8 @@ page 50031 "proceso de factura"
 {
     RefreshOnActivate = true;
     SourceTable = 2000000026;
-    SourceTableView = SORTING (Number)
-                      WHERE (Number = CONST (1));
+    SourceTableView = SORTING(Number)
+                      WHERE(Number = CONST(1));
 
     layout
     {
@@ -31,12 +31,22 @@ page 50031 "proceso de factura"
             action(Procesar)
             {
                 ApplicationArea = All;
-                Promoted = true;
 
                 trigger OnAction()
                 begin
                     C50005.RegistroFacturaAdos(VFactura, VQR, VURL);
                 end;
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(Procesar_Promoted; Procesar)
+                {
+                }
             }
         }
     }
@@ -47,4 +57,3 @@ page 50031 "proceso de factura"
         VQR: Text[100];
         VURL: Text[250];
 }
-
