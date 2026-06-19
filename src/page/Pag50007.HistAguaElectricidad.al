@@ -2,13 +2,13 @@ page 50007 "Hist. Agua /Electricidad"
 {
     // //***Z002 - 400 - RG- 11/11/2016 - Gestión de lecturas de agua / electricidad nuevo objeto
 
-    DataCaptionFields = "Area";
+    DataCaptionFields = Area;
     Editable = false;
     PageType = List;
     UsageCategory = Administration;
     PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
     SourceTable = 50003;
-    SourceTableView = SORTING (Area, Fecha lectura, No. Contador)
+    SourceTableView = SORTING(Area, "Fecha lectura", "No. Contador")
                       ORDER(Ascending);
 
     layout
@@ -18,9 +18,9 @@ page 50007 "Hist. Agua /Electricidad"
             repeater(Group)
             {
                 field(Area; Rec.Area)
-        {
-            ApplicationArea = All;
-        }
+                {
+                    ApplicationArea = All;
+                }
                 field("No. Contador"; Rec."No. Contador")
                 {
                     ApplicationArea = All;
@@ -135,8 +135,8 @@ page 50007 "Hist. Agua /Electricidad"
                     Promoted = true;
                     PromotedCategory = Category4;
                     PromotedIsBig = true;
-                    RunObject = Page 50006;
-                                    RunPageLink = No. Contador=FIELD(No. Contador);
+                    RunObject = Page Contadores;
+                    RunPageLink = "No. Contador" = FIELD("No. Contador");
                 }
                 action(Contratos)
                 {
@@ -149,15 +149,15 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        ped: Record "Sales Header";
+                        SalesHeader: Record "Sales Header";
                     begin
-                        ped.SETCURRENTKEY("Document Type","Sell-to Contact No.");
-                        ped.SETRANGE("Document Type", ped."Document Type"::Order);
-                        ped.SETRANGE("No.", "No. contrato");
-                        IF ped.FINDFIRST THEN
-                        PAGE.RUN(42,ped)
-                        ELSE
-                          MESSAGE('No hay contrato para %1', "No. Contador")
+                        SalesHeader.SetCurrentKey("Document Type", "Sell-to Contact No.");
+                        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
+                        SalesHeader.SetRange("No.", Rec."No. contrato");
+                        if SalesHeader.FindFirst() then
+                            Page.Run(Page::"Sales Order", SalesHeader)
+                        else
+                            Message(NoContractMsg, Rec."No. Contador");
                     end;
                 }
                 action("Ver factura")
@@ -171,21 +171,19 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        ped: Record "Sales Header";
-                        LR_HistFacVta: Record "Sales Invoice Header";
+                        SalesHeader: Record "Sales Header";
+                        SalesInvoiceHeader: Record "Sales Invoice Header";
                     begin
-                        IF "No. Factura registrada" <>'' THEN BEGIN
-                          CLEAR(LR_HistFacVta);
-                          LR_HistFacVta.GET("No. Factura registrada");
-                          PAGE.RUN(132,LR_HistFacVta);
-                        END ELSE
-                          IF "No. Pre factura" <> '' THEN BEGIN
-                            IF ped.GET( ped."Document Type"::Invoice,"No. Pre factura" )THEN
-                              PAGE.RUN(43,ped)
-                          END
-                          ELSE
-                            MESSAGE('No hay Facturas para %1', "No. Contador")
-
+                        if Rec."No. Factura registrada" <> '' then begin
+                            Clear(SalesInvoiceHeader);
+                            SalesInvoiceHeader.Get(Rec."No. Factura registrada");
+                            Page.Run(Page::"Posted Sales Invoice", SalesInvoiceHeader);
+                        end else
+                            if Rec."No. Pre factura" <> '' then begin
+                                if SalesHeader.Get(SalesHeader."Document Type"::Invoice, Rec."No. Pre factura") then
+                                    Page.Run(Page::"Sales Invoice", SalesHeader);
+                            end else
+                                Message(NoInvoicesMsg, Rec."No. Contador");
                     end;
                 }
                 action("Modificar Lectura ")
@@ -199,38 +197,38 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page 50007;
-                                         RLect: Record 50003;
+                        RLect: Record 50003;
                     begin
-                        IF ("No. Factura registrada"<>'') OR ("No. Pre factura" <>'') THEN
-                           ERROR(LT50000);
-                        IF HayLecturasPosteriores(Rec) THEN
-                          ERROR(LT50001);
-                        CLEAR(LectTB);
+                        if (Rec."No. Factura registrada" <> '') or (Rec."No. Pre factura" <> '') then
+                            Error(LT50000);
 
-                        LectTB.SETCURRENTKEY("No. Contador","Fecha lectura");
-                        LectTB.SETRANGE(LectTB."No. Contador","No. Contador");
-                        ConfVtas.GET;
-                        IF ConfVtas."Cantidad últimas lectura"<>0 THEN BEGIN
-                           IF LectTB.COUNT<ConfVtas."Cantidad últimas lectura" THEN
-                            registros:= Rec.COUNT
-                          ELSE
-                            registros:= ConfVtas."Cantidad últimas lectura" ;
+                        if HayLecturasPosteriores(Rec) then
+                            Error(LT50001);
 
-                          IF LectTB.FINDLAST THEN
-                          FOR i:= 1 TO registros-1 DO BEGIN
-                            LectTB.NEXT(-1)
-                            END
-                        END;
+                        Clear(LectTB);
+                        LectTB.SetCurrentKey("No. Contador", "Fecha lectura");
+                        LectTB.SetRange("No. Contador", Rec."No. Contador");
+                        ConfVtas.Get();
 
-                        RLect.SETCURRENTKEY("No. Contador","Fecha lectura");
-                        RLect.SETRANGE("No. Contador","No. Contador");
-                        RLect.SETFILTER("Fecha lectura",'%1..',LectTB."Fecha lectura");
-                        PgLecturas.ContadorALeer("No. Contador");
+                        if ConfVtas."Cantidad últimas lectura" <> 0 then begin
+                            if LectTB.Count() < ConfVtas."Cantidad últimas lectura" then
+                                registros := Rec.Count()
+                            else
+                                registros := ConfVtas."Cantidad últimas lectura";
+
+                            if LectTB.FindLast() then
+                                for i := 1 to registros - 1 do
+                                    LectTB.Next(-1);
+                        end;
+
+                        RLect.SetCurrentKey("No. Contador", "Fecha lectura");
+                        RLect.SetRange("No. Contador", Rec."No. Contador");
+                        RLect.SetFilter("Fecha lectura", '%1..', LectTB."Fecha lectura");
+                        PgLecturas.ContadorALeer(Rec."No. Contador");
                         PgLecturas.LecturaAmodificar(Rec);
-                        PgLecturas.SETTABLEVIEW(RLect);
-                        PgLecturas.SETRECORD(RLect);
-                        PgLecturas.RUN;
+                        PgLecturas.SetTableView(RLect);
+                        PgLecturas.SetRecord(RLect);
+                        PgLecturas.Run();
                     end;
                 }
                 action("Borrar Lectura ")
@@ -243,16 +241,15 @@ page 50007 "Hist. Agua /Electricidad"
                     PromotedIsBig = true;
 
                     trigger OnAction()
-                    var
-                        PageLectura: Page 50007;
-                                         RLect: Record 50003;
                     begin
-                        IF ("No. Factura registrada"<>'') OR ("No. Pre factura" <>'') THEN
-                           ERROR(LT50000);
-                        IF HayLecturasPosteriores(Rec) THEN
-                          ERROR(LT50001);
-                        IF CONFIRM(LT50002,FALSE,"No. Contador","Fecha lectura")THEN
-                            Rec.DELETE(TRUE);
+                        if (Rec."No. Factura registrada" <> '') or (Rec."No. Pre factura" <> '') then
+                            Error(LT50000);
+
+                        if HayLecturasPosteriores(Rec) then
+                            Error(LT50001);
+
+                        if Confirm(LT50002, false, Rec."No. Contador", Rec."Fecha lectura") then
+                            Rec.Delete(true);
                     end;
                 }
                 action("Nueva lectura ")
@@ -265,33 +262,31 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page 50007;
-                                         RLect: Record 50003;
+                        RLect: Record 50003;
                     begin
-                        CLEAR(LectTB);
-                        LectTB.SETCURRENTKEY("No. Contador","Fecha lectura");
-                        LectTB.SETRANGE(LectTB."No. Contador","No. Contador");
-                        ConfVtas.GET;
-                        IF ConfVtas."Cantidad últimas lectura"<>0 THEN BEGIN
+                        Clear(LectTB);
+                        LectTB.SetCurrentKey("No. Contador", "Fecha lectura");
+                        LectTB.SetRange("No. Contador", Rec."No. Contador");
+                        ConfVtas.Get();
 
-                           IF LectTB.COUNT<ConfVtas."Cantidad últimas lectura" THEN
-                            registros:= Rec.COUNT
-                          ELSE
-                            registros:= ConfVtas."Cantidad últimas lectura" ;
+                        if ConfVtas."Cantidad últimas lectura" <> 0 then begin
+                            if LectTB.Count() < ConfVtas."Cantidad últimas lectura" then
+                                registros := Rec.Count()
+                            else
+                                registros := ConfVtas."Cantidad últimas lectura";
 
-                          IF LectTB.FINDLAST THEN
-                          FOR i:= 1 TO registros-1 DO BEGIN
-                            LectTB.NEXT(-1)
-                            END
-                        END;
+                            if LectTB.FindLast() then
+                                for i := 1 to registros - 1 do
+                                    LectTB.Next(-1);
+                        end;
 
-                        RLect.SETCURRENTKEY("No. Contador","Fecha lectura");
-                        RLect.SETRANGE("No. Contador","No. Contador");
-                        RLect.SETFILTER("Fecha lectura",'%1..',LectTB."Fecha lectura");
-                        PgLecturas.ContadorALeer("No. Contador");
-                        PgLecturas.SETTABLEVIEW(RLect);
-                        PgLecturas.SETRECORD(RLect);
-                        PgLecturas.RUN;
+                        RLect.SetCurrentKey("No. Contador", "Fecha lectura");
+                        RLect.SetRange("No. Contador", Rec."No. Contador");
+                        RLect.SetFilter("Fecha lectura", '%1..', LectTB."Fecha lectura");
+                        PgLecturas.ContadorALeer(Rec."No. Contador");
+                        PgLecturas.SetTableView(RLect);
+                        PgLecturas.SetRecord(RLect);
+                        PgLecturas.Run();
                     end;
                 }
                 action("Ver Incidencia")
@@ -305,15 +300,14 @@ page 50007 "Hist. Agua /Electricidad"
                     trigger OnAction()
                     var
                         Rinc: Record 50004;
-                        PageInc: Page 50010;
+                        PageInc: Page "Ficha de Incidencias";
                     begin
-                        IF "Código Incidencia"<>'' THEN
-                        IF Rinc.GET("Código Incidencia")THEN BEGIN
-                         PageInc.SETTABLEVIEW(Rinc);
-                         PageInc.SETRECORD(Rinc);
-                         PageInc.RUN
-                        END
-
+                        if Rec."Código Incidencia" <> '' then
+                            if Rinc.Get(Rec."Código Incidencia") then begin
+                                PageInc.SetTableView(Rinc);
+                                PageInc.SetRecord(Rinc);
+                                PageInc.Run();
+                            end;
                     end;
                 }
             }
@@ -327,9 +321,10 @@ page 50007 "Hist. Agua /Electricidad"
         ConfVtas: Record "Sales & Receivables Setup";
         registros: Integer;
         i: Integer;
-        PgLecturas: Page 50009;
-                        LT50002: Label '¿Desea eliminar la lectura %1 del día %2?';
+        PgLecturas: Page "Ficha Lecturas";
+        LT50002: Label '¿Desea eliminar la lectura %1 del día %2?';
         NoOrdenLectura: Integer;
         Contador: Record 50002;
+        NoContractMsg: Label 'No hay contrato para %1';
+        NoInvoicesMsg: Label 'No hay Facturas para %1';
 }
-
