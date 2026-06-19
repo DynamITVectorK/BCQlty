@@ -83,17 +83,21 @@ page 50006 Contadores
         }
         area(factboxes)
         {
-            systempart(; Outlook)
+            systempart(Outlook; Outlook)
             {
+                ApplicationArea = All;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
-            systempart(; MyNotes)
+            systempart(MyNotes; MyNotes)
             {
+                ApplicationArea = All;
             }
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -102,19 +106,19 @@ page 50006 Contadores
     {
         area(creation)
         {
-            group()
+            group(Lecturas)
             {
+                Caption = 'Lecturas';
                 action("Histórico de Lecturas")
                 {
                     ApplicationArea = All;
                     Image = History;
                     Promoted = true;
                     PromotedIsBig = true;
-                    RunObject = Page 50007;
-                    RunPageLink = No. Contador=FIELD(No. Contador);
+                    RunObject = Page "Hist. Agua /Electricidad";
+                    RunPageLink = "No. Contador" = FIELD("No. Contador");
                 }
             }
         }
     }
 }
-
