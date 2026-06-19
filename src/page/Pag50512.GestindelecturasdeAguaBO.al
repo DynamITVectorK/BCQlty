@@ -7,10 +7,10 @@ page 50512 "Gestión de lecturas de Agua BO"
     UsageCategory = Administration;
     PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
     SourceTable = 50002;
-    SourceTableView = SORTING (Area, No. Orden de lectura)
+    SourceTableView = SORTING(Area, "No. Orden de lectura")
                       ORDER(Ascending)
-                      WHERE (Area = CONST (Agua),
-                            Estado = CONST (Activo));
+                      WHERE(Area = CONST(Agua),
+                            Estado = CONST(Activo));
 
     layout
     {
@@ -50,8 +50,9 @@ page 50512 "Gestión de lecturas de Agua BO"
         }
         area(factboxes)
         {
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -73,36 +74,34 @@ page 50512 "Gestión de lecturas de Agua BO"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page 50007;
                         RLect: Record 50003;
                     begin
-                        CLEAR(LectTB);
-                        LectTB.SETCURRENTKEY("No. Contador", "Fecha lectura");
-                        LectTB.SETRANGE(LectTB."No. Contador", "No. Contador");
-                        IF NOT LectTB.FINDFIRST THEN
-                            CrearLineaLectura;
-                        ConfVtas.GET;
-                        IF ConfVtas."Cantidad últimas lectura" <> 0 THEN BEGIN
+                        Clear(LectTB);
+                        LectTB.SetCurrentKey("No. Contador", "Fecha lectura");
+                        LectTB.SetRange("No. Contador", Rec."No. Contador");
+                        if not LectTB.FindFirst() then
+                            CrearLineaLectura();
 
-                            IF LectTB.COUNT < ConfVtas."Cantidad últimas lectura" THEN
-                                registros := Rec.COUNT
-                            ELSE
+                        ConfVtas.Get();
+                        if ConfVtas."Cantidad últimas lectura" <> 0 then begin
+                            if LectTB.Count() < ConfVtas."Cantidad últimas lectura" then
+                                registros := Rec.Count()
+                            else
                                 registros := ConfVtas."Cantidad últimas lectura";
 
-                            IF LectTB.FINDLAST THEN
-                                FOR i := 1 TO registros - 1 DO BEGIN
-                                    LectTB.NEXT(-1)
-                                END
-                        END;
-                        //LectTB.MARKEDONLY(TRUE);
+                            if LectTB.FindLast() then
+                                for i := 1 to registros - 1 do
+                                    LectTB.Next(-1);
+                        end;
 
-                        RLect.SETCURRENTKEY("No. Contador", "Fecha lectura");
-                        RLect.SETRANGE("No. Contador", "No. Contador");
+                        //LectTB.MARKEDONLY(TRUE);
+                        RLect.SetCurrentKey("No. Contador", "Fecha lectura");
+                        RLect.SetRange("No. Contador", Rec."No. Contador");
                         //RLect.SETFILTER("Fecha lectura",'%1..',LectTB."Fecha lectura");
-                        PgLecturas.ContadorALeer("No. Contador");
-                        PgLecturas.SETTABLEVIEW(RLect);
-                        PgLecturas.SETRECORD(RLect);
-                        PgLecturas.RUN;
+                        PgLecturas.ContadorALeer(Rec."No. Contador");
+                        PgLecturas.SetTableView(RLect);
+                        PgLecturas.SetRecord(RLect);
+                        PgLecturas.Run();
                     end;
                 }
                 action("Ficha Contador")
@@ -112,8 +111,8 @@ page 50512 "Gestión de lecturas de Agua BO"
                     Promoted = true;
                     PromotedCategory = Category4;
                     PromotedIsBig = true;
-                    RunObject = Page 50006;
-                    RunPageLink = No. Contador=FIELD(No. Contador);
+                    RunObject = Page Contadores;
+                    RunPageLink = "No. Contador" = FIELD("No. Contador");
                 }
                 action(Contratos)
                 {
@@ -126,15 +125,15 @@ page 50512 "Gestión de lecturas de Agua BO"
 
                     trigger OnAction()
                     var
-                        ped: Record "Sales Header";
+                        SalesHeader: Record "Sales Header";
                     begin
-                        ped.SETCURRENTKEY("Document Type","Sell-to Contact No.");
-                        ped.SETRANGE("Document Type", ped."Document Type"::Order);
-                        ped.SETRANGE("No.", "No. Contrato");
-                        IF ped.FINDFIRST THEN
-                        PAGE.RUN(42,ped)
-                        ELSE
-                          MESSAGE('No hay contrato para %1', "No. Contador")
+                        SalesHeader.SetCurrentKey("Document Type", "Sell-to Contact No.");
+                        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
+                        SalesHeader.SetRange("No.", Rec."No. Contrato");
+                        if SalesHeader.FindFirst() then
+                            Page.Run(Page::"Sales Order", SalesHeader)
+                        else
+                            Message(NoContractMsg, Rec."No. Contador");
                     end;
                 }
                 action("Histórico de Lecturas")
@@ -144,8 +143,8 @@ page 50512 "Gestión de lecturas de Agua BO"
                     Promoted = true;
                     PromotedCategory = Category4;
                     PromotedIsBig = true;
-                    RunObject = Page 50007;
-                                    RunPageLink = No. Contador=FIELD(No. Contador);
+                    RunObject = Page "Hist. Agua /Electricidad";
+                    RunPageLink = "No. Contador" = FIELD("No. Contador");
                 }
             }
         }
@@ -153,15 +152,13 @@ page 50512 "Gestión de lecturas de Agua BO"
 
     var
         LectTB: Record 50003;
-        numlin: Decimal;
         ConfVtas: Record "Sales & Receivables Setup";
         registros: Integer;
         i: Integer;
-        PgLecturas: Page 50009;
+        PgLecturas: Page "Ficha Lecturas";
+        NoContractMsg: Label 'No hay contrato para %1';
 
     local procedure CrearLineaLectura()
-    var
-        AUXLectTB: Record 50003;
     begin
         /*CLEAR(AUXLectTB);
         IF AUXLectTB.FINDLAST THEN
@@ -169,10 +166,8 @@ page 50512 "Gestión de lecturas de Agua BO"
         ELSE
           numlin:= AUXLectTB."Nº movimiento" + 1000;
           */
-        LectTB.INIT;
-        LectTB.VALIDATE("No. Contador", "No. Contador");
-        LectTB.INSERT;
-
+        LectTB.Init();
+        LectTB.Validate("No. Contador", Rec."No. Contador");
+        LectTB.Insert();
     end;
 }
-
