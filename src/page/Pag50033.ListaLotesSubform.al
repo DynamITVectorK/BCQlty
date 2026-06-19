@@ -52,7 +52,7 @@ page 50033 "Lista Lotes Subform"
 
                     trigger OnValidate()
                     begin
-                        fEditarProrroga;
+                        fEditarProrroga();
                     end;
                 }
                 field("Fecha prórroga"; Rec."Fecha prórroga")
@@ -95,7 +95,7 @@ page 50033 "Lista Lotes Subform"
                     ApplicationArea = All;
                     Caption = 'Importe pendiente';
                 }
-                field(("Importe lote" + "Importe prorroga") - "Importe facturas registradas" + "Importe abonos registrados";(Rec."Importe lote" + Rec."Importe prorroga") - Rec."Importe facturas registradas" + Rec."Importe abonos registrados")
+                field(("Importe lote" + "Importe prorroga") - "Importe facturas registradas" + "Importe abonos registrados"; (Rec."Importe lote" + Rec."Importe prorroga") - Rec."Importe facturas registradas" + Rec."Importe abonos registrados")
                 {
                     ApplicationArea = All;
                     Caption = 'Importe pendiente con prorroga';
@@ -131,10 +131,10 @@ page 50033 "Lista Lotes Subform"
                 Promoted = true;
                 PromotedCategory = "Report";
                 PromotedIsBig = true;
-                RunObject = Page 9306;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
-                              Document Type=CONST(Quote),
-                              Lote=FIELD(Lote);
+                RunObject = Page "Purchase Quotes";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No. Expediente"),
+                              "Document Type" = CONST(Quote),
+                              Lote = FIELD(Lote);
             }
             action(OfertasRelArch)
             {
@@ -144,81 +144,76 @@ page 50033 "Lista Lotes Subform"
                 Promoted = true;
                 PromotedCategory = "Report";
                 PromotedIsBig = true;
-                RunObject = Page 9346;
-                                RunPageLink = Lote=FIELD(Lote),
-                              Document Type=FILTER(Quote),
-                              No. expediente adjudicacion=FIELD(No. Expediente);
+                RunObject = Page "Purchase Quote Archives";
+                RunPageLink = Lote = FIELD(Lote),
+                              "Document Type" = FILTER(Quote),
+                              "No. expediente adjudicacion" = FIELD("No. Expediente");
             }
             action("Pedidos relacionados")
             {
                 ApplicationArea = All;
                 Image = OrderList;
-                RunObject = Page 9307;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
-                              Lote=FIELD(Lote),
-                              Lote=FIELD(Lote);
+                RunObject = Page "Purchase Order List";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No. Expediente"),
+                              Lote = FIELD(Lote);
             }
             action("Prefacturas relacionadas")
             {
                 ApplicationArea = All;
                 Image = Invoice;
-                RunObject = Page 9308;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
-                              Lote=FIELD(Lote),
-                              Lote=FIELD(Lote);
+                RunObject = Page "Purchase Invoices";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No. Expediente"),
+                              Lote = FIELD(Lote);
             }
             action("Facturas registradas relacionados")
             {
                 ApplicationArea = All;
                 Image = Archive;
-                RunObject = Page 146;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
-                              Lote=FIELD(Lote),
-                              Lote=FIELD(Lote);
+                RunObject = Page "Posted Purchase Invoices";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No. Expediente"),
+                              Lote = FIELD(Lote);
             }
             action("Preabonos relacionadas")
             {
                 ApplicationArea = All;
                 Image = Invoice;
-                RunObject = Page 9309;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
-                              Lote=FIELD(Lote),
-                              Lote=FIELD(Lote);
+                RunObject = Page "Purchase Credit Memos";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No. Expediente"),
+                              Lote = FIELD(Lote);
             }
             action("Abonos registradas relacionados")
             {
                 ApplicationArea = All;
                 Image = Archive;
-                RunObject = Page 147;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
-                              Lote=FIELD(Lote),
-                              Lote=FIELD(Lote);
+                RunObject = Page "Posted Purchase Credit Memos";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No. Expediente"),
+                              Lote = FIELD(Lote);
             }
             action("Facturas electrónicas")
             {
                 ApplicationArea = All;
                 Image = ElectronicDoc;
-                RunObject = Page 50066;
-                                RunPageLink = EXPEDIENTE=FIELD(No. Expediente),
-                              Lote=FIELD(Lote);
+                RunObject = Page "Lista Factura Electrónica";
+                RunPageLink = EXPEDIENTE = FIELD("No. Expediente"),
+                              Lote = FIELD(Lote);
             }
         }
     }
 
     trigger OnAfterGetCurrRecord()
     begin
-        Rec.CALCFIELDS("Nombre Adjudicatario","Fecha adjudicacion","Organo de decisión");
+        Rec.CalcFields("Nombre Adjudicatario", "Fecha adjudicacion", "Organo de decisión");
     end;
 
     trigger OnAfterGetRecord()
     begin
-        Rec.CALCFIELDS("Nombre Adjudicatario","Fecha adjudicacion","Organo de decisión");
+        Rec.CalcFields("Nombre Adjudicatario", "Fecha adjudicacion", "Organo de decisión");
     end;
 
     trigger OnDeleteRecord(): Boolean
     begin
-        IF Lote='0' THEN
-          ERROR(Text50000);
+        if Rec.Lote = '0' then
+            Error(Text50000);
     end;
 
     var
@@ -228,14 +223,13 @@ page 50033 "Lista Lotes Subform"
     [Scope('Internal')]
     procedure fEditarProrroga()
     begin
-        IF Prórroga THEN
-          vEditarProrroga := TRUE
-        ELSE BEGIN
-          "Fecha prórroga"   := 0D;
-          "No. prórroga" := 0;
-          "Importe prorroga" := 0;
-          vEditarProrroga := FALSE;
-        END;
+        if Rec.Prórroga then
+            vEditarProrroga := true
+        else begin
+            Rec."Fecha prórroga" := 0D;
+            Rec."No. prórroga" := 0;
+            Rec."Importe prorroga" := 0;
+            vEditarProrroga := false;
+        end;
     end;
 }
-

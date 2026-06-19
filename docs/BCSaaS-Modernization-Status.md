@@ -97,6 +97,20 @@ Patrones abordados:
 - Eliminación de duplicidades de `Lote = FIELD(Lote)` en `RunPageLink`.
 - Normalización de `Rec.`, `CalcFields` y llamada a `fEditarProrroga`.
 
+### PR #22 / rama `pages-bc-saas-round-6`
+
+Pages incluidas:
+
+- `Pag50033.ListaLotesSubform.al`
+
+Patrones abordados:
+
+- Mismo patrón de navegación que `Pag50028`, aplicado al subform.
+- Conservación de la restricción funcional de no borrar lote `0`.
+- Sustitución de referencias numéricas a pages estándar y a `Lista Factura Electrónica`.
+- Eliminación de duplicidades de `Lote = FIELD(Lote)` en `RunPageLink`.
+- Normalización de `Rec.`, `CalcFields` y llamada a `fEditarProrroga`.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales

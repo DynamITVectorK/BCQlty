@@ -1,6 +1,6 @@
 # Revisión modernización `src/page`
 
-Estado actualizado tras merge de PR #17, PR #18, PR #19 y PR #20.
+Estado actualizado tras merge de PR #17, PR #18, PR #19, PR #20 y PR #21.
 
 ## Pages revisadas / modernizadas
 
@@ -30,9 +30,13 @@ Estado actualizado tras merge de PR #17, PR #18, PR #19 y PR #20.
 - `Pag50006.Contadores.al`
 - `Pag50027.Codigosderetencion.al`
 
-### PR #21 / rama `pages-bc-saas-round-5`
+### PR #21
 
 - `Pag50028.ListaLotes.al`
+
+### PR #22 / rama `pages-bc-saas-round-6`
+
+- `Pag50033.ListaLotesSubform.al`
 
 ## Pendientes relevantes detectados
 
@@ -53,7 +57,6 @@ Estado actualizado tras merge de PR #17, PR #18, PR #19 y PR #20.
 
 ### RunObject = Page numéricos pendientes
 
-- `Pag50033.ListaLotesSubform.al`
 - `Pag50066.ListaFacturaElectrnica.al`
 - `Pag50072.ListaFacturaElectrnicaRech.al`
 - `Pag50074.ListaFacturaElectrnicaReg.al`
