@@ -1,6 +1,6 @@
 # Revisión modernización `src/page`
 
-Estado actualizado tras merge de PR #17, PR #18 y PR #19.
+Estado actualizado tras merge de PR #17, PR #18, PR #19 y PR #20.
 
 ## Pages revisadas / modernizadas
 
@@ -25,6 +25,15 @@ Estado actualizado tras merge de PR #17, PR #18 y PR #19.
 - `Pag50003.ExpedientesadjudicacinCompr.al`
 - `Pag50004.ExpedientesadjudicacinVta.al`
 
+### PR #20
+
+- `Pag50006.Contadores.al`
+- `Pag50027.Codigosderetencion.al`
+
+### PR #21 / rama `pages-bc-saas-round-5`
+
+- `Pag50028.ListaLotes.al`
+
 ## Pendientes relevantes detectados
 
 ### Automation / COM incompatible con SaaS
@@ -44,9 +53,6 @@ Estado actualizado tras merge de PR #17, PR #18 y PR #19.
 
 ### RunObject = Page numéricos pendientes
 
-- `Pag50006.Contadores.al`
-- `Pag50027.Codigosderetencion.al`
-- `Pag50028.ListaLotes.al`
 - `Pag50033.ListaLotesSubform.al`
 - `Pag50066.ListaFacturaElectrnica.al`
 - `Pag50072.ListaFacturaElectrnicaRech.al`
@@ -54,6 +60,22 @@ Estado actualizado tras merge de PR #17, PR #18 y PR #19.
 - `Pag50512.GestindelecturasdeAguaBO.al`
 - `Pag90000.ZAMTicketBaiSetup.al`
 - `Pag90014.ZAMTBRoleCenter.al`
+
+## Nota específica sobre `Pag50009.FichaLecturas.al`
+
+`Pag50009` es una page crítica de lecturas con más de 1.300 líneas y lógica funcional densa. El conector no permite recuperar/reemplazar el fichero completo de forma suficientemente fiable en esta sesión. Se ha revisado el patrón principal pendiente:
+
+- `PAGE.RUN(50010, Lincidencia)`
+- `PAGE.RUNMODAL(50010, Lincidencia)`
+
+La sustitución segura prevista es:
+
+```al
+Page.Run(Page::"Ficha de Incidencias", Lincidencia);
+Page.RunModal(Page::"Ficha de Incidencias", Lincidencia);
+```
+
+No se ha aplicado todavía para evitar una reescritura parcial de una page crítica.
 
 ## Criterio de cierre por page
 

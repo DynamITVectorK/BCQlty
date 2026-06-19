@@ -84,6 +84,19 @@ Patrones abordados:
 - `CurrPage.EDITABLE` normalizado a `CurrPage.Editable`.
 - `RunObject = Page 50002` en `Pag50027` queda documentado como pendiente porque el `RunPageLink` usa `Field2`/`Field13` y no coincide con la page custom 50002 identificada en el repo.
 
+### PR #21 / rama `pages-bc-saas-round-5`
+
+Pages incluidas:
+
+- `Pag50028.ListaLotes.al`
+
+Patrones abordados:
+
+- Sustitución de navegación estándar de compras por nombres de página: ofertas, pedidos, facturas, abonos y archivados.
+- Sustitución de `RunObject = Page 50066` por `Page "Lista Factura Electrónica"`.
+- Eliminación de duplicidades de `Lote = FIELD(Lote)` en `RunPageLink`.
+- Normalización de `Rec.`, `CalcFields` y llamada a `fEditarProrroga`.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales
@@ -106,9 +119,10 @@ Las pages `Pag50063`, `Pag50066`, `Pag50072` y `Pag50074` siguen siendo foco de 
 
 No se sustituyen referencias numéricas custom si el nombre de objeto no está identificado con seguridad o si existe riesgo de romper compilación.
 
-Caso abierto:
+Casos abiertos:
 
 - `Pag50027.Codigosderetencion.al` mantiene `RunObject = Page 50002` con `TODO SaaS` hasta confirmar el objeto real, porque el link usa campos genéricos.
+- `Pag50009.FichaLecturas.al` requiere modificación controlada por tamaño y criticidad funcional.
 
 ## Validación pendiente
 
