@@ -12,137 +12,137 @@ page 90020 ZAMTicketBaiHistCard
             group(General)
             {
                 Caption = 'Gneral';
-                field(ZAM_Type; ZAM_Type)
+                field(ZAM_Type; Rec.ZAM_Type)
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("ZAM_Document No."; "ZAM_Document No.")
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                    Importance = Promoted;
-                }
-                field("ZAM_External Document No."; "ZAM_External Document No.")
-                {
-                    ApplicationArea = All;
-                }
-                field(ZAM_Status; ZAM_Status)
+                field("ZAM_Document No."; Rec."ZAM_Document No.")
                 {
                     ApplicationArea = All;
                     Editable = false;
                     Importance = Promoted;
                 }
-                field("ZAM_Posting Date"; "ZAM_Posting Date")
+                field("ZAM_External Document No."; Rec."ZAM_External Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Accounting Posting Date"; "ZAM_Accounting Posting Date")
+                field(ZAM_Status; Rec.ZAM_Status)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                    Importance = Promoted;
+                }
+                field("ZAM_Posting Date"; Rec."ZAM_Posting Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("ZAM_Accounting Posting Date"; Rec."ZAM_Accounting Posting Date")
                 {
                     ApplicationArea = All;
                     Editable = PurchaseFieldVisible;
                     Visible = PurchaseFieldVisible;
                 }
-                field("ZAM_Transaction Date"; "ZAM_Transaction Date")
+                field("ZAM_Transaction Date"; Rec."ZAM_Transaction Date")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Version No."; "ZAM_Version No.")
+                field("ZAM_Version No."; Rec."ZAM_Version No.")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Company Name"; "ZAM_Company Name")
+                field("ZAM_Company Name"; Rec."ZAM_Company Name")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Company VAT Reg No."; "ZAM_Company VAT Reg No.")
+                field("ZAM_Company VAT Reg No."; Rec."ZAM_Company VAT Reg No.")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Communication Type"; "ZAM_Communication Type")
+                field("ZAM_Communication Type"; Rec."ZAM_Communication Type")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Tax Year"; "ZAM_Tax Year")
+                field("ZAM_Tax Year"; Rec."ZAM_Tax Year")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Settlement Period"; "ZAM_Settlement Period")
+                field("ZAM_Settlement Period"; Rec."ZAM_Settlement Period")
                 {
                     ApplicationArea = All;
                     LookupPageID = ZAMSettlementPeriods;
                 }
-                field("ZAM_Company VAT Reg No. 2"; "ZAM_Company VAT Reg No. 2")
+                field("ZAM_Company VAT Reg No. 2"; Rec."ZAM_Company VAT Reg No. 2")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Issuing Document No."; "ZAM_Issuing Document No.")
+                field("ZAM_Issuing Document No."; Rec."ZAM_Issuing Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Expedition Date"; "ZAM_Expedition Date")
+                field("ZAM_Expedition Date"; Rec."ZAM_Expedition Date")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Expedition Time"; "ZAM_Expedition Time")
+                field("ZAM_Expedition Time"; Rec."ZAM_Expedition Time")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Document Type"; "ZAM_Document Type")
+                field("ZAM_Document Type"; Rec."ZAM_Document Type")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Special Regime Key 1"; "ZAM_Special Regime Key 1")
+                field("ZAM_Special Regime Key 1"; Rec."ZAM_Special Regime Key 1")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Special Regime Key 2"; "ZAM_Special Regime Key 2")
+                field("ZAM_Special Regime Key 2"; Rec."ZAM_Special Regime Key 2")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Special Regime Key 3"; "ZAM_Special Regime Key 3")
+                field("ZAM_Special Regime Key 3"; Rec."ZAM_Special Regime Key 3")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Total Amount"; "ZAM_Total Amount")
+                field("ZAM_Total Amount"; Rec."ZAM_Total Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Transaction Description"; "ZAM_Transaction Description")
+                field("ZAM_Transaction Description"; Rec."ZAM_Transaction Description")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Cust/Vend Name"; "ZAM_Cust/Vend Name")
+                field("ZAM_Cust/Vend Name"; Rec."ZAM_Cust/Vend Name")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Cust/Vend VAT Reg No."; "ZAM_Cust/Vend VAT Reg No.")
+                field("ZAM_Cust/Vend VAT Reg No."; Rec."ZAM_Cust/Vend VAT Reg No.")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Cust/Vend Country/Reg Code"; "ZAM_Cust/Vend Country/Reg Code")
+                field("ZAM_Cust/Vend Country/Reg Code"; Rec."ZAM_Cust/Vend Country/Reg Code")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Credit Memo Type"; "ZAM_Credit Memo Type")
+                field("ZAM_Credit Memo Type"; Rec."ZAM_Credit Memo Type")
                 {
                     ApplicationArea = All;
                     LookupPageID = ZAMTicketBaiCreditMemoTypes;
                 }
-                field("ZAM_Corrected Invoice No."; "ZAM_Corrected Invoice No.")
+                field("ZAM_Corrected Invoice No."; Rec."ZAM_Corrected Invoice No.")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Corrected Invo Post Date"; "ZAM_Corrected Invo Post Date")
+                field("ZAM_Corrected Invo Post Date"; Rec."ZAM_Corrected Invo Post Date")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Shipment Comments"; "ZAM_Shipment Comments")
+                field("ZAM_Shipment Comments"; Rec."ZAM_Shipment Comments")
                 {
                     ApplicationArea = All;
                     RowSpan = 2;
                 }
-                field(ZAM_QR_ID; ZAM_QR_ID)
+                field(ZAM_QR_ID; Rec.ZAM_QR_ID)
                 {
                     ApplicationArea = All;
                 }
@@ -150,17 +150,17 @@ page 90020 ZAMTicketBaiHistCard
             group("Intracom. Transactions")
             {
                 Caption = 'Operaciones intracomunitarias';
-                field("ZAM_Intracom. Trans. Type"; "ZAM_Intracom. Trans. Type")
+                field("ZAM_Intracom. Trans. Type"; Rec."ZAM_Intracom. Trans. Type")
                 {
                     ApplicationArea = All;
                     LookupPageID = ZAMIntracomTransType;
                 }
-                field("ZAM_Intracom. Admitted Key"; "ZAM_Intracom. Admitted Key")
+                field("ZAM_Intracom. Admitted Key"; Rec."ZAM_Intracom. Admitted Key")
                 {
                     ApplicationArea = All;
                     LookupPageID = ZAMIntracomAdmittedKey;
                 }
-                field("ZAM_Cust/Vend Address"; "ZAM_Cust/Vend Address")
+                field("ZAM_Cust/Vend Address"; Rec."ZAM_Cust/Vend Address")
                 {
                     ApplicationArea = All;
                 }

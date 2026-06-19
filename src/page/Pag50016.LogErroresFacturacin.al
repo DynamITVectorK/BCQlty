@@ -14,19 +14,19 @@ page 50016 "Log Errores Facturación"
         {
             repeater(Group)
             {
-                field(Num; Num)
+                field(Num; Rec.Num)
                 {
                     ApplicationArea = All;
                 }
-                field(Fecha; Fecha)
+                field(Fecha; Rec.Fecha)
                 {
                     ApplicationArea = All;
                 }
-                field("Registro Asociado"; "Registro Asociado")
+                field("Registro Asociado"; Rec."Registro Asociado")
                 {
                     ApplicationArea = All;
                 }
-                field(Motivo; Motivo)
+                field(Motivo; Rec.Motivo)
                 {
                     ApplicationArea = All;
                 }

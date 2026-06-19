@@ -13,26 +13,26 @@ page 90013 ZAMCustomerRealEstatesCard
         {
             group(General)
             {
-                field("ZAM_Customer No."; "ZAM_Customer No.")
+                field("ZAM_Customer No."; Rec."ZAM_Customer No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Real Estate No."; "ZAM_Real Estate No.")
-                {
-                    ApplicationArea = All;
-                    ShowMandatory = true;
-                }
-                field(Description; ZAM_Description)
+                field("Real Estate No."; Rec."ZAM_Real Estate No.")
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;
                 }
-                field("Property Registration No."; "ZAM_Property Registration No.")
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;
                 }
-                field(Situation; ZAM_Situation)
+                field("Property Registration No."; Rec."ZAM_Property Registration No.")
+                {
+                    ApplicationArea = All;
+                    ShowMandatory = true;
+                }
+                field(Situation; Rec.ZAM_Situation)
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;
@@ -41,27 +41,27 @@ page 90013 ZAMCustomerRealEstatesCard
             group("Real Estate Address")
             {
                 Caption = 'Real Estate Address';
-                field(Address; ZAM_Address)
+                field(Address; Rec.ZAM_Address)
                 {
                     ApplicationArea = All;
                 }
-                field("Address 2"; "ZAM_Address 2")
+                field("Address 2"; Rec."ZAM_Address 2")
                 {
                     ApplicationArea = All;
                 }
-                field(City; ZAM_City)
+                field(City; Rec.ZAM_City)
                 {
                     ApplicationArea = All;
                 }
-                field("Post Code"; "ZAM_Post Code")
+                field("Post Code"; Rec."ZAM_Post Code")
                 {
                     ApplicationArea = All;
                 }
-                field(County; ZAM_County)
+                field(County; Rec.ZAM_County)
                 {
                     ApplicationArea = All;
                 }
-                field("Country/Region Code"; "ZAM_Country/Region Code")
+                field("Country/Region Code"; Rec."ZAM_Country/Region Code")
                 {
                     ApplicationArea = All;
                     ShowMandatory = true;

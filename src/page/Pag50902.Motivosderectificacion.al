@@ -15,11 +15,11 @@ page 50902 "Motivos de rectificacion"
         {
             repeater(Group)
             {
-                field(Codigo; Codigo)
+                field(Codigo; Rec.Codigo)
                 {
                     ApplicationArea = All;
                 }
-                field(Descripcion; Descripcion)
+                field(Descripcion; Rec.Descripcion)
                 {
                     ApplicationArea = All;
                 }

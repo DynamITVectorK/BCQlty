@@ -18,11 +18,11 @@ page 50022 "WS Bancos cliente"
         {
             repeater(Group)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
                 }
-                field(IBAN;vCustomerBankAccount)
+                field(IBAN; Rec.vCustomerBankAccount)
                 {
                     ApplicationArea = All;
                 }

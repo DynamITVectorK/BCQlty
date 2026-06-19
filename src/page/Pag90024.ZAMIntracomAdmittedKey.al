@@ -15,15 +15,15 @@ page 90024 ZAMIntracomAdmittedKey
         {
             repeater(Group)
             {
-                field("Code"; ZAM_Code)
+                field("Code"; Rec.ZAM_Code)
                 {
                     ApplicationArea = All;
                 }
-                field(Description; ZAM_Description)
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                 }
-                field("Intracom. Admitted Key Type"; "ZAM_Intracom. Admit Key Type")
+                field("Intracom. Admitted Key Type"; Rec."ZAM_Intracom. Admit Key Type")
                 {
                     ApplicationArea = All;
                 }

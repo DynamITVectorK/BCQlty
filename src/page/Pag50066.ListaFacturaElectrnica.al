@@ -31,127 +31,127 @@ page 50066 "Lista Factura Electrónica"
         {
             repeater()
             {
-                field(ID_PLATAFORMA;ID_PLATAFORMA)
+                field(ID_PLATAFORMA; Rec.ID_PLATAFORMA)
                 {
                     ApplicationArea = All;
                 }
-                field(NUM;NUM)
+                field(NUM; Rec.NUM)
                 {
                     ApplicationArea = All;
                 }
-                field(SERIE;SERIE)
+                field(SERIE; Rec.SERIE)
                 {
                     ApplicationArea = All;
                 }
-                field(FECHA_ENTRADA;FECHA_ENTRADA)
+                field(FECHA_ENTRADA; Rec.FECHA_ENTRADA)
                 {
                     ApplicationArea = All;
                 }
-                field("Approval Status";"Approval Status")
+                field("Approval Status"; Rec."Approval Status")
                 {
                     ApplicationArea = All;
                 }
-                field(FECHA_DEVENGO;FECHA_DEVENGO)
+                field(FECHA_DEVENGO; Rec.FECHA_DEVENGO)
                 {
                     ApplicationArea = All;
                 }
-                field(EMISOR_CIF;EMISOR_CIF)
+                field(EMISOR_CIF; Rec.EMISOR_CIF)
                 {
                     ApplicationArea = All;
                 }
-                field(EMISOR_NOMBRE;EMISOR_NOMBRE)
+                field(EMISOR_NOMBRE; Rec.EMISOR_NOMBRE)
                 {
                     ApplicationArea = All;
                 }
-                field(EMISOR_DIRECCION;EMISOR_DIRECCION)
+                field(EMISOR_DIRECCION; Rec.EMISOR_DIRECCION)
                 {
                     ApplicationArea = All;
                 }
-                field(EMISOR_CIUDAD;EMISOR_CIUDAD)
+                field(EMISOR_CIUDAD; Rec.EMISOR_CIUDAD)
                 {
                     ApplicationArea = All;
                 }
-                field(EMISOR_PROVINCIA;EMISOR_PROVINCIA)
+                field(EMISOR_PROVINCIA; Rec.EMISOR_PROVINCIA)
                 {
                     ApplicationArea = All;
                 }
-                field(EMISOR_CP;EMISOR_CP)
+                field(EMISOR_CP; Rec.EMISOR_CP)
                 {
                     ApplicationArea = All;
                 }
-                field(EMISOR_TELEFONO;EMISOR_TELEFONO)
+                field(EMISOR_TELEFONO; Rec.EMISOR_TELEFONO)
                 {
                     ApplicationArea = All;
                 }
-                field(EMISOR_EMAIL;EMISOR_EMAIL)
+                field(EMISOR_EMAIL; Rec.EMISOR_EMAIL)
                 {
                     ApplicationArea = All;
                 }
-                field(RECEPTOR_CIF;RECEPTOR_CIF)
+                field(RECEPTOR_CIF; Rec.RECEPTOR_CIF)
                 {
                     ApplicationArea = All;
                 }
-                field(FORMA_PAGO;FORMA_PAGO)
+                field(FORMA_PAGO; Rec.FORMA_PAGO)
                 {
                     ApplicationArea = All;
                 }
-                field(FECHA_PAGO;FECHA_PAGO)
+                field(FECHA_PAGO; Rec.FECHA_PAGO)
                 {
                     ApplicationArea = All;
                 }
-                field(CCC_PAGO;CCC_PAGO)
+                field(CCC_PAGO; Rec.CCC_PAGO)
                 {
                     ApplicationArea = All;
                 }
-                field(NOTAS;NOTAS)
+                field(NOTAS; Rec.NOTAS)
                 {
                     ApplicationArea = All;
                 }
-                field(CONTACTO_NOMBRE;CONTACTO_NOMBRE)
+                field(CONTACTO_NOMBRE; Rec.CONTACTO_NOMBRE)
                 {
                     ApplicationArea = All;
                 }
-                field(CONTACTO_TELEFONO;CONTACTO_TELEFONO)
+                field(CONTACTO_TELEFONO; Rec.CONTACTO_TELEFONO)
                 {
                     ApplicationArea = All;
                 }
-                field(CONTACTO_EMAIL;CONTACTO_EMAIL)
+                field(CONTACTO_EMAIL; Rec.CONTACTO_EMAIL)
                 {
                     ApplicationArea = All;
                 }
-                field(TOTAL_BASES;TOTAL_BASES)
+                field(TOTAL_BASES; Rec.TOTAL_BASES)
                 {
                     ApplicationArea = All;
                 }
-                field(TOTAL_TASAS;TOTAL_TASAS)
+                field(TOTAL_TASAS; Rec.TOTAL_TASAS)
                 {
                     ApplicationArea = All;
                 }
-                field(TOTAL_PAGAR;TOTAL_PAGAR)
+                field(TOTAL_PAGAR; Rec.TOTAL_PAGAR)
                 {
                     ApplicationArea = All;
                 }
-                field("Documento Registrado";"Documento Registrado")
+                field("Documento Registrado"; Rec."Documento Registrado")
                 {
                     ApplicationArea = All;
                 }
-                field("Abono Registrado";"Abono Registrado")
+                field("Abono Registrado"; Rec."Abono Registrado")
                 {
                     ApplicationArea = All;
                 }
-                field("Documento en Curso";"Documento en Curso")
+                field("Documento en Curso"; Rec."Documento en Curso")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha Importación";"Fecha Importación")
+                field("Fecha Importación"; Rec."Fecha Importación")
                 {
                     ApplicationArea = All;
                 }
-                field("Hora Importación";"Hora Importación")
+                field("Hora Importación"; Rec."Hora Importación")
                 {
                     ApplicationArea = All;
                 }
-                field(EXPEDIENTE;EXPEDIENTE)
+                field(EXPEDIENTE; Rec.EXPEDIENTE)
                 {
                     ApplicationArea = All;
                 }

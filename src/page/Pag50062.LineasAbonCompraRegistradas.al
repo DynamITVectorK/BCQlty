@@ -11,212 +11,215 @@ page 50062 "Lineas Abon Compra Registradas"
         {
             repeater(Group)
             {
-                field("Buy-from Vendor No."; "Buy-from Vendor No.")
+                field("Buy-from Vendor No."; Rec."Buy-from Vendor No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Document No."; "Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Line No."; "Line No.")
+                field("Line No."; Rec."Line No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Type; Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = All;
                 }
-                field("No."; "No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Location Code"; "Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Posting Group"; "Posting Group")
+                field("Posting Group"; Rec."Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("Expected Receipt Date"; "Expected Receipt Date")
+                field("Expected Receipt Date"; Rec."Expected Receipt Date")
                 {
                     ApplicationArea = All;
                 }
-                field(Description; Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                 }
-                field("Description 2"; "Description 2")
+                field("Description 2"; Rec."Description 2")
                 {
                     ApplicationArea = All;
                 }
-                field("Unit of Measure"; "Unit of Measure")
+                field("Unit of Measure"; Rec."Unit of Measure")
                 {
                     ApplicationArea = All;
                 }
-                field(Quantity; Quantity)
+                field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
                 }
-                field("Direct Unit Cost"; "Direct Unit Cost")
+                field("Direct Unit Cost"; Rec."Direct Unit Cost")
                 {
                     ApplicationArea = All;
                 }
-                field("Unit Cost (LCY)"; "Unit Cost (LCY)")
-                {
-                }
-                field("VAT %"; "VAT %")
+                field("Unit Cost (LCY)"; Rec."Unit Cost (LCY)")
                 {
                     ApplicationArea = All;
                 }
-                field("Line Discount %"; "Line Discount %")
+                field("VAT %"; Rec."VAT %")
                 {
                     ApplicationArea = All;
                 }
-                field("Line Discount Amount"; "Line Discount Amount")
+                field("Line Discount %"; Rec."Line Discount %")
                 {
                     ApplicationArea = All;
                 }
-                field(Amount; Amount)
+                field("Line Discount Amount"; Rec."Line Discount Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Amount Including VAT"; "Amount Including VAT")
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                 }
-                field("Unit Price (LCY)"; "Unit Price (LCY)")
-                {
-                }
-                field("Allow Invoice Disc."; "Allow Invoice Disc.")
+                field("Amount Including VAT"; Rec."Amount Including VAT")
                 {
                     ApplicationArea = All;
                 }
-                field("Shortcut Dimension 1 Code"; "Shortcut Dimension 1 Code")
+                field("Unit Price (LCY)"; Rec."Unit Price (LCY)")
                 {
                     ApplicationArea = All;
                 }
-                field("Shortcut Dimension 2 Code"; "Shortcut Dimension 2 Code")
+                field("Allow Invoice Disc."; Rec."Allow Invoice Disc.")
                 {
                     ApplicationArea = All;
                 }
-                field("Indirect Cost %"; "Indirect Cost %")
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Pay-to Vendor No."; "Pay-to Vendor No.")
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Inv. Discount Amount"; "Inv. Discount Amount")
+                field("Indirect Cost %"; Rec."Indirect Cost %")
                 {
                     ApplicationArea = All;
                 }
-                field("Vendor Item No."; "Vendor Item No.")
+                field("Pay-to Vendor No."; Rec."Pay-to Vendor No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Gen. Bus. Posting Group"; "Gen. Bus. Posting Group")
+                field("Inv. Discount Amount"; Rec."Inv. Discount Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Gen. Prod. Posting Group"; "Gen. Prod. Posting Group")
+                field("Vendor Item No."; Rec."Vendor Item No.")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Calculation Type"; "VAT Calculation Type")
+                field("Gen. Bus. Posting Group"; Rec."Gen. Bus. Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Bus. Posting Group"; "VAT Bus. Posting Group")
+                field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Prod. Posting Group"; "VAT Prod. Posting Group")
+                field("VAT Calculation Type"; Rec."VAT Calculation Type")
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Base Amount"; "VAT Base Amount")
+                field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("Unit Cost"; "Unit Cost")
+                field("VAT Prod. Posting Group"; Rec."VAT Prod. Posting Group")
                 {
                     ApplicationArea = All;
                 }
-                field("Line Amount"; "Line Amount")
+                field("VAT Base Amount"; Rec."VAT Base Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Posting Date"; "Posting Date")
+                field("Unit Cost"; Rec."Unit Cost")
                 {
                     ApplicationArea = All;
                 }
-                field("Qty. per Unit of Measure"; "Qty. per Unit of Measure")
+                field("Line Amount"; Rec."Line Amount")
                 {
                     ApplicationArea = All;
                 }
-                field("Unit of Measure Code"; "Unit of Measure Code")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Quantity (Base)"; "Quantity (Base)")
-                {
-                }
-                field("FA Posting Date"; "FA Posting Date")
+                field("Qty. per Unit of Measure"; Rec."Qty. per Unit of Measure")
                 {
                     ApplicationArea = All;
                 }
-                field("FA Posting Type"; "FA Posting Type")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Depreciation Book Code"; "Depreciation Book Code")
+                field("Quantity (Base)"; Rec."Quantity (Base)")
                 {
                     ApplicationArea = All;
                 }
-                field("Salvage Value"; "Salvage Value")
+                field("FA Posting Date"; Rec."FA Posting Date")
                 {
                     ApplicationArea = All;
                 }
-                field("Depr. until FA Posting Date"; "Depr. until FA Posting Date")
+                field("FA Posting Type"; Rec."FA Posting Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Depr. Acquisition Cost"; "Depr. Acquisition Cost")
+                field("Depreciation Book Code"; Rec."Depreciation Book Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Maintenance Code"; "Maintenance Code")
+                field("Salvage Value"; Rec."Salvage Value")
                 {
                     ApplicationArea = All;
                 }
-                field("Pmt. Disc. Rcd. Amount"; "Pmt. Disc. Rcd. Amount")
+                field("Depr. until FA Posting Date"; Rec."Depr. until FA Posting Date")
                 {
                     ApplicationArea = All;
                 }
-                field("EC %"; "EC %")
+                field("Depr. Acquisition Cost"; Rec."Depr. Acquisition Cost")
                 {
                     ApplicationArea = All;
                 }
-                field("EC Difference"; "EC Difference")
+                field("Maintenance Code"; Rec."Maintenance Code")
                 {
                     ApplicationArea = All;
                 }
-                field("No. expediente adjudicacion"; "No. expediente adjudicacion")
+                field("Pmt. Disc. Rcd. Amount"; Rec."Pmt. Disc. Rcd. Amount")
                 {
                     ApplicationArea = All;
                 }
-                field(Lote; Lote)
+                field("EC %"; Rec."EC %")
                 {
                     ApplicationArea = All;
                 }
-                field("Excluir de IRPF"; "Excluir de IRPF")
+                field("EC Difference"; Rec."EC Difference")
                 {
                     ApplicationArea = All;
                 }
-                field("Linea IRPF"; "Linea IRPF")
+                field("No. expediente adjudicacion"; Rec."No. expediente adjudicacion")
+                {
+                    ApplicationArea = All;
+                }
+                field(Lote; Rec.Lote)
+                {
+                    ApplicationArea = All;
+                }
+                field("Excluir de IRPF"; Rec."Excluir de IRPF")
+                {
+                    ApplicationArea = All;
+                }
+                field("Linea IRPF"; Rec."Linea IRPF")
                 {
                     ApplicationArea = All;
                 }

@@ -14,39 +14,39 @@ page 50065 "Documentos pendientes aprobar"
         {
             repeater(Group)
             {
-                field("Document Type"; "Document Type")
+                field("Document Type"; Rec."Document Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Document No."; "Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Sender ID"; "Sender ID")
+                field("Sender ID"; Rec."Sender ID")
                 {
                     ApplicationArea = All;
                 }
-                field("Approver ID"; "Approver ID")
+                field("Approver ID"; Rec."Approver ID")
                 {
                     ApplicationArea = All;
                 }
-                field(Status; Status)
+                field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
                 }
-                field("Date-Time Sent for Approval"; "Date-Time Sent for Approval")
+                field("Date-Time Sent for Approval"; Rec."Date-Time Sent for Approval")
                 {
                     ApplicationArea = All;
                 }
-                field("Approval Code"; "Approval Code")
+                field("Approval Code"; Rec."Approval Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Due Date"; "Due Date")
+                field("Due Date"; Rec."Due Date")
                 {
                     ApplicationArea = All;
                 }
-                field(Amount; Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                 }

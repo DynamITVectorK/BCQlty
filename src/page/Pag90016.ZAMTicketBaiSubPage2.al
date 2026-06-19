@@ -12,15 +12,15 @@ page 90016 ZAMTicketBaiSubPage2
         {
             repeater(Group)
             {
-                field("ZAM_Real Estate No.";"ZAM_Real Estate No.")
+                field("ZAM_Real Estate No."; Rec."ZAM_Real Estate No.")
                 {
                     ApplicationArea = All;
                 }
-                field("ZAM_Property Registration No.";"ZAM_Property Registration No.")
+                field("ZAM_Property Registration No."; Rec."ZAM_Property Registration No.")
                 {
                     ApplicationArea = All;
                 }
-                field(ZAM_Situation;ZAM_Situation)
+                field(ZAM_Situation; Rec.ZAM_Situation)
                 {
                     ApplicationArea = All;
                     LookupPageID = ZAMRealEstateSituation;

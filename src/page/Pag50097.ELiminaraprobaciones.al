@@ -11,113 +11,115 @@ page 50097 "ELiminar aprobaciones"
         {
             repeater(Group)
             {
-                field("Table ID"; "Table ID")
+                field("Table ID"; Rec."Table ID")
                 {
                     ApplicationArea = All;
                 }
-                field("Document Type"; "Document Type")
+                field("Document Type"; Rec."Document Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Document No."; "Document No.")
+                field("Document No."; Rec."Document No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Sequence No."; "Sequence No.")
+                field("Sequence No."; Rec."Sequence No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Approval Code"; "Approval Code")
+                field("Approval Code"; Rec."Approval Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Sender ID"; "Sender ID")
+                field("Sender ID"; Rec."Sender ID")
                 {
                     ApplicationArea = All;
                 }
-                field("Salespers./Purch. Code"; "Salespers./Purch. Code")
+                field("Salespers./Purch. Code"; Rec."Salespers./Purch. Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Approver ID"; "Approver ID")
+                field("Approver ID"; Rec."Approver ID")
                 {
                     ApplicationArea = All;
                 }
-                field(Status; Status)
+                field(Status; Rec.Status)
                 {
                     ApplicationArea = All;
                 }
-                field("Date-Time Sent for Approval"; "Date-Time Sent for Approval")
+                field("Date-Time Sent for Approval"; Rec."Date-Time Sent for Approval")
                 {
                     ApplicationArea = All;
                 }
-                field("Last Date-Time Modified"; "Last Date-Time Modified")
+                field("Last Date-Time Modified"; Rec."Last Date-Time Modified")
                 {
                     ApplicationArea = All;
                 }
-                field("Last Modified By User ID"; "Last Modified By User ID")
+                field("Last Modified By User ID"; Rec."Last Modified By User ID")
                 {
                     ApplicationArea = All;
                 }
-                field(Comment; Comment)
+                field(Comment; Rec.Comment)
                 {
                     ApplicationArea = All;
                 }
-                field("Due Date"; "Due Date")
+                field("Due Date"; Rec."Due Date")
                 {
                     ApplicationArea = All;
                 }
-                field(Amount; Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                 }
-                field("Amount (LCY)"; "Amount (LCY)")
-                {
-                }
-                field("Currency Code"; "Currency Code")
+                field("Amount (LCY)"; Rec."Amount (LCY)")
                 {
                     ApplicationArea = All;
                 }
-                field("Approval Type"; "Approval Type")
+                field("Currency Code"; Rec."Currency Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Limit Type"; "Limit Type")
+                field("Approval Type"; Rec."Approval Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Available Credit Limit (LCY)"; "Available Credit Limit (LCY)")
-                {
-                }
-                field("Pending Approvals"; "Pending Approvals")
+                field("Limit Type"; Rec."Limit Type")
                 {
                     ApplicationArea = All;
                 }
-                field("Record ID to Approve"; "Record ID to Approve")
+                field("Available Credit Limit (LCY)"; Rec."Available Credit Limit (LCY)")
                 {
                     ApplicationArea = All;
                 }
-                field("Delegation Date Formula"; "Delegation Date Formula")
+                field("Pending Approvals"; Rec."Pending Approvals")
                 {
                     ApplicationArea = All;
                 }
-                field("Number of Approved Requests"; "Number of Approved Requests")
+                field("Record ID to Approve"; Rec."Record ID to Approve")
                 {
                     ApplicationArea = All;
                 }
-                field("Number of Rejected Requests"; "Number of Rejected Requests")
+                field("Delegation Date Formula"; Rec."Delegation Date Formula")
                 {
                     ApplicationArea = All;
                 }
-                field("Entry No."; "Entry No.")
+                field("Number of Approved Requests"; Rec."Number of Approved Requests")
                 {
                     ApplicationArea = All;
                 }
-                field("Workflow Step Instance ID"; "Workflow Step Instance ID")
+                field("Number of Rejected Requests"; Rec."Number of Rejected Requests")
                 {
                     ApplicationArea = All;
                 }
-                field("Related to Change"; "Related to Change")
+                field("Entry No."; Rec."Entry No.")
+                {
+                    ApplicationArea = All;
+                }
+                field("Workflow Step Instance ID"; Rec."Workflow Step Instance ID")
+                {
+                    ApplicationArea = All;
+                }
+                field("Related to Change"; Rec."Related to Change")
                 {
                     ApplicationArea = All;
                 }

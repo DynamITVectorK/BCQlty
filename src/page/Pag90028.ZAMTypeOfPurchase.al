@@ -15,12 +15,12 @@ page 90028 ZAMTypeOfPurchase
         {
             repeater(General)
             {
-                field(ZAM_Code; ZAM_Code)
+                field(ZAM_Code; Rec.ZAM_Code)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Code field.';
                 }
-                field(ZAM_Description; ZAM_Description)
+                field(ZAM_Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Description field.';

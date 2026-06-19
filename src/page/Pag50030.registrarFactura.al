@@ -10,11 +10,11 @@ page 50030 registrarFactura
         {
             repeater(Group)
             {
-                field(QR_URL; QR_URL)
+                field(QR_URL; Rec.QR_URL)
                 {
                     ApplicationArea = All;
                 }
-                field(QR_ID; QR_ID)
+                field(QR_ID; Rec.QR_ID)
                 {
                     ApplicationArea = All;
                 }

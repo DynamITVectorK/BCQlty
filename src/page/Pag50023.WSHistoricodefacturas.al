@@ -16,35 +16,35 @@ page 50023 "WS Historico de facturas"
         {
             repeater(Group)
             {
-                field("Bill-to Customer No."; "Bill-to Customer No.")
+                field("Bill-to Customer No."; Rec."Bill-to Customer No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Posting Date"; "Posting Date")
+                field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;
                 }
-                field("No."; "No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
                 }
-                field(Amount; Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = All;
                 }
-                field("Importe IVA"; vIVA)
+                field("Importe IVA"; Rec.vIVA)
                 {
                     ApplicationArea = All;
                 }
-                field("Amount Including VAT"; "Amount Including VAT")
+                field("Amount Including VAT"; Rec."Amount Including VAT")
                 {
                     ApplicationArea = All;
                 }
-                field("Posting Description"; "Posting Description")
+                field("Posting Description"; Rec."Posting Description")
                 {
                     ApplicationArea = All;
                 }
-                field(Fichero_Base_64; vFicheroBase64)
+                field(Fichero_Base_64; Rec.vFicheroBase64)
                 {
                     ApplicationArea = All;
                     Caption = 'Fichero_Base_64';
@@ -75,11 +75,11 @@ page 50023 "WS Historico de facturas"
         tSalesReceivablesSetup.GET;
         CLEAR(vlLimitDate);
         vlLimitDate := CALCDATE('-' + FORMAT(tSalesReceivablesSetup."Plazo desde para docs WEB"), WORKDATE);
-        SETFILTER("Posting Date", '>%1', vlLimitDate);
+        Rec.SETFILTER("Posting Date", '>%1', vlLimitDate);
 
-        CALCFIELDS(ClienteBloqueado, ContraseñaWeb);
-        SETRANGE(ClienteBloqueado, FALSE);
-        SETFILTER(ContraseñaWeb, '<>%1', '');
+        Rec.CALCFIELDS(ClienteBloqueado, ContraseñaWeb);
+        Rec.SETRANGE(ClienteBloqueado, FALSE);
+        Rec.SETFILTER(ContraseñaWeb, '<>%1', '');
     end;
 
     var

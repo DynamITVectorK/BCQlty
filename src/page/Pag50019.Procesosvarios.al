@@ -10,7 +10,7 @@ page 50019 "Procesos varios"
     {
         area(content)
         {
-            field(vFechaDesde; vFechaDesde)
+            field(vFechaDesde; Rec.vFechaDesde)
             {
                 ApplicationArea = All;
                 Caption = 'Fecha de la lectura';

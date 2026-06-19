@@ -15,15 +15,15 @@ page 90008 ZAMSettlementPeriods
         {
             repeater(Group)
             {
-                field("Code"; ZAM_Code)
+                field("Code"; Rec.ZAM_Code)
                 {
                     ApplicationArea = All;
                 }
-                field(Description; ZAM_Description)
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                 }
-                field("Settlement Period"; "ZAM_Settlement Period")
+                field("Settlement Period"; Rec."ZAM_Settlement Period")
                 {
                     ApplicationArea = All;
                 }

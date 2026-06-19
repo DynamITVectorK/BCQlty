@@ -15,15 +15,15 @@ page 90018 ZAMTicketBaiCreditMemoTypes
         {
             repeater(Group)
             {
-                field("Code"; ZAM_Code)
+                field("Code"; Rec.ZAM_Code)
                 {
                     ApplicationArea = All;
                 }
-                field(Description; ZAM_Description)
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                 }
-                field(Substitute; ZAM_Substitute)
+                field(Substitute; Rec.ZAM_Substitute)
                 {
                     ApplicationArea = All;
                 }

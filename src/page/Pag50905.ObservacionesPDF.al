@@ -7,7 +7,7 @@ page 50905 "Observaciones PDF"
     {
         area(content)
         {
-            field(vObservaciones; vObservaciones)
+            field(vObservaciones; Rec.vObservaciones)
             {
                 ApplicationArea = All;
                 MultiLine = true;

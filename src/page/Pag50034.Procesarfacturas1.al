@@ -14,7 +14,7 @@ page 50034 "Procesar facturas1"
         {
             repeater(Group)
             {
-                field(Number; Number)
+                field(Number; Rec.Number)
                 {
                     ApplicationArea = All;
                 }

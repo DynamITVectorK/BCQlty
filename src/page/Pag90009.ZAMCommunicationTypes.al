@@ -15,11 +15,11 @@ page 90009 ZAMCommunicationTypes
         {
             repeater(Group)
             {
-                field("Code"; ZAM_Code)
+                field("Code"; Rec.ZAM_Code)
                 {
                     ApplicationArea = All;
                 }
-                field(Description; ZAM_Description)
+                field(Description; Rec.ZAM_Description)
                 {
                     ApplicationArea = All;
                 }

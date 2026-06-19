@@ -14,51 +14,51 @@ page 50000 "Lecturas DORLET"
         {
             repeater(Group)
             {
-                field("Fecha ticket"; "Fecha ticket")
+                field("Fecha ticket"; Rec."Fecha ticket")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Ticket"; "No. Ticket")
+                field("No. Ticket"; Rec."No. Ticket")
                 {
                     ApplicationArea = All;
                 }
-                field(Signo; Signo)
+                field(Signo; Rec.Signo)
                 {
                     ApplicationArea = All;
                 }
-                field("Importe sin IVA"; "Importe sin IVA")
+                field("Importe sin IVA"; Rec."Importe sin IVA")
                 {
                     ApplicationArea = All;
                 }
-                field("% IVA"; "% IVA")
+                field("% IVA"; Rec."% IVA")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe IVA"; "Importe IVA")
+                field("Importe IVA"; Rec."Importe IVA")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Cliente"; "No. Cliente")
+                field("No. Cliente"; Rec."No. Cliente")
                 {
                     ApplicationArea = All;
                 }
-                field("CIF de la empresa"; "CIF de la empresa")
+                field("CIF de la empresa"; Rec."CIF de la empresa")
                 {
                     ApplicationArea = All;
                 }
-                field(Puesto; Puesto)
+                field(Puesto; Rec.Puesto)
                 {
                     ApplicationArea = All;
                 }
-                field("Nº Pre factura"; "Nº Pre factura")
+                field("Nº Pre factura"; Rec."Nº Pre factura")
                 {
                     ApplicationArea = All;
                 }
-                field("Nº Factura registrada"; "Nº Factura registrada")
+                field("Nº Factura registrada"; Rec."Nº Factura registrada")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha factura registrada"; "Fecha factura registrada")
+                field("Fecha factura registrada"; Rec."Fecha factura registrada")
                 {
                     ApplicationArea = All;
                 }

@@ -18,31 +18,31 @@ page 50512 "Gestión de lecturas de Agua BO"
         {
             repeater(Group)
             {
-                field("No. Orden de lectura"; "No. Orden de lectura")
+                field("No. Orden de lectura"; Rec."No. Orden de lectura")
                 {
                     ApplicationArea = All;
                 }
-                field("No. puesto"; "No. puesto")
+                field("No. puesto"; Rec."No. puesto")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Contador"; "No. Contador")
+                field("No. Contador"; Rec."No. Contador")
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre cliente"; "Nombre cliente")
+                field("Nombre cliente"; Rec."Nombre cliente")
                 {
                     ApplicationArea = All;
                 }
-                field("No. Contrato"; "No. Contrato")
+                field("No. Contrato"; Rec."No. Contrato")
                 {
                     ApplicationArea = All;
                 }
-                field(Destino; Destino)
+                field(Destino; Rec.Destino)
                 {
                     ApplicationArea = All;
                 }
-                field(Tarifa; Tarifa)
+                field(Tarifa; Rec.Tarifa)
                 {
                     ApplicationArea = All;
                 }

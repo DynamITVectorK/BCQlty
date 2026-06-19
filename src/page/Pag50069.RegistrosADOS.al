@@ -10,127 +10,127 @@ page 50069 "Registros ADOS"
         {
             repeater(Group)
             {
-                field(NumReg; NumReg)
+                field(NumReg; Rec.NumReg)
                 {
                     ApplicationArea = All;
                 }
-                field(CodigoAdos; CodigoAdos)
+                field(CodigoAdos; Rec.CodigoAdos)
                 {
                     ApplicationArea = All;
                 }
-                field(RazonSocial; RazonSocial)
+                field(RazonSocial; Rec.RazonSocial)
                 {
                     ApplicationArea = All;
                 }
-                field(CIF; CIF)
+                field(CIF; Rec.CIF)
                 {
                     ApplicationArea = All;
                 }
-                field(Direccion; Direccion)
+                field(Direccion; Rec.Direccion)
                 {
                     ApplicationArea = All;
                 }
-                field(Poblacion; Poblacion)
+                field(Poblacion; Rec.Poblacion)
                 {
                     ApplicationArea = All;
                 }
-                field(CodigoPostal; CodigoPostal)
+                field(CodigoPostal; Rec.CodigoPostal)
                 {
                     ApplicationArea = All;
                 }
-                field(Dim1; Dim1)
+                field(Dim1; Rec.Dim1)
                 {
                     ApplicationArea = All;
                 }
-                field(Fecha; Fecha)
+                field(Fecha; Rec.Fecha)
                 {
                     ApplicationArea = All;
                 }
-                field(Origen; Origen)
+                field(Origen; Rec.Origen)
                 {
                     ApplicationArea = All;
                 }
-                field(Sector; Sector)
+                field(Sector; Rec.Sector)
                 {
                     ApplicationArea = All;
                 }
-                field(Producto; Producto)
+                field(Producto; Rec.Producto)
                 {
                     ApplicationArea = All;
                 }
-                field(Categoria; Categoria)
+                field(Categoria; Rec.Categoria)
                 {
                     ApplicationArea = All;
                 }
-                field(Importe; Importe)
+                field(Importe; Rec.Importe)
                 {
                     ApplicationArea = All;
                 }
-                field(ImporteSinIVA; ImporteSinIVA)
+                field(ImporteSinIVA; Rec.ImporteSinIVA)
                 {
                     ApplicationArea = All;
                 }
-                field(Ope; Ope)
+                field(Ope; Rec.Ope)
                 {
                     ApplicationArea = All;
                 }
-                field(UdRecauda; UdRecauda)
+                field(UdRecauda; Rec.UdRecauda)
                 {
                     ApplicationArea = All;
                 }
-                field(Remesa; Remesa)
+                field(Remesa; Rec.Remesa)
                 {
                     ApplicationArea = All;
                 }
-                field(MedPago; MedPago)
+                field(MedPago; Rec.MedPago)
                 {
                     ApplicationArea = All;
                 }
-                field(Tique; Tique)
+                field(Tique; Rec.Tique)
                 {
                     ApplicationArea = All;
                 }
-                field(Cantidad; Cantidad)
+                field(Cantidad; Rec.Cantidad)
                 {
                     ApplicationArea = All;
                 }
-                field(FechaIni; FechaIni)
+                field(FechaIni; Rec.FechaIni)
                 {
                     ApplicationArea = All;
                 }
-                field(FechaFin; FechaFin)
+                field(FechaFin; Rec.FechaFin)
                 {
                     ApplicationArea = All;
                 }
-                field(Tratado; Tratado)
+                field(Tratado; Rec.Tratado)
                 {
                     ApplicationArea = All;
                 }
-                field(FechaTratado; FechaTratado)
+                field(FechaTratado; Rec.FechaTratado)
                 {
                     ApplicationArea = All;
                 }
-                field(NumPreFactura; NumPreFactura)
+                field(NumPreFactura; Rec.NumPreFactura)
                 {
                     ApplicationArea = All;
                 }
-                field(NumFactura; NumFactura)
+                field(NumFactura; Rec.NumFactura)
                 {
                     ApplicationArea = All;
                 }
-                field(NumFacturaADOS; NumFacturaADOS)
+                field(NumFacturaADOS; Rec.NumFacturaADOS)
                 {
                     ApplicationArea = All;
                 }
-                field(NumFacturaADOSanul; NumFacturaADOSanul)
+                field(NumFacturaADOSanul; Rec.NumFacturaADOSanul)
                 {
                     ApplicationArea = All;
                 }
-                field(CodigoClienteNAV; CodigoClienteNAV)
+                field(CodigoClienteNAV; Rec.CodigoClienteNAV)
                 {
                     ApplicationArea = All;
                 }
-                field(Caducado; Caducado)
+                field(Caducado; Rec.Caducado)
                 {
                     ApplicationArea = All;
                 }

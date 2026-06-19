@@ -17,103 +17,103 @@ page 50035 "Expedientes - Lotes"
         {
             repeater(Group)
             {
-                field("No. Expediente"; "No. Expediente")
+                field("No. Expediente"; Rec."No. Expediente")
                 {
                     ApplicationArea = All;
                 }
-                field(Lote; Lote)
+                field(Lote; Rec.Lote)
                 {
                     ApplicationArea = All;
                 }
-                field("Descripción lote"; "Descripción lote")
+                field("Descripción lote"; Rec."Descripción lote")
                 {
                     ApplicationArea = All;
                 }
-                field("Descripción expediente"; "Descripción expediente")
+                field("Descripción expediente"; Rec."Descripción expediente")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha expediente"; "Fecha expediente")
+                field("Fecha expediente"; Rec."Fecha expediente")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe lote"; "Importe lote")
+                field("Importe lote"; Rec."Importe lote")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe pdte. convertir"; "Importe pdte. convertir")
+                field("Importe pdte. convertir"; Rec."Importe pdte. convertir")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe prefacturas"; "Importe prefacturas")
+                field("Importe prefacturas"; Rec."Importe prefacturas")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe facturas registradas"; "Importe facturas registradas")
+                field("Importe facturas registradas"; Rec."Importe facturas registradas")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe abonos registrados"; "Importe abonos registrados")
+                field("Importe abonos registrados"; Rec."Importe abonos registrados")
                 {
                     ApplicationArea = All;
                 }
-                field(Adjudicatario; Adjudicatario)
+                field(Adjudicatario; Rec.Adjudicatario)
                 {
                     ApplicationArea = All;
                 }
-                field(Prórroga; Prórroga)
+                field(Prórroga; Rec.Prórroga)
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha prórroga"; "Fecha prórroga")
+                field("Fecha prórroga"; Rec."Fecha prórroga")
                 {
                     ApplicationArea = All;
                 }
-                field("No. prórroga"; "No. prórroga")
+                field("No. prórroga"; Rec."No. prórroga")
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre Adjudicatario"; "Nombre Adjudicatario")
+                field("Nombre Adjudicatario"; Rec."Nombre Adjudicatario")
                 {
                     ApplicationArea = All;
                 }
-                field("Adjudicatario Vta"; "Adjudicatario Vta")
+                field("Adjudicatario Vta"; Rec."Adjudicatario Vta")
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre Adjudicatario Vta"; "Nombre Adjudicatario Vta")
+                field("Nombre Adjudicatario Vta"; Rec."Nombre Adjudicatario Vta")
                 {
                     ApplicationArea = All;
                 }
-                field("Estado Expediente"; "Estado Expediente")
+                field("Estado Expediente"; Rec."Estado Expediente")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha adjudicacion"; "Fecha adjudicacion")
+                field("Fecha adjudicacion"; Rec."Fecha adjudicacion")
                 {
                     ApplicationArea = All;
                 }
-                field("Organo de decisión"; "Organo de decisión")
+                field("Organo de decisión"; Rec."Organo de decisión")
                 {
                     ApplicationArea = All;
                 }
-                field(Desviación; Desviación)
+                field(Desviación; Rec.Desviación)
                 {
                     ApplicationArea = All;
                 }
-                field("Importe prorroga"; "Importe prorroga")
+                field("Importe prorroga"; Rec."Importe prorroga")
                 {
                     ApplicationArea = All;
                 }
-                field(Lote_Expediente; Lote_Expediente)
+                field(Lote_Expediente; Rec.Lote_Expediente)
                 {
                     ApplicationArea = All;
                 }
-                field("Cuenta Contable Imputacion"; "Cuenta Contable Imputacion")
+                field("Cuenta Contable Imputacion"; Rec."Cuenta Contable Imputacion")
                 {
                     ApplicationArea = All;
                 }
-                field(Ejercicio; Ejercicio)
+                field(Ejercicio; Rec.Ejercicio)
                 {
                     ApplicationArea = All;
                     Caption = 'Ejercicio';
@@ -121,72 +121,72 @@ page 50035 "Expedientes - Lotes"
                     OptionCaption = 'Ejercicio';
                     StyleExpr = TRUE;
                 }
-                field(tipotrabajo; tipotrabajo)
+                field(tipotrabajo; Rec.tipotrabajo)
                 {
                     ApplicationArea = All;
                     Caption = 'Tipo trabajo';
                 }
-                field(dptosolicitante; dptosolicitante)
+                field(dptosolicitante; Rec.dptosolicitante)
                 {
                     ApplicationArea = All;
                     Caption = 'Dpto. solicitante';
                 }
-                field(estado; estado)
+                field(estado; Rec.estado)
                 {
                     ApplicationArea = All;
                     Caption = 'Estado';
                 }
-                field(fechapublicacion; fechapublicacion)
+                field(fechapublicacion; Rec.fechapublicacion)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha publicación';
                 }
-                field(fechapropuesta; fechapropuesta)
+                field(fechapropuesta; Rec.fechapropuesta)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha propuesta';
                 }
-                field(fechaaperturaplicas; fechaaperturaplicas)
+                field(fechaaperturaplicas; Rec.fechaaperturaplicas)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha apertura plicas';
                 }
-                field(importepresupuesto; importepresupuesto)
+                field(importepresupuesto; Rec.importepresupuesto)
                 {
                     ApplicationArea = All;
                     Caption = 'Importe del presupuesto';
                 }
-                field(basesexpediente; basesexpediente)
+                field(basesexpediente; Rec.basesexpediente)
                 {
                     ApplicationArea = All;
                     Caption = 'Bases expediente';
                 }
-                field(lotesnumero; lotesnumero)
+                field(lotesnumero; Rec.lotesnumero)
                 {
                     ApplicationArea = All;
                     Caption = 'Lotes';
                 }
-                field(importelotes; importelotes)
+                field(importelotes; Rec.importelotes)
                 {
                     ApplicationArea = All;
                     Caption = '<Total Importe Lotes>';
                 }
-                field(importeadjudicado; importeadjudicado)
+                field(importeadjudicado; Rec.importeadjudicado)
                 {
                     ApplicationArea = All;
                     Caption = 'Importe adjudicado';
                 }
-                field(fechainiciocontrato; fechainiciocontrato)
+                field(fechainiciocontrato; Rec.fechainiciocontrato)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha inicio del contrato';
                 }
-                field(fechafincontrato; fechafincontrato)
+                field(fechafincontrato; Rec.fechafincontrato)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha finalización contrato';
                 }
-                field(fechacierreexpediente; fechacierreexpediente)
+                field(fechacierreexpediente; Rec.fechacierreexpediente)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha cierre expediente';

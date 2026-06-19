@@ -12,41 +12,41 @@ page 50033 "Lista Lotes Subform"
         {
             repeater(Group)
             {
-                field("No. Expediente"; "No. Expediente")
+                field("No. Expediente"; Rec."No. Expediente")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field(Lote; Lote)
+                field(Lote; Rec.Lote)
                 {
                     ApplicationArea = All;
                 }
-                field("Descripción lote"; "Descripción lote")
+                field("Descripción lote"; Rec."Descripción lote")
                 {
                     ApplicationArea = All;
                 }
-                field("Descripción expediente"; "Descripción expediente")
+                field("Descripción expediente"; Rec."Descripción expediente")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha expediente"; "Fecha expediente")
+                field("Fecha expediente"; Rec."Fecha expediente")
                 {
                     ApplicationArea = All;
                 }
-                field("Fecha adjudicacion"; "Fecha adjudicacion")
+                field("Fecha adjudicacion"; Rec."Fecha adjudicacion")
                 {
                     ApplicationArea = All;
                 }
-                field(Adjudicatario; Adjudicatario)
+                field(Adjudicatario; Rec.Adjudicatario)
                 {
                     ApplicationArea = All;
                 }
-                field("Nombre Adjudicatario"; "Nombre Adjudicatario")
+                field("Nombre Adjudicatario"; Rec."Nombre Adjudicatario")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field(Prórroga; Prórroga)
+                field(Prórroga; Rec.Prórroga)
                 {
                     ApplicationArea = All;
 
@@ -55,59 +55,60 @@ page 50033 "Lista Lotes Subform"
                         fEditarProrroga;
                     end;
                 }
-                field("Fecha prórroga"; "Fecha prórroga")
+                field("Fecha prórroga"; Rec."Fecha prórroga")
                 {
                     ApplicationArea = All;
                     Editable = vEditarProrroga;
                 }
-                field("Importe prorroga"; "Importe prorroga")
+                field("Importe prorroga"; Rec."Importe prorroga")
                 {
                     ApplicationArea = All;
                     Editable = vEditarProrroga;
                 }
-                field("No. prórroga"; "No. prórroga")
+                field("No. prórroga"; Rec."No. prórroga")
                 {
                     ApplicationArea = All;
                     Editable = vEditarProrroga;
                 }
-                field("Importe lote"; "Importe lote")
+                field("Importe lote"; Rec."Importe lote")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe pdte. convertir"; "Importe pdte. convertir")
+                field("Importe pdte. convertir"; Rec."Importe pdte. convertir")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe prefacturas"; "Importe prefacturas")
+                field("Importe prefacturas"; Rec."Importe prefacturas")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe facturas registradas"; "Importe facturas registradas")
+                field("Importe facturas registradas"; Rec."Importe facturas registradas")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe abonos registrados"; "Importe abonos registrados")
+                field("Importe abonos registrados"; Rec."Importe abonos registrados")
                 {
                     ApplicationArea = All;
                 }
-                field("Importe lote"-"Importe facturas registradas" + "Importe abonos registrados"; "Importe lote"-"Importe facturas registradas"+"Importe abonos registrados")
+                field("Importe lote"-"Importe facturas registradas" + "Importe abonos registrados"; Rec."Importe lote" - Rec."Importe facturas registradas" + Rec."Importe abonos registrados")
                 {
                     ApplicationArea = All;
                     Caption = 'Importe pendiente';
                 }
-                field(("Importe lote" + "Importe prorroga") - "Importe facturas registradas" + "Importe abonos registrados";("Importe lote"+"Importe prorroga")-"Importe facturas registradas"+"Importe abonos registrados")
+                field(("Importe lote" + "Importe prorroga") - "Importe facturas registradas" + "Importe abonos registrados";(Rec."Importe lote" + Rec."Importe prorroga") - Rec."Importe facturas registradas" + Rec."Importe abonos registrados")
                 {
+                    ApplicationArea = All;
                     Caption = 'Importe pendiente con prorroga';
                 }
-                field("Organo de decisión";"Organo de decisión")
+                field("Organo de decisión"; Rec."Organo de decisión")
                 {
                     ApplicationArea = All;
                 }
-                field(Desviación;Desviación)
+                field(Desviación; Rec.Desviación)
                 {
                     ApplicationArea = All;
                 }
-                field("Cuenta Contable Imputacion";"Cuenta Contable Imputacion")
+                field("Cuenta Contable Imputacion"; Rec."Cuenta Contable Imputacion")
                 {
                     ApplicationArea = All;
                 }
@@ -206,12 +207,12 @@ page 50033 "Lista Lotes Subform"
 
     trigger OnAfterGetCurrRecord()
     begin
-        CALCFIELDS("Nombre Adjudicatario","Fecha adjudicacion","Organo de decisión");
+        Rec.CALCFIELDS("Nombre Adjudicatario","Fecha adjudicacion","Organo de decisión");
     end;
 
     trigger OnAfterGetRecord()
     begin
-        CALCFIELDS("Nombre Adjudicatario","Fecha adjudicacion","Organo de decisión");
+        Rec.CALCFIELDS("Nombre Adjudicatario","Fecha adjudicacion","Organo de decisión");
     end;
 
     trigger OnDeleteRecord(): Boolean

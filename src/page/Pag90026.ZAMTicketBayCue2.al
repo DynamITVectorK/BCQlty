@@ -13,23 +13,23 @@ page 90026 ZAMTicketBayCue2
             cuegroup(Group)
             {
                 Caption = 'Documents';
-                field("On Hold Documents"; "ZAM_On Hold Documents")
+                field("On Hold Documents"; Rec."ZAM_On Hold Documents")
                 {
                     ApplicationArea = All;
                 }
-                field("Ready Documents"; "ZAM_Ready Documents")
+                field("Ready Documents"; Rec."ZAM_Ready Documents")
                 {
                     ApplicationArea = All;
                 }
-                field("Sent Documents"; "ZAM_Sent Documents")
+                field("Sent Documents"; Rec."ZAM_Sent Documents")
                 {
                     ApplicationArea = All;
                 }
-                field("To Correct Documents"; "ZAM_To Correct Documents")
+                field("To Correct Documents"; Rec."ZAM_To Correct Documents")
                 {
                     ApplicationArea = All;
                 }
-                field("Error Documents"; "ZAM_Error Documents")
+                field("Error Documents"; Rec."ZAM_Error Documents")
                 {
                     ApplicationArea = All;
                 }

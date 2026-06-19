@@ -9,15 +9,15 @@ page 50031 "proceso de factura"
     {
         area(content)
         {
-            field(VFactura; VFactura)
+            field(VFactura; Rec.VFactura)
             {
                 ApplicationArea = All;
             }
-            field(VQR; VQR)
+            field(VQR; Rec.VQR)
             {
                 ApplicationArea = All;
             }
-            field(VURL; VURL)
+            field(VURL; Rec.VURL)
             {
                 ApplicationArea = All;
             }

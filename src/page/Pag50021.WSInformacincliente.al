@@ -17,77 +17,78 @@ page 50021 "WS Información cliente"
         {
             repeater(Group)
             {
-                field("No.";"No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field(Name;Name)
+                field(Name; Rec.Name)
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("VAT Registration No.";"VAT Registration No.")
+                field("VAT Registration No."; Rec."VAT Registration No.")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field(Address;Address)
+                field(Address; Rec.Address)
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Address 2";"Address 2")
+                field("Address 2"; Rec."Address 2")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field(City;City)
+                field(City; Rec.City)
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Post Code";"Post Code")
+                field("Post Code"; Rec."Post Code")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field(County;County)
+                field(County; Rec.County)
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Phone No.";"Phone No.")
+                field("Phone No."; Rec."Phone No.")
                 {
                     ApplicationArea = All;
                 }
-                field("Fax No.";"Fax No.")
+                field("Fax No."; Rec."Fax No.")
                 {
                     ApplicationArea = All;
                 }
-                field("E-mail Comunicacion";"E-mail Comunicacion")
+                field("E-mail Comunicacion"; Rec."E-mail Comunicacion")
                 {
                     ApplicationArea = All;
                 }
-                field("E-Mail";"E-Mail")
+                field("E-Mail"; Rec."E-Mail")
                 {
                     ApplicationArea = All;
                 }
-                field(Contact;Contact)
+                field(Contact; Rec.Contact)
                 {
                     ApplicationArea = All;
                 }
-                field("Forma de pago";vPaymentMethod)
+                field("Forma de pago"; Rec.vPaymentMethod)
                 {
                     ApplicationArea = All;
                 }
-                field("Contraseña Web";"Contraseña Web")
+                field("Contraseña Web"; Rec."Contraseña Web")
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Balance (LCY)";"Balance (LCY)")
+                field("Balance (LCY)";Rec."Balance (LCY)")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
             }
@@ -100,7 +101,7 @@ page 50021 "WS Información cliente"
 
     trigger OnAfterGetRecord()
     begin
-        CALCFIELDS("Balance (LCY)");
+        Rec.CALCFIELDS("Balance (LCY)");
         CLEAR(tPaymentMethod);
         tPaymentMethod.GET("Payment Method Code");
         vPaymentMethod := tPaymentMethod.Description;

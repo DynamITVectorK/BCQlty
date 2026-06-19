@@ -24,17 +24,17 @@ page 50064 "Líneas FacturaE"
         {
             repeater()
             {
-                field("ID Factura"; "ID Factura")
+                field("ID Factura"; Rec."ID Factura")
                 {
                     ApplicationArea = All;
                     Editable = "ID FacturaEditable";
                 }
-                field("Cuenta NAV"; "Cuenta NAV")
+                field("Cuenta NAV"; Rec."Cuenta NAV")
                 {
                     ApplicationArea = All;
                     Editable = "Cuenta NAVEditable";
                 }
-                field("Cod Activo"; "Cod Activo")
+                field("Cod Activo"; Rec."Cod Activo")
                 {
                     ApplicationArea = All;
                     Editable = "Cod ActivoEditable";
@@ -52,7 +52,7 @@ page 50064 "Líneas FacturaE"
                             fFA.EDITABLE(FALSE);
                             IF fFA.RUNMODAL = ACTION::LookupOK THEN BEGIN
                                 fFA.GETRECORD(rFA);
-                                VALIDATE("Cod Activo", rFA."No.");
+                                Rec.VALIDATE("Cod Activo", rFA."No.");
                             END;
                         END
                         ELSE
@@ -60,92 +60,92 @@ page 50064 "Líneas FacturaE"
                         //I00109 Mod. S2G (JSM) 22-10-14:
                     end;
                 }
-                field(CODIGO; CODIGO)
+                field(CODIGO; Rec.CODIGO)
                 {
                     ApplicationArea = All;
                     Editable = CODIGOEditable;
                 }
-                field(DESCRIPCION; DESCRIPCION)
+                field(DESCRIPCION; Rec.DESCRIPCION)
                 {
                     ApplicationArea = All;
                     Editable = DESCRIPCIONEditable;
                 }
-                field(CANTIDAD; CANTIDAD)
+                field(CANTIDAD; Rec.CANTIDAD)
                 {
                     ApplicationArea = All;
                     Editable = CANTIDADEditable;
                 }
-                field(PRECIO; PRECIO)
+                field(PRECIO; Rec.PRECIO)
                 {
                     ApplicationArea = All;
                     Editable = PRECIOEditable;
                 }
-                field(Importe; Importe)
+                field(Importe; Rec.Importe)
                 {
                     ApplicationArea = All;
                 }
-                field(DESCUENTO; DESCUENTO)
+                field(DESCUENTO; Rec.DESCUENTO)
                 {
                     ApplicationArea = All;
                     Editable = DESCUENTOEditable;
                 }
-                field(Tasas; Tasas)
+                field(Tasas; Rec.Tasas)
                 {
                     ApplicationArea = All;
                 }
-                field("Amount Including VAT"; "Amount Including VAT")
+                field("Amount Including VAT"; Rec."Amount Including VAT")
                 {
                     ApplicationArea = All;
                     Editable = true;
                 }
-                field("Código IVA NAV"; "Código IVA NAV")
+                field("Código IVA NAV"; Rec."Código IVA NAV")
                 {
                     ApplicationArea = All;
                 }
-                field(Retenciones; Retenciones)
+                field(Retenciones; Rec.Retenciones)
                 {
                     ApplicationArea = All;
                     Editable = RetencionesEditable;
                 }
-                field("Código IRPF NAV"; "Código IRPF NAV")
+                field("Código IRPF NAV"; Rec."Código IRPF NAV")
                 {
                     ApplicationArea = All;
                 }
-                field(EXPEDIENTE; EXPEDIENTE)
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                }
-                field(Lote; Lote)
+                field(EXPEDIENTE; Rec.EXPEDIENTE)
                 {
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("REFERENCIA DEL EMISOR"; "REFERENCIA DEL EMISOR")
+                field(Lote; Rec.Lote)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field("REFERENCIA DEL EMISOR"; Rec."REFERENCIA DEL EMISOR")
                 {
                     ApplicationArea = All;
                     Editable = "REFERENCIA DEL EMISOREditable";
                 }
-                field("REFERENCIA DEL RECEPTOR"; "REFERENCIA DEL RECEPTOR")
+                field("REFERENCIA DEL RECEPTOR"; Rec."REFERENCIA DEL RECEPTOR")
                 {
                     ApplicationArea = All;
                     Editable = REFERENCIADELRECEPTOREditable;
                 }
-                field("Pedido NAV"; "Pedido NAV")
+                field("Pedido NAV"; Rec."Pedido NAV")
                 {
                     ApplicationArea = All;
                     Editable = "Pedido NAVEditable";
                     Visible = false;
                 }
-                field("Shortcut Dimension 1 Code"; "Shortcut Dimension 1 Code")
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Shortcut Dimension 2 Code"; "Shortcut Dimension 2 Code")
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
                 {
                     ApplicationArea = All;
                 }
-                field("Dimension Set ID"; "Dimension Set ID")
+                field("Dimension Set ID"; Rec."Dimension Set ID")
                 {
                     ApplicationArea = All;
                     Visible = false;
