@@ -7,9 +7,8 @@ page 90010 ZAMTicketBaiDocs
     ModifyAllowed = false;
     PageType = List;
     UsageCategory = Administration;
-    PromotedActionCategories = 'Nuevo,Procesar,Informar,Comunicación';
     SourceTable = 90001;
-    SourceTableView = SORTING (ZAM_Company, ZAM_Status, ZAM_Creation Date)
+    SourceTableView = SORTING(ZAM_Company, ZAM_Status, "ZAM_Creation Date")
                       ORDER(Descending);
 
     layout
@@ -21,7 +20,7 @@ page 90010 ZAMTicketBaiDocs
                 field(ZAM_Status; Rec.ZAM_Status)
                 {
                     ApplicationArea = All;
-                    StyleExpr = statuscolor;
+                    StyleExpr = StatusColor;
                 }
                 field(ZAM_Book; Rec.ZAM_Book)
                 {
@@ -135,43 +134,39 @@ page 90010 ZAMTicketBaiDocs
             {
                 Caption = 'Acciones';
                 Image = Travel;
+
                 action(Send)
                 {
                     ApplicationArea = All;
-                    Caption = 'Envíar';
+                    Caption = 'Enviar';
                     Image = Process;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
                         TBHeaderTBL: Record 90001;
                     begin
-                        CurrPage.SETSELECTIONFILTER(TBHeaderTBL);
-                        IF Rec.MassiveDelivery(TBHeaderTBL) THEN
-                            CurrPage.UPDATE(TRUE);
+                        CurrPage.SetSelectionFilter(TBHeaderTBL);
+                        if Rec.MassiveDelivery(TBHeaderTBL) then
+                            CurrPage.Update(true);
                     end;
                 }
                 action(Restart)
                 {
                     ApplicationArea = All;
-                    Caption = 'cambiar estado';
+                    Caption = 'Cambiar estado';
                     Image = Start;
-                    Promoted = true;
-                    PromotedCategory = Process;
 
                     trigger OnAction()
                     var
                         TBHeaderTBL: Record 90001;
                     begin
-                        CurrPage.SETSELECTIONFILTER(TBHeaderTBL);
-                        IF TBHeaderTBL.FINDSET() THEN
-                            REPEAT
+                        CurrPage.SetSelectionFilter(TBHeaderTBL);
+                        if TBHeaderTBL.FindSet() then
+                            repeat
                                 TBHeaderTBL.ChangeStatus();
-                            UNTIL TBHeaderTBL.NEXT() = 0;
-                        CurrPage.UPDATE(TRUE);
-                        CurrPage.UPDATE(TRUE);
+                            until TBHeaderTBL.Next() = 0;
+
+                        CurrPage.Update(true);
                     end;
                 }
                 action(CancelShipment)
@@ -179,21 +174,18 @@ page 90010 ZAMTicketBaiDocs
                     ApplicationArea = All;
                     Caption = 'Cancelar envío';
                     Image = CancelledEntries;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
                         TBHeaderTBL: Record 90001;
                     begin
-                        CurrPage.SETSELECTIONFILTER(TBHeaderTBL);
-                        IF TBHeaderTBL.FINDSET() THEN
-                            REPEAT
+                        CurrPage.SetSelectionFilter(TBHeaderTBL);
+                        if TBHeaderTBL.FindSet() then
+                            repeat
                                 TBHeaderTBL.CancelShipment();
-                            UNTIL TBHeaderTBL.NEXT() = 0;
-                        CurrPage.UPDATE(TRUE);
-                        CurrPage.UPDATE(TRUE);
+                            until TBHeaderTBL.Next() = 0;
+
+                        CurrPage.Update(true);
                     end;
                 }
                 action(ShowRequest)
@@ -201,16 +193,11 @@ page 90010 ZAMTicketBaiDocs
                     ApplicationArea = All;
                     Caption = 'Mostrar petición';
                     Image = ImportLog;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
-                    var
-                        TypeRecL: Option Request,Response,QR;
                     begin
                         Rec.ShowCommunication(TypeRecL::Request);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
                 }
                 action(ShowResponse)
@@ -218,16 +205,11 @@ page 90010 ZAMTicketBaiDocs
                     ApplicationArea = All;
                     Caption = 'Mostrar respuesta';
                     Image = ImportExport;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
-                    var
-                        TypeRecL: Option Request,Response,QR;
                     begin
                         Rec.ShowCommunication(TypeRecL::Response);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
                 }
                 action(ShowResponseQR)
@@ -235,15 +217,44 @@ page 90010 ZAMTicketBaiDocs
                     ApplicationArea = All;
                     Caption = 'Mostrar respuesta QR';
                     Image = ImportExport;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     begin
                         Rec.ShowCommunication(TypeRecL::QR);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
+                }
+            }
+        }
+
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Procesar';
+
+                actionref(Send_Promoted; Send)
+                {
+                }
+                actionref(Restart_Promoted; Restart)
+                {
+                }
+                actionref(CancelShipment_Promoted; CancelShipment)
+                {
+                }
+            }
+            group(Category_Communication)
+            {
+                Caption = 'Comunicación';
+
+                actionref(ShowRequest_Promoted; ShowRequest)
+                {
+                }
+                actionref(ShowResponse_Promoted; ShowResponse)
+                {
+                }
+                actionref(ShowResponseQR_Promoted; ShowResponseQR)
+                {
                 }
             }
         }
@@ -252,19 +263,18 @@ page 90010 ZAMTicketBaiDocs
     trigger OnAfterGetRecord()
     begin
         StatusColor := Rec.ReturnStatusColor();
-        CurrPage.EDITABLE(Rec.ReturnRecordEditable());
+        CurrPage.Editable(Rec.ReturnRecordEditable());
     end;
 
     trigger OnOpenPage()
     begin
-        Rec.FILTERGROUP(100);
-        Rec.SETRANGE(ZAM_Company, COMPANYNAME());
-        Rec.SETFILTER(ZAM_Status, '<>%1&<>%2', Rec.ZAM_Status::Confirmed, Rec.ZAM_Status::Cancelled);
-        Rec.FILTERGROUP(0);
+        Rec.FilterGroup(100);
+        Rec.SetRange(ZAM_Company, CompanyName());
+        Rec.SetFilter(ZAM_Status, '<>%1&<>%2', Rec.ZAM_Status::Confirmed, Rec.ZAM_Status::Cancelled);
+        Rec.FilterGroup(0);
     end;
 
     var
         TypeRecL: Option Request,Response,QR;
         StatusColor: Text;
 }
-
