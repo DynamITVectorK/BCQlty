@@ -4,7 +4,8 @@ page 90008 ZAMSettlementPeriods
 
     Caption = 'Settlement Periods';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (Settlement Period));
 
@@ -16,12 +17,15 @@ page 90008 ZAMSettlementPeriods
             {
                 field("Code"; ZAM_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Settlement Period"; "ZAM_Settlement Period")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

@@ -4,7 +4,8 @@ page 90021 ZAMWebServicesErrors
 
     Caption = 'Web Service Errors';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (WS Error));
 
@@ -16,12 +17,15 @@ page 90021 ZAMWebServicesErrors
             {
                 field("Code"; ZAM_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Error Type"; "ZAM_Error Type")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

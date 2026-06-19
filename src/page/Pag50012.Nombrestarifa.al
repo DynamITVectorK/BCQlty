@@ -1,7 +1,8 @@
 page 50012 "Nombres tarifa"
 {
     PageType = List;
-    SourceTable = Table50006;
+    UsageCategory = Administration;
+    SourceTable = 50006;
 
     layout
     {
@@ -11,12 +12,15 @@ page 50012 "Nombres tarifa"
             {
                 field("Codigo Tarifa"; "Codigo Tarifa")
                 {
+                    ApplicationArea = All;
                 }
                 field("Descripción Tarifa"; "Descripción Tarifa")
                 {
+                    ApplicationArea = All;
                 }
                 field(Tramos; Tramos)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

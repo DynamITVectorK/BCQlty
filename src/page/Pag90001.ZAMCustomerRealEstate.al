@@ -6,7 +6,8 @@ page 90001 "ZAM_CustomerRealEstate"
     CardPageID = ZAMCustomerRealEstatesCard;
     Editable = false;
     PageType = List;
-    SourceTable = Table90004;
+    UsageCategory = Administration;
+    SourceTable = 90004;
 
     layout
     {
@@ -16,31 +17,40 @@ page 90001 "ZAM_CustomerRealEstate"
             {
                 field("Real Estate No."; "ZAM_Real Estate No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
                 field(Situation; ZAM_Situation)
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAM_CustomerRealEstate;
                 }
                 field("Property Registration No."; "ZAM_Property Registration No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Address; ZAM_Address)
                 {
+                    ApplicationArea = All;
                 }
                 field(City; ZAM_City)
                 {
+                    ApplicationArea = All;
                 }
                 field("Post Code"; "ZAM_Post Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(County; ZAM_County)
                 {
+                    ApplicationArea = All;
                 }
                 field("Country/Region Code"; "ZAM_Country/Region Code")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

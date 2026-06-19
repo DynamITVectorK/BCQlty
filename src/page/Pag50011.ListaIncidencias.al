@@ -5,7 +5,8 @@ page 50011 "Lista Incidencias"
     CardPageID = "Ficha de Incidencias";
     Editable = false;
     PageType = List;
-    SourceTable = Table50004;
+    UsageCategory = Administration;
+    SourceTable = 50004;
 
     layout
     {
@@ -15,24 +16,31 @@ page 50011 "Lista Incidencias"
             {
                 field("No. incidencia"; "No. incidencia")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Contador"; "No. Contador")
                 {
+                    ApplicationArea = All;
                 }
                 field("Tipo incidencia"; "Tipo incidencia")
                 {
+                    ApplicationArea = All;
                 }
                 field("Área incidencia"; "Área incidencia")
                 {
+                    ApplicationArea = All;
                 }
                 field("Nombre cliente"; "Nombre cliente")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Puesto/Pabellón"; "No. Puesto/Pabellón")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. contrato"; "No. contrato")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

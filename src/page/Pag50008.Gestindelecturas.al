@@ -5,8 +5,9 @@ page 50008 "Gestión de lecturas "
     Caption = 'Gestión de lecturas ';
     Editable = false;
     PageType = List;
+    UsageCategory = Administration;
     PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
-    SourceTable = Table50002;
+    SourceTable = 50002;
     SourceTableView = SORTING (No. Orden de lectura)
                       ORDER(Ascending)
                       WHERE (Estado = CONST (Activo));
@@ -19,30 +20,39 @@ page 50008 "Gestión de lecturas "
             {
                 field("No. Orden de lectura"; "No. Orden de lectura")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. puesto"; "No. puesto")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Contador"; "No. Contador")
                 {
+                    ApplicationArea = All;
                 }
                 field("Nombre cliente"; "Nombre cliente")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Contrato"; "No. Contrato")
                 {
+                    ApplicationArea = All;
                 }
                 field(Destino; Destino)
                 {
+                    ApplicationArea = All;
                 }
                 field(Tarifa; Tarifa)
                 {
+                    ApplicationArea = All;
                 }
                 field(Condensadores; Condensadores)
                 {
+                    ApplicationArea = All;
                 }
                 field("Tipo contador"; "Tipo contador")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -63,6 +73,7 @@ page 50008 "Gestión de lecturas "
                 Caption = 'botones';
                 action("Nueva lectura ")
                 {
+                    ApplicationArea = All;
                     Image = NewDocument;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -70,8 +81,8 @@ page 50008 "Gestión de lecturas "
 
                     trigger OnAction()
                     var
-                        PageLectura: Page "50007";
-                        RLect: Record "50003";
+                        PageLectura: Page 50007;
+                        RLect: Record 50003;
                         vlFechaLect: Date;
                     begin
                         IF "No. Contador" = '' THEN
@@ -108,6 +119,7 @@ page 50008 "Gestión de lecturas "
                 }
                 action("Ficha Contador")
                 {
+                    ApplicationArea = All;
                     Image = CostCenter;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -117,6 +129,7 @@ page 50008 "Gestión de lecturas "
                 }
                 action(Contratos)
                 {
+                    ApplicationArea = All;
                     Caption = 'Contratos';
                     Image = "Order";
                     Promoted = true;
@@ -125,7 +138,7 @@ page 50008 "Gestión de lecturas "
 
                     trigger OnAction()
                     var
-                        ped: Record "36";
+                        ped: Record "Sales Header";
                     begin
                         ped.SETCURRENTKEY("Document Type","Sell-to Contact No.");
                         ped.SETRANGE("Document Type", ped."Document Type"::Order);
@@ -138,6 +151,7 @@ page 50008 "Gestión de lecturas "
                 }
                 action("Histórico de Lecturas")
                 {
+                    ApplicationArea = All;
                     Image = History;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -150,18 +164,18 @@ page 50008 "Gestión de lecturas "
     }
 
     var
-        LectTB: Record "50003";
+        LectTB: Record 50003;
         numlin: Decimal;
-        ConfVtas: Record "311";
+        ConfVtas: Record "Sales & Receivables Setup";
         registros: Integer;
         i: Integer;
-        PgLecturas: Page "50009";
+        PgLecturas: Page 50009;
                         GT50000: Label 'Por favor, seleccione un contador';
 
     local procedure CrearLineaLectura()
     var
-        AUXLectTB: Record "50003";
-        tlLectTB: Record "50003";
+        AUXLectTB: Record 50003;
+        tlLectTB: Record 50003;
     begin
         /*CLEAR(AUXLectTB);
         IF AUXLectTB.FINDLAST THEN

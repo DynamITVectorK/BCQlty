@@ -8,7 +8,8 @@ page 50025 "WS Movimientos de cliente"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
-    SourceTable = Table21;
+    UsageCategory = Administration;
+    SourceTable = "Cust. Ledger Entry";
     SourceTableView = WHERE (Document Type=FILTER(<>' '));
 
     layout
@@ -19,27 +20,35 @@ page 50025 "WS Movimientos de cliente"
             {
                 field("Customer No.";"Customer No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting Date";"Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Type";"Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document No.";"Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Description;Description)
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount;Amount)
                 {
+                    ApplicationArea = All;
                 }
                 field("Remaining Amount";"Remaining Amount")
                 {
+                    ApplicationArea = All;
                 }
                 field("Due Date";"Due Date")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

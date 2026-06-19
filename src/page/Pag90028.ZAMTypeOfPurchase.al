@@ -4,7 +4,8 @@ page 90028 ZAMTypeOfPurchase
 
     Caption = 'ZAMTypeOfPurchase';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (Type of purchase));
 
@@ -16,10 +17,12 @@ page 90028 ZAMTypeOfPurchase
             {
                 field(ZAM_Code; ZAM_Code)
                 {
+                    ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Code field.';
                 }
                 field(ZAM_Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Description field.';
                 }
             }

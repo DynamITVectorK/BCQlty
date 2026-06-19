@@ -7,7 +7,8 @@ page 50026 "WS Consumos Agua y Elect"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
-    SourceTable = Table50003;
+    UsageCategory = Administration;
+    SourceTable = 50003;
 
     layout
     {
@@ -17,36 +18,47 @@ page 50026 "WS Consumos Agua y Elect"
             {
                 field(Area;Area)
         {
+            ApplicationArea = All;
         }
                 field("No. Contador";"No. Contador")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Puesto/Pabellon";"No. Puesto/Pabellon")
                 {
+                    ApplicationArea = All;
                 }
                 field("Tarifa aplicada";"Tarifa aplicada")
                 {
+                    ApplicationArea = All;
                 }
                 field("Potencia contratada";"Potencia contratada")
                 {
+                    ApplicationArea = All;
                 }
                 field("Coeficiente TT";"Coeficiente TT")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha lectura";"Fecha lectura")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo HP";"Consumo HP")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo HLL";"Consumo HLL")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo HV";"Consumo HV")
                 {
+                    ApplicationArea = All;
                 }
                 field(Total;Total)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -72,8 +84,8 @@ page 50026 "WS Consumos Agua y Elect"
     end;
 
     var
-        tSalesReceivablesSetup: Record "311";
-        tCustomer: Record "18";
-        tSalesHeader: Record "36";
+        tSalesReceivablesSetup: Record "Sales & Receivables Setup";
+        tCustomer: Record "Customer";
+        tSalesHeader: Record "Sales Header";
 }
 

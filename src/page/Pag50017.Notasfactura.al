@@ -6,7 +6,8 @@ page 50017 "Notas factura"
     LinksAllowed = false;
     MultipleNewLines = true;
     PageType = List;
-    SourceTable = Table97;
+    UsageCategory = Administration;
+    SourceTable = "Comment Line";
 
     layout
     {
@@ -16,6 +17,7 @@ page 50017 "Notas factura"
             {
                 field("Table Name"; "Table Name")
                 {
+                    ApplicationArea = All;
                     Visible = false;
 
                     trigger OnValidate()
@@ -26,6 +28,7 @@ page 50017 "Notas factura"
                 }
                 field(Comment; Comment)
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate()
                     begin

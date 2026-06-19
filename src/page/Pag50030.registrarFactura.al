@@ -1,7 +1,8 @@
 page 50030 registrarFactura
 {
     PageType = List;
-    SourceTable = Table50014;
+    UsageCategory = Administration;
+    SourceTable = 50014;
 
     layout
     {
@@ -11,9 +12,11 @@ page 50030 registrarFactura
             {
                 field(QR_URL; QR_URL)
                 {
+                    ApplicationArea = All;
                 }
                 field(QR_ID; QR_ID)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -60,13 +63,13 @@ page 50030 registrarFactura
 
     trigger OnFindRecord(Which: Text): Boolean
     var
-        SalesHeader: Record "36";
+        SalesHeader: Record "Sales Header";
     begin
     end;
 
     trigger OnOpenPage()
     var
-        FactAdos: Record "50014";
+        FactAdos: Record 50014;
     begin
         /*
         FactAdos.SETFILTER(Origen, 'BO|AB');
@@ -108,7 +111,7 @@ page 50030 registrarFactura
     end;
 
     var
-        rRegistroADOS: Report "50009";
-        tSalesHeader: Record "36";
+        rRegistroADOS: Report 50009;
+        tSalesHeader: Record "Sales Header";
 }
 

@@ -16,7 +16,7 @@ page 50064 "Líneas FacturaE"
     AutoSplitKey = true;
     ModifyAllowed = true;
     PageType = ListPart;
-    SourceTable = Table50008;
+    SourceTable = 50008;
 
     layout
     {
@@ -26,14 +26,17 @@ page 50064 "Líneas FacturaE"
             {
                 field("ID Factura"; "ID Factura")
                 {
+                    ApplicationArea = All;
                     Editable = "ID FacturaEditable";
                 }
                 field("Cuenta NAV"; "Cuenta NAV")
                 {
+                    ApplicationArea = All;
                     Editable = "Cuenta NAVEditable";
                 }
                 field("Cod Activo"; "Cod Activo")
                 {
+                    ApplicationArea = All;
                     Editable = "Cod ActivoEditable";
 
                     trigger OnLookup(var Text: Text): Boolean
@@ -59,73 +62,92 @@ page 50064 "Líneas FacturaE"
                 }
                 field(CODIGO; CODIGO)
                 {
+                    ApplicationArea = All;
                     Editable = CODIGOEditable;
                 }
                 field(DESCRIPCION; DESCRIPCION)
                 {
+                    ApplicationArea = All;
                     Editable = DESCRIPCIONEditable;
                 }
                 field(CANTIDAD; CANTIDAD)
                 {
+                    ApplicationArea = All;
                     Editable = CANTIDADEditable;
                 }
                 field(PRECIO; PRECIO)
                 {
+                    ApplicationArea = All;
                     Editable = PRECIOEditable;
                 }
                 field(Importe; Importe)
                 {
+                    ApplicationArea = All;
                 }
                 field(DESCUENTO; DESCUENTO)
                 {
+                    ApplicationArea = All;
                     Editable = DESCUENTOEditable;
                 }
                 field(Tasas; Tasas)
                 {
+                    ApplicationArea = All;
                 }
                 field("Amount Including VAT"; "Amount Including VAT")
                 {
+                    ApplicationArea = All;
                     Editable = true;
                 }
                 field("Código IVA NAV"; "Código IVA NAV")
                 {
+                    ApplicationArea = All;
                 }
                 field(Retenciones; Retenciones)
                 {
+                    ApplicationArea = All;
                     Editable = RetencionesEditable;
                 }
                 field("Código IRPF NAV"; "Código IRPF NAV")
                 {
+                    ApplicationArea = All;
                 }
                 field(EXPEDIENTE; EXPEDIENTE)
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field(Lote; Lote)
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("REFERENCIA DEL EMISOR"; "REFERENCIA DEL EMISOR")
                 {
+                    ApplicationArea = All;
                     Editable = "REFERENCIA DEL EMISOREditable";
                 }
                 field("REFERENCIA DEL RECEPTOR"; "REFERENCIA DEL RECEPTOR")
                 {
+                    ApplicationArea = All;
                     Editable = REFERENCIADELRECEPTOREditable;
                 }
                 field("Pedido NAV"; "Pedido NAV")
                 {
+                    ApplicationArea = All;
                     Editable = "Pedido NAVEditable";
                     Visible = false;
                 }
                 field("Shortcut Dimension 1 Code"; "Shortcut Dimension 1 Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Shortcut Dimension 2 Code"; "Shortcut Dimension 2 Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Dimension Set ID"; "Dimension Set ID")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
             }
@@ -157,7 +179,7 @@ page 50064 "Líneas FacturaE"
 
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     var
-        TasasYRetenciones: Record "50009";
+        TasasYRetenciones: Record 50009;
     begin
         //>Z004      CIMUBISA-08 JLF 2018.03.23 Gestión de FacturaE
         GLSetup.FINDFIRST;
@@ -182,13 +204,13 @@ page 50064 "Líneas FacturaE"
     end;
 
     var
-        rCabeceraFacturaERecibida: Record "50007";
-        rCabeceraContratacion: Record "50002";
-        rVendor: Record "23";
-        rFAPostingGroup: Record "5606";
-        rFA: Record "5600";
+        rCabeceraFacturaERecibida: Record 50007;
+        rCabeceraContratacion: Record 50002;
+        rVendor: Record "Vendor";
+        rFAPostingGroup: Record "FA Posting Group";
+        rFA: Record "Fixed Asset";
         Text50000: Label 'Sólo se puede seleccionar un activo fijo si la Cuenta NAV %1 está asignada como Cta. Coste en algún Grupo Contable de activo fijo.';
-        fFA: Page "5601";
+        fFA: Page 5601;
         [InDataSet]
         "ID FacturaEditable": Boolean;
         [InDataSet]
@@ -217,7 +239,7 @@ page 50064 "Líneas FacturaE"
         "Pedido NAVEditable": Boolean;
         [InDataSet]
         "Cod ActivoEditable": Boolean;
-        GLSetup: Record "98";
+        GLSetup: Record "General Ledger Setup";
 
     [Scope('Internal')]
     procedure fEditables()

@@ -7,8 +7,9 @@ page 90000 ZAMTicketBaiSetup
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = Card;
+    UsageCategory = Administration;
     PromotedActionCategories = 'New,Process,Report';
-    SourceTable = Table90000;
+    SourceTable = 90000;
 
     layout
     {
@@ -19,44 +20,56 @@ page 90000 ZAMTicketBaiSetup
                 Caption = 'General';
                 field("ZAM_Activate Ticket Bai"; "ZAM_Activate Ticket Bai")
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_SendAutoTB; ZAM_SendAutoTB)
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Activate Batuz"; "ZAM_Activate Batuz")
                 {
+                    ApplicationArea = All;
                 }
                 field("Version No."; "ZAM_Version No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Version No. Batuz"; "ZAM_Version No. Batuz")
                 {
+                    ApplicationArea = All;
                 }
                 field("Settlement Period"; "ZAM_Settlement Period")
                 {
+                    ApplicationArea = All;
                 }
                 field("ES VAT Registration Type"; "ZAM_ES VAT Registration Type")
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAMVATRegistrationType;
                 }
                 field("Total Type"; "ZAM_Total Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Macrodata Amount"; "ZAM_Macrodata Amount")
                 {
+                    ApplicationArea = All;
                 }
                 field(Agency; ZAM_Agency)
                 {
+                    ApplicationArea = All;
                 }
                 group(Comunication)
                 {
                     Caption = 'Communication';
                     field("Set Up Communication"; "ZAM_Set Up Communication")
                     {
+                        ApplicationArea = All;
                         LookupPageID = ZAMCommunicationTypes;
                     }
                     field("Modification Communication"; "ZAM_Modification Communication")
                     {
+                        ApplicationArea = All;
                         LookupPageID = ZAMCommunicationTypes;
                     }
                 }
@@ -66,35 +79,45 @@ page 90000 ZAMTicketBaiSetup
                 Caption = 'Sales Documents Book';
                 field("Sales Invoice"; "ZAM_Sales Invoice")
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAMSalesDocumentType;
                 }
                 field("Sales Cr.Memo"; "ZAM_Sales Cr.Memo")
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAMSalesDocumentType;
                 }
                 field("Sales Documents URL"; "ZAM_Sales Documents URL")
                 {
+                    ApplicationArea = All;
                 }
                 field("Sales Real Estate URL"; "ZAM_Sales Real Estate URL")
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_IdentifierURL; ZAM_IdentifierURL)
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_SimpledInvoice; ZAM_SimpledInvoice)
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_SimpledCRMemo; ZAM_SimpledCRMemo)
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_SimpInvSerialNo; ZAM_SimpInvSerialNo)
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_SimpCRSerialNo; ZAM_SimpCRSerialNo)
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM DUA Document"; "ZAM DUA Document")
                 {
+                    ApplicationArea = All;
                 }
             }
             group(Certificate)
@@ -102,6 +125,7 @@ page 90000 ZAMTicketBaiSetup
                 Caption = 'Certificate';
                 field(Enabled; ZAM_Enabled)
                 {
+                    ApplicationArea = All;
                 }
                 field("Certificate Installed"; ZAM_Certificate.HASVALUE())
                 {
@@ -110,6 +134,7 @@ page 90000 ZAMTicketBaiSetup
                 }
                 field(Password; ZAM_Password)
                 {
+                    ApplicationArea = All;
                 }
             }
             group(NamespacePrefix)
@@ -117,9 +142,11 @@ page 90000 ZAMTicketBaiSetup
                 Caption = 'Namespaces and Prefixes';
                 field("General Namespace"; "ZAM_General Namespace")
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_SoftwareVersion; ZAM_SoftwareVersion)
                 {
+                    ApplicationArea = All;
                 }
             }
             group(QR)
@@ -127,12 +154,15 @@ page 90000 ZAMTicketBaiSetup
                 Caption = 'QR';
                 field(ZAM_QR_URL; ZAM_QR_URL)
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_QRHeight; ZAM_QRHeight)
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_QRWeight; ZAM_QRWeight)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -158,6 +188,7 @@ page 90000 ZAMTicketBaiSetup
                 Caption = 'Payment';
                 action("Payment Methods")
                 {
+                    ApplicationArea = All;
                     Caption = 'Payment Methods';
                     Image = Payment;
                     Promoted = true;
@@ -168,6 +199,7 @@ page 90000 ZAMTicketBaiSetup
                 }
                 action("Payment Terms")
                 {
+                    ApplicationArea = All;
                     Caption = 'Payment Terms';
                     Image = Payment;
                     Promoted = true;
@@ -182,6 +214,7 @@ page 90000 ZAMTicketBaiSetup
         {
             action(ImportCert)
             {
+                ApplicationArea = All;
                 Caption = 'Import digital certificate';
                 Image = UserCertificate;
                 Promoted = true;
@@ -196,6 +229,7 @@ page 90000 ZAMTicketBaiSetup
             }
             action(ImportCertIZENPE)
             {
+                ApplicationArea = All;
                 Caption = 'Importar Certificado Izenpe';
 
                 trigger OnAction()
@@ -205,6 +239,7 @@ page 90000 ZAMTicketBaiSetup
             }
             action(BORRARCERT)
             {
+                ApplicationArea = All;
 
                 trigger OnAction()
                 begin

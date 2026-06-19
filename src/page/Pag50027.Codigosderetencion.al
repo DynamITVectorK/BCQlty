@@ -4,7 +4,8 @@ page 50027 "Codigos de retencion"
 
     Caption = 'Códigos de retención';
     PageType = List;
-    SourceTable = Table50012;
+    UsageCategory = Administration;
+    SourceTable = 50012;
 
     layout
     {
@@ -14,24 +15,31 @@ page 50027 "Codigos de retencion"
             {
                 field("Cod. Retencion"; "Cod. Retencion")
                 {
+                    ApplicationArea = All;
                 }
                 field("Tipo tercero"; "Tipo tercero")
                 {
+                    ApplicationArea = All;
                 }
                 field("Tipo Retencion"; "Tipo Retencion")
                 {
+                    ApplicationArea = All;
                 }
                 field(Descripcion; Descripcion)
                 {
+                    ApplicationArea = All;
                 }
                 field("% Retencion"; "% Retencion")
                 {
+                    ApplicationArea = All;
                 }
                 field("% retencion libre"; "% retencion libre")
                 {
+                    ApplicationArea = All;
                 }
                 field("Cuenta contable"; "Cuenta contable")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -58,6 +66,7 @@ page 50027 "Codigos de retencion"
                 Image = History;
                 action(LedgerEntries)
                 {
+                    ApplicationArea = All;
                     Caption = 'Ledger E&ntries';
                     Image = CustomerLedger;
                     Promoted = true;

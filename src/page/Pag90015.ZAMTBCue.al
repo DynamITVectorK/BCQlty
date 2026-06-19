@@ -4,7 +4,8 @@ page 90015 ZAMTBCue
 
     Caption = 'Ticket Bai Cue';
     PageType = List;
-    SourceTable = Table90000;
+    UsageCategory = Administration;
+    SourceTable = 90000;
 
     layout
     {
@@ -15,18 +16,23 @@ page 90015 ZAMTBCue
                 Caption = 'Documents';
                 field("On Hold Documents"; "ZAM_On Hold Documents")
                 {
+                    ApplicationArea = All;
                 }
                 field("Ready Documents"; "ZAM_Ready Documents")
                 {
+                    ApplicationArea = All;
                 }
                 field("Sent Documents"; "ZAM_Sent Documents")
                 {
+                    ApplicationArea = All;
                 }
                 field("To Correct Documents"; "ZAM_To Correct Documents")
                 {
+                    ApplicationArea = All;
                 }
                 field("Error Documents"; "ZAM_Error Documents")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -38,13 +44,14 @@ page 90015 ZAMTBCue
         {
             action("Set Up Cues")
             {
+                ApplicationArea = All;
                 Caption = 'Set Up Cues';
                 Image = Setup;
                 ToolTip = 'Set up the cues (status tiles) related to the role.';
 
                 trigger OnAction()
                 var
-                    CueSetup: Codeunit "9701";
+                    CueSetup: Codeunit "Cues And KPIs";
                     CueRecordRef: RecordRef;
                 begin
                     CueRecordRef.GETTABLE(Rec);

@@ -5,7 +5,8 @@ page 50016 "Log Errores Facturación"
     Editable = false;
     InsertAllowed = false;
     PageType = List;
-    SourceTable = Table50005;
+    UsageCategory = Administration;
+    SourceTable = 50005;
 
     layout
     {
@@ -15,15 +16,19 @@ page 50016 "Log Errores Facturación"
             {
                 field(Num; Num)
                 {
+                    ApplicationArea = All;
                 }
                 field(Fecha; Fecha)
                 {
+                    ApplicationArea = All;
                 }
                 field("Registro Asociado"; "Registro Asociado")
                 {
+                    ApplicationArea = All;
                 }
                 field(Motivo; Motivo)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

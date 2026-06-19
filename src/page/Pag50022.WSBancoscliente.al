@@ -7,7 +7,8 @@ page 50022 "WS Bancos cliente"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
-    SourceTable = Table18;
+    UsageCategory = Administration;
+    SourceTable = "Customer";
     SourceTableView = WHERE (Bloqueado Web=FILTER(No),
                             Contraseña Web=FILTER(<>''));
 
@@ -19,9 +20,11 @@ page 50022 "WS Bancos cliente"
             {
                 field("No.";"No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(IBAN;vCustomerBankAccount)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -51,7 +54,7 @@ page 50022 "WS Bancos cliente"
     end;
 
     var
-        tCustomerBankAccount: Record "287";
+        tCustomerBankAccount: Record "Customer Bank Account";
         vCustomerBankAccount: Code[50];
 }
 

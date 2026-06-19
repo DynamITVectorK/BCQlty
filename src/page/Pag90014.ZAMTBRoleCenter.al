@@ -32,6 +32,7 @@ page 90014 ZAMTBRoleCenter
             ToolTip = 'Manage sales processes. See KPIs and your favorite items and customers.';
             action(SalesOrders)
             {
+                ApplicationArea = All;
                 Caption = 'Pedidos venta';
                 Image = "order";
                 RunObject = Page 9305;
@@ -39,6 +40,7 @@ page 90014 ZAMTBRoleCenter
             }
             action(SalesOrdersShptNotInv)
             {
+                ApplicationArea = All;
                 Caption = 'Enviado no facturado';
                 Image = OrderList;
                 RunObject = Page 9305;
@@ -47,6 +49,7 @@ page 90014 ZAMTBRoleCenter
             }
             action(SalesOrdersComplShtNotInv)
             {
+                ApplicationArea = All;
                 Caption = 'Enviados por completo no facturados';
                 Image = Sales;
                 RunObject = Page 9305;
@@ -56,6 +59,7 @@ page 90014 ZAMTBRoleCenter
             }
             action("Dynamics CRM Sales Orders")
             {
+                ApplicationArea = All;
                 Caption = 'Pedidos de ventas de Dynamics CRM';
                 Image = SalesInvoice;
                 RunObject = Page 5353;
@@ -65,6 +69,7 @@ page 90014 ZAMTBRoleCenter
             }
             action("Sales Quotes")
             {
+                ApplicationArea = All;
                 Caption = 'Ofertas Venta';
                 Image = Quote;
                 RunObject = Page 9300;
@@ -72,12 +77,14 @@ page 90014 ZAMTBRoleCenter
             }
             action("Blanket Sales Orders")
             {
+                ApplicationArea = All;
                 Caption = 'Pedidos abiertos venta';
                 Image = "BlanketOrder<Undefined>";
                 RunObject = Page 9303;
             }
             action("Sales Invoices")
             {
+                ApplicationArea = All;
                 Caption = 'Facturas venta';
                 Image = Invoice;
                 RunObject = Page 9301;
@@ -85,12 +92,14 @@ page 90014 ZAMTBRoleCenter
             }
             action("Sales Return Orders")
             {
+                ApplicationArea = All;
                 Caption = 'Devoluciones ventas';
                 Image = ReturnOrder;
                 RunObject = Page 9304;
             }
             action("Sales Credit Memos")
             {
+                ApplicationArea = All;
                 Caption = 'Abonos de venta';
                 Image = CreditMemo;
                 RunObject = Page 9302;
@@ -98,6 +107,7 @@ page 90014 ZAMTBRoleCenter
             }
             action(Items)
             {
+                ApplicationArea = All;
                 Caption = 'Productos';
                 Image = "Item<Undefined>";
                 RunObject = Page 31;
@@ -105,6 +115,7 @@ page 90014 ZAMTBRoleCenter
             }
             action(Customers)
             {
+                ApplicationArea = All;
                 Caption = 'Customers';
                 Image = "Customer<Undefined>";
                 RunObject = Page 22;
@@ -112,6 +123,7 @@ page 90014 ZAMTBRoleCenter
             }
             action("Item Journals")
             {
+                ApplicationArea = All;
                 Caption = 'Diarios de productos';
                 Image = Journals;
                 RunObject = Page 262;
@@ -121,6 +133,7 @@ page 90014 ZAMTBRoleCenter
             }
             action(SalesJournals)
             {
+                ApplicationArea = All;
                 Caption = 'Diarios de ventas';
                 RunObject = Page 251;
                 RunPageView = WHERE (Template Type=CONST(Sales),
@@ -128,6 +141,7 @@ page 90014 ZAMTBRoleCenter
             }
             action(CashReceiptJournals)
             {
+                ApplicationArea = All;
                 Caption = 'Diarios de recibos de efectivo';
                 Image = CashReceiptJournal;
                 RunObject = Page 251;
@@ -140,36 +154,42 @@ page 90014 ZAMTBRoleCenter
                 Image = FiledPosted;
                 action("Posted Sales Shipments")
                 {
+                    ApplicationArea = All;
                     Caption = 'Histórico albaranes venta';
                     Image = PostedShipment;
                     RunObject = Page 142;
                 }
                 action("Posted Sales Invoices")
                 {
+                    ApplicationArea = All;
                     Caption = 'Histórico facturas venta';
                     Image = "PostedOrder<Undefined>";
                     RunObject = Page 143;
                 }
                 action("Posted Return Receipts")
                 {
+                    ApplicationArea = All;
                     Image = PostedReturnReceipt;
                     RunObject = Page 6662;
                     ToolTip = 'Histórico recep. devolución';
                 }
                 action("Posted Sales Credit Memos")
                 {
+                    ApplicationArea = All;
                     Caption = 'Histórico abonos venta';
                     Image = PostedOrder;
                     RunObject = Page 144;
                 }
                 action("Posted Purchase Receipts")
                 {
+                    ApplicationArea = All;
                     Caption = 'Posted Purchase Receipts';
                     Image = PostedReceipts;
                     RunObject = Page 145;
                 }
                 action("Posted Purchase Invoices")
                 {
+                    ApplicationArea = All;
                     Caption = 'Histórico facturas compra';
                     Image = PostedTaxInvoice;
                     RunObject = Page 146;
@@ -181,6 +201,7 @@ page 90014 ZAMTBRoleCenter
                 Image = HumanResources;
                 action("Time Sheets")
                 {
+                    ApplicationArea = All;
                     Caption = 'Time Sheets';
                     Image = "Timesheet<Undefined>";
                     RunObject = Page 951;
@@ -190,6 +211,7 @@ page 90014 ZAMTBRoleCenter
             {
                 action("Sales Quote")
                 {
+                    ApplicationArea = All;
                     Caption = 'Sales Quote';
                     Image = NewSalesQuote;
                     Promoted = true;
@@ -198,6 +220,7 @@ page 90014 ZAMTBRoleCenter
                 }
                 action("Sales Invoice")
                 {
+                    ApplicationArea = All;
                     Caption = 'Factura venta';
                     Image = NewSalesInvoice;
                     Promoted = true;
@@ -206,6 +229,7 @@ page 90014 ZAMTBRoleCenter
                 }
                 action("Sales Order")
                 {
+                    ApplicationArea = All;
                     Caption = 'Pedido venta';
                     Image = Document;
                     Promoted = true;
@@ -214,6 +238,7 @@ page 90014 ZAMTBRoleCenter
                 }
                 action("Sales Return Order")
                 {
+                    ApplicationArea = All;
                     Caption = 'Devolución venta';
                     Image = ReturnOrder;
                     Promoted = true;
@@ -222,6 +247,7 @@ page 90014 ZAMTBRoleCenter
                 }
                 action("Sales Credit Memo")
                 {
+                    ApplicationArea = All;
                     Caption = 'Abono venta';
                     Image = CreditMemo;
                     Promoted = true;
@@ -234,12 +260,14 @@ page 90014 ZAMTBRoleCenter
                 Caption = 'tareas';
                 action("Sales Journal")
                 {
+                    ApplicationArea = All;
                     Caption = 'Diario ventas';
                     Image = Journals;
                     RunObject = Page 253;
                 }
                 action("Sales Price Worksheet")
                 {
+                    ApplicationArea = All;
                     Caption = 'Hoja precios venta';
                     Image = PriceWorksheet;
                     RunObject = Page 7023;
@@ -250,12 +278,14 @@ page 90014 ZAMTBRoleCenter
                 Caption = 'Ventas';
                 action(Prices)
                 {
+                    ApplicationArea = All;
                     Caption = 'Precios';
                     Image = SalesPrices;
                     RunObject = Page 7002;
                 }
                 action("Line Discounts")
                 {
+                    ApplicationArea = All;
                     Caption = 'Descuentos línea';
                     Image = SalesLineDisc;
                     RunObject = Page 7004;
@@ -270,18 +300,21 @@ page 90014 ZAMTBRoleCenter
                     Image = Customer;
                     action("Customer - Order Summary")
                     {
+                        ApplicationArea = All;
                         Caption = 'Cliente - Total pedidos';
                         Image = "Report";
                         RunObject = Report 107;
                     }
                     action("Customer - Top 10 List")
                     {
+                        ApplicationArea = All;
                         Caption = 'Cliente - Listado 10 mejores';
                         Image = "Report";
                         RunObject = Report 111;
                     }
                     action("Customer - Item Sales")
                     {
+                        ApplicationArea = All;
                         Caption = 'Cliente - Ventas por productos';
                         Image = "Report";
                         RunObject = Report 113;
@@ -293,18 +326,21 @@ page 90014 ZAMTBRoleCenter
                     Image = Sales;
                     action("Salesperson - Sales Statistics")
                     {
+                        ApplicationArea = All;
                         Caption = 'Vendedor - Estadísticas ventas';
                         Image = "Report";
                         RunObject = Report 114;
                     }
                     action("Price List")
                     {
+                        ApplicationArea = All;
                         Caption = 'Lista de precios';
                         Image = "Report";
                         RunObject = Report 715;
                     }
                     action("Inventory - Sales Back Orders")
                     {
+                        ApplicationArea = All;
                         Caption = 'Inventario: &pedidos pendientes de ventas';
                         Image = "Report<Undefined>";
                         RunObject = Report 718;
@@ -315,6 +351,7 @@ page 90014 ZAMTBRoleCenter
                     Caption = 'Historial';
                     action(Navigate)
                     {
+                        ApplicationArea = All;
                         Caption = 'Navegar';
                         Image = Navigate;
                         RunObject = Page 344;

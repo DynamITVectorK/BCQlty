@@ -4,7 +4,8 @@ page 50902 "Motivos de rectificacion"
 
     Caption = 'Motivos de rectificación';
     PageType = List;
-    SourceTable = Table50130;
+    UsageCategory = Administration;
+    SourceTable = 50130;
     SourceTableView = SORTING (Tipo, Codigo)
                       WHERE (Tipo = CONST (Motivo rectificacion));
 
@@ -16,9 +17,11 @@ page 50902 "Motivos de rectificacion"
             {
                 field(Codigo; Codigo)
                 {
+                    ApplicationArea = All;
                 }
                 field(Descripcion; Descripcion)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

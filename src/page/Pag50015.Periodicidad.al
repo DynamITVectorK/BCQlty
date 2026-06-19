@@ -6,7 +6,8 @@ page 50015 Periodicidad
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
-    SourceTable = Table370;
+    UsageCategory = Administration;
+    SourceTable = "Excel Buffer";
 
     layout
     {
@@ -16,6 +17,7 @@ page 50015 Periodicidad
             {
                 field(xlRowID; xlRowID)
                 {
+                    ApplicationArea = All;
                     Caption = 'xlRowID';
                 }
             }
