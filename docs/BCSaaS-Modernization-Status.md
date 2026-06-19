@@ -111,6 +111,21 @@ Patrones abordados:
 - Eliminación de duplicidades de `Lote = FIELD(Lote)` en `RunPageLink`.
 - Normalización de `Rec.`, `CalcFields` y llamada a `fEditarProrroga`.
 
+### PR #23 / rama `pages-bc-saas-round-7`
+
+Pages incluidas:
+
+- `Pag50512.GestindelecturasdeAguaBO.al`
+
+Patrones abordados:
+
+- Sustitución de `PAGE.RUN(42, ...)` por `Page.Run(Page::"Sales Order", ...)`.
+- Sustitución de `RunObject = Page 50006` por `Page Contadores`.
+- Sustitución de `RunObject = Page 50007` por `Page "Hist. Agua /Electricidad"`.
+- Sustitución de `Page 50009` por `Page "Ficha Lecturas"`.
+- Normalización de `systempart`, `Rec.`, `CurrPage` implícito y casing AL moderno.
+- Conservación del flujo funcional de creación y apertura de nueva lectura.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales
