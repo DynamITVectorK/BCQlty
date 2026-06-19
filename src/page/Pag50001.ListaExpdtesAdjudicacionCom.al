@@ -11,7 +11,7 @@ page 50001 "Lista Expdtes Adjudicacion Com"
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 50001;
-    SourceTableView = WHERE (Tipo Contratación=FILTER(Compras));
+    SourceTableView = WHERE("Tipo Contratación" = FILTER(Compras));
 
     layout
     {
@@ -108,20 +108,23 @@ page 50001 "Lista Expdtes Adjudicacion Com"
                     ApplicationArea = All;
                 }
             }
-            part(;50033)
+            part(LotesSubform; "Lista Lotes Subform")
             {
+                ApplicationArea = All;
                 Editable = false;
-                SubPageLink = No. Expediente=FIELD(No.);
+                SubPageLink = "No. Expediente" = FIELD("No.");
             }
         }
         area(factboxes)
         {
-            systempart(;Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
-            systempart(;Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
                 Visible = true;
             }
         }
@@ -147,8 +150,8 @@ page 50001 "Lista Expdtes Adjudicacion Com"
 
                     trigger OnAction()
                     begin
-                        CurrPage.SETSELECTIONFILTER(tlExpedientesadjudicacion);
-                        REPORT.RUNMODAL(50004,TRUE,FALSE,tlExpedientesadjudicacion);
+                        CurrPage.SetSelectionFilter(tlExpedientesadjudicacion);
+                        Report.RunModal(50004, true, false, tlExpedientesadjudicacion);
                     end;
                 }
             }
@@ -158,4 +161,3 @@ page 50001 "Lista Expdtes Adjudicacion Com"
     var
         tlExpedientesadjudicacion: Record 50001;
 }
-

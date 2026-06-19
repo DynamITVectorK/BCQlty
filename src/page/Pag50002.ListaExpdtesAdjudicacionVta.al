@@ -8,7 +8,7 @@ page 50002 "Lista Expdtes Adjudicacion Vta"
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 50001;
-    SourceTableView = WHERE (Tipo Contratación=FILTER(Ventas));
+    SourceTableView = WHERE("Tipo Contratación" = FILTER(Ventas));
 
     layout
     {
@@ -120,12 +120,14 @@ page 50002 "Lista Expdtes Adjudicacion Vta"
         }
         area(factboxes)
         {
-            systempart(;Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
-            systempart(;Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
                 Visible = true;
             }
         }
@@ -137,12 +139,11 @@ page 50002 "Lista Expdtes Adjudicacion Vta"
 
     trigger OnAfterGetCurrRecord()
     begin
-        Rec.CALCFIELDS("Nombre Adjudicatario","Nombre Adjudicatario Vta");
+        Rec.CalcFields("Nombre Adjudicatario", "Nombre Adjudicatario Vta");
     end;
 
     trigger OnAfterGetRecord()
     begin
-        Rec.CALCFIELDS("Nombre Adjudicatario","Nombre Adjudicatario Vta");
+        Rec.CalcFields("Nombre Adjudicatario", "Nombre Adjudicatario Vta");
     end;
 }
-
