@@ -124,6 +124,7 @@ Patrones abordados:
 - Sustitución de `RunObject = Page 50007` por `Page "Hist. Agua /Electricidad"`.
 - Sustitución de `Page 50009` por `Page "Ficha Lecturas"`.
 - Normalización de `systempart`, `Rec.`, `CurrPage` implícito y casing AL moderno.
+- Sustitución de propiedades obsoletas `Promoted`, `PromotedCategory` y `PromotedIsBig` por `area(Promoted)` con `actionref`.
 - Conservación del flujo funcional de creación y apertura de nueva lectura.
 
 ## Riesgos abiertos
