@@ -42,8 +42,9 @@ page 50063 "Cabecera FacturaE"
     DeleteAllowed = false;
     InsertAllowed = false;
     PageType = Card;
+    UsageCategory = Administration;
     Permissions = TableData 50102 = rimd;
-    SourceTable = Table50007;
+    SourceTable = 50007;
     SourceTableView = SORTING (Fecha Importación, Hora Importación)
                       ORDER(Descending);
 
@@ -56,50 +57,62 @@ page 50063 "Cabecera FacturaE"
                 Caption = 'General';
                 field(ID_PLATAFORMA; ID_PLATAFORMA)
                 {
+                    ApplicationArea = All;
                     Editable = ID_PLATAFORMAEditable;
                 }
                 field(NUM; NUM)
                 {
+                    ApplicationArea = All;
                     Editable = NUMEditable;
                 }
                 field(SERIE; SERIE)
                 {
+                    ApplicationArea = All;
                     Editable = SERIEEditable;
                 }
                 field(FECHA_ENTRADA; FECHA_ENTRADA)
                 {
+                    ApplicationArea = All;
                     Editable = FECHA_ENTRADAEditable;
                 }
                 field(FECHA_DEVENGO; FECHA_DEVENGO)
                 {
+                    ApplicationArea = All;
                     Editable = FECHA_DEVENGOEditable;
                 }
                 field(EMISOR_CIF; EMISOR_CIF)
                 {
+                    ApplicationArea = All;
                     Editable = EMISOR_CIFEditable;
                 }
                 field(EMISOR_NOMBRE; EMISOR_NOMBRE)
                 {
+                    ApplicationArea = All;
                     Editable = EMISOR_NOMBREEditable;
                 }
                 field(TOTAL_BASES; TOTAL_BASES)
                 {
+                    ApplicationArea = All;
                     Editable = TOTAL_BASESEditable;
                 }
                 field(TOTAL_TASAS; TOTAL_TASAS)
                 {
+                    ApplicationArea = All;
                     Editable = TOTAL_TASASEditable;
                 }
                 field(TOTAL_PAGAR; TOTAL_PAGAR)
                 {
+                    ApplicationArea = All;
                     Editable = TOTAL_PAGAREditable;
                 }
                 field(RECEPTOR_CIF; RECEPTOR_CIF)
                 {
+                    ApplicationArea = All;
                     Editable = RECEPTOR_CIFEditable;
                 }
                 field("Proveedor NAV"; "Proveedor NAV")
                 {
+                    ApplicationArea = All;
                     Editable = VNuevo;
 
                     trigger OnValidate()
@@ -109,10 +122,12 @@ page 50063 "Cabecera FacturaE"
                 }
                 field("Nombre proveedor"; "Nombre proveedor")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("Documento en Curso"; "Documento en Curso")
                 {
+                    ApplicationArea = All;
 
                     trigger OnAssistEdit()
                     begin
@@ -131,52 +146,65 @@ page 50063 "Cabecera FacturaE"
                 }
                 field(EXPEDIENTE; EXPEDIENTE)
                 {
+                    ApplicationArea = All;
                 }
                 field(Lote; Lote)
                 {
+                    ApplicationArea = All;
                 }
                 field(Rechazada; Rechazada)
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("Fecha Importación"; "Fecha Importación")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("Hora Importación"; "Hora Importación")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field(FORMA_PAGO; FORMA_PAGO)
                 {
+                    ApplicationArea = All;
                     Editable = FORMA_PAGOEditable;
                 }
                 field(FECHA_PAGO; FECHA_PAGO)
                 {
+                    ApplicationArea = All;
                     Editable = FECHA_PAGOEditable;
                 }
                 field(CCC_PAGO; CCC_PAGO)
                 {
+                    ApplicationArea = All;
                     Editable = CCC_PAGOEditable;
                 }
                 field(NOTAS; NOTAS)
                 {
+                    ApplicationArea = All;
                     Editable = NOTASEditable;
                 }
                 field(CONTACTO_NOMBRE; CONTACTO_NOMBRE)
                 {
+                    ApplicationArea = All;
                     Editable = CONTACTO_NOMBREEditable;
                 }
                 field(CONTACTO_TELEFONO; CONTACTO_TELEFONO)
                 {
+                    ApplicationArea = All;
                     Editable = CONTACTO_TELEFONOEditable;
                 }
                 field(CONTACTO_EMAIL; CONTACTO_EMAIL)
                 {
+                    ApplicationArea = All;
                     Editable = CONTACTO_EMAILEditable;
                 }
                 field("DOCUMENTACIÓN ADJUNTA"; "DOCUMENTACIÓN ADJUNTA")
                 {
+                    ApplicationArea = All;
                     Editable = "DOCUMENTACIÓN ADJUNTAEditable";
 
                     trigger OnAssistEdit()
@@ -190,6 +218,7 @@ page 50063 "Cabecera FacturaE"
                 }
                 field("DOCUMENTO PDF"; "DOCUMENTO PDF")
                 {
+                    ApplicationArea = All;
                     Editable = "DOCUMENTO PDFEditable";
 
                     trigger OnAssistEdit()
@@ -199,6 +228,7 @@ page 50063 "Cabecera FacturaE"
                 }
                 field("DOCUMENTO FACTURA"; "DOCUMENTO FACTURA")
                 {
+                    ApplicationArea = All;
                     Editable = "DOCUMENTO FACTURAEditable";
 
                     trigger OnAssistEdit()
@@ -208,6 +238,7 @@ page 50063 "Cabecera FacturaE"
                 }
                 field("Documento Registrado"; "Documento Registrado")
                 {
+                    ApplicationArea = All;
 
                     trigger OnAssistEdit()
                     begin
@@ -219,15 +250,18 @@ page 50063 "Cabecera FacturaE"
                 }
                 field("Motivo rechazo"; "Motivo rechazo")
                 {
+                    ApplicationArea = All;
                     Editable = VPteAprobar;
                 }
                 field("Descripción Rechazo"; "Descripción Rechazo")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                     MultiLine = true;
                 }
                 field("CIF Proveedor"; "CIF Proveedor")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
             }
@@ -240,26 +274,32 @@ page 50063 "Cabecera FacturaE"
                 Caption = 'Datos Emisor';
                 field(EMISOR_DIRECCION; EMISOR_DIRECCION)
                 {
+                    ApplicationArea = All;
                     Editable = EMISOR_DIRECCIONEditable;
                 }
                 field(EMISOR_CIUDAD; EMISOR_CIUDAD)
                 {
+                    ApplicationArea = All;
                     Editable = EMISOR_CIUDADEditable;
                 }
                 field(EMISOR_PROVINCIA; EMISOR_PROVINCIA)
                 {
+                    ApplicationArea = All;
                     Editable = EMISOR_PROVINCIAEditable;
                 }
                 field(EMISOR_CP; EMISOR_CP)
                 {
+                    ApplicationArea = All;
                     Editable = EMISOR_CPEditable;
                 }
                 field(EMISOR_TELEFONO; EMISOR_TELEFONO)
                 {
+                    ApplicationArea = All;
                     Editable = EMISOR_TELEFONOEditable;
                 }
                 field(EMISOR_EMAIL; EMISOR_EMAIL)
                 {
+                    ApplicationArea = All;
                     Editable = EMISOR_EMAILEditable;
                 }
             }
@@ -283,6 +323,7 @@ page 50063 "Cabecera FacturaE"
         {
             action(Rechazar)
             {
+                ApplicationArea = All;
                 Caption = 'Rechazar';
                 Image = Reject;
                 Promoted = true;
@@ -291,9 +332,9 @@ page 50063 "Cabecera FacturaE"
 
                 trigger OnAction()
                 var
-                    CFileManagementL: Codeunit "419";
-                    clNotificationEntryDispatcher: Codeunit "1509";
-                    tlCabeceraFacturaERecibida: Record "50007";
+                    CFileManagementL: Codeunit "File Management";
+                    clNotificationEntryDispatcher: Codeunit "Notification Entry Dispatcher";
+                    tlCabeceraFacturaERecibida: Record 50007;
                 begin
                     //***AOC PASAR TODO A LA TABLA
                     /*
@@ -332,6 +373,7 @@ page 50063 "Cabecera FacturaE"
             }
             action("Datos Respaldo")
             {
+                ApplicationArea = All;
                 Caption = 'Datos Respaldo';
                 Image = TestDatabase;
                 Promoted = true;
@@ -370,6 +412,7 @@ page 50063 "Cabecera FacturaE"
             }
             action("Generate invoice")
             {
+                ApplicationArea = All;
                 Caption = 'Generate invoice';
                 Enabled = GenerateInvoiceEnabled;
                 Image = PostedTaxInvoice;
@@ -391,6 +434,7 @@ page 50063 "Cabecera FacturaE"
             }
             action(Approve)
             {
+                ApplicationArea = All;
                 Caption = 'Approve';
                 Enabled = false;
                 Image = Approve;
@@ -407,6 +451,7 @@ page 50063 "Cabecera FacturaE"
             }
             action("Mandar para aprobar")
             {
+                ApplicationArea = All;
                 Enabled = false;
                 Image = ChangeStatus;
                 Promoted = true;
@@ -426,6 +471,7 @@ page 50063 "Cabecera FacturaE"
             }
             action(Sign)
             {
+                ApplicationArea = All;
                 Caption = 'Sign';
                 Enabled = false;
                 Image = Signature;
@@ -442,6 +488,7 @@ page 50063 "Cabecera FacturaE"
             }
             action(OpenPDFDocumentSigned)
             {
+                ApplicationArea = All;
                 Caption = 'Sign';
                 Image = Signature;
                 Promoted = true;
@@ -458,6 +505,7 @@ page 50063 "Cabecera FacturaE"
             }
             action(Dimensions)
             {
+                ApplicationArea = All;
                 AccessByPermission = TableData 348 = R;
                 Caption = 'Dimensions';
                 Image = Dimensions;
@@ -529,8 +577,8 @@ page 50063 "Cabecera FacturaE"
         vText50001: Label '¿Desea rechazar esta factura?';
         vText50002: Label 'Proceso cancelado por el usuario.';
         vText50003: Label 'Factura rechazada correctamente.';
-        rPurchaseHeader: Record "38";
-        rPurchInvHeader: Record "122";
+        rPurchaseHeader: Record "Purchase Header";
+        rPurchInvHeader: Record "Purch. Inv. Header";
         vText50004: Label '¿ Desea enviar un correo de rechazo ?';
         vPasado: Boolean;
         [InDataSet]
@@ -594,36 +642,36 @@ page 50063 "Cabecera FacturaE"
         VPteAprobar: Boolean;
         VNuevo: Boolean;
         vText50005: Label '%1 (%2) debe ser igual a %3 (%4) de las líneas';
-        CConfigProgressBar: Codeunit "8615";
+        CConfigProgressBar: Codeunit "Config. Progress Bar";
         Text5000: Label 'Opening documents';
         vText50006: Label 'El importe total de la factura supera el del lote';
         vText50007: Label 'Debe indicar %1';
 
     [Scope('Internal')]
-    procedure PfRegistrar(pFactura: Record "50007"; pRegistrar: Boolean)
+    procedure PfRegistrar(pFactura: Record 50007; pRegistrar: Boolean)
     var
-        rlPurchaseHeader: Record "38";
-        rlPurchaseLine: Record "39";
-        rlVendor: Record "23";
-        rlLineasFacturaERecibida: Record "50008";
-        rlTasasyRetencionesFacturaE: Record "50009";
+        rlPurchaseHeader: Record "Purchase Header";
+        rlPurchaseLine: Record "Purchase Line";
+        rlVendor: Record "Vendor";
+        rlLineasFacturaERecibida: Record 50008;
+        rlTasasyRetencionesFacturaE: Record 50009;
         lText50000: Label 'Esta factura ya está registrada.';
         lText50001: Label 'Proceso cancelado por el usuario.';
         lText50002: Label '¿Desea registrar esta factura?';
-        rlTasasyRetencionesFacturaERet: Record "50009";
-        rlPurchInvHeader: Record "122";
+        rlTasasyRetencionesFacturaERet: Record 50009;
+        rlPurchInvHeader: Record "Purch. Inv. Header";
         lText50003: Label 'Esta factura ya está cargada como factura en curso.';
         lText50004: Label '¿Desea generar esta factura?';
-        rlPurchCommentLine: Record "43";
+        rlPurchCommentLine: Record "Purch. Comment Line";
         vlLinea: Integer;
-        rlCabeceraContratacion: Record "50002";
-        rlLineasContratacion: Record "50003";
+        rlCabeceraContratacion: Record 50002;
+        rlLineasContratacion: Record 50003;
         vlCodigoContratacion: Code[20];
         vlLineaContratacion: Integer;
         vlLimpiar: Boolean;
         lText50005: Label 'El CIF del proveedor elegido es distinto al original\\¿Desea continuar?';
         lText50006: Label 'Esta factura está rechazada, no se puede registrar.';
-        ExpAdjudicacion: Record "50001";
+        ExpAdjudicacion: Record 50001;
     begin
         //Genera y registra la factura de compra correspondiente.
         //Comprueba si está registrada
@@ -1127,7 +1175,7 @@ page 50063 "Cabecera FacturaE"
     end;
 
     [Scope('Internal')]
-    procedure PfCrearModificar(pLineasFacturaERecibida: Record "50008"; pPurchaseHeader: Record "38"; var pPurchaseLine: Record "39"; var pLinea: Integer)
+    procedure PfCrearModificar(pLineasFacturaERecibida: Record 50008; pPurchaseHeader: Record "Purchase Header"; var pPurchaseLine: Record "Purchase Line"; var pLinea: Integer)
     begin
         pPurchaseLine.MODIFY(TRUE);
 
@@ -1185,12 +1233,15 @@ page 50063 "Cabecera FacturaE"
     end;
 
     [Scope('Internal')]
-    procedure PfRechazarFacturaE(pCabeceraFacturaERecibida: Record "50007")
+    procedure PfRechazarFacturaE(pCabeceraFacturaERecibida: Record 50007)
     var
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlHttp: Automation;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlDoc: Automation;
         vlRequestText: Text[1024];
-        rlGeneralLedgerSetup: Record "98";
+        rlGeneralLedgerSetup: Record "General Ledger Setup";
+        // TODO SaaS: File con rutas locales/servidor no es compatible con Business Central SaaS; sustituir por Temp Blob/streams manteniendo el flujo original.
         vlFichero: File;
         vlTextSOAPBegin: Label '<?xml version="1.0" encoding="utf-8"?> <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">';
         vlTextSOAPEnd: Label '</soapenv:Body> </soapenv:Envelope>';
@@ -1198,8 +1249,9 @@ page 50063 "Cabecera FacturaE"
         vlBigText: BigText;
         vlInStream: InStream;
         "vlContraseña": Text[1024];
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         vlXMLDomNode: Automation;
-        rlPurchasesPayablesSetup: Record "312";
+        rlPurchasesPayablesSetup: Record "Purchases & Payables Setup";
         XMLtxt: Text;
     begin
         //Rechaza la factura en FacturaE
@@ -1313,12 +1365,15 @@ page 50063 "Cabecera FacturaE"
     end;
 
     [Scope('Internal')]
-    procedure PfVerFacturaE(pCabeceraFacturaERecibida: Record "50007")
+    procedure PfVerFacturaE(pCabeceraFacturaERecibida: Record 50007)
     var
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlHttp: Automation;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlDoc: Automation;
         vlRequestText: Text[1024];
-        rlGeneralLedgerSetup: Record "98";
+        rlGeneralLedgerSetup: Record "General Ledger Setup";
+        // TODO SaaS: File con rutas locales/servidor no es compatible con Business Central SaaS; sustituir por Temp Blob/streams manteniendo el flujo original.
         vlFichero: File;
         vlTextSOAPBegin: Label '<?xml version="1.0" encoding="utf-8"?> <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">';
         vlTextSOAPEnd: Label '</soapenv:Body> </soapenv:Envelope>';
@@ -1326,6 +1381,7 @@ page 50063 "Cabecera FacturaE"
         vlBigText: BigText;
         vlInStream: InStream;
         "vlContraseña": Text[1024];
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         vlXMLDomNode: Automation;
     begin
         //Rechaza la factura en FacturaE
@@ -1402,12 +1458,15 @@ page 50063 "Cabecera FacturaE"
     end;
 
     [Scope('Internal')]
-    procedure PfSiguienteEstadoFacturaE(pCabeceraFacturaERecibida: Record "50007")
+    procedure PfSiguienteEstadoFacturaE(pCabeceraFacturaERecibida: Record 50007)
     var
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlHttp: Automation;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlDoc: Automation;
         vlRequestText: Text[1024];
-        rlGeneralLedgerSetup: Record "98";
+        rlGeneralLedgerSetup: Record "General Ledger Setup";
+        // TODO SaaS: File con rutas locales/servidor no es compatible con Business Central SaaS; sustituir por Temp Blob/streams manteniendo el flujo original.
         vlFichero: File;
         vlTextSOAPBegin: Label '<?xml version="1.0" encoding="utf-8"?> <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">';
         vlTextSOAPEnd: Label '</soapenv:Body> </soapenv:Envelope>';
@@ -1415,6 +1474,7 @@ page 50063 "Cabecera FacturaE"
         vlBigText: BigText;
         vlInStream: InStream;
         "vlContraseña": Text[1024];
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         vlXMLDomNode: Automation;
     begin
         //Rechaza la factura en FacturaE
@@ -1491,12 +1551,15 @@ page 50063 "Cabecera FacturaE"
     end;
 
     [Scope('Internal')]
-    procedure PfVolverARecibidaFacturaE(pCabeceraFacturaERecibida: Record "50007")
+    procedure PfVolverARecibidaFacturaE(pCabeceraFacturaERecibida: Record 50007)
     var
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlHttp: Automation;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlDoc: Automation;
         vlRequestText: Text[1024];
-        rlGeneralLedgerSetup: Record "98";
+        rlGeneralLedgerSetup: Record "General Ledger Setup";
+        // TODO SaaS: File con rutas locales/servidor no es compatible con Business Central SaaS; sustituir por Temp Blob/streams manteniendo el flujo original.
         vlFichero: File;
         vlTextSOAPBegin: Label '<?xml version="1.0" encoding="utf-8"?> <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">';
         vlTextSOAPEnd: Label '</soapenv:Body> </soapenv:Envelope>';
@@ -1504,8 +1567,9 @@ page 50063 "Cabecera FacturaE"
         vlBigText: BigText;
         vlInStream: InStream;
         "vlContraseña": Text[1024];
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         vlXMLDomNode: Automation;
-        rlPurchasesPayablesSetup: Record "312";
+        rlPurchasesPayablesSetup: Record "Purchases & Payables Setup";
     begin
         //Rechaza la factura en FacturaE
         /*
@@ -1592,13 +1656,14 @@ page 50063 "Cabecera FacturaE"
     end;
 
     [Scope('Internal')]
-    procedure PfPasarDescripciones(pLineasFacturaERecibida: Record "50008"; var pLinea: Integer; pPurchaseLine: Record "39")
+    procedure PfPasarDescripciones(pLineasFacturaERecibida: Record 50008; var pLinea: Integer; pPurchaseLine: Record "Purchase Line")
     var
         vlRuta: Text[1024];
-        rlBDRespaldoFacturaRecibida: Record "50010";
+        rlBDRespaldoFacturaRecibida: Record 50010;
     begin
         CLEAR(rlBDRespaldoFacturaRecibida);
         IF rlBDRespaldoFacturaRecibida.GET(pLineasFacturaERecibida."ID Factura") THEN BEGIN
+            // TODO SaaS: TEMPORARYPATH usaba una ruta temporal local/servidor en NAV; sustituir por Temp Blob/streams conservando la generación y lectura funcional del XML.
             vlRuta := TEMPORARYPATH + 'XMLFactura' + pLineasFacturaERecibida."ID Factura" + '.xml';
             rlBDRespaldoFacturaRecibida.CALCFIELDS("Datos XML Original");
             rlBDRespaldoFacturaRecibida."Datos XML Original".EXPORT(vlRuta);
@@ -1607,11 +1672,14 @@ page 50063 "Cabecera FacturaE"
     end;
 
     [Scope('Internal')]
-    procedure PfLeerXMLDescripcion(pDirectorio: Text[250]; pRaiz: Text[250]; pElemento: Text[250]; pLineasFacturaERecibida: Record "50008"; var pLinea: Integer; pPurchaseLine: Record "39")
+    procedure PfLeerXMLDescripcion(pDirectorio: Text[250]; pRaiz: Text[250]; pElemento: Text[250]; pLineasFacturaERecibida: Record 50008; var pLinea: Integer; pPurchaseLine: Record "Purchase Line")
     var
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         XMLNodeList: Automation;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         XMLDocument: Automation;
         strInStream: InStream;
+        // TODO SaaS: File con rutas locales/servidor no es compatible con Business Central SaaS; sustituir por Temp Blob/streams manteniendo el flujo original.
         File: File;
         i: Integer;
     begin
@@ -1632,18 +1700,24 @@ page 50063 "Cabecera FacturaE"
     end;
 
     [Scope('Internal')]
-    procedure PfRecorrerXMLDescripcion(pElemento: Text[250]; pXMLNodeList: Automation; pElementomodificar: Text[30]; pLineasFacturaERecibida: Record "50008"; var pLinea: Integer; pModificar: Boolean; pPurchaseLine: Record "39")
+    // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
+    procedure PfRecorrerXMLDescripcion(pElemento: Text[250]; pXMLNodeList: Automation; pElementomodificar: Text[30]; pLineasFacturaERecibida: Record 50008; var pLinea: Integer; pModificar: Boolean; pPurchaseLine: Record "Purchase Line")
     var
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         XMLNodeList: Automation;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         XMLNode: Automation;
         i: Integer;
         j: Integer;
         k: Integer;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         XMLNodeList2: Automation;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         XMLNode2: Automation;
         vlBigText: BigText;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         XMLNodeText: Automation;
-        rlPurchaseLine: Record "39";
+        rlPurchaseLine: Record "Purchase Line";
         vlLongitud: Integer;
         vlDescripcion: Text[1024];
         vlTexto: Text[1024];
@@ -1828,9 +1902,9 @@ page 50063 "Cabecera FacturaE"
     local procedure TesteoImportes()
     var
         TotalIVAIncl: Decimal;
-        LinFacturaE: Record "50008";
+        LinFacturaE: Record 50008;
         TotalSinIVA: Decimal;
-        tLotes: Record "50011";
+        tLotes: Record 50011;
     begin
         //>Z004      CIMUBISA-08 JLF 2018.03.23 Gestión de FacturaE
         TotalIVAIncl := 0;

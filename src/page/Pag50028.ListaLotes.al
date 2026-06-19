@@ -4,7 +4,8 @@ page 50028 "Lista Lotes"
     // //ZAM0038 iag linea comentada 220720
 
     PageType = List;
-    SourceTable = Table50011;
+    UsageCategory = Administration;
+    SourceTable = 50011;
 
     layout
     {
@@ -14,32 +15,41 @@ page 50028 "Lista Lotes"
             {
                 field("No. Expediente"; "No. Expediente")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field(Lote; Lote)
                 {
+                    ApplicationArea = All;
                 }
                 field("Descripción lote"; "Descripción lote")
                 {
+                    ApplicationArea = All;
                 }
                 field("Descripción expediente"; "Descripción expediente")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha expediente"; "Fecha expediente")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha adjudicacion"; "Fecha adjudicacion")
                 {
+                    ApplicationArea = All;
                 }
                 field(Adjudicatario; Adjudicatario)
                 {
+                    ApplicationArea = All;
                 }
                 field("Nombre Adjudicatario"; "Nombre Adjudicatario")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field(Prórroga; Prórroga)
                 {
+                    ApplicationArea = All;
 
                     trigger OnValidate()
                     begin
@@ -48,33 +58,42 @@ page 50028 "Lista Lotes"
                 }
                 field("Fecha prórroga"; "Fecha prórroga")
                 {
+                    ApplicationArea = All;
                     Editable = vEditarProrroga;
                 }
                 field("Importe prorroga"; "Importe prorroga")
                 {
+                    ApplicationArea = All;
                     Editable = vEditarProrroga;
                 }
                 field("No. prórroga"; "No. prórroga")
                 {
+                    ApplicationArea = All;
                     Editable = vEditarProrroga;
                 }
                 field("Importe lote"; "Importe lote")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe pdte. convertir"; "Importe pdte. convertir")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe prefacturas"; "Importe prefacturas")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe facturas registradas"; "Importe facturas registradas")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe abonos registrados"; "Importe abonos registrados")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe lote"-"Importe facturas registradas" + "Importe abonos registrados"; "Importe lote"-"Importe facturas registradas"+"Importe abonos registrados")
                 {
+                    ApplicationArea = All;
                     Caption = 'Importe pendiente';
                 }
                 field(("Importe lote" + "Importe prorroga") - "Importe facturas registradas" + "Importe abonos registrados";("Importe lote"+"Importe prorroga")-"Importe facturas registradas"+"Importe abonos registrados")
@@ -83,16 +102,20 @@ page 50028 "Lista Lotes"
                 }
                 field("Organo de decisión";"Organo de decisión")
                 {
+                    ApplicationArea = All;
                 }
                 field(Desviación;Desviación)
                 {
+                    ApplicationArea = All;
                 }
                 field(Lote_Expediente;Lote_Expediente)
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("Cuenta Contable Imputacion";"Cuenta Contable Imputacion")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -107,6 +130,7 @@ page 50028 "Lista Lotes"
         {
             action(OfertasRel)
             {
+                ApplicationArea = All;
                 Caption = 'Ofertas relacionadas';
                 Image = Quote;
                 Promoted = true;
@@ -119,6 +143,7 @@ page 50028 "Lista Lotes"
             }
             action(OfertasRelArch)
             {
+                ApplicationArea = All;
                 Caption = 'Ofertas relacionadas Archivadas';
                 Image = Archive;
                 Promoted = true;
@@ -131,6 +156,7 @@ page 50028 "Lista Lotes"
             }
             action("Pedidos relacionados")
             {
+                ApplicationArea = All;
                 Image = OrderList;
                 RunObject = Page 9307;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
@@ -139,6 +165,7 @@ page 50028 "Lista Lotes"
             }
             action("Prefacturas relacionadas")
             {
+                ApplicationArea = All;
                 Image = Invoice;
                 RunObject = Page 9308;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
@@ -147,6 +174,7 @@ page 50028 "Lista Lotes"
             }
             action("Facturas registradas relacionados")
             {
+                ApplicationArea = All;
                 Image = Archive;
                 RunObject = Page 146;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
@@ -155,6 +183,7 @@ page 50028 "Lista Lotes"
             }
             action("Preabonos relacionadas")
             {
+                ApplicationArea = All;
                 Image = Invoice;
                 RunObject = Page 9309;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
@@ -163,6 +192,7 @@ page 50028 "Lista Lotes"
             }
             action("Abonos registradas relacionados")
             {
+                ApplicationArea = All;
                 Image = Archive;
                 RunObject = Page 147;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No. Expediente),
@@ -171,6 +201,7 @@ page 50028 "Lista Lotes"
             }
             action("Facturas electrónicas")
             {
+                ApplicationArea = All;
                 Image = ElectronicDoc;
                 RunObject = Page 50066;
                                 RunPageLink = EXPEDIENTE=FIELD(No. Expediente),

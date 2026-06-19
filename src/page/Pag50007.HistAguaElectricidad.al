@@ -5,8 +5,9 @@ page 50007 "Hist. Agua /Electricidad"
     DataCaptionFields = "Area";
     Editable = false;
     PageType = List;
+    UsageCategory = Administration;
     PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
-    SourceTable = Table50003;
+    SourceTable = 50003;
     SourceTableView = SORTING (Area, Fecha lectura, No. Contador)
                       ORDER(Ascending);
 
@@ -18,78 +19,103 @@ page 50007 "Hist. Agua /Electricidad"
             {
                 field(Area;Area)
         {
+            ApplicationArea = All;
         }
                 field("No. Contador";"No. Contador")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Puesto/Pabellon";"No. Puesto/Pabellon")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Orden de lectura";"No. Orden de lectura")
                 {
+                    ApplicationArea = All;
                 }
                 field("Nombre cliente";"Nombre cliente")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. contrato";"No. contrato")
                 {
+                    ApplicationArea = All;
                 }
                 field("Potencia contratada";"Potencia contratada")
                 {
+                    ApplicationArea = All;
                 }
                 field("Coeficiente TT";"Coeficiente TT")
                 {
+                    ApplicationArea = All;
                 }
                 field("Código Incidencia";"Código Incidencia")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha lectura";"Fecha lectura")
                 {
+                    ApplicationArea = All;
                 }
                 field("Lectura HP";"Lectura HP")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo HP";"Consumo HP")
                 {
+                    ApplicationArea = All;
                 }
                 field("Lectura HLL";"Lectura HLL")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo HLL";"Consumo HLL")
                 {
+                    ApplicationArea = All;
                 }
                 field("Lectura HV";"Lectura HV")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo HV";"Consumo HV")
                 {
+                    ApplicationArea = All;
                 }
                 field("Lectura B2";"Lectura B2")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo B2";"Consumo B2")
                 {
+                    ApplicationArea = All;
                 }
                 field(Total;Total)
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Pre factura";"No. Pre factura")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Factura registrada";"No. Factura registrada")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha factura registrada";"Fecha factura registrada")
                 {
+                    ApplicationArea = All;
                 }
                 field("Tarifa aplicada";"Tarifa aplicada")
                 {
+                    ApplicationArea = All;
                 }
                 field(Pabellon;Pabellon)
                 {
+                    ApplicationArea = All;
                 }
                 field("Tipo Consumo";"Tipo Consumo")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -104,6 +130,7 @@ page 50007 "Hist. Agua /Electricidad"
                 Caption = 'botones';
                 action("Ficha Contador")
                 {
+                    ApplicationArea = All;
                     Image = CostCenter;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -113,6 +140,7 @@ page 50007 "Hist. Agua /Electricidad"
                 }
                 action(Contratos)
                 {
+                    ApplicationArea = All;
                     Caption = 'Contratos';
                     Image = "Order";
                     Promoted = true;
@@ -121,7 +149,7 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        ped: Record "36";
+                        ped: Record "Sales Header";
                     begin
                         ped.SETCURRENTKEY("Document Type","Sell-to Contact No.");
                         ped.SETRANGE("Document Type", ped."Document Type"::Order);
@@ -134,6 +162,7 @@ page 50007 "Hist. Agua /Electricidad"
                 }
                 action("Ver factura")
                 {
+                    ApplicationArea = All;
                     Caption = 'Ver factura';
                     Image = Invoice;
                     Promoted = true;
@@ -142,8 +171,8 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        ped: Record "36";
-                        LR_HistFacVta: Record "112";
+                        ped: Record "Sales Header";
+                        LR_HistFacVta: Record "Sales Invoice Header";
                     begin
                         IF "No. Factura registrada" <>'' THEN BEGIN
                           CLEAR(LR_HistFacVta);
@@ -161,6 +190,7 @@ page 50007 "Hist. Agua /Electricidad"
                 }
                 action("Modificar Lectura ")
                 {
+                    ApplicationArea = All;
                     Caption = 'Modificar Lectura';
                     Image = UpdateDescription;
                     Promoted = true;
@@ -169,8 +199,8 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page "50007";
-                                         RLect: Record "50003";
+                        PageLectura: Page 50007;
+                                         RLect: Record 50003;
                     begin
                         IF ("No. Factura registrada"<>'') OR ("No. Pre factura" <>'') THEN
                            ERROR(LT50000);
@@ -205,6 +235,7 @@ page 50007 "Hist. Agua /Electricidad"
                 }
                 action("Borrar Lectura ")
                 {
+                    ApplicationArea = All;
                     Caption = 'Borrar Lectura';
                     Image = Delete;
                     Promoted = true;
@@ -213,8 +244,8 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page "50007";
-                                         RLect: Record "50003";
+                        PageLectura: Page 50007;
+                                         RLect: Record 50003;
                     begin
                         IF ("No. Factura registrada"<>'') OR ("No. Pre factura" <>'') THEN
                            ERROR(LT50000);
@@ -226,6 +257,7 @@ page 50007 "Hist. Agua /Electricidad"
                 }
                 action("Nueva lectura ")
                 {
+                    ApplicationArea = All;
                     Image = NewDocument;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -233,8 +265,8 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page "50007";
-                                         RLect: Record "50003";
+                        PageLectura: Page 50007;
+                                         RLect: Record 50003;
                     begin
                         CLEAR(LectTB);
                         LectTB.SETCURRENTKEY("No. Contador","Fecha lectura");
@@ -264,6 +296,7 @@ page 50007 "Hist. Agua /Electricidad"
                 }
                 action("Ver Incidencia")
                 {
+                    ApplicationArea = All;
                     Image = ErrorLog;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -271,8 +304,8 @@ page 50007 "Hist. Agua /Electricidad"
 
                     trigger OnAction()
                     var
-                        Rinc: Record "50004";
-                        PageInc: Page "50010";
+                        Rinc: Record 50004;
+                        PageInc: Page 50010;
                     begin
                         IF "Código Incidencia"<>'' THEN
                         IF Rinc.GET("Código Incidencia")THEN BEGIN
@@ -288,15 +321,15 @@ page 50007 "Hist. Agua /Electricidad"
     }
 
     var
-        LectTB: Record "50003";
+        LectTB: Record 50003;
         LT50000: Label 'La Lectura ya tiene Factura';
         LT50001: Label 'La Lectura no se puede modificar porque tiene lecturas posteriores';
-        ConfVtas: Record "311";
+        ConfVtas: Record "Sales & Receivables Setup";
         registros: Integer;
         i: Integer;
-        PgLecturas: Page "50009";
+        PgLecturas: Page 50009;
                         LT50002: Label '¿Desea eliminar la lectura %1 del día %2?';
         NoOrdenLectura: Integer;
-        Contador: Record "50002";
+        Contador: Record 50002;
 }
 

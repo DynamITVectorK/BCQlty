@@ -3,9 +3,10 @@ page 50068 "Requests to Approve Exp"
     Caption = 'Requests to Approve';
     Editable = false;
     PageType = List;
+    UsageCategory = Administration;
     Permissions = TableData 454 = rimd;
     RefreshOnActivate = true;
-    SourceTable = Table454;
+    SourceTable = "Approval Entry";
     SourceTableView = SORTING (Due Date)
                       ORDER(Ascending)
                       WHERE (Document Type=FILTER(Expediente));
@@ -18,24 +19,31 @@ page 50068 "Requests to Approve Exp"
             {
                 field("Document No.";"Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Sender ID";"Sender ID")
                 {
+                    ApplicationArea = All;
                 }
                 field("Date-Time Sent for Approval";"Date-Time Sent for Approval")
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount;Amount)
                 {
+                    ApplicationArea = All;
                 }
                 field(Status;Status)
                 {
+                    ApplicationArea = All;
                 }
                 field("Last Date-Time Modified";"Last Date-Time Modified")
                 {
+                    ApplicationArea = All;
                 }
                 field("Last Modified By User ID";"Last Modified By User ID")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -76,6 +84,7 @@ page 50068 "Requests to Approve Exp"
                 Image = View;
                 action("Record")
                 {
+                    ApplicationArea = All;
                     Caption = 'Open Record';
                     Image = Document;
                     Promoted = true;
@@ -90,6 +99,7 @@ page 50068 "Requests to Approve Exp"
                 }
                 action(Comments)
                 {
+                    ApplicationArea = All;
                     Caption = 'Comments';
                     Image = ViewComments;
                     Promoted = true;
@@ -99,7 +109,7 @@ page 50068 "Requests to Approve Exp"
 
                     trigger OnAction()
                     var
-                        ApprovalCommentLine: Record "455";
+                        ApprovalCommentLine: Record "Approval Comment Line";
                     begin
                         ApprovalCommentLine.SETRANGE("Table ID","Table ID");
                         ApprovalCommentLine.SETRANGE("Record ID to Approve","Record ID to Approve");
@@ -112,6 +122,7 @@ page 50068 "Requests to Approve Exp"
         {
             action(Approve)
             {
+                ApplicationArea = All;
                 Caption = 'Approve';
                 Image = Approve;
                 Promoted = true;
@@ -121,8 +132,8 @@ page 50068 "Requests to Approve Exp"
 
                 trigger OnAction()
                 var
-                    ApprovalEntry: Record "454";
-                    ApprovalsMgmt: Codeunit "1535";
+                    ApprovalEntry: Record "Approval Entry";
+                    ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
                     CurrPage.SETSELECTIONFILTER(ApprovalEntry);
                     ApprovalsMgmt.ApproveApprovalRequests(ApprovalEntry);
@@ -130,6 +141,7 @@ page 50068 "Requests to Approve Exp"
             }
             action(Reject)
             {
+                ApplicationArea = All;
                 Caption = 'Reject';
                 Image = Reject;
                 Promoted = true;
@@ -139,8 +151,8 @@ page 50068 "Requests to Approve Exp"
 
                 trigger OnAction()
                 var
-                    ApprovalEntry: Record "454";
-                    ApprovalsMgmt: Codeunit "1535";
+                    ApprovalEntry: Record "Approval Entry";
+                    ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
                     CurrPage.SETSELECTIONFILTER(ApprovalEntry);
                     ApprovalsMgmt.RejectApprovalRequests(ApprovalEntry);
@@ -148,6 +160,7 @@ page 50068 "Requests to Approve Exp"
             }
             action(Delegate)
             {
+                ApplicationArea = All;
                 Caption = 'Delegate';
                 Image = Delegate;
                 Promoted = true;
@@ -157,8 +170,8 @@ page 50068 "Requests to Approve Exp"
 
                 trigger OnAction()
                 var
-                    ApprovalEntry: Record "454";
-                    ApprovalsMgmt: Codeunit "1535";
+                    ApprovalEntry: Record "Approval Entry";
+                    ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
                     CurrPage.SETSELECTIONFILTER(ApprovalEntry);
                     ApprovalsMgmt.DelegateApprovalRequests(ApprovalEntry);
@@ -169,6 +182,7 @@ page 50068 "Requests to Approve Exp"
                 Caption = 'View';
                 action(OpenRequests)
                 {
+                    ApplicationArea = All;
                     Caption = 'Open Requests';
                     Image = Approvals;
 
@@ -180,6 +194,7 @@ page 50068 "Requests to Approve Exp"
                 }
                 action(AllRequests)
                 {
+                    ApplicationArea = All;
                     Caption = 'All Requests';
                     Image = AllLines;
 

@@ -7,7 +7,8 @@ page 50024 "WS Historico de abonos"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
-    SourceTable = Table114;
+    UsageCategory = Administration;
+    SourceTable = "Sales Cr.Memo Header";
 
     layout
     {
@@ -17,27 +18,35 @@ page 50024 "WS Historico de abonos"
             {
                 field("Bill-to Customer No."; "Bill-to Customer No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting Date"; "Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("No."; "No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount; Amount)
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe IVA"; vIVA)
                 {
+                    ApplicationArea = All;
                 }
                 field("Amount Including VAT"; "Amount Including VAT")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting Description"; "Posting Description")
                 {
+                    ApplicationArea = All;
                 }
                 field(Fichero_Base_64; vFicheroBase64)
                 {
+                    ApplicationArea = All;
                     Caption = 'Fichero_Base_64';
                 }
             }
@@ -75,6 +84,6 @@ page 50024 "WS Historico de abonos"
     var
         vIVA: Decimal;
         vFicheroBase64: BigText;
-        tSalesReceivablesSetup: Record "311";
+        tSalesReceivablesSetup: Record "Sales & Receivables Setup";
 }
 

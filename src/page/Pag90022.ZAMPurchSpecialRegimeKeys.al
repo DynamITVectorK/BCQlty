@@ -4,7 +4,8 @@ page 90022 ZAMPurchSpecialRegimeKeys
 
     Caption = 'Purchase Special Regime Keys';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (Purchase Special Regime Key));
 
@@ -16,9 +17,11 @@ page 90022 ZAMPurchSpecialRegimeKeys
             {
                 field("Code"; ZAM_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

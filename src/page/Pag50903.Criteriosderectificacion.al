@@ -4,7 +4,8 @@ page 50903 "Criterios de rectificacion"
 
     Caption = 'Criterios de rectificación';
     PageType = List;
-    SourceTable = Table50130;
+    UsageCategory = Administration;
+    SourceTable = 50130;
     SourceTableView = SORTING (Tipo, Codigo)
                       WHERE (Tipo = CONST (Criterio rectificacion));
 
@@ -16,9 +17,11 @@ page 50903 "Criterios de rectificacion"
             {
                 field(Codigo; Codigo)
                 {
+                    ApplicationArea = All;
                 }
                 field(Descripcion; Descripcion)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

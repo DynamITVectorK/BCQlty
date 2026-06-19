@@ -9,6 +9,7 @@ page 50905 "Observaciones PDF"
         {
             field(vObservaciones; vObservaciones)
             {
+                ApplicationArea = All;
                 MultiLine = true;
 
                 trigger OnLookup(var Text: Text): Boolean
@@ -42,8 +43,8 @@ page 50905 "Observaciones PDF"
     [Scope('Internal')]
     procedure fvObservacionesOnLookUp()
     var
-        tlMaestroConfFactE: Record "50130";
-        plMotivosRectificacion: Page "50902";
+        tlMaestroConfFactE: Record 50130;
+        plMotivosRectificacion: Page 50902;
     begin
         IF NOT vDesdeMotivoRectificacion THEN
             EXIT;

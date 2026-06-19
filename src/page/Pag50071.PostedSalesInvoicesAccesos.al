@@ -7,8 +7,9 @@ page 50071 "Posted Sales Invoices Accesos"
     CardPageID = "Posted Sales Invoice";
     Editable = false;
     PageType = List;
+    UsageCategory = Administration;
     PromotedActionCategories = 'New,Process,Report,Invoice,Navigate';
-    SourceTable = Table112;
+    SourceTable = "Sales Invoice Header";
     SourceTableView = WHERE (Concepto agrupador=FILTER(ACCESOS));
 
     layout
@@ -19,135 +20,167 @@ page 50071 "Posted Sales Invoices Accesos"
             {
                 field("No.";"No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Sell-to Customer No.";"Sell-to Customer No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Sell-to Customer Name";"Sell-to Customer Name")
                 {
+                    ApplicationArea = All;
                 }
                 field("Currency Code";"Currency Code")
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount;Amount)
                 {
+                    ApplicationArea = All;
 
                     trigger OnDrillDown()
                     begin
                         SETRANGE("No.");
-                        PAGE.RUNMODAL(PAGE::"Posted Sales Invoice",Rec)
+                        PAGE.RUNMODAL(132,Rec)
                     end;
                 }
                 field("Amount Including VAT";"Amount Including VAT")
                 {
+                    ApplicationArea = All;
 
                     trigger OnDrillDown()
                     begin
                         SETRANGE("No.");
-                        PAGE.RUNMODAL(PAGE::"Posted Sales Invoice",Rec)
+                        PAGE.RUNMODAL(132,Rec)
                     end;
                 }
                 field("Sell-to Post Code";"Sell-to Post Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Sell-to Country/Region Code";"Sell-to Country/Region Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Sell-to Contact";"Sell-to Contact")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Bill-to Customer No.";"Bill-to Customer No.")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Bill-to Name";"Bill-to Name")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Bill-to Post Code";"Bill-to Post Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Bill-to Country/Region Code";"Bill-to Country/Region Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Bill-to Contact";"Bill-to Contact")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Code";"Ship-to Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Name";"Ship-to Name")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Post Code";"Ship-to Post Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Country/Region Code";"Ship-to Country/Region Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Ship-to Contact";"Ship-to Contact")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Posting Date";"Posting Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Salesperson Code";"Salesperson Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Shortcut Dimension 1 Code";"Shortcut Dimension 1 Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Shortcut Dimension 2 Code";"Shortcut Dimension 2 Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Location Code";"Location Code")
                 {
+                    ApplicationArea = All;
                     Visible = true;
                 }
                 field("No. Printed";"No. Printed")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document Date";"Document Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Payment Terms Code";"Payment Terms Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Due Date";"Due Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Payment Discount %";"Payment Discount %")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Shipment Method Code";"Shipment Method Code")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Shipment Date";"Shipment Date")
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
                 field("Document Exchange Status";"Document Exchange Status")
                 {
+                    ApplicationArea = All;
                     StyleExpr = DocExchStatusStyle;
 
                     trigger OnDrillDown()
@@ -157,19 +190,24 @@ page 50071 "Posted Sales Invoices Accesos"
                 }
                 field("Coupled to CRM";"Coupled to CRM")
                 {
+                    ApplicationArea = All;
                     Visible = CRMIntegrationEnabled;
                 }
                 field("E-Mail";"E-Mail")
                 {
+                    ApplicationArea = All;
                 }
                 field("Concepto agrupador";"Concepto agrupador")
                 {
+                    ApplicationArea = All;
                 }
                 field("Posting Description";"Posting Description")
                 {
+                    ApplicationArea = All;
                 }
                 field("VAT Registration No.";"VAT Registration No.")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -200,17 +238,19 @@ page 50071 "Posted Sales Invoices Accesos"
                 Image = Invoice;
                 action(Card)
                 {
+                    ApplicationArea = All;
                     Caption = 'Card';
                     Image = EditLines;
                     ShortCutKey = 'Shift+F7';
 
                     trigger OnAction()
                     begin
-                        PAGE.RUN(PAGE::"Posted Sales Invoice",Rec)
+                        PAGE.RUN(132,Rec)
                     end;
                 }
                 action(Statistics)
                 {
+                    ApplicationArea = All;
                     Caption = 'Statistics';
                     Image = Statistics;
                     Promoted = true;
@@ -222,6 +262,7 @@ page 50071 "Posted Sales Invoices Accesos"
                 }
                 action("Co&mments")
                 {
+                    ApplicationArea = All;
                     Caption = 'Co&mments';
                     Image = ViewComments;
                     Promoted = true;
@@ -233,6 +274,7 @@ page 50071 "Posted Sales Invoices Accesos"
                 }
                 action(Dimensions)
                 {
+                    ApplicationArea = All;
                     AccessByPermission = TableData 348=R;
                     Caption = 'Dimensions';
                     Image = Dimensions;
@@ -248,6 +290,7 @@ page 50071 "Posted Sales Invoices Accesos"
                 }
                 action(IncomingDoc)
                 {
+                    ApplicationArea = All;
                     AccessByPermission = TableData 130=R;
                     Caption = 'Incoming Document';
                     Image = Document;
@@ -256,7 +299,7 @@ page 50071 "Posted Sales Invoices Accesos"
 
                     trigger OnAction()
                     var
-                        IncomingDocument: Record "130";
+                        IncomingDocument: Record "Incoming Document";
                     begin
                         IncomingDocument.ShowCard("No.","Posting Date");
                     end;
@@ -268,6 +311,7 @@ page 50071 "Posted Sales Invoices Accesos"
                 Visible = CRMIntegrationEnabled;
                 action(CRMGotoInvoice)
                 {
+                    ApplicationArea = All;
                     Caption = 'Invoice';
                     Enabled = CRMIsCoupledToRecord;
                     Image = CoupledInvoice;
@@ -275,22 +319,23 @@ page 50071 "Posted Sales Invoices Accesos"
 
                     trigger OnAction()
                     var
-                        CRMIntegrationManagement: Codeunit "5330";
+                        CRMIntegrationManagement: Codeunit "CRM Integration Management";
                     begin
                         CRMIntegrationManagement.ShowCRMEntityFromRecordID(RECORDID);
                     end;
                 }
                 action(CreateInCRM)
                 {
+                    ApplicationArea = All;
                     Caption = 'Create Invoice in Dynamics CRM';
                     Enabled = NOT CRMIsCoupledToRecord;
                     Image = NewInvoice;
 
                     trigger OnAction()
                     var
-                        SalesInvoiceHeader: Record "112";
-                        CRMIntegrationManagement: Codeunit "5330";
-                        CRMCouplingManagement: Codeunit "5331";
+                        SalesInvoiceHeader: Record "Sales Invoice Header";
+                        CRMIntegrationManagement: Codeunit "CRM Integration Management";
+                        CRMCouplingManagement: Codeunit "CRM Coupling Management";
                         SalesInvoiceHeaderRecordRef: RecordRef;
                     begin
                         CurrPage.SETSELECTIONFILTER(SalesInvoiceHeader);
@@ -317,6 +362,7 @@ page 50071 "Posted Sales Invoices Accesos"
         {
             action(SendCustom)
             {
+                ApplicationArea = All;
                 Caption = 'Send';
                 Ellipsis = true;
                 Image = SendToMultiple;
@@ -326,7 +372,7 @@ page 50071 "Posted Sales Invoices Accesos"
 
                 trigger OnAction()
                 var
-                    SalesInvHeader: Record "112";
+                    SalesInvHeader: Record "Sales Invoice Header";
                 begin
                     SalesInvHeader := Rec;
                     CurrPage.SETSELECTIONFILTER(SalesInvHeader);
@@ -335,6 +381,7 @@ page 50071 "Posted Sales Invoices Accesos"
             }
             action("&Print")
             {
+                ApplicationArea = All;
                 Caption = '&Print';
                 Ellipsis = true;
                 Image = Print;
@@ -343,7 +390,7 @@ page 50071 "Posted Sales Invoices Accesos"
 
                 trigger OnAction()
                 var
-                    SalesInvHeader: Record "112";
+                    SalesInvHeader: Record "Sales Invoice Header";
                 begin
                     SalesInvHeader := Rec;
                     CurrPage.SETSELECTIONFILTER(SalesInvHeader);
@@ -352,6 +399,7 @@ page 50071 "Posted Sales Invoices Accesos"
             }
             action("&Email")
             {
+                ApplicationArea = All;
                 Caption = '&Email';
                 Image = Email;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
@@ -359,7 +407,7 @@ page 50071 "Posted Sales Invoices Accesos"
 
                 trigger OnAction()
                 var
-                    SalesInvHeader: Record "112";
+                    SalesInvHeader: Record "Sales Invoice Header";
                 begin
                     SalesInvHeader := Rec;
                     CurrPage.SETSELECTIONFILTER(SalesInvHeader);
@@ -368,6 +416,7 @@ page 50071 "Posted Sales Invoices Accesos"
             }
             action("&Navigate")
             {
+                ApplicationArea = All;
                 Caption = '&Navigate';
                 Image = Navigate;
                 Promoted = true;
@@ -381,18 +430,20 @@ page 50071 "Posted Sales Invoices Accesos"
             }
             action(ActivityLog)
             {
+                ApplicationArea = All;
                 Caption = 'Activity Log';
                 Image = Log;
 
                 trigger OnAction()
                 var
-                    ActivityLog: Record "710";
+                    ActivityLog: Record "Activity Log";
                 begin
                     ActivityLog.ShowEntries(RECORDID);
                 end;
             }
             action("Generar facturas seleccionadas en PDF")
             {
+                ApplicationArea = All;
                 Caption = 'Generar facturas seleccionadas en PDF';
                 Image = SendEmailPDFNoAttach;
                 Promoted = true;
@@ -408,6 +459,7 @@ page 50071 "Posted Sales Invoices Accesos"
             }
             action("Generar facturas seleccionadas en PDF WEB")
             {
+                ApplicationArea = All;
                 Caption = 'Generar facturas seleccionadas en PDF WEB';
                 Image = SendEmailPDFNoAttach;
                 Promoted = true;
@@ -424,6 +476,7 @@ page 50071 "Posted Sales Invoices Accesos"
             }
             action(CreateCreditMemo)
             {
+                ApplicationArea = All;
                 Caption = 'Create Corrective Credit Memo';
                 Image = CreateCreditMemo;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
@@ -433,8 +486,8 @@ page 50071 "Posted Sales Invoices Accesos"
 
                 trigger OnAction()
                 var
-                    SalesHeader: Record "36";
-                    CorrectPostedSalesInvoice: Codeunit "1303";
+                    SalesHeader: Record "Sales Header";
+                    CorrectPostedSalesInvoice: Codeunit "Correct Posted Sales Invoice";
                 begin
                     CorrectPostedSalesInvoice.CreateCreditMemoCopyDocument(Rec,SalesHeader);
                     PAGE.RUN(PAGE::"Sales Credit Memo",SalesHeader);
@@ -445,7 +498,7 @@ page 50071 "Posted Sales Invoices Accesos"
 
     trigger OnAfterGetCurrRecord()
     var
-        CRMCouplingManagement: Codeunit "5331";
+        CRMCouplingManagement: Codeunit "CRM Coupling Management";
     begin
         DocExchStatusStyle := GetDocExchStatusStyle;
         CurrPage.IncomingDocAttachFactBox.PAGE.LoadDataFromRecord(Rec);
@@ -459,7 +512,7 @@ page 50071 "Posted Sales Invoices Accesos"
 
     trigger OnOpenPage()
     var
-        CRMIntegrationManagement: Codeunit "5330";
+        CRMIntegrationManagement: Codeunit "CRM Integration Management";
     begin
         SetSecurityFilterOnRespCenter;
         CRMIntegrationEnabled := CRMIntegrationManagement.IsCRMIntegrationEnabled;
@@ -469,7 +522,7 @@ page 50071 "Posted Sales Invoices Accesos"
         DocExchStatusStyle: Text;
         CRMIntegrationEnabled: Boolean;
         CRMIsCoupledToRecord: Boolean;
-        tSalesInvHeader: Record "112";
+        tSalesInvHeader: Record "Sales Invoice Header";
 
     [Scope('Internal')]
     procedure fExportarFacturaElectronicaPDF(pSeleccionados: Boolean)
@@ -513,13 +566,13 @@ page 50071 "Posted Sales Invoices Accesos"
     end;
 
     [Scope('Internal')]
-    procedure DevuelveSelecionados(var RecFactVra: Record "112")
+    procedure DevuelveSelecionados(var RecFactVra: Record "Sales Invoice Header")
     begin
         CurrPage.SETSELECTIONFILTER(RecFactVra);
     end;
 
     [Scope('Internal')]
-    procedure fDevuelveFiltroNoExportadasPDF(var RecFactVra: Record "112")
+    procedure fDevuelveFiltroNoExportadasPDF(var RecFactVra: Record "Sales Invoice Header")
     begin
         //Función que devuelve el filtro de las facturas no exportadas
 
@@ -531,8 +584,8 @@ page 50071 "Posted Sales Invoices Accesos"
     [Scope('Internal')]
     procedure fExportarFacturaEPDFDesdePagina()
     var
-        tlSalesInvHeader2: Record "112";
-        tlSalesInvHeader3: Record "112";
+        tlSalesInvHeader2: Record "Sales Invoice Header";
+        tlSalesInvHeader3: Record "Sales Invoice Header";
         vlGenerarPDF: Boolean;
     begin
         //Función que exporta la o las facturas electrónicas a uno o varios PDF pero desde la página

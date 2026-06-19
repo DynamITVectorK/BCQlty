@@ -2,7 +2,8 @@ page 50065 "Documentos pendientes aprobar"
 {
     Editable = false;
     PageType = List;
-    SourceTable = Table454;
+    UsageCategory = Administration;
+    SourceTable = "Approval Entry";
     SourceTableView = SORTING (Approver ID, Status)
                       ORDER(Ascending)
                       WHERE (Status = FILTER (Open));
@@ -15,30 +16,39 @@ page 50065 "Documentos pendientes aprobar"
             {
                 field("Document Type"; "Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("Document No."; "Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("Sender ID"; "Sender ID")
                 {
+                    ApplicationArea = All;
                 }
                 field("Approver ID"; "Approver ID")
                 {
+                    ApplicationArea = All;
                 }
                 field(Status; Status)
                 {
+                    ApplicationArea = All;
                 }
                 field("Date-Time Sent for Approval"; "Date-Time Sent for Approval")
                 {
+                    ApplicationArea = All;
                 }
                 field("Approval Code"; "Approval Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("Due Date"; "Due Date")
                 {
+                    ApplicationArea = All;
                 }
                 field(Amount; Amount)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -54,6 +64,7 @@ page 50065 "Documentos pendientes aprobar"
                 Image = View;
                 action("Record")
                 {
+                    ApplicationArea = All;
                     Caption = 'Open Record';
                     Image = Document;
                     Promoted = true;
@@ -68,6 +79,7 @@ page 50065 "Documentos pendientes aprobar"
                 }
                 action(Comments)
                 {
+                    ApplicationArea = All;
                     Caption = 'Comments';
                     Image = ViewComments;
                     Promoted = true;
@@ -77,7 +89,7 @@ page 50065 "Documentos pendientes aprobar"
 
                     trigger OnAction()
                     var
-                        ApprovalCommentLine: Record "455";
+                        ApprovalCommentLine: Record "Approval Comment Line";
                     begin
                         ApprovalCommentLine.SETRANGE("Table ID", "Table ID");
                         ApprovalCommentLine.SETRANGE("Record ID to Approve", "Record ID to Approve");
@@ -90,6 +102,7 @@ page 50065 "Documentos pendientes aprobar"
         {
             action(Approve)
             {
+                ApplicationArea = All;
                 Caption = 'Approve';
                 Image = Approve;
                 Promoted = true;
@@ -100,8 +113,8 @@ page 50065 "Documentos pendientes aprobar"
 
                 trigger OnAction()
                 var
-                    ApprovalEntry: Record "454";
-                    ApprovalsMgmt: Codeunit "1535";
+                    ApprovalEntry: Record "Approval Entry";
+                    ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
                     CurrPage.SETSELECTIONFILTER(ApprovalEntry);
                     ApprovalsMgmt.ApproveApprovalRequests(ApprovalEntry);
@@ -109,6 +122,7 @@ page 50065 "Documentos pendientes aprobar"
             }
             action(Reject)
             {
+                ApplicationArea = All;
                 Caption = 'Reject';
                 Image = Reject;
                 Promoted = true;
@@ -119,8 +133,8 @@ page 50065 "Documentos pendientes aprobar"
 
                 trigger OnAction()
                 var
-                    ApprovalEntry: Record "454";
-                    ApprovalsMgmt: Codeunit "1535";
+                    ApprovalEntry: Record "Approval Entry";
+                    ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
                     CurrPage.SETSELECTIONFILTER(ApprovalEntry);
                     ApprovalsMgmt.RejectApprovalRequests(ApprovalEntry);
@@ -128,6 +142,7 @@ page 50065 "Documentos pendientes aprobar"
             }
             action(Delegate)
             {
+                ApplicationArea = All;
                 Caption = 'Delegate';
                 Image = Delegate;
                 Promoted = true;
@@ -138,8 +153,8 @@ page 50065 "Documentos pendientes aprobar"
 
                 trigger OnAction()
                 var
-                    ApprovalEntry: Record "454";
-                    ApprovalsMgmt: Codeunit "1535";
+                    ApprovalEntry: Record "Approval Entry";
+                    ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                 begin
                     CurrPage.SETSELECTIONFILTER(ApprovalEntry);
                     ApprovalsMgmt.DelegateApprovalRequests(ApprovalEntry);

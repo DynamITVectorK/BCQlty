@@ -4,7 +4,8 @@ page 90024 ZAMIntracomAdmittedKey
 
     Caption = 'Intracom. Admitted Key';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (Intracom. Admitted Key));
 
@@ -16,12 +17,15 @@ page 90024 ZAMIntracomAdmittedKey
             {
                 field("Code"; ZAM_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Intracom. Admitted Key Type"; "ZAM_Intracom. Admit Key Type")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

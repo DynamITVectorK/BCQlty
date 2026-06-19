@@ -4,7 +4,8 @@ page 90025 ZAMPaymentMethodCashRegime
 
     Caption = 'Payment Method Cash Regime';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (Payment Method Cash Regime));
 
@@ -16,9 +17,11 @@ page 90025 ZAMPaymentMethodCashRegime
             {
                 field("Code"; ZAM_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

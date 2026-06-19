@@ -2,7 +2,7 @@ page 90016 ZAMTicketBaiSubPage2
 {
     DeleteAllowed = false;
     PageType = ListPart;
-    SourceTable = Table90003;
+    SourceTable = 90003;
     SourceTableView = SORTING (ZAM_Company, ZAM_Type, ZAM_Document No., ZAM_Line No.)
                       WHERE (ZAM_Line Type=FILTER(Real Estate));
 
@@ -14,12 +14,15 @@ page 90016 ZAMTicketBaiSubPage2
             {
                 field("ZAM_Real Estate No.";"ZAM_Real Estate No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Property Registration No.";"ZAM_Property Registration No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_Situation;ZAM_Situation)
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAMRealEstateSituation;
                 }
             }

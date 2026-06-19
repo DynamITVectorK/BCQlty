@@ -4,7 +4,8 @@ page 90005 ZAMRatingOfOperationType
 
     Caption = 'Rating of Operation Type';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (Rating of Operation Type));
 
@@ -16,12 +17,15 @@ page 90005 ZAMRatingOfOperationType
             {
                 field("Code"; ZAM_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
                 field("Reverse Charge Supplies"; "ZAM_Reverse Charge Supplies")
                 {
+                    ApplicationArea = All;
                 }
             }
         }

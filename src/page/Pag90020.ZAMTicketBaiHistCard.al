@@ -2,7 +2,8 @@ page 90020 ZAMTicketBaiHistCard
 {
     Editable = false;
     PageType = Card;
-    SourceTable = Table90001;
+    UsageCategory = Administration;
+    SourceTable = 90001;
 
     layout
     {
@@ -13,106 +14,137 @@ page 90020 ZAMTicketBaiHistCard
                 Caption = 'Gneral';
                 field(ZAM_Type; ZAM_Type)
                 {
+                    ApplicationArea = All;
                     Editable = false;
                 }
                 field("ZAM_Document No."; "ZAM_Document No.")
                 {
+                    ApplicationArea = All;
                     Editable = false;
                     Importance = Promoted;
                 }
                 field("ZAM_External Document No."; "ZAM_External Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAM_Status; ZAM_Status)
                 {
+                    ApplicationArea = All;
                     Editable = false;
                     Importance = Promoted;
                 }
                 field("ZAM_Posting Date"; "ZAM_Posting Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Accounting Posting Date"; "ZAM_Accounting Posting Date")
                 {
+                    ApplicationArea = All;
                     Editable = PurchaseFieldVisible;
                     Visible = PurchaseFieldVisible;
                 }
                 field("ZAM_Transaction Date"; "ZAM_Transaction Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Version No."; "ZAM_Version No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Company Name"; "ZAM_Company Name")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Company VAT Reg No."; "ZAM_Company VAT Reg No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Communication Type"; "ZAM_Communication Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Tax Year"; "ZAM_Tax Year")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Settlement Period"; "ZAM_Settlement Period")
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAMSettlementPeriods;
                 }
                 field("ZAM_Company VAT Reg No. 2"; "ZAM_Company VAT Reg No. 2")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Issuing Document No."; "ZAM_Issuing Document No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Expedition Date"; "ZAM_Expedition Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Expedition Time"; "ZAM_Expedition Time")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Document Type"; "ZAM_Document Type")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Special Regime Key 1"; "ZAM_Special Regime Key 1")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Special Regime Key 2"; "ZAM_Special Regime Key 2")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Special Regime Key 3"; "ZAM_Special Regime Key 3")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Total Amount"; "ZAM_Total Amount")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Transaction Description"; "ZAM_Transaction Description")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Cust/Vend Name"; "ZAM_Cust/Vend Name")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Cust/Vend VAT Reg No."; "ZAM_Cust/Vend VAT Reg No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Cust/Vend Country/Reg Code"; "ZAM_Cust/Vend Country/Reg Code")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Credit Memo Type"; "ZAM_Credit Memo Type")
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAMTicketBaiCreditMemoTypes;
                 }
                 field("ZAM_Corrected Invoice No."; "ZAM_Corrected Invoice No.")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Corrected Invo Post Date"; "ZAM_Corrected Invo Post Date")
                 {
+                    ApplicationArea = All;
                 }
                 field("ZAM_Shipment Comments"; "ZAM_Shipment Comments")
                 {
+                    ApplicationArea = All;
                     RowSpan = 2;
                 }
                 field(ZAM_QR_ID; ZAM_QR_ID)
                 {
+                    ApplicationArea = All;
                 }
             }
             group("Intracom. Transactions")
@@ -120,14 +152,17 @@ page 90020 ZAMTicketBaiHistCard
                 Caption = 'Operaciones intracomunitarias';
                 field("ZAM_Intracom. Trans. Type"; "ZAM_Intracom. Trans. Type")
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAMIntracomTransType;
                 }
                 field("ZAM_Intracom. Admitted Key"; "ZAM_Intracom. Admitted Key")
                 {
+                    ApplicationArea = All;
                     LookupPageID = ZAMIntracomAdmittedKey;
                 }
                 field("ZAM_Cust/Vend Address"; "ZAM_Cust/Vend Address")
                 {
+                    ApplicationArea = All;
                 }
             }
             part(Control1000000028; 90012)
@@ -157,6 +192,7 @@ page 90020 ZAMTicketBaiHistCard
                 Image = Travel;
                 action(ShowRequest)
                 {
+                    ApplicationArea = All;
                     Caption = 'Ver envío';
                     Image = ImportLog;
                     Promoted = true;
@@ -173,6 +209,7 @@ page 90020 ZAMTicketBaiHistCard
                 }
                 action(ShowResponse)
                 {
+                    ApplicationArea = All;
                     Caption = 'Ver respuesta';
                     Image = ImportExport;
                     Promoted = true;
@@ -189,6 +226,7 @@ page 90020 ZAMTicketBaiHistCard
                 }
                 action(ShowResponseQR)
                 {
+                    ApplicationArea = All;
                     Caption = 'Mostrar respuesta QR';
                     Image = ImportExport;
                     Promoted = true;
@@ -205,6 +243,7 @@ page 90020 ZAMTicketBaiHistCard
                 }
                 action(ChangeStatus)
                 {
+                    ApplicationArea = All;
                     Caption = 'Cambiar estado';
                     Image = Start;
                     Promoted = true;

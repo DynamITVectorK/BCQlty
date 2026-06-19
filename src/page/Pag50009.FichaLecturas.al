@@ -6,9 +6,10 @@ page 50009 "Ficha Lecturas"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = Card;
+    UsageCategory = Administration;
     PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
     ShowFilter = false;
-    SourceTable = Table50003;
+    SourceTable = 50003;
     SourceTableView = SORTING (No. Contador, Fecha lectura);
 
     layout
@@ -20,39 +21,51 @@ page 50009 "Ficha Lecturas"
                 Visible = eselectricidad;
                 field("No. Contador"; "No. Contador")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Puesto/Pabellon"; "No. Puesto/Pabellon")
                 {
+                    ApplicationArea = All;
                 }
                 field("Tarifa aplicada"; "Tarifa aplicada")
                 {
+                    ApplicationArea = All;
                 }
                 field("Coeficiente TT"; "Coeficiente TT")
                 {
+                    ApplicationArea = All;
                 }
                 field("Nombre cliente"; "Nombre cliente")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. contrato"; "No. contrato")
                 {
+                    ApplicationArea = All;
                 }
                 field("Potencia contratada"; "Potencia contratada")
                 {
+                    ApplicationArea = All;
                 }
                 field("% desviación +/- aviso"; "% desviación +/- aviso")
                 {
+                    ApplicationArea = All;
                 }
                 field(Condensadores; Condensadores)
                 {
+                    ApplicationArea = All;
                 }
                 field(Pabellon; Pabellon)
                 {
+                    ApplicationArea = All;
                 }
                 field("Tipo Consumo"; "Tipo Consumo")
                 {
+                    ApplicationArea = All;
                 }
                 field("Descripcion Ubicacion Contador"; "Descripcion Ubicacion Contador")
                 {
+                    ApplicationArea = All;
                     MultiLine = true;
                 }
             }
@@ -69,6 +82,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field("ATarifa aplicada>"; "Tarifa aplicada")
                 {
+                    ApplicationArea = All;
                     Caption = 'Tarifa aplicada';
                 }
                 field("ANombre cliente (DF*)>"; "Nombre cliente")
@@ -85,14 +99,17 @@ page 50009 "Ficha Lecturas"
                 }
                 field(PabellonAgua; Pabellon)
                 {
+                    ApplicationArea = All;
                     Caption = 'Pabellon';
                 }
                 field("Tipo Consumo Agua"; "Tipo Consumo")
                 {
+                    ApplicationArea = All;
                     Caption = 'Tipo Consumo';
                 }
                 field(DescripcionUbicacionContadorAgua; "Descripcion Ubicacion Contador")
                 {
+                    ApplicationArea = All;
                     Caption = 'Descripcion Ubicacion Contador';
                     MultiLine = true;
                 }
@@ -104,11 +121,12 @@ page 50009 "Ficha Lecturas"
                 Visible = EsElectricidad;
                 field(MeterNotAccess; Nuevo_MeterNotAcces)
                 {
+                    ApplicationArea = All;
                     Caption = 'Meter Not Accesible For Reading';
 
                     trigger OnValidate()
                     var
-                        Readings: Record "50003";
+                        Readings: Record 50003;
                     begin
                         //ZAM_MEP
                         IF Nuevo_MeterNotAcces THEN BEGIN
@@ -127,10 +145,12 @@ page 50009 "Ficha Lecturas"
                 }
                 field(Nuevo_Fechalectura; Nuevo_Fechalectura)
                 {
+                    ApplicationArea = All;
                     Caption = 'Fecha Lectura';
                 }
                 field(Nuevo_LecturaHP; Nuevo_LecturaHP)
                 {
+                    ApplicationArea = All;
                     Caption = 'Lectura HP';
 
                     trigger OnValidate()
@@ -140,6 +160,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field(Nuevo_LecturaHLL; Nuevo_LecturaHLL)
                 {
+                    ApplicationArea = All;
                     Caption = 'Lectura HLL';
 
                     trigger OnValidate()
@@ -149,6 +170,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field(Nuevo_LecturaHV; Nuevo_LecturaHV)
                 {
+                    ApplicationArea = All;
                     Caption = 'Lectura HV';
 
                     trigger OnValidate()
@@ -158,6 +180,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field(Nuevo_LecturaB2; Nuevo_LecturaB2)
                 {
+                    ApplicationArea = All;
                     Caption = 'Lectura B2';
 
                     trigger OnValidate()
@@ -167,6 +190,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field(Nuevo_CódigoIncidencia; Nuevo_CódigoIncidencia)
                 {
+                    ApplicationArea = All;
                     Caption = 'Código Incidencia';
                     ColumnSpan = 2;
                     Editable = false;
@@ -182,6 +206,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field(NuevoTotal; NuevoTotal)
                 {
+                    ApplicationArea = All;
                     Caption = 'Total';
                     Editable = false;
                     Style = Strong;
@@ -189,21 +214,25 @@ page 50009 "Ficha Lecturas"
                 }
                 field(Nuevo_ConsumoHP; Nuevo_ConsumoHP)
                 {
+                    ApplicationArea = All;
                     Caption = 'Consumo HP';
                     Editable = false;
                 }
                 field(Nuevo_ConsumoHLL; Nuevo_ConsumoHLL)
                 {
+                    ApplicationArea = All;
                     Caption = 'Consumo HLL';
                     Editable = false;
                 }
                 field(Nuevo_ConsumoHV; Nuevo_ConsumoHV)
                 {
+                    ApplicationArea = All;
                     Caption = 'Consumo HV';
                     Editable = false;
                 }
                 field(Nuevo_ConsumoB2; Nuevo_ConsumoB2)
                 {
+                    ApplicationArea = All;
                     Caption = 'Consumo B2';
                     Editable = false;
                 }
@@ -215,11 +244,12 @@ page 50009 "Ficha Lecturas"
                 Visible = EsAgua;
                 field(ZAM_MeterNotAccForReadingWater; Nuevo_MeterNotAcces)
                 {
+                    ApplicationArea = All;
                     Caption = 'Meter Not Accesible For Reading';
 
                     trigger OnValidate()
                     var
-                        Readings: Record "50003";
+                        Readings: Record 50003;
                     begin
                         //ZAM_MEP
                         IF Nuevo_MeterNotAcces THEN BEGIN
@@ -235,10 +265,12 @@ page 50009 "Ficha Lecturas"
                 }
                 field(fl; Nuevo_Fechalectura)
                 {
+                    ApplicationArea = All;
                     Caption = 'Fecha Lectura';
                 }
                 field(_T1; Nuevo_LecturaHP)
                 {
+                    ApplicationArea = All;
                     Caption = 'Lectura T1';
 
                     trigger OnValidate()
@@ -248,6 +280,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field(LInc; Nuevo_CódigoIncidencia)
                 {
+                    ApplicationArea = All;
                     Caption = 'Código Incidencia';
                     Editable = false;
 
@@ -262,6 +295,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field(Tot; NuevoTotal)
                 {
+                    ApplicationArea = All;
                     Caption = 'Total';
                     Editable = false;
                     Style = Strong;
@@ -269,6 +303,7 @@ page 50009 "Ficha Lecturas"
                 }
                 field(C_T1; Nuevo_ConsumoHP)
                 {
+                    ApplicationArea = All;
                     Caption = 'Consumo T1';
                     Editable = false;
                 }
@@ -279,41 +314,53 @@ page 50009 "Ficha Lecturas"
                 Visible = eselectricidad;
                 field("Fecha lectura"; "Fecha lectura")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Factura registrada"; "No. Factura registrada")
                 {
+                    ApplicationArea = All;
                 }
                 field("Código Incidencia"; "Código Incidencia")
                 {
+                    ApplicationArea = All;
                 }
                 field("Lectura HP"; "Lectura HP")
                 {
+                    ApplicationArea = All;
                     Caption = 'Lectura HP';
                 }
                 field("Consumo HP"; "Consumo HP")
                 {
+                    ApplicationArea = All;
                     Caption = 'Consumo HP';
                 }
                 field("Lectura HLL"; "Lectura HLL")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo HLL"; "Consumo HLL")
                 {
+                    ApplicationArea = All;
                 }
                 field("Lectura HV"; "Lectura HV")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo HV"; "Consumo HV")
                 {
+                    ApplicationArea = All;
                 }
                 field("Lectura B2"; "Lectura B2")
                 {
+                    ApplicationArea = All;
                 }
                 field("Consumo B2"; "Consumo B2")
                 {
+                    ApplicationArea = All;
                 }
                 field(Total; Total)
                 {
+                    ApplicationArea = All;
                 }
             }
             repeater(AGUA)
@@ -322,26 +369,32 @@ page 50009 "Ficha Lecturas"
                 Visible = EsAgua;
                 field("<Fecha lecturaA>"; "Fecha lectura")
                 {
+                    ApplicationArea = All;
                     Caption = 'Fecha lectura';
                 }
                 field("<Nº Factura registradaA>"; "No. Factura registrada")
                 {
+                    ApplicationArea = All;
                     Caption = 'Nº Factura registrada';
                 }
                 field("<Código IncidenciaA>"; "Código Incidencia")
                 {
+                    ApplicationArea = All;
                     Caption = 'Código Incidencia';
                 }
                 field("<Lectura HPA>"; "Lectura HP")
                 {
+                    ApplicationArea = All;
                     Caption = 'Lectura T1';
                 }
                 field("<Consumo HPA>"; "Consumo HP")
                 {
+                    ApplicationArea = All;
                     Caption = 'Consumo T1';
                 }
                 field("<TotalA>"; Total)
                 {
+                    ApplicationArea = All;
                     Caption = 'Total';
                 }
             }
@@ -357,6 +410,7 @@ page 50009 "Ficha Lecturas"
                 Caption = 'Botones';
                 action("Anterior Lectura")
                 {
+                    ApplicationArea = All;
                     Image = PreviousSet;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -365,16 +419,16 @@ page 50009 "Ficha Lecturas"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page "50007";
-                        RLect: Record "50003";
-                        LectTB: Record "50003";
-                        LR_Contador: Record "50002";
+                        PageLectura: Page 50007;
+                        RLect: Record 50003;
+                        LectTB: Record 50003;
+                        LR_Contador: Record 50002;
                         ContadorAct: Code[10];
                         ordenact: Integer;
                         registros: Integer;
-                        RLectAux: Record "50003";
+                        RLectAux: Record 50003;
                         ContAux: Integer;
-                        LR_ContadorAux: Record "50002";
+                        LR_ContadorAux: Record 50002;
                     begin
                         IF NOT ((Nuevo_Fechalectura = 0D) OR ((Nuevo_LecturaB2 = 0) AND (Nuevo_LecturaHV = 0) AND (Nuevo_LecturaHLL = 0) AND (Nuevo_LecturaHP = 0))) THEN
                             Addlectura;
@@ -452,6 +506,7 @@ page 50009 "Ficha Lecturas"
                 }
                 action(Aceptar)
                 {
+                    ApplicationArea = All;
                     Image = Add;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -460,7 +515,7 @@ page 50009 "Ficha Lecturas"
                     trigger OnAction()
                     var
                         tx50000: Label '¿Desea grabar la lectura?';
-                        tlLecturas: Record "50003";
+                        tlLecturas: Record 50003;
                         fLectura: Date;
                     begin
                         //IF CONFIRM(tx50000)THEN BEGIN
@@ -536,6 +591,7 @@ page 50009 "Ficha Lecturas"
                 }
                 action(Rechazar)
                 {
+                    ApplicationArea = All;
                     Image = Delete;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -553,6 +609,7 @@ page 50009 "Ficha Lecturas"
                 }
                 action("Crear Incidencia")
                 {
+                    ApplicationArea = All;
                     Image = ErrorLog;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -592,6 +649,7 @@ page 50009 "Ficha Lecturas"
                 }
                 action("Siguente Lectura")
                 {
+                    ApplicationArea = All;
                     Image = NextSet;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -600,16 +658,16 @@ page 50009 "Ficha Lecturas"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page "50007";
-                        RLect: Record "50003";
-                        LectTB: Record "50003";
-                        LR_Contador: Record "50002";
+                        PageLectura: Page 50007;
+                        RLect: Record 50003;
+                        LectTB: Record 50003;
+                        LR_Contador: Record 50002;
                         ContadorAct: Code[10];
                         ordenact: Integer;
                         registros: Integer;
-                        RLectAux: Record "50003";
+                        RLectAux: Record 50003;
                         ContAux: Integer;
-                        LR_ContadorAux: Record "50002";
+                        LR_ContadorAux: Record 50002;
                     begin
                         IF NOT ((Nuevo_Fechalectura = 0D) OR ((Nuevo_LecturaB2 = 0) AND (Nuevo_LecturaHV = 0) AND (Nuevo_LecturaHLL = 0) AND (Nuevo_LecturaHP = 0))) THEN
                             Addlectura;
@@ -719,8 +777,8 @@ page 50009 "Ficha Lecturas"
 
     trigger OnAfterGetRecord()
     var
-        tlContadores: Record "50002";
-        tlSalesLine: Record "37";
+        tlContadores: Record 50002;
+        tlSalesLine: Record "Sales Line";
     begin
         //Nuevo_Fechalectura := WORKDATE;
 
@@ -772,7 +830,7 @@ page 50009 "Ficha Lecturas"
     end;
 
     var
-        ConfVtas: Record "311";
+        ConfVtas: Record "Sales & Receivables Setup";
         i: Integer;
         Nuevo_Fechalectura: Date;
         Nuevo_NFacturaregistrada: Code[20];
@@ -786,18 +844,18 @@ page 50009 "Ficha Lecturas"
         Nuevo_LecturaB2: Integer;
         Nuevo_ConsumoB2: Integer;
         NuevoTotal: Integer;
-        Glectura: Record "50003";
+        Glectura: Record 50003;
         ContadorPpal: Code[10];
         GT50002: Label 'Proceso Cancelado';
-        Lincidencia: Record "50004";
+        Lincidencia: Record 50004;
         Modificar: Boolean;
-        GB_lectura: Record "50003";
+        GB_lectura: Record 50003;
         blanco: Text;
         Cap1: Text;
         EsElectricidad: Boolean;
-        G_contador: Record "50002";
+        G_contador: Record 50002;
         EsAgua: Boolean;
-        PgLecturas: Page "50009";
+        PgLecturas: Page 50009;
         BotonSiguiente: Boolean;
         Text0001: Label 'Atención!  Va a registrar un consumo negativo.  Desea continuar ?';
         Fin_LecturaHP: Integer;
@@ -808,11 +866,11 @@ page 50009 "Ficha Lecturas"
 
     local procedure Addlectura()
     var
-        LNuevaLectura: Record "50003";
+        LNuevaLectura: Record 50003;
         LT5000: Label 'Debe introducir fecha y alguna lectura';
         desvioL: Decimal;
         LT5001: Label '%Desviación de consumo con respecto al periodo anterior es de %1 %. ¿Quiere continuar y dar por válida la lectura?';
-        Lincidencia: Record "50004";
+        Lincidencia: Record 50004;
         LT5002: Label 'La desviación de consumo con respecto al periodo anterior supera el % indicado como aceptable. ¿Desea continuar y dar por válida la lectura?';
     begin
         //Inserta lecturas
@@ -876,7 +934,7 @@ page 50009 "Ficha Lecturas"
 
     local procedure ActConsumosAux()
     var
-        lconsumo: Record "50003";
+        lconsumo: Record 50003;
         Coeficiente: Decimal;
         Lt5000: Label 'Ya existe una lectura en %1 para %2';
     begin
@@ -971,7 +1029,7 @@ page 50009 "Ficha Lecturas"
 
     local procedure ActualizaPage()
     var
-        LectTB: Record "50003";
+        LectTB: Record 50003;
         registros: Integer;
         filtro: Text;
     begin
@@ -1001,7 +1059,7 @@ page 50009 "Ficha Lecturas"
 
     local procedure TestDiferenciaExcesivaOrig() des: Decimal
     var
-        Lcontador: Record "50002";
+        Lcontador: Record 50002;
         Desvio: Decimal;
         AUX: Decimal;
     begin
@@ -1046,10 +1104,10 @@ page 50009 "Ficha Lecturas"
 
     local procedure TestDiferenciaExcesiva() des: Decimal
     var
-        Lcontador: Record "50002";
+        Lcontador: Record 50002;
         Desvio: Decimal;
         AUX: Decimal;
-        tlLecturas: Record "50003";
+        tlLecturas: Record 50003;
         vlDesvioConsumoB2: Decimal;
         vlDesvioConsumoHV: Decimal;
         vlDesvioConsumoHLL: Decimal;
@@ -1169,8 +1227,8 @@ page 50009 "Ficha Lecturas"
     local procedure CrearIncidencia(): Code[20]
     var
         LT50000: Label 'Introduzca fecha para la lectura';
-        LIncidencia: Record "50004";
-        LContador: Record "50002";
+        LIncidencia: Record 50004;
+        LContador: Record 50002;
     begin
         IF (Nuevo_Fechalectura = 0D) THEN
             ERROR(LT50000);
@@ -1190,7 +1248,7 @@ page 50009 "Ficha Lecturas"
     end;
 
     [Scope('Internal')]
-    procedure LecturaAmodificar(P_Lec: Record "50003")
+    procedure LecturaAmodificar(P_Lec: Record 50003)
     begin
         //carga los datos con las modificaciones
 
@@ -1231,7 +1289,7 @@ page 50009 "Ficha Lecturas"
 
     local procedure BorraAux()
     var
-        lauxlec: Record "50003";
+        lauxlec: Record 50003;
     begin
         //Borramos el registro que generamos en la 1º lectura en caso de que exista
         CLEAR(lauxlec);

@@ -17,7 +17,8 @@ page 50066 "Lista Factura Electrónica"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
-    SourceTable = Table50007;
+    UsageCategory = Administration;
+    SourceTable = 50007;
     SourceTableView = SORTING (Fecha Importación, Hora Importación)
                       ORDER(Descending)
                       WHERE (Documento Registrado=FILTER(''),
@@ -32,96 +33,127 @@ page 50066 "Lista Factura Electrónica"
             {
                 field(ID_PLATAFORMA;ID_PLATAFORMA)
                 {
+                    ApplicationArea = All;
                 }
                 field(NUM;NUM)
                 {
+                    ApplicationArea = All;
                 }
                 field(SERIE;SERIE)
                 {
+                    ApplicationArea = All;
                 }
                 field(FECHA_ENTRADA;FECHA_ENTRADA)
                 {
+                    ApplicationArea = All;
                 }
                 field("Approval Status";"Approval Status")
                 {
+                    ApplicationArea = All;
                 }
                 field(FECHA_DEVENGO;FECHA_DEVENGO)
                 {
+                    ApplicationArea = All;
                 }
                 field(EMISOR_CIF;EMISOR_CIF)
                 {
+                    ApplicationArea = All;
                 }
                 field(EMISOR_NOMBRE;EMISOR_NOMBRE)
                 {
+                    ApplicationArea = All;
                 }
                 field(EMISOR_DIRECCION;EMISOR_DIRECCION)
                 {
+                    ApplicationArea = All;
                 }
                 field(EMISOR_CIUDAD;EMISOR_CIUDAD)
                 {
+                    ApplicationArea = All;
                 }
                 field(EMISOR_PROVINCIA;EMISOR_PROVINCIA)
                 {
+                    ApplicationArea = All;
                 }
                 field(EMISOR_CP;EMISOR_CP)
                 {
+                    ApplicationArea = All;
                 }
                 field(EMISOR_TELEFONO;EMISOR_TELEFONO)
                 {
+                    ApplicationArea = All;
                 }
                 field(EMISOR_EMAIL;EMISOR_EMAIL)
                 {
+                    ApplicationArea = All;
                 }
                 field(RECEPTOR_CIF;RECEPTOR_CIF)
                 {
+                    ApplicationArea = All;
                 }
                 field(FORMA_PAGO;FORMA_PAGO)
                 {
+                    ApplicationArea = All;
                 }
                 field(FECHA_PAGO;FECHA_PAGO)
                 {
+                    ApplicationArea = All;
                 }
                 field(CCC_PAGO;CCC_PAGO)
                 {
+                    ApplicationArea = All;
                 }
                 field(NOTAS;NOTAS)
                 {
+                    ApplicationArea = All;
                 }
                 field(CONTACTO_NOMBRE;CONTACTO_NOMBRE)
                 {
+                    ApplicationArea = All;
                 }
                 field(CONTACTO_TELEFONO;CONTACTO_TELEFONO)
                 {
+                    ApplicationArea = All;
                 }
                 field(CONTACTO_EMAIL;CONTACTO_EMAIL)
                 {
+                    ApplicationArea = All;
                 }
                 field(TOTAL_BASES;TOTAL_BASES)
                 {
+                    ApplicationArea = All;
                 }
                 field(TOTAL_TASAS;TOTAL_TASAS)
                 {
+                    ApplicationArea = All;
                 }
                 field(TOTAL_PAGAR;TOTAL_PAGAR)
                 {
+                    ApplicationArea = All;
                 }
                 field("Documento Registrado";"Documento Registrado")
                 {
+                    ApplicationArea = All;
                 }
                 field("Abono Registrado";"Abono Registrado")
                 {
+                    ApplicationArea = All;
                 }
                 field("Documento en Curso";"Documento en Curso")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha Importación";"Fecha Importación")
                 {
+                    ApplicationArea = All;
                 }
                 field("Hora Importación";"Hora Importación")
                 {
+                    ApplicationArea = All;
                 }
                 field(EXPEDIENTE;EXPEDIENTE)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -133,6 +165,7 @@ page 50066 "Lista Factura Electrónica"
         {
             action("Datos Respaldo")
             {
+                ApplicationArea = All;
                 Caption = 'Datos Respaldo';
                 Image = TestDatabase;
                 Promoted = true;
@@ -171,6 +204,7 @@ page 50066 "Lista Factura Electrónica"
             }
             action("Importar FacturaE")
             {
+                ApplicationArea = All;
                 Caption = 'Importar FacturaE';
                 Image = Import;
                 Promoted = true;
@@ -188,12 +222,15 @@ page 50066 "Lista Factura Electrónica"
         vText50004: Label '¿ Desea enviar un correo de rechazo ?';
 
     [Scope('Internal')]
-    procedure fRechazarFacturaE(pCabeceraFacturaERecibida: Record "50007")
+    procedure fRechazarFacturaE(pCabeceraFacturaERecibida: Record 50007)
     var
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlHttp: Automation ;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         locautXmlDoc: Automation ;
         vlRequestText: Text[1024];
-        rlGeneralLedgerSetup: Record "98";
+        rlGeneralLedgerSetup: Record "General Ledger Setup";
+        // TODO SaaS: File con rutas locales/servidor no es compatible con Business Central SaaS; sustituir por Temp Blob/streams manteniendo el flujo original.
         vlFichero: File;
         vlTextSOAPBegin: Label '<?xml version="1.0" encoding="utf-8"?> <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">';
         vlTextSOAPEnd: Label '</soapenv:Body> </soapenv:Envelope>';
@@ -201,8 +238,9 @@ page 50066 "Lista Factura Electrónica"
         vlBigText: BigText;
         vlInStream: InStream;
         "vlContraseña": Text[1024];
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         vlXMLDomNode: Automation ;
-        rlPurchasesPayablesSetup: Record "312";
+        rlPurchasesPayablesSetup: Record "Purchases & Payables Setup";
     begin
         //Rechaza la factura en FacturaE
         /*

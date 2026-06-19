@@ -19,8 +19,9 @@ page 50003 "Expedientes adjudicación Compr"
     // //INICIO JRB 29/07/2020 Poder elegir una carpeta
 
     PageType = Card;
+    UsageCategory = Administration;
     Permissions = TableData 454 = rimd;
-    SourceTable = Table50001;
+    SourceTable = 50001;
     SourceTableView = WHERE (Tipo Contratación=FILTER(Compras));
 
     layout
@@ -31,6 +32,7 @@ page 50003 "Expedientes adjudicación Compr"
             {
                 field("No.";"No.")
                 {
+                    ApplicationArea = All;
 
                     trigger OnAssistEdit()
                     begin
@@ -40,63 +42,82 @@ page 50003 "Expedientes adjudicación Compr"
                 }
                 field(Ejercicio;Ejercicio)
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha expediente";"Fecha expediente")
                 {
+                    ApplicationArea = All;
                 }
                 field(Descripción;Descripción)
                 {
+                    ApplicationArea = All;
                 }
                 field("Tipo trabajo";"Tipo trabajo")
                 {
+                    ApplicationArea = All;
                 }
                 field("Dpto. solicitante Fact";"Dpto. solicitante")
                 {
+                    ApplicationArea = All;
                     Caption = 'Dpto. solicitante Fact';
                 }
                 field("Dpto. solicitante Exp";"Dpto. solicitante Exp")
                 {
+                    ApplicationArea = All;
                 }
                 field(Estado;Estado)
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha publicación";"Fecha publicación")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha propuesta";"Fecha propuesta")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha apertura plicas";"Fecha apertura plicas")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe del presupuesto";"Importe del presupuesto")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bases expediente";"Bases expediente")
                 {
+                    ApplicationArea = All;
                     Caption = 'Bases expediente';
                     Editable = false;
                 }
                 field("Organo de decisión";"Organo de decisión")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe adjudicado";"Importe adjudicado")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha adjudicación";"Fecha adjudicación")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha inicio del contrato";"Fecha inicio del contrato")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha finalización contrato";"Fecha finalización contrato")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha cierre expediente";"Fecha cierre expediente")
                 {
+                    ApplicationArea = All;
                 }
                 field("Cuenta Contable";"Cuenta Contable")
                 {
+                    ApplicationArea = All;
                 }
             }
             part(PurchReceiptLines;50028)
@@ -108,18 +129,23 @@ page 50003 "Expedientes adjudicación Compr"
                 Caption = 'Aprobaciones Factura';
                 field("Aprobador 1";"Aprobador 1")
                 {
+                    ApplicationArea = All;
                 }
                 field("Aprobador 2";"Aprobador 2")
                 {
+                    ApplicationArea = All;
                 }
                 field("Aprobador 3";"Aprobador 3")
                 {
+                    ApplicationArea = All;
                 }
                 field("Aprobador 4";"Aprobador 4")
                 {
+                    ApplicationArea = All;
                 }
                 field("Aprobador 5";"Aprobador 5")
                 {
+                    ApplicationArea = All;
                 }
             }
             group("Aprobaciones Expedientes")
@@ -127,18 +153,23 @@ page 50003 "Expedientes adjudicación Compr"
                 Caption = 'Aprobaciones Expedientes';
                 field("Aprobador 1 Exp";"Aprobador 1 Exp")
                 {
+                    ApplicationArea = All;
                 }
                 field("Aprobador 2 Exp";"Aprobador 2 Exp")
                 {
+                    ApplicationArea = All;
                 }
                 field("Aprobador 3 Exp";"Aprobador 3 Exp")
                 {
+                    ApplicationArea = All;
                 }
                 field("Aprobador 4 Exp";"Aprobador 4 Exp")
                 {
+                    ApplicationArea = All;
                 }
                 field("Aprobador 5 Exp";"Aprobador 5 Exp")
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -153,6 +184,7 @@ page 50003 "Expedientes adjudicación Compr"
                 Caption = 'Approval';
                 action(ArchivarOf)
                 {
+                    ApplicationArea = All;
                     Caption = 'Archivar ofertas expediente';
                     Image = Archive;
                     //The property 'PromotedIsBig' can only be set if the property 'Promoted' is set to 'true'
@@ -170,6 +202,7 @@ page 50003 "Expedientes adjudicación Compr"
                 }
                 action(ImprimirDocumentoAsignacionExpediente)
                 {
+                    ApplicationArea = All;
                     Caption = 'Imprimir Documento Asignacion Expediente';
                     Image = Print;
                     //The property 'PromotedIsBig' can only be set if the property 'Promoted' is set to 'true'
@@ -177,7 +210,7 @@ page 50003 "Expedientes adjudicación Compr"
 
                     trigger OnAction()
                     var
-                        tlExpedientesadjudicacion: Record "50001";
+                        tlExpedientesadjudicacion: Record 50001;
                     begin
                         CLEAR(tlExpedientesadjudicacion);
                         tlExpedientesadjudicacion.SETRANGE("Tipo Contratación",tlExpedientesadjudicacion."Tipo Contratación"::Compras);
@@ -187,13 +220,14 @@ page 50003 "Expedientes adjudicación Compr"
                 }
                 action(LanzarAprobacion)
                 {
+                    ApplicationArea = All;
                     Caption = 'Lanzar Aprobacion Exp.';
 
                     trigger OnAction()
                     var
                         Text50000: Label 'Debe haber un aprobador configurado';
                         Text50001: Label 'Solicitud lanzada';
-                        ApprovalsMgt: Codeunit "1535";
+                        ApprovalsMgt: Codeunit "Approvals Mgmt.";
                         NUMAPROBACION: Integer;
                     begin
                         //INICIO Z035 - JRB - 05/05/2020 - Aprobaciones en expedientes
@@ -239,16 +273,17 @@ page 50003 "Expedientes adjudicación Compr"
                 }
                 action("Crear Lote")
                 {
+                    ApplicationArea = All;
                     Caption = 'Crear Lote';
 
                     trigger OnAction()
                     var
-                        Tlotes: Record "50011";
+                        Tlotes: Record 50011;
                         inputdialogbox: Integer;
-                        tlotes2: Record "50011";
-                        tlotes3: Record "50011";
+                        tlotes2: Record 50011;
+                        tlotes3: Record 50011;
                         numerolote: Integer;
-                        tlotes4: Record "50011";
+                        tlotes4: Record 50011;
                         okinteger: Boolean;
                     begin
                         //ZAM0038 IAG 21072020 inicio
@@ -314,6 +349,7 @@ page 50003 "Expedientes adjudicación Compr"
                 }
                 action("Seleccionar carpeta")
                 {
+                    ApplicationArea = All;
                     Image = Import;
 
                     trigger OnAction()
@@ -339,6 +375,7 @@ page 50003 "Expedientes adjudicación Compr"
         {
             action(Lotes)
             {
+                ApplicationArea = All;
                 Image = Lot;
                 Promoted = true;
                 PromotedIsBig = true;
@@ -347,6 +384,7 @@ page 50003 "Expedientes adjudicación Compr"
             }
             action(OfertasRel)
             {
+                ApplicationArea = All;
                 Caption = 'Ofertas relacionadas';
                 Image = Quote;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
@@ -357,6 +395,7 @@ page 50003 "Expedientes adjudicación Compr"
             }
             action(OfertasRelArch)
             {
+                ApplicationArea = All;
                 Caption = 'Ofertas relacionadas Archivadas';
                 Image = Archive;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
@@ -367,42 +406,49 @@ page 50003 "Expedientes adjudicación Compr"
             }
             action("Pedidos relacionados")
             {
+                ApplicationArea = All;
                 Image = OrderList;
                 RunObject = Page 56;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No.);
             }
             action("Prefacturas relacionadas")
             {
+                ApplicationArea = All;
                 Image = Invoice;
                 RunObject = Page 9308;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No.);
             }
             action("Facturas registradas relacionados")
             {
+                ApplicationArea = All;
                 Image = Archive;
                 RunObject = Page 146;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No.);
             }
             action("Preabonos relacionadas")
             {
+                ApplicationArea = All;
                 Image = Invoice;
                 RunObject = Page 9309;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No.);
             }
             action("Abonos registradas relacionados")
             {
+                ApplicationArea = All;
                 Image = Archive;
                 RunObject = Page 147;
                                 RunPageLink = No. expediente adjudicacion=FIELD(No.);
             }
             action("Facturas electrónicas")
             {
+                ApplicationArea = All;
                 Image = ElectronicDoc;
                 RunObject = Page 50066;
                                 RunPageLink = EXPEDIENTE=FIELD(No.);
             }
             action(Dimensions)
             {
+                ApplicationArea = All;
                 AccessByPermission = TableData 348=R;
                 Caption = 'Dimensions';
                 Image = Dimensions;
@@ -427,10 +473,14 @@ page 50003 "Expedientes adjudicación Compr"
 
     var
         vEditarProrroga: Boolean;
-        ApprovalsMgmt: Codeunit "1535";
+        ApprovalsMgmt: Codeunit "Approvals Mgmt.";
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         ShellControl: Automation ;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         Folder: Automation ;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         FolderItems: Automation ;
+        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
         FolderItem: Automation ;
         FolderTxt: Text[1024];
         ERROR0001: Label 'Proceso cancelado por el usuario';
@@ -451,9 +501,9 @@ page 50003 "Expedientes adjudicación Compr"
 
     end;
 
-    local procedure fCrearMovAprobExp(tExpediente: Record "50001";vIdAprobador: Code[20];vNumAprob: Integer)
+    local procedure fCrearMovAprobExp(tExpediente: Record 50001;vIdAprobador: Code[20];vNumAprob: Integer)
     var
-        rlMovAprob: Record "454";
+        rlMovAprob: Record "Approval Entry";
         numAprob: Integer;
     begin
         //INICIO JRB 04/05/2020 Crear movimientos aprobacion para expedientes
@@ -491,7 +541,7 @@ page 50003 "Expedientes adjudicación Compr"
         posicion: Integer;
         textoabuscar: Text[50];
         nuevaurl: Text[250];
-        tconfcompras: Record "312";
+        tconfcompras: Record "Purchases & Payables Setup";
         nuevotexto: Text[250];
         longitud: Integer;
     begin

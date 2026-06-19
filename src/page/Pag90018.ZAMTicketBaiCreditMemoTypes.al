@@ -4,7 +4,8 @@ page 90018 ZAMTicketBaiCreditMemoTypes
 
     Caption = 'Credit Memo Types';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (Credit Memo Type));
 
@@ -16,12 +17,15 @@ page 90018 ZAMTicketBaiCreditMemoTypes
             {
                 field("Code"; ZAM_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
                 field(Substitute; ZAM_Substitute)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

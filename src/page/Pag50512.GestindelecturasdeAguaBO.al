@@ -4,8 +4,9 @@ page 50512 "Gestión de lecturas de Agua BO"
 
     Editable = false;
     PageType = List;
+    UsageCategory = Administration;
     PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
-    SourceTable = Table50002;
+    SourceTable = 50002;
     SourceTableView = SORTING (Area, No. Orden de lectura)
                       ORDER(Ascending)
                       WHERE (Area = CONST (Agua),
@@ -19,24 +20,31 @@ page 50512 "Gestión de lecturas de Agua BO"
             {
                 field("No. Orden de lectura"; "No. Orden de lectura")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. puesto"; "No. puesto")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Contador"; "No. Contador")
                 {
+                    ApplicationArea = All;
                 }
                 field("Nombre cliente"; "Nombre cliente")
                 {
+                    ApplicationArea = All;
                 }
                 field("No. Contrato"; "No. Contrato")
                 {
+                    ApplicationArea = All;
                 }
                 field(Destino; Destino)
                 {
+                    ApplicationArea = All;
                 }
                 field(Tarifa; Tarifa)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -57,6 +65,7 @@ page 50512 "Gestión de lecturas de Agua BO"
                 Caption = 'botones';
                 action("Nueva lectura ")
                 {
+                    ApplicationArea = All;
                     Image = NewDocument;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -64,8 +73,8 @@ page 50512 "Gestión de lecturas de Agua BO"
 
                     trigger OnAction()
                     var
-                        PageLectura: Page "50007";
-                        RLect: Record "50003";
+                        PageLectura: Page 50007;
+                        RLect: Record 50003;
                     begin
                         CLEAR(LectTB);
                         LectTB.SETCURRENTKEY("No. Contador", "Fecha lectura");
@@ -98,6 +107,7 @@ page 50512 "Gestión de lecturas de Agua BO"
                 }
                 action("Ficha Contador")
                 {
+                    ApplicationArea = All;
                     Image = CostCenter;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -107,6 +117,7 @@ page 50512 "Gestión de lecturas de Agua BO"
                 }
                 action(Contratos)
                 {
+                    ApplicationArea = All;
                     Caption = 'Contratos';
                     Image = "Order";
                     Promoted = true;
@@ -115,7 +126,7 @@ page 50512 "Gestión de lecturas de Agua BO"
 
                     trigger OnAction()
                     var
-                        ped: Record "36";
+                        ped: Record "Sales Header";
                     begin
                         ped.SETCURRENTKEY("Document Type","Sell-to Contact No.");
                         ped.SETRANGE("Document Type", ped."Document Type"::Order);
@@ -128,6 +139,7 @@ page 50512 "Gestión de lecturas de Agua BO"
                 }
                 action("Histórico de Lecturas")
                 {
+                    ApplicationArea = All;
                     Image = History;
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -140,16 +152,16 @@ page 50512 "Gestión de lecturas de Agua BO"
     }
 
     var
-        LectTB: Record "50003";
+        LectTB: Record 50003;
         numlin: Decimal;
-        ConfVtas: Record "311";
+        ConfVtas: Record "Sales & Receivables Setup";
         registros: Integer;
         i: Integer;
-        PgLecturas: Page "50009";
+        PgLecturas: Page 50009;
 
     local procedure CrearLineaLectura()
     var
-        AUXLectTB: Record "50003";
+        AUXLectTB: Record 50003;
     begin
         /*CLEAR(AUXLectTB);
         IF AUXLectTB.FINDLAST THEN

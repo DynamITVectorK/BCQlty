@@ -4,6 +4,7 @@ page 50019 "Procesos varios"
     // 1- Carga de saldos.
 
     PageType = Card;
+    UsageCategory = Administration;
 
     layout
     {
@@ -11,6 +12,7 @@ page 50019 "Procesos varios"
         {
             field(vFechaDesde; vFechaDesde)
             {
+                ApplicationArea = All;
                 Caption = 'Fecha de la lectura';
             }
         }
@@ -25,6 +27,7 @@ page 50019 "Procesos varios"
                 Caption = 'Approval';
                 action("Cargar Saldos")
                 {
+                    ApplicationArea = All;
                     Caption = 'Cargar Saldos';
                     Promoted = true;
                     PromotedCategory = Category4;
@@ -40,6 +43,7 @@ page 50019 "Procesos varios"
                 }
                 action("Actualizar consumos Mayo 2017")
                 {
+                    ApplicationArea = All;
                     Visible = false;
 
                     trigger OnAction()
@@ -49,6 +53,7 @@ page 50019 "Procesos varios"
                 }
                 action("Actualizar Fecha AF")
                 {
+                    ApplicationArea = All;
                     Visible = false;
 
                     trigger OnAction()
@@ -58,6 +63,7 @@ page 50019 "Procesos varios"
                 }
                 action("Actualizar Clientes en Lecturas")
                 {
+                    ApplicationArea = All;
                     Visible = false;
 
                     trigger OnAction()
@@ -67,6 +73,7 @@ page 50019 "Procesos varios"
                 }
                 action("Borrar Lecturas sin fecha")
                 {
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -75,6 +82,7 @@ page 50019 "Procesos varios"
                 }
                 action("Eliminar Lecturas Agua")
                 {
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -83,6 +91,7 @@ page 50019 "Procesos varios"
                 }
                 action("Eliminar Lecturas Electricidad")
                 {
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -91,6 +100,7 @@ page 50019 "Procesos varios"
                 }
                 action("Eliminar Lecturas Agua/Elec Facturados")
                 {
+                    ApplicationArea = All;
                     Caption = 'Eliminar Lecturas Agua/Elec Facturados';
 
                     trigger OnAction()
@@ -102,6 +112,7 @@ page 50019 "Procesos varios"
                 }
                 action("Eliminar Lineas Pedido con fecha Fin")
                 {
+                    ApplicationArea = All;
                     Caption = 'Eliminar Lineas Pedido con fecha Fin';
                     Visible = false;
 
@@ -115,6 +126,7 @@ page 50019 "Procesos varios"
                 }
                 action("Eliminar Nro pre facturas")
                 {
+                    ApplicationArea = All;
 
                     trigger OnAction()
                     begin
@@ -126,6 +138,7 @@ page 50019 "Procesos varios"
                 }
                 action("Cargar Fecha inicio en Electricidad")
                 {
+                    ApplicationArea = All;
                     Caption = 'Cargar Fecha inicio en Electricidad';
 
                     trigger OnAction()
@@ -141,7 +154,7 @@ page 50019 "Procesos varios"
     }
 
     var
-        cuProcesos: Codeunit "50000";
+        cuProcesos: Codeunit 50000;
         vFechaDesde: Date;
 }
 

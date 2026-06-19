@@ -1,7 +1,8 @@
 page 50073 "Control Accesos ADOS"
 {
     PageType = List;
-    SourceTable = Table50015;
+    UsageCategory = Administration;
+    SourceTable = 50015;
 
     layout
     {
@@ -11,18 +12,23 @@ page 50073 "Control Accesos ADOS"
             {
                 field(Fecha; Fecha)
                 {
+                    ApplicationArea = All;
                 }
                 field(Tique; Tique)
                 {
+                    ApplicationArea = All;
                 }
                 field(Sesion; Sesion)
                 {
+                    ApplicationArea = All;
                 }
                 field(Tratado; Tratado)
                 {
+                    ApplicationArea = All;
                 }
                 field(FechaTratado; FechaTratado)
                 {
+                    ApplicationArea = All;
                 }
             }
         }

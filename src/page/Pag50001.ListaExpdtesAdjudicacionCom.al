@@ -9,7 +9,8 @@ page 50001 "Lista Expdtes Adjudicacion Com"
     CardPageID = "Expedientes adjudicación Compr";
     Editable = false;
     PageType = List;
-    SourceTable = Table50001;
+    UsageCategory = Administration;
+    SourceTable = 50001;
     SourceTableView = WHERE (Tipo Contratación=FILTER(Compras));
 
     layout
@@ -20,69 +21,91 @@ page 50001 "Lista Expdtes Adjudicacion Com"
             {
                 field("No.";"No.")
                 {
+                    ApplicationArea = All;
                 }
                 field(Ejercicio;Ejercicio)
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha expediente";"Fecha expediente")
                 {
+                    ApplicationArea = All;
                 }
                 field(Descripción;Descripción)
                 {
+                    ApplicationArea = All;
                 }
                 field("Tipo trabajo";"Tipo trabajo")
                 {
+                    ApplicationArea = All;
                 }
                 field("Dpto. solicitante";"Dpto. solicitante")
                 {
+                    ApplicationArea = All;
                 }
                 field(Estado;Estado)
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha publicación";"Fecha publicación")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha propuesta";"Fecha propuesta")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha apertura plicas";"Fecha apertura plicas")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe del presupuesto";"Importe del presupuesto")
                 {
+                    ApplicationArea = All;
                 }
                 field("Bases expediente";"Bases expediente")
                 {
+                    ApplicationArea = All;
                 }
                 field("Organo de decisión";"Organo de decisión")
                 {
+                    ApplicationArea = All;
                 }
                 field(Lotes;"Num Lotes")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe Lotes";"Total Importe Lotes")
                 {
+                    ApplicationArea = All;
                 }
                 field("Importe adjudicado";"Importe adjudicado")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha adjudicación";"Fecha adjudicación")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha inicio del contrato";"Fecha inicio del contrato")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha finalización contrato";"Fecha finalización contrato")
                 {
+                    ApplicationArea = All;
                 }
                 field("Fecha cierre expediente";"Fecha cierre expediente")
                 {
+                    ApplicationArea = All;
                 }
                 field(Prórroga;Prórroga)
                 {
+                    ApplicationArea = All;
                 }
                 field("Cuenta Contable";"Cuenta Contable")
                 {
+                    ApplicationArea = All;
                 }
             }
             part(;50033)
@@ -117,6 +140,7 @@ page 50001 "Lista Expdtes Adjudicacion Com"
                 Image = Print;
                 action("Work Order")
                 {
+                    ApplicationArea = All;
                     Caption = 'Work Order';
                     Ellipsis = true;
                     Image = Print;
@@ -132,6 +156,6 @@ page 50001 "Lista Expdtes Adjudicacion Com"
     }
 
     var
-        tlExpedientesadjudicacion: Record "50001";
+        tlExpedientesadjudicacion: Record 50001;
 }
 

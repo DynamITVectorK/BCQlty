@@ -1,7 +1,7 @@
 page 50031 "proceso de factura"
 {
     RefreshOnActivate = true;
-    SourceTable = Table2000000026;
+    SourceTable = 2000000026;
     SourceTableView = SORTING (Number)
                       WHERE (Number = CONST (1));
 
@@ -11,12 +11,15 @@ page 50031 "proceso de factura"
         {
             field(VFactura; VFactura)
             {
+                ApplicationArea = All;
             }
             field(VQR; VQR)
             {
+                ApplicationArea = All;
             }
             field(VURL; VURL)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -27,6 +30,7 @@ page 50031 "proceso de factura"
         {
             action(Procesar)
             {
+                ApplicationArea = All;
                 Promoted = true;
 
                 trigger OnAction()
@@ -38,7 +42,7 @@ page 50031 "proceso de factura"
     }
 
     var
-        C50005: Codeunit "50005";
+        C50005: Codeunit 50005;
         VFactura: Code[20];
         VQR: Text[100];
         VURL: Text[250];

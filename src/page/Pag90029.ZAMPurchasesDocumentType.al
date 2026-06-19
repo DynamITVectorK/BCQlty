@@ -4,7 +4,8 @@ page 90029 ZAMPurchasesDocumentType
 
     Caption = 'Purchases Document Type';
     PageType = List;
-    SourceTable = Table90002;
+    UsageCategory = Administration;
+    SourceTable = 90002;
     SourceTableView = SORTING (ZAM_Type, ZAM_Code)
                       WHERE (ZAM_Type = FILTER (Purchase Document Type));
 
@@ -16,24 +17,31 @@ page 90029 ZAMPurchasesDocumentType
             {
                 field("Code"; ZAM_Code)
                 {
+                    ApplicationArea = All;
                 }
                 field(Description; ZAM_Description)
                 {
+                    ApplicationArea = All;
                 }
                 field(Corrective; ZAM_Corrective)
                 {
+                    ApplicationArea = All;
                 }
                 field(Simple; ZAM_Simple)
                 {
+                    ApplicationArea = All;
                 }
                 field(Summary; ZAM_Summary)
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAMSimplified_doc_replacement; ZAMSimplified_doc_replacement1)
                 {
+                    ApplicationArea = All;
                 }
                 field(ZAMSimplifiedRegimeEC; ZAMSimplifiedRegimeEC1)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
