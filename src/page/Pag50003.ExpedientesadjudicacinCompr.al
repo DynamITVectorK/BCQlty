@@ -22,7 +22,7 @@ page 50003 "Expedientes adjudicación Compr"
     UsageCategory = Administration;
     Permissions = TableData 454 = rimd;
     SourceTable = 50001;
-    SourceTableView = WHERE (Tipo Contratación=FILTER(Compras));
+    SourceTableView = WHERE("Tipo Contratación" = FILTER(Compras));
 
     layout
     {
@@ -36,8 +36,8 @@ page 50003 "Expedientes adjudicación Compr"
 
                     trigger OnAssistEdit()
                     begin
-                        IF AssistEdit(xRec) THEN
-                          CurrPage.UPDATE;
+                        if Rec.AssistEdit(xRec) then
+                            CurrPage.Update();
                     end;
                 }
                 field(Ejercicio; Rec.Ejercicio)
@@ -120,9 +120,10 @@ page 50003 "Expedientes adjudicación Compr"
                     ApplicationArea = All;
                 }
             }
-            part(PurchReceiptLines;50028)
+            part(PurchReceiptLines; "Lista Lotes")
             {
-                SubPageLink = No. Expediente=FIELD(No.);
+                ApplicationArea = All;
+                SubPageLink = "No. Expediente" = FIELD("No.");
             }
             group("Aprobaciones Factura")
             {
@@ -178,8 +179,7 @@ page 50003 "Expedientes adjudicación Compr"
     actions
     {
         area(processing)
-        {
-            group(Approval)
+        {\n            group(Approval)
             {
                 Caption = 'Approval';
                 action(ArchivarOf)
@@ -193,9 +193,9 @@ page 50003 "Expedientes adjudicación Compr"
                     trigger OnAction()
                     begin
                         //***Z004 - 400 - AT- 25/10/2016 - Inicio
-                        IF CONFIRM('Esta acción archivará todas las ofertas del expediente. Previamente se debería haber adjudicado la oferta ganadora. ¿Está seguro de continuar?') THEN BEGIN
-                          fArchivarOfertas;
-                        END;
+                        if Confirm('Esta acción archivará todas las ofertas del expediente. Previamente se debería haber adjudicado la oferta ganadora. ¿Está seguro de continuar?') then begin
+                            Rec.fArchivarOfertas();
+                        end;
 
                         //***Z004 - 400 - AT- 25/10/2016 - Fin
                     end;
@@ -212,10 +212,10 @@ page 50003 "Expedientes adjudicación Compr"
                     var
                         tlExpedientesadjudicacion: Record 50001;
                     begin
-                        CLEAR(tlExpedientesadjudicacion);
-                        tlExpedientesadjudicacion.SETRANGE("Tipo Contratación",tlExpedientesadjudicacion."Tipo Contratación"::Compras);
-                        tlExpedientesadjudicacion.SETRANGE("No.","No.");
-                        tlExpedientesadjudicacion.Print;
+                        Clear(tlExpedientesadjudicacion);
+                        tlExpedientesadjudicacion.SetRange("Tipo Contratación", tlExpedientesadjudicacion."Tipo Contratación"::Compras);
+                        tlExpedientesadjudicacion.SetRange("No.", Rec."No.");
+                        tlExpedientesadjudicacion.Print();
                     end;
                 }
                 action(LanzarAprobacion)
@@ -232,42 +232,41 @@ page 50003 "Expedientes adjudicación Compr"
                     begin
                         //INICIO Z035 - JRB - 05/05/2020 - Aprobaciones en expedientes
                         //zam038 IAG 220720  COMENTADO IF ("Aprobador 1 Exp"='') THEN   ERROR(Text50000);
-                        IF Estado IN [Estado::"Adj.Provisional",Estado::"Adj.Definitiva"] THEN
-                          IF NOT CONFIRM(CONFIRM001) THEN
-                              ERROR(ERROR0001);
-                        NUMAPROBACION:=0;
-                        IF "Aprobador 1 Exp" <>'' THEN
-                          BEGIN
-                          fCrearMovAprobExp(Rec,"Aprobador 1 Exp",1);
-                          NUMAPROBACION:=1;  //zam038 IAG 220720
-                          END;
-                        IF "Aprobador 2 Exp" <>'' THEN
-                          BEGIN
-                          fCrearMovAprobExp(Rec,"Aprobador 2 Exp",2);
-                          IF NUMAPROBACION = 0 THEN  NUMAPROBACION := 2;  //zam038 IAG 220720
-                          END;
-                        IF "Aprobador 3 Exp" <>'' THEN
-                          BEGIN
-                          fCrearMovAprobExp(Rec,"Aprobador 3 Exp",3);
-                          IF NUMAPROBACION = 0 THEN  NUMAPROBACION := 3; //zam038 IAG 220720
-                          END;
-                        IF "Aprobador 4 Exp" <>'' THEN
-                          BEGIN
-                          fCrearMovAprobExp(Rec,"Aprobador 4 Exp",4);
-                          IF NUMAPROBACION = 0 THEN  NUMAPROBACION := 4; //zam038 IAG 220720
-                          END;
-                        IF "Aprobador 5 Exp" <>'' THEN
-                          BEGIN
-                          fCrearMovAprobExp(Rec,"Aprobador 5 Exp",5);
-                          IF NUMAPROBACION = 0 THEN  NUMAPROBACION := 5; //zam038 IAG 220720
-                          END;
+                        if Rec.Estado in [Rec.Estado::"Adj.Provisional", Rec.Estado::"Adj.Definitiva"] then
+                            if not Confirm(CONFIRM001) then
+                                Error(ERROR0001);
+                        NUMAPROBACION := 0;
+                        if Rec."Aprobador 1 Exp" <> '' then begin
+                            fCrearMovAprobExp(Rec, Rec."Aprobador 1 Exp", 1);
+                            NUMAPROBACION := 1;  //zam038 IAG 220720
+                        end;
+                        if Rec."Aprobador 2 Exp" <> '' then begin
+                            fCrearMovAprobExp(Rec, Rec."Aprobador 2 Exp", 2);
+                            if NUMAPROBACION = 0 then
+                                NUMAPROBACION := 2;  //zam038 IAG 220720
+                        end;
+                        if Rec."Aprobador 3 Exp" <> '' then begin
+                            fCrearMovAprobExp(Rec, Rec."Aprobador 3 Exp", 3);
+                            if NUMAPROBACION = 0 then
+                                NUMAPROBACION := 3; //zam038 IAG 220720
+                        end;
+                        if Rec."Aprobador 4 Exp" <> '' then begin
+                            fCrearMovAprobExp(Rec, Rec."Aprobador 4 Exp", 4);
+                            if NUMAPROBACION = 0 then
+                                NUMAPROBACION := 4; //zam038 IAG 220720
+                        end;
+                        if Rec."Aprobador 5 Exp" <> '' then begin
+                            fCrearMovAprobExp(Rec, Rec."Aprobador 5 Exp", 5);
+                            if NUMAPROBACION = 0 then
+                                NUMAPROBACION := 5; //zam038 IAG 220720
+                        end;
                         //Mandar email a todos los aprobadores
-                        CLEAR(ApprovalsMgt);
+                        Clear(ApprovalsMgt);
                         // //zam038 IAG 220720  linea comentada sustituida por debajo ApprovalsMgt.SendExpApprovalsMail(Rec,0);
-                        ApprovalsMgt.SendExpApprovalsMail(Rec,NUMAPROBACION);  //zam038 IAG 220720
+                        ApprovalsMgt.SendExpApprovalsMail(Rec, NUMAPROBACION);  //zam038 IAG 220720
 
-                        MESSAGE(Text50001);
-                        Rec.VALIDATE(Estado,Estado::"Adj.Provisional");
+                        Message(Text50001);
+                        Rec.Validate(Estado, Rec.Estado::"Adj.Provisional");
                         //FIN Z035 - JRB - 05/05/2020 - Aprobaciones en expedientes
                     end;
                 }
@@ -287,63 +286,59 @@ page 50003 "Expedientes adjudicación Compr"
                         okinteger: Boolean;
                     begin
                         //ZAM0038 IAG 21072020 inicio
-                        CLEAR(Tlotes);
-                        Tlotes.SETRANGE(Tlotes."No. Expediente","No.");
-                        IF Tlotes.FINDFIRST THEN
-
-                          BEGIN
-                             IF CONFIRM('Ya existen lotes creados para éste expediente , desea continuar creando el lote?',TRUE) THEN
-                             BEGIN
-
-                             CLEAR(tlotes2);
-                             IF NOT (tlotes2.GET("No.",1)) THEN
-                               BEGIN
-                                  tlotes2.INIT;
-                                  tlotes2.Lote:='1';
-                                  //tlotes2."No. Expediente":= Rec."No.";
-                                  tlotes2.VALIDATE("No. Expediente",Rec."No.");
-                                  tlotes2."Descripción expediente":= Rec.Descripción;
-                                  tlotes2."Descripción lote":=Rec.Descripción;
-                                  tlotes2."Organo de decisión":=Rec."Organo de decisión";
-                                  tlotes2."Importe lote":=Rec."Importe adjudicado";
-                                  tlotes2."Fecha adjudicacion":=Rec."Fecha adjudicación";
-                                  tlotes2.INSERT;
-                                  EXIT;
-                               END ELSE
-                                tlotes4.SETCURRENTKEY(Lote);
-                                tlotes4.SETRANGE(tlotes4."No. Expediente","No.");
-                                IF tlotes4.FINDLAST THEN
-                                  BEGIN
-                                      CLEAR(tlotes3);
-                                      numerolote:=0;
-                                      okinteger:=FALSE;
-                                      okinteger:= EVALUATE(numerolote,tlotes4.Lote);
-                                      IF okinteger= FALSE THEN ERROR('NO SE PUEDEN CREAR LOTES DESDE ESTE BOTÓN DEBIDO A QUE HAY LOTES EXISTENTES CON CÓDIGO ALFANUMÉRICO, DÉ DE ALTA EL LOTE A TRAVÉS DEL BOTÓN LOTES (PESTAÑA INICIO)');
-                                      numerolote:= numerolote + 1;
-                                      tlotes3.INIT;
-                                      tlotes3.Lote:=FORMAT(numerolote);
-                                      //tlotes3."No. Expediente":= Rec."No.";
-                                      tlotes3.VALIDATE("No. Expediente",Rec."No.");
-                                      tlotes3."Descripción expediente":= Rec.Descripción;
-                                      tlotes3."Descripción lote":=Rec.Descripción;
-                                      tlotes3."Organo de decisión":=Rec."Organo de decisión";
-                                      tlotes3."Importe lote":=Rec."Importe adjudicado";
-                                      tlotes3."Fecha adjudicacion":=Rec."Fecha adjudicación";
-                                      tlotes3.INSERT;
-                                      EXIT;
-                                  END;
-                            END ELSE EXIT;
-                          END ELSE
-                             Tlotes.INIT;
-                             Tlotes.Lote:='1';
-                             //Tlotes."No. Expediente":= Rec."No.";
-                             Tlotes.VALIDATE("No. Expediente",Rec."No.");
-                             Tlotes."Descripción expediente":= Rec.Descripción;
-                             Tlotes."Descripción lote":=Rec.Descripción;
-                             Tlotes."Organo de decisión":=Rec."Organo de decisión";
-                             Tlotes."Importe lote":=Rec."Importe adjudicado";
-                             Tlotes."Fecha adjudicacion":=Rec."Fecha adjudicación";
-                             Tlotes.INSERT;
+                        Clear(Tlotes);
+                        Tlotes.SetRange(Tlotes."No. Expediente", Rec."No.");
+                        if Tlotes.FindFirst() then begin
+                            if Confirm('Ya existen lotes creados para éste expediente , desea continuar creando el lote?', true) then begin
+                                Clear(tlotes2);
+                                if not (tlotes2.Get(Rec."No.", 1)) then begin
+                                    tlotes2.Init();
+                                    tlotes2.Lote := '1';
+                                    //tlotes2."No. Expediente":= Rec."No.";
+                                    tlotes2.Validate("No. Expediente", Rec."No.");
+                                    tlotes2."Descripción expediente" := Rec.Descripción;
+                                    tlotes2."Descripción lote" := Rec.Descripción;
+                                    tlotes2."Organo de decisión" := Rec."Organo de decisión";
+                                    tlotes2."Importe lote" := Rec."Importe adjudicado";
+                                    tlotes2."Fecha adjudicacion" := Rec."Fecha adjudicación";
+                                    tlotes2.Insert();
+                                    exit;
+                                end else
+                                    tlotes4.SetCurrentKey(Lote);
+                                tlotes4.SetRange(tlotes4."No. Expediente", Rec."No.");
+                                if tlotes4.FindLast() then begin
+                                    Clear(tlotes3);
+                                    numerolote := 0;
+                                    okinteger := false;
+                                    okinteger := Evaluate(numerolote, tlotes4.Lote);
+                                    if okinteger = false then
+                                        Error('NO SE PUEDEN CREAR LOTES DESDE ESTE BOTÓN DEBIDO A QUE HAY LOTES EXISTENTES CON CÓDIGO ALFANUMÉRICO, DÉ DE ALTA EL LOTE A TRAVÉS DEL BOTÓN LOTES (PESTAÑA INICIO)');
+                                    numerolote := numerolote + 1;
+                                    tlotes3.Init();
+                                    tlotes3.Lote := Format(numerolote);
+                                    //tlotes3."No. Expediente":= Rec."No.";
+                                    tlotes3.Validate("No. Expediente", Rec."No.");
+                                    tlotes3."Descripción expediente" := Rec.Descripción;
+                                    tlotes3."Descripción lote" := Rec.Descripción;
+                                    tlotes3."Organo de decisión" := Rec."Organo de decisión";
+                                    tlotes3."Importe lote" := Rec."Importe adjudicado";
+                                    tlotes3."Fecha adjudicacion" := Rec."Fecha adjudicación";
+                                    tlotes3.Insert();
+                                    exit;
+                                end;
+                            end else
+                                exit;
+                        end else
+                            Tlotes.Init();
+                        Tlotes.Lote := '1';
+                        //Tlotes."No. Expediente":= Rec."No.";
+                        Tlotes.Validate("No. Expediente", Rec."No.");
+                        Tlotes."Descripción expediente" := Rec.Descripción;
+                        Tlotes."Descripción lote" := Rec.Descripción;
+                        Tlotes."Organo de decisión" := Rec."Organo de decisión";
+                        Tlotes."Importe lote" := Rec."Importe adjudicado";
+                        Tlotes."Fecha adjudicacion" := Rec."Fecha adjudicación";
+                        Tlotes.Insert();
                         //ZAM0038 IAG 21072020 fin
                     end;
                 }
@@ -354,19 +349,7 @@ page 50003 "Expedientes adjudicación Compr"
 
                     trigger OnAction()
                     begin
-                        //INICIO JRB 29/07/2020 Poder elegir una carpeta
-                        IF ISCLEAR(ShellControl) THEN
-                          CREATE(ShellControl,FALSE,TRUE);
-
-                        Folder := ShellControl.BrowseForFolder(0,'Seleccione carpeta',0);
-                        FolderItems := Folder.Items();
-                        FolderItem := FolderItems.Item;
-                        FolderTxt := FORMAT(FolderItem.Path);
-                        Rec."Bases expediente":=FolderTxt;
-                        factualizarVinculoCompras;
-                        CLEAR(ShellControl);
-
-                        //FIN JRB 29/07/2020 Poder elegir una carpeta
+                        Error(SelectFolderNotSupportedErr);
                     end;
                 }
             }
@@ -379,8 +362,8 @@ page 50003 "Expedientes adjudicación Compr"
                 Image = Lot;
                 Promoted = true;
                 PromotedIsBig = true;
-                RunObject = Page 50028;
-                                RunPageLink = No. Expediente=FIELD(No.);
+                RunObject = Page "Lista Lotes";
+                RunPageLink = "No. Expediente" = FIELD("No.");
             }
             action(OfertasRel)
             {
@@ -389,9 +372,9 @@ page 50003 "Expedientes adjudicación Compr"
                 Image = Quote;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = "Report";
-                RunObject = Page 9306;
-                                RunPageLink = Document Type=FILTER(Quote),
-                              No. expediente adjudicacion=FIELD(No.);
+                RunObject = Page "Purchase Quotes";
+                RunPageLink = "Document Type" = FILTER(Quote),
+                              "No. expediente adjudicacion" = FIELD("No.");
             }
             action(OfertasRelArch)
             {
@@ -400,56 +383,56 @@ page 50003 "Expedientes adjudicación Compr"
                 Image = Archive;
                 //The property 'PromotedCategory' can only be set if the property 'Promoted' is set to 'true'
                 //PromotedCategory = "Report";
-                RunObject = Page 9346;
-                                RunPageLink = Document Type=FILTER(Quote),
-                              No. expediente adjudicacion=FIELD(No.);
+                RunObject = Page "Purchase Quote Archives";
+                RunPageLink = "Document Type" = FILTER(Quote),
+                              "No. expediente adjudicacion" = FIELD("No.");
             }
             action("Pedidos relacionados")
             {
                 ApplicationArea = All;
                 Image = OrderList;
-                RunObject = Page 56;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No.);
+                RunObject = Page "Purchase Order List";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No.");
             }
             action("Prefacturas relacionadas")
             {
                 ApplicationArea = All;
                 Image = Invoice;
-                RunObject = Page 9308;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No.);
+                RunObject = Page "Purchase Invoices";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No.");
             }
             action("Facturas registradas relacionados")
             {
                 ApplicationArea = All;
                 Image = Archive;
-                RunObject = Page 146;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No.);
+                RunObject = Page "Posted Purchase Invoices";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No.");
             }
             action("Preabonos relacionadas")
             {
                 ApplicationArea = All;
                 Image = Invoice;
-                RunObject = Page 9309;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No.);
+                RunObject = Page "Purchase Credit Memos";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No.");
             }
             action("Abonos registradas relacionados")
             {
                 ApplicationArea = All;
                 Image = Archive;
-                RunObject = Page 147;
-                                RunPageLink = No. expediente adjudicacion=FIELD(No.);
+                RunObject = Page "Posted Purchase Credit Memos";
+                RunPageLink = "No. expediente adjudicacion" = FIELD("No.");
             }
             action("Facturas electrónicas")
             {
                 ApplicationArea = All;
                 Image = ElectronicDoc;
-                RunObject = Page 50066;
-                                RunPageLink = EXPEDIENTE=FIELD(No.);
+                RunObject = Page "Lista Factura Electrónica";
+                RunPageLink = EXPEDIENTE = FIELD("No.");
             }
             action(Dimensions)
             {
                 ApplicationArea = All;
-                AccessByPermission = TableData 348=R;
+                AccessByPermission = TableData 348 = R;
                 Caption = 'Dimensions';
                 Image = Dimensions;
                 ShortCutKey = 'Shift+Ctrl+D';
@@ -457,8 +440,8 @@ page 50003 "Expedientes adjudicación Compr"
                 trigger OnAction()
                 begin
                     //Z035 - INICIO 28/04/2020 JRB Dimensiones en expedientes
-                    ShowDocDim;
-                    CurrPage.SAVERECORD;
+                    Rec.ShowDocDim();
+                    CurrPage.SaveRecord();
                     //Z035 - FIN 28/04/2020 JRB Dimensiones en expedientes
                 end;
             }
@@ -468,23 +451,16 @@ page 50003 "Expedientes adjudicación Compr"
     trigger OnAfterGetRecord()
     begin
         //ZAM0038 IAG 20072020 campo prorroga puesto a flowfield
-        Rec.CALCFIELDS(Prórroga);
+        Rec.CalcFields(Prórroga);
     end;
 
     var
         vEditarProrroga: Boolean;
         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
-        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
-        ShellControl: Automation ;
-        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
-        Folder: Automation ;
-        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
-        FolderItems: Automation ;
-        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
-        FolderItem: Automation ;
         FolderTxt: Text[1024];
         ERROR0001: Label 'Proceso cancelado por el usuario';
         CONFIRM001: Label 'En este expediente ya se ha lanzado la aprobacion, ¿desea volver a lanzar la aprobacion?';
+        SelectFolderNotSupportedErr: Label 'La selección de carpetas locales mediante Automation/COM no es compatible con Business Central SaaS. Informe manualmente el vínculo o sustituya este proceso por una carga/selección SaaS.';
 
     [Scope('Internal')]
     procedure fEditarProrroga()
@@ -501,38 +477,38 @@ page 50003 "Expedientes adjudicación Compr"
 
     end;
 
-    local procedure fCrearMovAprobExp(tExpediente: Record 50001;vIdAprobador: Code[20];vNumAprob: Integer)
+    local procedure fCrearMovAprobExp(tExpediente: Record 50001; vIdAprobador: Code[20]; vNumAprob: Integer)
     var
         rlMovAprob: Record "Approval Entry";
         numAprob: Integer;
     begin
         //INICIO JRB 04/05/2020 Crear movimientos aprobacion para expedientes
-        numAprob:=0;
-        CLEAR(rlMovAprob);
-        IF rlMovAprob.FINDLAST THEN
-          numAprob:=rlMovAprob."Entry No."+1
-        ELSE
-          numAprob:=1;
+        numAprob := 0;
+        Clear(rlMovAprob);
+        if rlMovAprob.FindLast() then
+            numAprob := rlMovAprob."Entry No." + 1
+        else
+            numAprob := 1;
 
-        rlMovAprob.INIT;
-        rlMovAprob.VALIDATE("Entry No.",numAprob);
-        rlMovAprob.INSERT;
-        rlMovAprob.VALIDATE("Table ID",50001);
-        rlMovAprob.VALIDATE("Document Type",rlMovAprob."Document Type"::Expediente);
-        rlMovAprob.VALIDATE("Document No.",tExpediente."No.");
-        rlMovAprob.VALIDATE("Sequence No.",vNumAprob);
-        rlMovAprob.VALIDATE("Sender ID",USERID);
-        rlMovAprob.VALIDATE("Approver ID",vIdAprobador);
-        IF vNumAprob=1 THEN
-           rlMovAprob.VALIDATE(Status,rlMovAprob.Status::Open)
-        ELSE
-           rlMovAprob.VALIDATE(Status,rlMovAprob.Status::Created);
-        rlMovAprob.VALIDATE("Date-Time Sent for Approval",CREATEDATETIME(TODAY,TIME));
-        rlMovAprob.VALIDATE("Last Date-Time Modified",CREATEDATETIME(TODAY,TIME));
-        rlMovAprob.VALIDATE("Last Modified By User ID",USERID);
+        rlMovAprob.Init();
+        rlMovAprob.Validate("Entry No.", numAprob);
+        rlMovAprob.Insert();
+        rlMovAprob.Validate("Table ID", 50001);
+        rlMovAprob.Validate("Document Type", rlMovAprob."Document Type"::Expediente);
+        rlMovAprob.Validate("Document No.", tExpediente."No.");
+        rlMovAprob.Validate("Sequence No.", vNumAprob);
+        rlMovAprob.Validate("Sender ID", UserId());
+        rlMovAprob.Validate("Approver ID", vIdAprobador);
+        if vNumAprob = 1 then
+            rlMovAprob.Validate(Status, rlMovAprob.Status::Open)
+        else
+            rlMovAprob.Validate(Status, rlMovAprob.Status::Created);
+        rlMovAprob.Validate("Date-Time Sent for Approval", CreateDateTime(Today(), Time()));
+        rlMovAprob.Validate("Last Date-Time Modified", CreateDateTime(Today(), Time()));
+        rlMovAprob.Validate("Last Modified By User ID", UserId());
         //rlMovAprob.VALIDATE("Due Date",);
-        rlMovAprob.VALIDATE(Amount,tExpediente."Importe adjudicado");
-        rlMovAprob.MODIFY;
+        rlMovAprob.Validate(Amount, tExpediente."Importe adjudicado");
+        rlMovAprob.Modify();
         //FIN JRB 04/05/2020 Crear movimientos aprobacion para expedientes
     end;
 
@@ -546,20 +522,18 @@ page 50003 "Expedientes adjudicación Compr"
         longitud: Integer;
     begin
         //ZAM0039 IAG 17/7/29 ruta servidor documentos PARA VINCULOS
-        posicion:=0;
-        longitud:=0;
-        nuevotexto:='';
-        nuevaurl:='';
-        tconfcompras.GET();
-        textoabuscar:='\NAV\Expedientes';
-        posicion:=STRPOS("Bases expediente",textoabuscar);
-        IF posicion>1 THEN
-        BEGIN
-          longitud:=STRLEN("Bases expediente");
-          nuevotexto:=COPYSTR("Bases expediente",posicion + 4,longitud);
-          nuevaurl:=tconfcompras."Ruta servidor documentos" + nuevotexto;
-          "Bases expediente":= nuevaurl;
-        END;
+        posicion := 0;
+        longitud := 0;
+        nuevotexto := '';
+        nuevaurl := '';
+        tconfcompras.Get();
+        textoabuscar := '\NAV\Expedientes';
+        posicion := StrPos(Rec."Bases expediente", textoabuscar);
+        if posicion > 1 then begin
+            longitud := StrLen(Rec."Bases expediente");
+            nuevotexto := CopyStr(Rec."Bases expediente", posicion + 4, longitud);
+            nuevaurl := tconfcompras."Ruta servidor documentos" + nuevotexto;
+            Rec."Bases expediente" := nuevaurl;
+        end;
     end;
 }
-
