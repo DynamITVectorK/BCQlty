@@ -11,6 +11,9 @@
 ### Changed
 
 - Updated `docs/src-page-modernization-review.md` to reflect merged PRs #17, #18 and #19.
+- Modernized `Pag50006.Contadores.al` factboxes and reading history navigation.
+- Modernized `Pag50027.Codigosderetencion.al` factboxes and `CurrPage.Editable` call.
+- Documented unresolved `RunObject = Page 50002` in `Pag50027` instead of replacing it unsafely.
 
 ### Notes
 
