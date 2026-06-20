@@ -8,7 +8,6 @@ page 90000 ZAMTicketBaiSetup
     InsertAllowed = false;
     PageType = Card;
     UsageCategory = Administration;
-    PromotedActionCategories = 'New,Process,Report';
     SourceTable = 90000;
 
     layout
@@ -127,7 +126,7 @@ page 90000 ZAMTicketBaiSetup
                 {
                     ApplicationArea = All;
                 }
-                field("Certificate Installed"; Rec.ZAM_Certificate.HASVALUE())
+                field("Certificate Installed"; Rec.ZAM_Certificate.HasValue())
                 {
                     ApplicationArea = All;
                     Caption = 'Certificate Installed';
@@ -169,12 +168,14 @@ page 90000 ZAMTicketBaiSetup
         }
         area(factboxes)
         {
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
                 Visible = false;
             }
         }
@@ -192,10 +193,7 @@ page 90000 ZAMTicketBaiSetup
                     ApplicationArea = All;
                     Caption = 'Payment Methods';
                     Image = Payment;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
-                    RunObject = Page 427;
+                    RunObject = Page "Payment Methods";
                     ToolTip = 'Set up the payment methods that you select from the customer card to define how the customer must pay, for example by bank transfer.';
                 }
                 action("Payment Terms")
@@ -203,10 +201,7 @@ page 90000 ZAMTicketBaiSetup
                     ApplicationArea = All;
                     Caption = 'Payment Terms';
                     Image = Payment;
-                    Promoted = true;
-                    PromotedCategory = Process;
-                    PromotedIsBig = true;
-                    RunObject = Page 4;
+                    RunObject = Page "Payment Terms";
                     ToolTip = 'Set up the payment terms that you select from on customer cards to define when the customer must pay, such as within 14 days.';
                 }
             }
@@ -218,9 +213,6 @@ page 90000 ZAMTicketBaiSetup
                 ApplicationArea = All;
                 Caption = 'Import digital certificate';
                 Image = UserCertificate;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
                 ToolTip = 'Choose your digital certificate file, and import it. You will need it to send the IIS document.';
 
                 trigger OnAction()
@@ -244,22 +236,38 @@ page 90000 ZAMTicketBaiSetup
 
                 trigger OnAction()
                 begin
-                    CLEAR(Rec.ZAM_Cert_Izenpe);
-                    CLEAR(ZAM_Certificate);
+                    Clear(Rec.ZAM_Cert_Izenpe);
+                    Clear(Rec.ZAM_Certificate);
 
-                    Rec.MODIFY;
+                    Rec.Modify();
                 end;
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(PaymentMethods_Promoted; "Payment Methods")
+                {
+                }
+                actionref(PaymentTerms_Promoted; "Payment Terms")
+                {
+                }
+                actionref(ImportCert_Promoted; ImportCert)
+                {
+                }
             }
         }
     }
 
     trigger OnOpenPage()
     begin
-        Rec.RESET();
-        IF NOT Rec.GET() THEN BEGIN
-            Rec.INIT();
-            Rec.INSERT();
-        END;
+        Rec.Reset();
+        if not Rec.Get() then begin
+            Rec.Init();
+            Rec.Insert();
+        end;
     end;
 }
-
