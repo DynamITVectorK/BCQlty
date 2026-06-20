@@ -22,7 +22,7 @@ page 50064 "Líneas FacturaE"
     {
         area(content)
         {
-            repeater()
+            repeater(Group)
             {
                 field("ID Factura"; Rec."ID Factura")
                 {
@@ -42,21 +42,20 @@ page 50064 "Líneas FacturaE"
                     trigger OnLookup(var Text: Text): Boolean
                     begin
                         //I00109 Mod. S2G (JSM) 22-10-14: Permitir creación de líneas de activo fijo en Factura Elec.
-                        CLEAR(rFAPostingGroup);
-                        rFAPostingGroup.SETRANGE("Acquisition Cost Account", "Cuenta NAV");
-                        IF rFAPostingGroup.FINDFIRST THEN BEGIN
-                            CLEAR(fFA);
-                            fFA.SETTABLEVIEW(rFA);
-                            fFA.SETRECORD(rFA);
-                            fFA.LOOKUPMODE(TRUE);
-                            fFA.EDITABLE(FALSE);
-                            IF fFA.RUNMODAL = ACTION::LookupOK THEN BEGIN
-                                fFA.GETRECORD(rFA);
-                                Rec.VALIDATE("Cod Activo", rFA."No.");
-                            END;
-                        END
-                        ELSE
-                            MESSAGE(STRSUBSTNO(Text50000, "Cuenta NAV"));
+                        Clear(rFAPostingGroup);
+                        rFAPostingGroup.SetRange("Acquisition Cost Account", Rec."Cuenta NAV");
+                        if rFAPostingGroup.FindFirst() then begin
+                            Clear(fFA);
+                            fFA.SetTableView(rFA);
+                            fFA.SetRecord(rFA);
+                            fFA.LookupMode(true);
+                            fFA.Editable(false);
+                            if fFA.RunModal() = Action::LookupOK then begin
+                                fFA.GetRecord(rFA);
+                                Rec.Validate("Cod Activo", rFA."No.");
+                            end;
+                        end else
+                            Message(StrSubstNo(Text50000, Rec."Cuenta NAV"));
                         //I00109 Mod. S2G (JSM) 22-10-14:
                     end;
                 }
@@ -160,21 +159,21 @@ page 50064 "Líneas FacturaE"
 
     trigger OnInit()
     begin
-        "Cod ActivoEditable" := TRUE;
-        "Pedido NAVEditable" := TRUE;
-        "Cuenta NAVEditable" := TRUE;
-        REFERENCIADELRECEPTOREditable := TRUE;
-        "REFERENCIA DEL EMISOREditable" := TRUE;
-        EXPEDIENTEEditable := TRUE;
-        //RetencionesEditable := TRUE;
-        RetencionesEditable := FALSE;
-        TasasEditable := TRUE;
-        DESCUENTOEditable := TRUE;
-        PRECIOEditable := TRUE;
-        CANTIDADEditable := TRUE;
-        DESCRIPCIONEditable := TRUE;
-        CODIGOEditable := TRUE;
-        "ID FacturaEditable" := TRUE;
+        "Cod ActivoEditable" := true;
+        "Pedido NAVEditable" := true;
+        "Cuenta NAVEditable" := true;
+        REFERENCIADELRECEPTOREditable := true;
+        "REFERENCIA DEL EMISOREditable" := true;
+        EXPEDIENTEEditable := true;
+        //RetencionesEditable := true;
+        RetencionesEditable := false;
+        TasasEditable := true;
+        DESCUENTOEditable := true;
+        PRECIOEditable := true;
+        CANTIDADEditable := true;
+        DESCRIPCIONEditable := true;
+        CODIGOEditable := true;
+        "ID FacturaEditable" := true;
     end;
 
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
@@ -182,17 +181,17 @@ page 50064 "Líneas FacturaE"
         TasasYRetenciones: Record 50009;
     begin
         //>Z004      CIMUBISA-08 JLF 2018.03.23 Gestión de FacturaE
-        GLSetup.FINDFIRST;
-        CLEAR(TasasYRetenciones);
-        TasasYRetenciones.INIT;
-        TasasYRetenciones."ID Factura" := "ID Factura";
-        TasasYRetenciones.Linea := Linea;
-        TasasYRetenciones.CODIGO := CODIGO;
-        TasasYRetenciones.CONCEPTO := DESCRIPCION;
+        GLSetup.FindFirst();
+        Clear(TasasYRetenciones);
+        TasasYRetenciones.Init();
+        TasasYRetenciones."ID Factura" := Rec."ID Factura";
+        TasasYRetenciones.Linea := Rec.Linea;
+        TasasYRetenciones.CODIGO := Rec.CODIGO;
+        TasasYRetenciones.CONCEPTO := Rec.DESCRIPCION;
         TasasYRetenciones.TASA := GLSetup."Porcentaje IVA Necesidad";
-        TasasYRetenciones."Código IVA NAV" := "Código IVA NAV";
-        TasasYRetenciones."Código IRPF NAV" := "Código IRPF NAV";
-        TasasYRetenciones.INSERT;
+        TasasYRetenciones."Código IVA NAV" := Rec."Código IVA NAV";
+        TasasYRetenciones."Código IRPF NAV" := Rec."Código IRPF NAV";
+        TasasYRetenciones.Insert();
         //<Z004      CIMUBISA-08 JLF 2018.03.23 Gestión de FacturaE
     end;
 
@@ -210,59 +209,43 @@ page 50064 "Líneas FacturaE"
         rFAPostingGroup: Record "FA Posting Group";
         rFA: Record "Fixed Asset";
         Text50000: Label 'Sólo se puede seleccionar un activo fijo si la Cuenta NAV %1 está asignada como Cta. Coste en algún Grupo Contable de activo fijo.';
-        fFA: Page 5601;
-        [InDataSet]
+        fFA: Page "Fixed Asset List";
         "ID FacturaEditable": Boolean;
-        [InDataSet]
         CODIGOEditable: Boolean;
-        [InDataSet]
         DESCRIPCIONEditable: Boolean;
-        [InDataSet]
         CANTIDADEditable: Boolean;
-        [InDataSet]
         PRECIOEditable: Boolean;
-        [InDataSet]
         DESCUENTOEditable: Boolean;
-        [InDataSet]
         TasasEditable: Boolean;
-        [InDataSet]
         RetencionesEditable: Boolean;
-        [InDataSet]
         EXPEDIENTEEditable: Boolean;
-        [InDataSet]
         "REFERENCIA DEL EMISOREditable": Boolean;
-        [InDataSet]
         REFERENCIADELRECEPTOREditable: Boolean;
-        [InDataSet]
         "Cuenta NAVEditable": Boolean;
-        [InDataSet]
         "Pedido NAVEditable": Boolean;
-        [InDataSet]
         "Cod ActivoEditable": Boolean;
         GLSetup: Record "General Ledger Setup";
 
-    [Scope('Internal')]
     procedure fEditables()
     begin
-        "ID FacturaEditable" := FALSE;
+        "ID FacturaEditable" := false;
         //CurrForm.Linea.EDITABLE(FALSE);
-        CODIGOEditable := FALSE;
-        DESCRIPCIONEditable := FALSE;
-        CANTIDADEditable := FALSE;
-        PRECIOEditable := FALSE;
-        DESCUENTOEditable := FALSE;
-        TasasEditable := FALSE;
-        RetencionesEditable := FALSE;
-        EXPEDIENTEEditable := FALSE;
-        "REFERENCIA DEL EMISOREditable" := FALSE;
-        REFERENCIADELRECEPTOREditable := FALSE;
+        CODIGOEditable := false;
+        DESCRIPCIONEditable := false;
+        CANTIDADEditable := false;
+        PRECIOEditable := false;
+        DESCUENTOEditable := false;
+        TasasEditable := false;
+        RetencionesEditable := false;
+        EXPEDIENTEEditable := false;
+        "REFERENCIA DEL EMISOREditable" := false;
+        REFERENCIADELRECEPTOREditable := false;
 
-        "Cuenta NAVEditable" := TRUE;
-        "Pedido NAVEditable" := TRUE;
+        "Cuenta NAVEditable" := true;
+        "Pedido NAVEditable" := true;
 
         //I00109 Mod. S2G (JSM) 22-10-14: Permitir creación de líneas de activo fijo en Factura Elec.
-        "Cod ActivoEditable" := TRUE;
+        "Cod ActivoEditable" := true;
         //I00109 Mod. S2G (JSM) 22-10-14: Fin.
     end;
 }
-
