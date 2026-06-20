@@ -56,11 +56,13 @@ page 90001 "ZAM_CustomerRealEstate"
         }
         area(factboxes)
         {
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -69,4 +71,3 @@ page 90001 "ZAM_CustomerRealEstate"
     {
     }
 }
-

@@ -70,11 +70,13 @@ page 90013 ZAMCustomerRealEstatesCard
         }
         area(factboxes)
         {
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -83,4 +85,3 @@ page 90013 ZAMCustomerRealEstatesCard
     {
     }
 }
-
