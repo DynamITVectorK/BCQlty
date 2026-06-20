@@ -14,7 +14,7 @@ page 50010 "Ficha de Incidencias"
                 {
                     ApplicationArea = All;
                     Style = Strong;
-                    StyleExpr = TRUE;
+                    StyleExpr = true;
                 }
                 field("Área incidencia"; Rec."Área incidencia")
                 {
@@ -107,4 +107,3 @@ page 50010 "Ficha de Incidencias"
     {
     }
 }
-
