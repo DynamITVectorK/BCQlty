@@ -22,8 +22,8 @@ page 50017 "Notas factura"
 
                     trigger OnValidate()
                     begin
-                        CurrPage.SAVERECORD;
-                        CurrPage.UPDATE(FALSE);
+                        CurrPage.SaveRecord();
+                        CurrPage.Update(false);
                     end;
                 }
                 field(Comment; Rec.Comment)
@@ -32,8 +32,8 @@ page 50017 "Notas factura"
 
                     trigger OnValidate()
                     begin
-                        CurrPage.SAVERECORD;
-                        CurrPage.UPDATE(FALSE);
+                        CurrPage.SaveRecord();
+                        CurrPage.Update(false);
                     end;
                 }
             }
@@ -44,4 +44,3 @@ page 50017 "Notas factura"
     {
     }
 }
-
