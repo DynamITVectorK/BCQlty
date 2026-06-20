@@ -103,10 +103,8 @@ page 50021 "WS Información cliente"
     begin
         Rec.CalcFields("Balance (LCY)");
         Clear(tPaymentMethod);
-        if tPaymentMethod.Get(Rec."Payment Method Code") then
-            vPaymentMethod := tPaymentMethod.Description
-        else
-            Clear(vPaymentMethod);
+        tPaymentMethod.Get(Rec."Payment Method Code");
+        vPaymentMethod := tPaymentMethod.Description;
     end;
 
     var
