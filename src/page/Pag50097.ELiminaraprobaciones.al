@@ -2,7 +2,7 @@ page 50097 "ELiminar aprobaciones"
 {
     PageType = List;
     UsageCategory = Administration;
-    Permissions = TableData 454 = rimd;
+    Permissions = TableData "Approval Entry" = rimd;
     SourceTable = "Approval Entry";
 
     layout
@@ -131,4 +131,3 @@ page 50097 "ELiminar aprobaciones"
     {
     }
 }
-
