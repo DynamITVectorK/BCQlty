@@ -6,8 +6,8 @@ page 90008 ZAMSettlementPeriods
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 90002;
-    SourceTableView = SORTING (ZAM_Type, ZAM_Code)
-                      WHERE (ZAM_Type = FILTER (Settlement Period));
+    SourceTableView = SORTING(ZAM_Type, ZAM_Code)
+                      WHERE(ZAM_Type = FILTER("Settlement Period"));
 
     layout
     {
@@ -31,11 +31,13 @@ page 90008 ZAMSettlementPeriods
         }
         area(factboxes)
         {
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -61,10 +63,9 @@ page 90008 ZAMSettlementPeriods
     trigger OnOpenPage()
     begin
         //Z0041GEN 13/12/21 PBS.INICIO
-        Rec.FILTERGROUP(100);
-        Rec.SETRANGE(ZAM_Type, Rec.ZAM_Type::"Settlement Period");
-        Rec.FILTERGROUP(0);
+        Rec.FilterGroup(100);
+        Rec.SetRange(ZAM_Type, Rec.ZAM_Type::"Settlement Period");
+        Rec.FilterGroup(0);
         //Z0041GEN 13/12/21 PBS.INICIO
     end;
 }
-
