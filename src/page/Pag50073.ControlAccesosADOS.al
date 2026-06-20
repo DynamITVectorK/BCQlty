@@ -1,5 +1,6 @@
 page 50073 "Control Accesos ADOS"
 {
+    Caption = 'Control Accesos ADOS';
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 50015;
@@ -38,4 +39,3 @@ page 50073 "Control Accesos ADOS"
     {
     }
 }
-
