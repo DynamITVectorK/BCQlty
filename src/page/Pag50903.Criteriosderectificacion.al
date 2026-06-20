@@ -1,13 +1,13 @@
 page 50903 "Criterios de rectificacion"
 {
-    // //***Z001 -   4 - BGS - 27/04/15: Factura electrónica: generación, firma, subida y actualización
+    // //***Z001 -   4 - BGS - 27/04/15: Factura electronica
 
     Caption = 'Criterios de rectificación';
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 50130;
-    SourceTableView = SORTING (Tipo, Codigo)
-                      WHERE (Tipo = CONST (Criterio rectificacion));
+    SourceTableView = SORTING(Tipo, Codigo)
+                      WHERE(Tipo = CONST("Criterio rectificacion"));
 
     layout
     {
@@ -31,4 +31,3 @@ page 50903 "Criterios de rectificacion"
     {
     }
 }
-
