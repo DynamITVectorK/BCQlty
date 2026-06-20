@@ -6,7 +6,7 @@ page 50018 "Lineas factura sin registrar"
     PageType = List;
     UsageCategory = Administration;
     SourceTable = "Sales Line";
-    SourceTableView = WHERE (Document Type=FILTER(Invoice));
+    SourceTableView = WHERE("Document Type" = FILTER(Invoice));
 
     layout
     {
@@ -46,7 +46,7 @@ page 50018 "Lineas factura sin registrar"
                 {
                     ApplicationArea = All;
                 }
-                field("Unit Cost (LCY)";Rec."Unit Cost (LCY)")
+                field("Unit Cost (LCY)"; Rec."Unit Cost (LCY)")
                 {
                     ApplicationArea = All;
                 }
@@ -162,4 +162,3 @@ page 50018 "Lineas factura sin registrar"
     {
     }
 }
-
