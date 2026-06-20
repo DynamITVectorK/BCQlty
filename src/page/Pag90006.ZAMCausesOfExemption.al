@@ -6,8 +6,8 @@ page 90006 ZAMCausesOfExemption
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 90002;
-    SourceTableView = SORTING (ZAM_Type, ZAM_Code)
-                      WHERE (ZAM_Type = FILTER (Exemption Cause));
+    SourceTableView = SORTING(ZAM_Type, ZAM_Code)
+                      WHERE(ZAM_Type = FILTER("Exemption Cause"));
 
     layout
     {
@@ -27,11 +27,13 @@ page 90006 ZAMCausesOfExemption
         }
         area(factboxes)
         {
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -57,10 +59,9 @@ page 90006 ZAMCausesOfExemption
     trigger OnOpenPage()
     begin
         //Z0041GEN 13/12/21 PBS.INICIO
-        Rec.FILTERGROUP(100);
-        Rec.SETRANGE(ZAM_Type, Rec.ZAM_Type::"Exemption Cause");
-        Rec.FILTERGROUP(0);
+        Rec.FilterGroup(100);
+        Rec.SetRange(ZAM_Type, Rec.ZAM_Type::"Exemption Cause");
+        Rec.FilterGroup(0);
         //Z0041GEN 13/12/21 PBS.INICIO
     end;
 }
-
