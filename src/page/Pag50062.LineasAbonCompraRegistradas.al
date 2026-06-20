@@ -1,5 +1,6 @@
 page 50062 "Lineas Abon Compra Registradas"
 {
+    Caption = 'Lineas Abon Compra Registradas';
     Editable = false;
     PageType = List;
     UsageCategory = Administration;
@@ -231,4 +232,3 @@ page 50062 "Lineas Abon Compra Registradas"
     {
     }
 }
-

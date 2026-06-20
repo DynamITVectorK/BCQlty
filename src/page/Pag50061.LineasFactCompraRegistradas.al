@@ -1,5 +1,6 @@
 page 50061 "Lineas Fact Compra Registradas"
 {
+    Caption = 'Lineas Fact Compra Registradas';
     Editable = false;
     PageType = List;
     UsageCategory = Administration;
@@ -239,4 +240,3 @@ page 50061 "Lineas Fact Compra Registradas"
     {
     }
 }
-
