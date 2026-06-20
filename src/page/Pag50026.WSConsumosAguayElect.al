@@ -17,9 +17,9 @@ page 50026 "WS Consumos Agua y Elect"
             repeater(Group)
             {
                 field(Area; Rec.Area)
-        {
-            ApplicationArea = All;
-        }
+                {
+                    ApplicationArea = All;
+                }
                 field("No. Contador"; Rec."No. Contador")
                 {
                     ApplicationArea = All;
@@ -72,15 +72,15 @@ page 50026 "WS Consumos Agua y Elect"
     var
         vlLimitDate: Date;
     begin
-        CLEAR(tSalesReceivablesSetup);
-        tSalesReceivablesSetup.GET;
-        CLEAR(vlLimitDate);
-        vlLimitDate := CALCDATE('-' +FORMAT(tSalesReceivablesSetup."Plazo desde para lecturas WEB"),WORKDATE);
-        Rec.SETFILTER("Fecha lectura",'>%1', vlLimitDate);
-        Rec.SETFILTER("Fecha factura registrada", '<>%1', 0D);
-        Rec.CALCFIELDS("No Cliente",ClienteBloqueado,ContraseñaWeb);
-        Rec.SETRANGE(ClienteBloqueado,FALSE);
-        Rec.SETFILTER(ContraseñaWeb,'<>%1', '');
+        Clear(tSalesReceivablesSetup);
+        tSalesReceivablesSetup.Get();
+        Clear(vlLimitDate);
+        vlLimitDate := CalcDate('-' + Format(tSalesReceivablesSetup."Plazo desde para lecturas WEB"), WorkDate());
+        Rec.SetFilter("Fecha lectura", '>%1', vlLimitDate);
+        Rec.SetFilter("Fecha factura registrada", '<>%1', 0D);
+        Rec.CalcFields("No Cliente", ClienteBloqueado, ContraseñaWeb);
+        Rec.SetRange(ClienteBloqueado, false);
+        Rec.SetFilter(ContraseñaWeb, '<>%1', '');
     end;
 
     var
@@ -88,4 +88,3 @@ page 50026 "WS Consumos Agua y Elect"
         tCustomer: Record "Customer";
         tSalesHeader: Record "Sales Header";
 }
-
