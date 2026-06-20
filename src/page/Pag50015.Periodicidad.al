@@ -15,7 +15,7 @@ page 50015 Periodicidad
         {
             repeater(Group)
             {
-                field(xlRowID; Rec.xlRowID)
+                field(RowNo; Rec."Row No.")
                 {
                     ApplicationArea = All;
                     Caption = 'xlRowID';
@@ -28,4 +28,3 @@ page 50015 Periodicidad
     {
     }
 }
-
