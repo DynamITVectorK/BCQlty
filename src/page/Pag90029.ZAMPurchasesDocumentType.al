@@ -6,8 +6,8 @@ page 90029 ZAMPurchasesDocumentType
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 90002;
-    SourceTableView = SORTING (ZAM_Type, ZAM_Code)
-                      WHERE (ZAM_Type = FILTER (Purchase Document Type));
+    SourceTableView = SORTING(ZAM_Type, ZAM_Code)
+                      WHERE(ZAM_Type = FILTER("Purchase Document Type"));
 
     layout
     {
@@ -47,11 +47,13 @@ page 90029 ZAMPurchasesDocumentType
         }
         area(factboxes)
         {
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -77,10 +79,9 @@ page 90029 ZAMPurchasesDocumentType
     trigger OnOpenPage()
     begin
         //Z0041GEN 13/12/21 PBS.INICIO
-        Rec.FILTERGROUP(100);
-        Rec.SETRANGE(ZAM_Type, Rec.ZAM_Type::"Purchase Document Type");
-        Rec.FILTERGROUP(0);
+        Rec.FilterGroup(100);
+        Rec.SetRange(ZAM_Type, Rec.ZAM_Type::"Purchase Document Type");
+        Rec.FilterGroup(0);
         //Z0041GEN 13/12/21 PBS.INICIO
     end;
 }
-
