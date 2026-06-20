@@ -7,9 +7,8 @@ page 90019 ZAMTicketBaiHistDocs
     ModifyAllowed = false;
     PageType = List;
     UsageCategory = Administration;
-    PromotedActionCategories = 'Nuevo,Procesar,Informar,Comunicación';
     SourceTable = 90001;
-    SourceTableView = SORTING (ZAM_Company, ZAM_Status, ZAM_Creation Date)
+    SourceTableView = SORTING(ZAM_Company, ZAM_Status, "ZAM_Creation Date")
                       ORDER(Descending);
 
     layout
@@ -22,7 +21,7 @@ page 90019 ZAMTicketBaiHistDocs
                 field(ZAM_Status; Rec.ZAM_Status)
                 {
                     ApplicationArea = All;
-                    StyleExpr = statuscolor;
+                    StyleExpr = StatusColor;
                 }
                 field(ZAM_Book; Rec.ZAM_Book)
                 {
@@ -145,16 +144,11 @@ page 90019 ZAMTicketBaiHistDocs
                     ApplicationArea = All;
                     Caption = 'Ver envío';
                     Image = ImportLog;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
-                    var
-                        TypeRecL: Option Request,Response,QR;
                     begin
                         Rec.ShowCommunication(TypeRecL::Request);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
                 }
                 action(ShowResponse)
@@ -162,16 +156,11 @@ page 90019 ZAMTicketBaiHistDocs
                     ApplicationArea = All;
                     Caption = 'Ver respuesta';
                     Image = ImportExport;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
-                    var
-                        TypeRecL: Option Request,Response,QR;
                     begin
                         Rec.ShowCommunication(TypeRecL::Response);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
                 }
                 action(ShowResponseQR)
@@ -179,17 +168,29 @@ page 90019 ZAMTicketBaiHistDocs
                     ApplicationArea = All;
                     Caption = 'Mostrar respuesta QR';
                     Image = ImportExport;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
-                    var
-                        TypeRecL: Option Request,Response,QR;
                     begin
                         Rec.ShowCommunication(TypeRecL::QR);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Communication)
+            {
+                Caption = 'Comunicación';
+
+                actionref(ShowRequest_Promoted; ShowRequest)
+                {
+                }
+                actionref(ShowResponse_Promoted; ShowResponse)
+                {
+                }
+                actionref(ShowResponseQR_Promoted; ShowResponseQR)
+                {
                 }
             }
         }
@@ -202,13 +203,13 @@ page 90019 ZAMTicketBaiHistDocs
 
     trigger OnOpenPage()
     begin
-        Rec.FILTERGROUP(100);
-        Rec.SETRANGE(ZAM_Company, COMPANYNAME());
-        Rec.SETFILTER(ZAM_Status, '%1|%2', Rec.ZAM_Status::Confirmed, Rec.ZAM_Status::Cancelled);
-        Rec.FILTERGROUP(0);
+        Rec.FilterGroup(100);
+        Rec.SetRange(ZAM_Company, CompanyName());
+        Rec.SetFilter(ZAM_Status, '%1|%2', Rec.ZAM_Status::Confirmed, Rec.ZAM_Status::Cancelled);
+        Rec.FilterGroup(0);
     end;
 
     var
+        TypeRecL: Option Request,Response,QR;
         StatusColor: Text;
 }
-
