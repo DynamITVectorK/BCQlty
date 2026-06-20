@@ -6,8 +6,8 @@ page 90002 ZAMVATRegistrationType
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 90002;
-    SourceTableView = SORTING (ZAM_Type, ZAM_Code)
-                      WHERE (ZAM_Type = FILTER (VAT Registration Type));
+    SourceTableView = SORTING(ZAM_Type, ZAM_Code)
+                      WHERE(ZAM_Type = FILTER("VAT Registration Type"));
 
     layout
     {
@@ -27,11 +27,13 @@ page 90002 ZAMVATRegistrationType
         }
         area(factboxes)
         {
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -57,10 +59,9 @@ page 90002 ZAMVATRegistrationType
     trigger OnOpenPage()
     begin
         //Z0041GEN 13/12/21 PBS.INICIO
-        Rec.FILTERGROUP(100);
-        Rec.SETRANGE(ZAM_Type, Rec.ZAM_Type::"VAT Registration Type");
-        Rec.FILTERGROUP(0);
+        Rec.FilterGroup(100);
+        Rec.SetRange(ZAM_Type, Rec.ZAM_Type::"VAT Registration Type");
+        Rec.FilterGroup(0);
         //Z0041GEN 13/12/21 PBS.INICIO
     end;
 }
-
