@@ -70,22 +70,21 @@ page 50000 "Lecturas DORLET"
     {
         area(processing)
         {
-            group()
+            group(Importacion)
             {
+                Caption = 'Importación';
+
                 action("Importar Fichero y Generar Factura")
                 {
                     ApplicationArea = All;
                     Caption = 'Importar Fichero y Generar Facturas';
 
                     trigger OnAction()
-                    var
-                        tlSalesReceivablesSetup: Record "Sales & Receivables Setup";
                     begin
-                        REPORT.RUN(50002, TRUE);
+                        Report.Run(50002, true);
                     end;
                 }
             }
         }
     }
 }
-
