@@ -8,9 +8,9 @@ page 50022 "WS Bancos cliente"
     ModifyAllowed = false;
     PageType = List;
     UsageCategory = Administration;
-    SourceTable = "Customer";
-    SourceTableView = WHERE (Bloqueado Web=FILTER(No),
-                            Contraseña Web=FILTER(<>''));
+    SourceTable = Customer;
+    SourceTableView = WHERE("Bloqueado Web" = FILTER(No),
+                            "Contraseña Web" = FILTER(<> ''));
 
     layout
     {
@@ -22,7 +22,7 @@ page 50022 "WS Bancos cliente"
                 {
                     ApplicationArea = All;
                 }
-                field(IBAN; Rec.vCustomerBankAccount)
+                field(IBAN; vCustomerBankAccount)
                 {
                     ApplicationArea = All;
                 }
@@ -36,25 +36,22 @@ page 50022 "WS Bancos cliente"
 
     trigger OnAfterGetRecord()
     begin
-        CLEAR(vCustomerBankAccount);
-        IF "Preferred Bank Account" <> '' THEN BEGIN
-          CLEAR(tCustomerBankAccount);
-          tCustomerBankAccount.SETRANGE("Customer No.","No.");
-          tCustomerBankAccount.SETRANGE(Code,"Preferred Bank Account");
-          IF tCustomerBankAccount.FINDSET THEN
-             vCustomerBankAccount := tCustomerBankAccount.IBAN;
-
-        END ELSE BEGIN
-          CLEAR(tCustomerBankAccount);
-          tCustomerBankAccount.SETRANGE("Customer No.","No.");
-          IF tCustomerBankAccount.FINDFIRST THEN
-             vCustomerBankAccount := tCustomerBankAccount.IBAN
-
-        END;
+        Clear(vCustomerBankAccount);
+        if Rec."Preferred Bank Account" <> '' then begin
+            Clear(tCustomerBankAccount);
+            tCustomerBankAccount.SetRange("Customer No.", Rec."No.");
+            tCustomerBankAccount.SetRange(Code, Rec."Preferred Bank Account");
+            if tCustomerBankAccount.FindSet() then
+                vCustomerBankAccount := tCustomerBankAccount.IBAN;
+        end else begin
+            Clear(tCustomerBankAccount);
+            tCustomerBankAccount.SetRange("Customer No.", Rec."No.");
+            if tCustomerBankAccount.FindFirst() then
+                vCustomerBankAccount := tCustomerBankAccount.IBAN;
+        end;
     end;
 
     var
         tCustomerBankAccount: Record "Customer Bank Account";
         vCustomerBankAccount: Code[50];
 }
-
