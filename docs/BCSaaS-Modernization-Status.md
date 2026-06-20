@@ -176,6 +176,21 @@ Patrones abordados:
 - Normalización de `systempart`, `Clear`, `Modify`, `Reset`, `Get`, `Init` e `Insert`.
 - Conservación de las acciones de importación y borrado de certificados TicketBAI.
 
+### PR #28 / rama `p28-pages-batch`
+
+Pages incluidas:
+
+- `Pag50007.HistAguaElectricidad.al`
+- `Pag50008.Gestindelecturas.al`
+- `Pag90019.ZAMTicketBaiHistDocs.al`
+
+Patrones abordados:
+
+- Eliminación de `PromotedActionCategories`.
+- Sustitución de `Promoted`, `PromotedCategory` y `PromotedIsBig` por `area(Promoted)` con `actionref`.
+- Normalización de `CurrPage.Update`, `FilterGroup`, `SetRange`, `SetFilter`, `CompanyName` y casing AL.
+- Conservación de la lógica de lecturas, modificación/borrado de lecturas, navegación a contador/contrato/factura/incidencia y comunicaciones TicketBAI.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales

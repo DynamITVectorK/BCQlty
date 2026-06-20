@@ -6,7 +6,6 @@ page 50007 "Hist. Agua /Electricidad"
     Editable = false;
     PageType = List;
     UsageCategory = Administration;
-    PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
     SourceTable = 50003;
     SourceTableView = SORTING(Area, "Fecha lectura", "No. Contador")
                       ORDER(Ascending);
@@ -132,9 +131,6 @@ page 50007 "Hist. Agua /Electricidad"
                 {
                     ApplicationArea = All;
                     Image = CostCenter;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
                     RunObject = Page Contadores;
                     RunPageLink = "No. Contador" = FIELD("No. Contador");
                 }
@@ -143,9 +139,6 @@ page 50007 "Hist. Agua /Electricidad"
                     ApplicationArea = All;
                     Caption = 'Contratos';
                     Image = "Order";
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
@@ -165,9 +158,6 @@ page 50007 "Hist. Agua /Electricidad"
                     ApplicationArea = All;
                     Caption = 'Ver factura';
                     Image = Invoice;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
@@ -191,9 +181,6 @@ page 50007 "Hist. Agua /Electricidad"
                     ApplicationArea = All;
                     Caption = 'Modificar Lectura';
                     Image = UpdateDescription;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
@@ -236,9 +223,6 @@ page 50007 "Hist. Agua /Electricidad"
                     ApplicationArea = All;
                     Caption = 'Borrar Lectura';
                     Image = Delete;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     begin
@@ -256,9 +240,6 @@ page 50007 "Hist. Agua /Electricidad"
                 {
                     ApplicationArea = All;
                     Image = NewDocument;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
@@ -293,9 +274,6 @@ page 50007 "Hist. Agua /Electricidad"
                 {
                     ApplicationArea = All;
                     Image = ErrorLog;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
@@ -309,6 +287,35 @@ page 50007 "Hist. Agua /Electricidad"
                                 PageInc.Run();
                             end;
                     end;
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Lecturas)
+            {
+                Caption = 'Lecturas';
+
+                actionref(FichaContador_Promoted; "Ficha Contador")
+                {
+                }
+                actionref(Contratos_Promoted; Contratos)
+                {
+                }
+                actionref(VerFactura_Promoted; "Ver factura")
+                {
+                }
+                actionref(ModificarLectura_Promoted; "Modificar Lectura ")
+                {
+                }
+                actionref(BorrarLectura_Promoted; "Borrar Lectura ")
+                {
+                }
+                actionref(NuevaLectura_Promoted; "Nueva lectura ")
+                {
+                }
+                actionref(VerIncidencia_Promoted; "Ver Incidencia")
+                {
                 }
             }
         }

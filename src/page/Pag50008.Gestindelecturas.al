@@ -6,7 +6,6 @@ page 50008 "Gestión de lecturas "
     Editable = false;
     PageType = List;
     UsageCategory = Administration;
-    PromotedActionCategories = 'Nuevo,Proceso,Informes,Lecturas';
     SourceTable = 50002;
     SourceTableView = SORTING("No. Orden de lectura")
                       ORDER(Ascending)
@@ -76,9 +75,6 @@ page 50008 "Gestión de lecturas "
                 {
                     ApplicationArea = All;
                     Image = NewDocument;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
@@ -120,9 +116,6 @@ page 50008 "Gestión de lecturas "
                 {
                     ApplicationArea = All;
                     Image = CostCenter;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
                     RunObject = Page Contadores;
                     RunPageLink = "No. Contador" = FIELD("No. Contador");
                 }
@@ -131,9 +124,6 @@ page 50008 "Gestión de lecturas "
                     ApplicationArea = All;
                     Caption = 'Contratos';
                     Image = "Order";
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
@@ -152,11 +142,28 @@ page 50008 "Gestión de lecturas "
                 {
                     ApplicationArea = All;
                     Image = History;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
                     RunObject = Page "Hist. Agua /Electricidad";
                     RunPageLink = "No. Contador" = FIELD("No. Contador");
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Lecturas)
+            {
+                Caption = 'Lecturas';
+
+                actionref(NuevaLectura_Promoted; "Nueva lectura ")
+                {
+                }
+                actionref(FichaContador_Promoted; "Ficha Contador")
+                {
+                }
+                actionref(Contratos_Promoted; Contratos)
+                {
+                }
+                actionref(HistoricoLecturas_Promoted; "Histórico de Lecturas")
+                {
                 }
             }
         }
