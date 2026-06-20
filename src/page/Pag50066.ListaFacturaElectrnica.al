@@ -19,17 +19,17 @@ page 50066 "Lista Factura Electrónica"
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 50007;
-    SourceTableView = SORTING (Fecha Importación, Hora Importación)
+    SourceTableView = SORTING("Fecha Importación", "Hora Importación")
                       ORDER(Descending)
-                      WHERE (Documento Registrado=FILTER(''),
-                            Rechazada=FILTER(No),
-                            Abono Registrado=FILTER(''));
+                      WHERE("Documento Registrado" = FILTER(''),
+                            Rechazada = FILTER(No),
+                            "Abono Registrado" = FILTER(''));
 
     layout
     {
         area(content)
         {
-            repeater()
+            repeater(Group)
             {
                 field(ID_PLATAFORMA; Rec.ID_PLATAFORMA)
                 {
@@ -163,55 +163,38 @@ page 50066 "Lista Factura Electrónica"
     {
         area(processing)
         {
-            action("Datos Respaldo")
+            action(DatosRespaldo)
             {
                 ApplicationArea = All;
                 Caption = 'Datos Respaldo';
                 Image = TestDatabase;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
 
                 trigger OnAction()
-                var
-                    vlDatosNuevos: Boolean;
-                    lText50000: Label 'No existe ningún registro sin traspasar en la Base de Datos de Respaldo.';
-                    lText50001: Label 'Proceso cancelado por el usuario.';
-                    lText50002: Label '¿Desea importar los datos que estén pendientes en la base de datos de respaldo?';
-                    lText50003: Label 'Datos importados correctamente.';
                 begin
-                    //AOC; PASAR TODO A LA TABLA
-                    /*
-                    CLEAR(vlDatosNuevos);
-                    //Pregunta de confirmación
-                    IF NOT CONFIRM(lText50002) THEN
-                       ERROR(lText50001);
-                    //Llamada a la función que importa los datos de la base de datos de respaldo.
-                    vlDatosNuevos := fTraerDatosRespaldo;
-                    
-                    IF NOT vlDatosNuevos THEN BEGIN
-                       MESSAGE(lText50000);
-                    END
-                    ELSE BEGIN
-                       MESSAGE(lText50003);
-                    END;
-                    */
-                    
-                    fTraerDatosRespaldoPaso1;
-                    //FIN AOC
-
+                    fTraerDatosRespaldoPaso1();
                 end;
             }
-            action("Importar FacturaE")
+            action(ImportarFacturaE)
             {
                 ApplicationArea = All;
                 Caption = 'Importar FacturaE';
                 Image = Import;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
                 RunObject = XMLport 50001;
-                                Visible = false;
+                Visible = false;
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(DatosRespaldo_Promoted; DatosRespaldo)
+                {
+                }
+                actionref(ImportarFacturaE_Promoted; ImportarFacturaE)
+                {
+                }
             }
         }
     }
@@ -220,109 +203,10 @@ page 50066 "Lista Factura Electrónica"
         vText50001: Label '¿Desea rechazar esta factura?';
         vText50002: Label 'Proceso cancelado por el usuario.';
         vText50004: Label '¿ Desea enviar un correo de rechazo ?';
+        SaaSUnsupportedFacturaERejectErr: Label 'El rechazo de FacturaE mediante Automation/COM SOAP legacy no es compatible con Business Central SaaS. Debe sustituirse por HttpClient y XmlDocument conservando el contrato funcional original.';
 
-    [Scope('Internal')]
     procedure fRechazarFacturaE(pCabeceraFacturaERecibida: Record 50007)
-    var
-        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
-        locautXmlHttp: Automation ;
-        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
-        locautXmlDoc: Automation ;
-        vlRequestText: Text[1024];
-        rlGeneralLedgerSetup: Record "General Ledger Setup";
-        // TODO SaaS: File con rutas locales/servidor no es compatible con Business Central SaaS; sustituir por Temp Blob/streams manteniendo el flujo original.
-        vlFichero: File;
-        vlTextSOAPBegin: Label '<?xml version="1.0" encoding="utf-8"?> <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">';
-        vlTextSOAPEnd: Label '</soapenv:Body> </soapenv:Envelope>';
-        vlTextSOAPBegin2: Label '<soapenv:Header /><soapenv:Body>';
-        vlBigText: BigText;
-        vlInStream: InStream;
-        "vlContraseña": Text[1024];
-        // TODO SaaS: Automation/COM no es compatible con Business Central SaaS; sustituir por APIs AL nativas de XML/HTTP manteniendo el comportamiento original.
-        vlXMLDomNode: Automation ;
-        rlPurchasesPayablesSetup: Record "Purchases & Payables Setup";
     begin
-        //Rechaza la factura en FacturaE
-        /*
-        //Comprobación datos necesarios.
-        CLEAR(rlGeneralLedgerSetup);
-        rlGeneralLedgerSetup.GET;
-        rlGeneralLedgerSetup.CALCFIELDS("Contraseña Synergy");
-        rlGeneralLedgerSetup.TESTFIELD("URL Servicio Solicitudes");
-        rlGeneralLedgerSetup.TESTFIELD("Usuario Synergy");
-        IF NOT rlGeneralLedgerSetup."Contraseña Synergy".HASVALUE THEN
-           ERROR(Text50000);
-        //Mod. S2G (JMG) 11-06-13: Añade máscara para contraseña.INICIO
-        CLEAR(vlBigText);
-        rlGeneralLedgerSetup.CALCFIELDS("Contraseña Synergy");
-        IF rlGeneralLedgerSetup."Contraseña Synergy".HASVALUE THEN BEGIN
-          rlGeneralLedgerSetup."Contraseña Synergy".CREATEINSTREAM(vlInStream);
-          vlBigText.READ(vlInStream);
-          vlBigText.GETSUBTEXT(vlContraseña,1,1024);
-        END;
-        //Mod. S2G (JMG) 11-06-13: Añade máscara para contraseña.FIN
-        */
-        
-        CLEAR(rlPurchasesPayablesSetup);
-        rlPurchasesPayablesSetup.GET;
-        rlPurchasesPayablesSetup.TESTFIELD("URL Servicio Rechazo Facturae");
-        
-        //Creación del mensaje SOAP.
-        CLEAR(locautXmlDoc);
-        CREATE(locautXmlDoc,FALSE,TRUE);
-        CLEAR(locautXmlHttp);
-        CREATE(locautXmlHttp,FALSE,TRUE);
-        locautXmlDoc.loadXML(vlTextSOAPBegin + vlTextSOAPBegin2 +
-                           '<setDocumentStatus>' +
-                             '<arg0>' +
-                             pCabeceraFacturaERecibida.ID_PLATAFORMA +
-                             '</arg0>' +
-                             '<arg1>' +
-                             'REJECTED' +
-                             '</arg1>' +
-                             '<arg2>' +
-                             pCabeceraFacturaERecibida."Motivo rechazo" +
-                             '</arg2>' +
-                           '</setDocumentStatus>' +
-                             vlTextSOAPEnd);
-        
-        //locautXmlDoc.load('\\tsclient\C\Compartida\CambioEstado.xml');
-        //locautXmlDoc.save('\\tsclient\C\Compartida\MensajeCambioEstado.xml');
-        
-        //Creación cabecera mensaje SOAP.
-        locautXmlHttp.Open('POST',rlPurchasesPayablesSetup."URL Servicio Rechazo Facturae");
-        //locautXmlHttp.SetCredentials(rlGeneralLedgerSetup."Usuario Synergy",vlContraseña,0);
-        locautXmlHttp.SetRequestHeader('Content-Type','text/xml; charset=utf-8');
-        locautXmlHttp.SetRequestHeader('SOAPAction', 'setDocumentStatus');
-        locautXmlHttp.Send(locautXmlDoc);
-        
-        //Guarda datos
-        CLEAR(locautXmlDoc);
-        CREATE(locautXmlDoc,FALSE,TRUE);
-        locautXmlDoc.async:=FALSE;
-        locautXmlDoc.load(locautXmlHttp.ResponseStream);
-        //locautXmlDoc.save('\\tsclient\C\Users\DTUser\Documents\RespuestaCambioEstado.xml');
-        //locautXmlDoc.save('\\tsclient\C\Compartida\RespuestaCambioEstado.xml');
-        
-        
-        vlXMLDomNode := locautXmlDoc.documentElement.selectSingleNode
-                            ('/soap:Envelope/soap:Body/ns2:setDocumentStatusResponse/return/errorMsg');
-        IF NOT ISCLEAR(vlXMLDomNode) THEN
-           ERROR(vlXMLDomNode.text);
-        /*
-        vlXMLDomNode := locautXmlDoc.documentElement.selectSingleNode
-                               ('/s:Envelope/s:Body/CreateResponse');
-        IF NOT ISCLEAR(vlXMLDomNode) THEN BEGIN
-           vlXMLDomNode := locautXmlDoc.documentElement.selectSingleNode
-                               ('//ErrorMsg');
-           MESSAGE(vlXMLDomNode.text);
-        END
-        ELSE BEGIN
-           ERROR(locautXmlDoc.documentElement.selectSingleNode
-                 ('/s:Envelope/s:Body/s:Fault').text);
-        END;
-        */
-
+        Error(SaaSUnsupportedFacturaERejectErr);
     end;
 }
-
