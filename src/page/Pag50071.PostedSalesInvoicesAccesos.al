@@ -8,7 +8,6 @@ page 50071 "Posted Sales Invoices Accesos"
     Editable = false;
     PageType = List;
     UsageCategory = Administration;
-    PromotedActionCategories = 'New,Process,Report,Invoice,Navigate';
     SourceTable = "Sales Invoice Header";
     SourceTableView = WHERE("Concepto agrupador" = FILTER(ACCESOS));
 
@@ -125,9 +124,6 @@ page 50071 "Posted Sales Invoices Accesos"
                     ApplicationArea = All;
                     Caption = 'Statistics';
                     Image = Statistics;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
                     RunObject = Page "Sales Invoice Statistics";
                     RunPageLink = "No." = FIELD("No.");
                     ShortCutKey = 'F7';
@@ -137,9 +133,6 @@ page 50071 "Posted Sales Invoices Accesos"
                     ApplicationArea = All;
                     Caption = 'Co&mments';
                     Image = ViewComments;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
                     RunObject = Page "Sales Comment Sheet";
                     RunPageLink = "Document Type" = CONST("Posted Invoice"),
                                   "No." = FIELD("No.");
@@ -150,9 +143,6 @@ page 50071 "Posted Sales Invoices Accesos"
                     AccessByPermission = TableData 348 = R;
                     Caption = 'Dimensions';
                     Image = Dimensions;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
                     ShortCutKey = 'Shift+Ctrl+D';
                     trigger OnAction()
                     begin
@@ -165,8 +155,6 @@ page 50071 "Posted Sales Invoices Accesos"
                     AccessByPermission = TableData 130 = R;
                     Caption = 'Incoming Document';
                     Image = Document;
-                    Promoted = true;
-                    PromotedCategory = Category4;
                     trigger OnAction()
                     var
                         IncomingDocument: Record "Incoming Document";
@@ -234,9 +222,6 @@ page 50071 "Posted Sales Invoices Accesos"
                 Caption = 'Send';
                 Ellipsis = true;
                 Image = SendToMultiple;
-                Promoted = true;
-                PromotedCategory = Category4;
-                PromotedIsBig = true;
                 trigger OnAction()
                 var
                     SalesInvHeader: Record "Sales Invoice Header";
@@ -280,9 +265,6 @@ page 50071 "Posted Sales Invoices Accesos"
                 ApplicationArea = All;
                 Caption = '&Navigate';
                 Image = Navigate;
-                Promoted = true;
-                PromotedCategory = Category5;
-                PromotedIsBig = true;
                 trigger OnAction()
                 begin
                     Navigate();
@@ -305,9 +287,6 @@ page 50071 "Posted Sales Invoices Accesos"
                 ApplicationArea = All;
                 Caption = 'Generar facturas seleccionadas en PDF';
                 Image = SendEmailPDFNoAttach;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
                 trigger OnAction()
                 begin
                     fExportarFacturaElectronicaPDF(true);
@@ -318,9 +297,6 @@ page 50071 "Posted Sales Invoices Accesos"
                 ApplicationArea = All;
                 Caption = 'Generar facturas seleccionadas en PDF WEB';
                 Image = SendEmailPDFNoAttach;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
                 Visible = false;
                 trigger OnAction()
                 begin
@@ -344,6 +320,32 @@ page 50071 "Posted Sales Invoices Accesos"
                     CorrectPostedSalesInvoice.CreateCreditMemoCopyDocument(Rec, SalesHeader);
                     Page.Run(Page::"Sales Credit Memo", SalesHeader);
                 end;
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Invoice)
+            {
+                Caption = 'Invoice';
+
+                actionref(Statistics_Promoted; Statistics) { }
+                actionref(Comments_Promoted; "Co&mments") { }
+                actionref(Dimensions_Promoted; Dimensions) { }
+                actionref(IncomingDoc_Promoted; IncomingDoc) { }
+            }
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(SendCustom_Promoted; SendCustom) { }
+                actionref(GeneratePdf_Promoted; "Generar facturas seleccionadas en PDF") { }
+                actionref(GeneratePdfWeb_Promoted; "Generar facturas seleccionadas en PDF WEB") { }
+            }
+            group(Category_Navigate)
+            {
+                Caption = 'Navigate';
+
+                actionref(Navigate_Promoted; "&Navigate") { }
             }
         }
     }
