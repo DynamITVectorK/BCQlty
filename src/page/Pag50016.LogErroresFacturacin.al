@@ -2,6 +2,7 @@ page 50016 "Log Errores Facturación"
 {
     // //***Z009 - 400 - RG- 24/11/2016 - Facturación automática
 
+    Caption = 'Log Errores Facturación';
     Editable = false;
     InsertAllowed = false;
     PageType = List;
@@ -38,4 +39,3 @@ page 50016 "Log Errores Facturación"
     {
     }
 }
-

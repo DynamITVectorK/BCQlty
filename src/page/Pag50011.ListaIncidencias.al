@@ -2,6 +2,7 @@ page 50011 "Lista Incidencias"
 {
     // //***Z006 - 400 - RG- 07/11/2016 - Gestión de incidencias
 
+    Caption = 'Lista Incidencias';
     CardPageID = "Ficha de Incidencias";
     Editable = false;
     PageType = List;
@@ -50,4 +51,3 @@ page 50011 "Lista Incidencias"
     {
     }
 }
-
