@@ -32,7 +32,6 @@ page 50030 registrarFactura
         QR_URL:='https://batuz.eus/QRTBAI/?id=TBAI-78871042V-031120-epEs2rfuC2EoP-207&s=DFB_2020&nf=7&i=299.5&cr=046&authenticated=false#/';
         QR_ID:='TBAI-78871042V-031120-epEs2rfuC2EoP-207';
         */
-
     end;
 
     trigger OnAfterGetRecord()
@@ -58,7 +57,6 @@ page 50030 registrarFactura
         QR_URL:='https://batuz.eus/QRTBAI/?id=TBAI-78871042V-031120-epEs2rfuC2EoP-207&s=DFB_2020&nf=7&i=299.5&cr=046&authenticated=false#/';
         QR_ID:='TBAI-78871042V-031120-epEs2rfuC2EoP-207';
         */
-
     end;
 
     trigger OnFindRecord(Which: Text): Boolean
@@ -89,29 +87,27 @@ page 50030 registrarFactura
         UNTIL FactAdos.NEXT = 0;
         */
 
-        FactAdos.SETFILTER(Origen, 'BO|AB|TK');
-        FactAdos.SETRANGE(Tratado, FALSE);
-        IF FactAdos.FINDFIRST THEN
-            REPEAT
-                IF FactAdos.NumFacturaADOS <> '' THEN BEGIN
-                    IF (FactAdos.Origen = 'TK') AND (FactAdos.Cantidad > 0) AND (FactAdos.MedPago = 'FACTIQUE') THEN BEGIN
-                        CLEAR(rRegistroADOS);
+        FactAdos.SetFilter(Origen, 'BO|AB|TK');
+        FactAdos.SetRange(Tratado, false);
+        if FactAdos.FindFirst() then
+            repeat
+                if FactAdos.NumFacturaADOS <> '' then begin
+                    if (FactAdos.Origen = 'TK') and (FactAdos.Cantidad > 0) and (FactAdos.MedPago = 'FACTIQUE') then begin
+                        Clear(rRegistroADOS);
                         rRegistroADOS.fRegistroWS(FactAdos.NumFacturaADOS); //Crear factura
-                        COMMIT;
-                    END ELSE BEGIN
-                        IF (FactAdos.Origen <> 'TK') THEN BEGIN
-                            CLEAR(rRegistroADOS);
+                        Commit();
+                    end else begin
+                        if FactAdos.Origen <> 'TK' then begin
+                            Clear(rRegistroADOS);
                             rRegistroADOS.fRegistroWS(FactAdos.NumFacturaADOS); //Crear factura
-                            COMMIT;
-                        END;
-                    END;
-                END;
-            UNTIL FactAdos.NEXT = 0;
-
+                            Commit();
+                        end;
+                    end;
+                end;
+            until FactAdos.Next() = 0;
     end;
 
     var
         rRegistroADOS: Report 50009;
         tSalesHeader: Record "Sales Header";
 }
-
