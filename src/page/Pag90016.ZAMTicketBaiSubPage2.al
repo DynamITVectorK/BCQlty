@@ -3,8 +3,8 @@ page 90016 ZAMTicketBaiSubPage2
     DeleteAllowed = false;
     PageType = ListPart;
     SourceTable = 90003;
-    SourceTableView = SORTING (ZAM_Company, ZAM_Type, ZAM_Document No., ZAM_Line No.)
-                      WHERE (ZAM_Line Type=FILTER(Real Estate));
+    SourceTableView = SORTING(ZAM_Company, ZAM_Type, "ZAM_Document No.", "ZAM_Line No.")
+                      WHERE("ZAM_Line Type" = FILTER("Real Estate"));
 
     layout
     {
@@ -39,4 +39,3 @@ page 90016 ZAMTicketBaiSubPage2
         Rec."ZAM_Line Type" := Rec."ZAM_Line Type"::"Real Estate";
     end;
 }
-
