@@ -9,7 +9,7 @@ page 50021 "WS Información cliente"
     UsageCategory = Administration;
     SaveValues = true;
     SourceTable = "Customer";
-    SourceTableView = WHERE (Bloqueado Web=FILTER(No));
+    SourceTableView = WHERE("Bloqueado Web" = FILTER(No));
 
     layout
     {
@@ -77,7 +77,7 @@ page 50021 "WS Información cliente"
                 {
                     ApplicationArea = All;
                 }
-                field("Forma de pago"; Rec.vPaymentMethod)
+                field("Forma de pago"; vPaymentMethod)
                 {
                     ApplicationArea = All;
                 }
@@ -86,7 +86,7 @@ page 50021 "WS Información cliente"
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Balance (LCY)";Rec."Balance (LCY)")
+                field("Balance (LCY)"; Rec."Balance (LCY)")
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -101,9 +101,9 @@ page 50021 "WS Información cliente"
 
     trigger OnAfterGetRecord()
     begin
-        Rec.CALCFIELDS("Balance (LCY)");
-        CLEAR(tPaymentMethod);
-        tPaymentMethod.GET("Payment Method Code");
+        Rec.CalcFields("Balance (LCY)");
+        Clear(tPaymentMethod);
+        tPaymentMethod.Get(Rec."Payment Method Code");
         vPaymentMethod := tPaymentMethod.Description;
     end;
 
@@ -111,4 +111,3 @@ page 50021 "WS Información cliente"
         tPaymentMethod: Record "Payment Method";
         vPaymentMethod: Text;
 }
-

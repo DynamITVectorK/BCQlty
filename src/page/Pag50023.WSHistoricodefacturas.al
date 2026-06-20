@@ -32,7 +32,7 @@ page 50023 "WS Historico de facturas"
                 {
                     ApplicationArea = All;
                 }
-                field("Importe IVA"; Rec.vIVA)
+                field("Importe IVA"; vIVA)
                 {
                     ApplicationArea = All;
                 }
@@ -44,7 +44,7 @@ page 50023 "WS Historico de facturas"
                 {
                     ApplicationArea = All;
                 }
-                field(Fichero_Base_64; Rec.vFicheroBase64)
+                field(Fichero_Base_64; vFicheroBase64)
                 {
                     ApplicationArea = All;
                     Caption = 'Fichero_Base_64';
@@ -60,8 +60,8 @@ page 50023 "WS Historico de facturas"
     trigger OnAfterGetRecord()
     begin
         // Calcular Importe IVA
-        CLEAR(vIVA);
-        vIVA := "Amount Including VAT" - Amount;
+        Clear(vIVA);
+        vIVA := Rec."Amount Including VAT" - Rec.Amount;
 
         // Formato Base64
         fConvertValueToBase64(vFicheroBase64);
@@ -71,15 +71,15 @@ page 50023 "WS Historico de facturas"
     var
         vlLimitDate: Date;
     begin
-        CLEAR(tSalesReceivablesSetup);
-        tSalesReceivablesSetup.GET;
-        CLEAR(vlLimitDate);
-        vlLimitDate := CALCDATE('-' + FORMAT(tSalesReceivablesSetup."Plazo desde para docs WEB"), WORKDATE);
-        Rec.SETFILTER("Posting Date", '>%1', vlLimitDate);
+        Clear(tSalesReceivablesSetup);
+        tSalesReceivablesSetup.Get();
+        Clear(vlLimitDate);
+        vlLimitDate := CalcDate('-' + Format(tSalesReceivablesSetup."Plazo desde para docs WEB"), WorkDate());
+        Rec.SetFilter("Posting Date", '>%1', vlLimitDate);
 
-        Rec.CALCFIELDS(ClienteBloqueado, ContraseñaWeb);
-        Rec.SETRANGE(ClienteBloqueado, FALSE);
-        Rec.SETFILTER(ContraseñaWeb, '<>%1', '');
+        Rec.CalcFields(ClienteBloqueado, ContraseñaWeb);
+        Rec.SetRange(ClienteBloqueado, false);
+        Rec.SetFilter(ContraseñaWeb, '<>%1', '');
     end;
 
     var
@@ -87,4 +87,3 @@ page 50023 "WS Historico de facturas"
         vFicheroBase64: BigText;
         tSalesReceivablesSetup: Record "Sales & Receivables Setup";
 }
-

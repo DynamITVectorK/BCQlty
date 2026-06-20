@@ -11,6 +11,10 @@ El criterio general es conservar la lógica de negocio original y realizar únic
 - sustituir referencias numéricas por nombres cuando el objeto está identificado,
 - mejorar trazabilidad y mantenibilidad sin rediseñar procesos.
 
+## Regla vigente desde PR #37
+
+No se tratan ni modernizan objetos del rango `90000–90999`. Las siguientes tandas quedan limitadas a objetos fuera de ese rango, salvo instrucción expresa en contrario.
+
 ## Estado por PR
 
 ### PR #17
@@ -191,6 +195,23 @@ Patrones abordados:
 - Normalización de `CurrPage.Update`, `FilterGroup`, `SetRange`, `SetFilter`, `CompanyName` y casing AL.
 - Conservación de la lógica de lecturas, modificación/borrado de lecturas, navegación a contador/contrato/factura/incidencia y comunicaciones TicketBAI.
 
+### PR #37 / rama `p37-pages-500-batch`
+
+Pages incluidas:
+
+- `Pag50000.LecturasDORLET.al`
+- `Pag50005.Listadecontadores.al`
+- `Pag50021.WSInformacincliente.al`
+- `Pag50023.WSHistoricodefacturas.al`
+
+Patrones abordados:
+
+- No se modifican objetos del rango `90000–90999`.
+- Sustitución de `systempart` anónimo por controles con nombre y `ApplicationArea` en `Pag50005`.
+- Normalización de acción anónima de importación en `Pag50000` mediante grupo con nombre.
+- Normalización de casing AL (`Report.Run`, `CalcFields`, `Clear`, `Get`, `CalcDate`, `Format`, `WorkDate`, `SetFilter`, `SetRange`).
+- Corrección de expresiones de campos calculados/variables de page para conservar compilación y comportamiento.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales
@@ -217,10 +238,3 @@ Casos abiertos:
 
 - `Pag50027.Codigosderetencion.al` mantiene `RunObject = Page 50002` con `TODO SaaS` hasta confirmar el objeto real, porque el link usa campos genéricos.
 - `Pag50009.FichaLecturas.al` requiere modificación controlada por tamaño y criticidad funcional.
-
-## Validación pendiente
-
-- Compilación AL-Go tras cada PR.
-- Revisión de nombres estándar contra la versión objetivo de Business Central.
-- Prueba funcional de navegación entre pages.
-- Validación de procesos críticos: lecturas, expedientes, FacturaE, TicketBAI, aprobaciones.

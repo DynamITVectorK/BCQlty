@@ -48,9 +48,9 @@ page 50005 "Lista de contadores"
                     ApplicationArea = All;
                 }
                 field(Area; Rec.Area)
-        {
-            ApplicationArea = All;
-        }
+                {
+                    ApplicationArea = All;
+                }
                 field("Nombre cliente"; Rec."Nombre cliente")
                 {
                     ApplicationArea = All;
@@ -76,14 +76,17 @@ page 50005 "Lista de contadores"
         }
         area(factboxes)
         {
-            systempart(;Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
-            systempart(;MyNotes)
+            systempart(MyNotes; MyNotes)
             {
+                ApplicationArea = All;
             }
-            systempart(;Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -92,4 +95,3 @@ page 50005 "Lista de contadores"
     {
     }
 }
-
