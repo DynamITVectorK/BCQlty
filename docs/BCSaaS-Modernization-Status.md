@@ -161,6 +161,21 @@ Patrones abordados:
 - Normalización de `SourceTableView` conservando la tabla virtual original.
 - Conservación de la llamada funcional `RegistroFacturaAdos`.
 
+### PR #27 / rama `p27-modernize-pages`
+
+Pages incluidas:
+
+- `Pag90000.ZAMTicketBaiSetup.al`
+
+Patrones abordados:
+
+- Eliminación de `PromotedActionCategories`.
+- Sustitución de `Promoted`, `PromotedCategory` y `PromotedIsBig` por `area(Promoted)` con `actionref`.
+- Sustitución de `RunObject = Page 427` por `Page "Payment Methods"`.
+- Sustitución de `RunObject = Page 4` por `Page "Payment Terms"`.
+- Normalización de `systempart`, `Clear`, `Modify`, `Reset`, `Get`, `Init` e `Insert`.
+- Conservación de las acciones de importación y borrado de certificados TicketBAI.
+
 ## Riesgos abiertos
 
 ### Selección de carpetas locales
