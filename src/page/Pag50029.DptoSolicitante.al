@@ -1,5 +1,6 @@
 page 50029 "Dpto. Solicitante"
 {
+    Caption = 'Dpto. Solicitante';
     DataCaptionFields = "Cod. Dpto", "Descripción";
     PageType = List;
     UsageCategory = Administration;
@@ -51,4 +52,3 @@ page 50029 "Dpto. Solicitante"
     {
     }
 }
-
