@@ -1,5 +1,6 @@
 page 50020 "Lineas Abonos Registrados"
 {
+    Caption = 'Lineas Abonos Registrados';
     Editable = false;
     PageType = List;
     UsageCategory = Administration;
@@ -159,4 +160,3 @@ page 50020 "Lineas Abonos Registrados"
     {
     }
 }
-

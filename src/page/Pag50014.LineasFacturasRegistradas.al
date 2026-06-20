@@ -1,5 +1,6 @@
 page 50014 "Lineas Facturas Registradas"
 {
+    Caption = 'Lineas Facturas Registradas';
     Editable = false;
     PageType = List;
     UsageCategory = Administration;
@@ -171,4 +172,3 @@ page 50014 "Lineas Facturas Registradas"
     {
     }
 }
-
