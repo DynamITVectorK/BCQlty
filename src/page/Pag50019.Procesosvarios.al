@@ -10,7 +10,7 @@ page 50019 "Procesos varios"
     {
         area(content)
         {
-            field(vFechaDesde; Rec.vFechaDesde)
+            field(vFechaDesde; vFechaDesde)
             {
                 ApplicationArea = All;
                 Caption = 'Fecha de la lectura';
@@ -25,92 +25,97 @@ page 50019 "Procesos varios"
             group(Approval)
             {
                 Caption = 'Approval';
-                action("Cargar Saldos")
+
+                action(CargarSaldos)
                 {
                     ApplicationArea = All;
                     Caption = 'Cargar Saldos';
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
+                    Image = Import;
                     Visible = false;
 
                     trigger OnAction()
                     var
-                        xmlSaldos: XMLport "50004";
+                        xmlSaldos: XmlPort 50004;
                     begin
-                        xmlSaldos.RUN;
+                        xmlSaldos.Run();
                     end;
                 }
-                action("Actualizar consumos Mayo 2017")
+                action(ActualizarConsumosMayo2017)
                 {
                     ApplicationArea = All;
+                    Caption = 'Actualizar consumos Mayo 2017';
                     Visible = false;
 
                     trigger OnAction()
                     begin
-                        cuProcesos.fActualizarConsumos;
+                        cuProcesos.fActualizarConsumos();
                     end;
                 }
-                action("Actualizar Fecha AF")
+                action(ActualizarFechaAF)
                 {
                     ApplicationArea = All;
+                    Caption = 'Actualizar Fecha AF';
                     Visible = false;
 
                     trigger OnAction()
                     begin
-                        cuProcesos.fActualizarAF;
+                        cuProcesos.fActualizarAF();
                     end;
                 }
-                action("Actualizar Clientes en Lecturas")
+                action(ActualizarClientesEnLecturas)
                 {
                     ApplicationArea = All;
+                    Caption = 'Actualizar Clientes en Lecturas';
                     Visible = false;
 
                     trigger OnAction()
                     begin
-                        cuProcesos.fActualizarDatosLecturas;
+                        cuProcesos.fActualizarDatosLecturas();
                     end;
                 }
-                action("Borrar Lecturas sin fecha")
+                action(BorrarLecturasSinFecha)
                 {
                     ApplicationArea = All;
+                    Caption = 'Borrar Lecturas sin fecha';
 
                     trigger OnAction()
                     begin
-                        cuProcesos.fBorrarLecturasVacias;
+                        cuProcesos.fBorrarLecturasVacias();
                     end;
                 }
-                action("Eliminar Lecturas Agua")
+                action(EliminarLecturasAgua)
                 {
                     ApplicationArea = All;
+                    Caption = 'Eliminar Lecturas Agua';
 
                     trigger OnAction()
                     begin
                         cuProcesos.fBorrarLecturasAgua(vFechaDesde);
                     end;
                 }
-                action("Eliminar Lecturas Electricidad")
+                action(EliminarLecturasElectricidad)
                 {
                     ApplicationArea = All;
+                    Caption = 'Eliminar Lecturas Electricidad';
 
                     trigger OnAction()
                     begin
                         cuProcesos.fBorrarLecturasElect(vFechaDesde);
                     end;
                 }
-                action("Eliminar Lecturas Agua/Elec Facturados")
+                action(EliminarLecturasAguaElecFacturados)
                 {
                     ApplicationArea = All;
                     Caption = 'Eliminar Lecturas Agua/Elec Facturados';
 
                     trigger OnAction()
                     begin
-                        IF vFechaDesde <> 0D THEN
-                            IF CONFIRM('Se van a borrar las fechas de facturación de agua y electricidad de la fecha seleccionada.  Desea continuar ?') THEN
+                        if vFechaDesde <> 0D then
+                            if Confirm('Se van a borrar las fechas de facturación de agua y electricidad de la fecha seleccionada.  Desea continuar ?') then
                                 cuProcesos.fBorrarFechaFacturacion(vFechaDesde);
                     end;
                 }
-                action("Eliminar Lineas Pedido con fecha Fin")
+                action(EliminarLineasPedidoConFechaFin)
                 {
                     ApplicationArea = All;
                     Caption = 'Eliminar Lineas Pedido con fecha Fin';
@@ -118,36 +123,48 @@ page 50019 "Procesos varios"
 
                     trigger OnAction()
                     begin
-                        IF CONFIRM('Se van a borrar las lineas de pedidos de venta con fecha fin servicio.  Desea continuar ?') THEN
-                            cuProcesos.fBorrarLineasVtaConFechaFin;
+                        if Confirm('Se van a borrar las lineas de pedidos de venta con fecha fin servicio.  Desea continuar ?') then
+                            cuProcesos.fBorrarLineasVtaConFechaFin();
 
-                        MESSAGE('Proceso Finalizado');
+                        Message('Proceso Finalizado');
                     end;
                 }
-                action("Eliminar Nro pre facturas")
+                action(EliminarNroPreFacturas)
                 {
                     ApplicationArea = All;
+                    Caption = 'Eliminar Nro pre facturas';
 
                     trigger OnAction()
                     begin
-                        IF CONFIRM('Se van a borrar los nros de pre facturas de lecturas sin facturar.  Desea continuar ?') THEN
-                            cuProcesos.fBorrarNroPreFacturas;
+                        if Confirm('Se van a borrar los nros de pre facturas de lecturas sin facturar.  Desea continuar ?') then
+                            cuProcesos.fBorrarNroPreFacturas();
 
-                        MESSAGE('Proceso Finalizado');
+                        Message('Proceso Finalizado');
                     end;
                 }
-                action("Cargar Fecha inicio en Electricidad")
+                action(CargarFechaInicioEnElectricidad)
                 {
                     ApplicationArea = All;
                     Caption = 'Cargar Fecha inicio en Electricidad';
 
                     trigger OnAction()
                     begin
-                        IF CONFIRM('Se van a inicializar la fecha inicio en las lineas tipo vacío de los pedidos de electricidad.  Desea continuar ?') THEN
-                            cuProcesos.fCargarFInicio;
+                        if Confirm('Se van a inicializar la fecha inicio en las lineas tipo vacío de los pedidos de electricidad.  Desea continuar ?') then
+                            cuProcesos.fCargarFInicio();
 
-                        MESSAGE('Proceso Finalizado');
+                        Message('Proceso Finalizado');
                     end;
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(CargarSaldos_Promoted; CargarSaldos)
+                {
                 }
             }
         }
@@ -157,4 +174,3 @@ page 50019 "Procesos varios"
         cuProcesos: Codeunit 50000;
         vFechaDesde: Date;
 }
-
