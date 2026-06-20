@@ -165,19 +165,21 @@ page 90020 ZAMTicketBaiHistCard
                     ApplicationArea = All;
                 }
             }
-            part(Control1000000028; 90012)
+            part(TicketBaiAmountLines; ZAMTicketBaiSubPage)
             {
-                SubPageLink = ZAM_Company = FIELD (ZAM_Company),
-                              ZAM_Type = FIELD (ZAM_Type),
-                              ZAM_Document No.=FIELD(ZAM_Document No.);
-                                  SubPageView = SORTING(ZAM_Company,ZAM_Type,ZAM_Document No.,ZAM_Line No.);
+                ApplicationArea = All;
+                SubPageLink = ZAM_Company = FIELD(ZAM_Company),
+                              ZAM_Type = FIELD(ZAM_Type),
+                              "ZAM_Document No." = FIELD("ZAM_Document No.");
+                SubPageView = SORTING(ZAM_Company, ZAM_Type, "ZAM_Document No.", "ZAM_Line No.");
             }
-            part(Control1000000023; 90016)
+            part(TicketBaiRealEstateLines; ZAMTicketBaiSubPage2)
             {
-                SubPageLink = ZAM_Company = FIELD (ZAM_Company),
-                              ZAM_Type = FIELD (ZAM_Type),
-                              ZAM_Document No.=FIELD(ZAM_Document No.);
-                                  SubPageView = SORTING(ZAM_Company,ZAM_Type,ZAM_Document No.,ZAM_Line No.);
+                ApplicationArea = All;
+                SubPageLink = ZAM_Company = FIELD(ZAM_Company),
+                              ZAM_Type = FIELD(ZAM_Type),
+                              "ZAM_Document No." = FIELD("ZAM_Document No.");
+                SubPageView = SORTING(ZAM_Company, ZAM_Type, "ZAM_Document No.", "ZAM_Line No.");
             }
         }
     }
@@ -195,16 +197,13 @@ page 90020 ZAMTicketBaiHistCard
                     ApplicationArea = All;
                     Caption = 'Ver envío';
                     Image = ImportLog;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
                         TypeRecL: Option Request,Response,QR;
                     begin
                         Rec.ShowCommunication(TypeRecL::Request);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
                 }
                 action(ShowResponse)
@@ -212,16 +211,13 @@ page 90020 ZAMTicketBaiHistCard
                     ApplicationArea = All;
                     Caption = 'Ver respuesta';
                     Image = ImportExport;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
                         TypeRecL: Option Request,Response,QR;
                     begin
                         Rec.ShowCommunication(TypeRecL::Response);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
                 }
                 action(ShowResponseQR)
@@ -229,16 +225,13 @@ page 90020 ZAMTicketBaiHistCard
                     ApplicationArea = All;
                     Caption = 'Mostrar respuesta QR';
                     Image = ImportExport;
-                    Promoted = true;
-                    PromotedCategory = Category4;
-                    PromotedIsBig = true;
 
                     trigger OnAction()
                     var
                         TypeRecL: Option Request,Response,QR;
                     begin
                         Rec.ShowCommunication(TypeRecL::QR);
-                        CurrPage.UPDATE(TRUE);
+                        CurrPage.Update(true);
                     end;
                 }
                 action(ChangeStatus)
@@ -246,14 +239,37 @@ page 90020 ZAMTicketBaiHistCard
                     ApplicationArea = All;
                     Caption = 'Cambiar estado';
                     Image = Start;
-                    Promoted = true;
-                    PromotedCategory = Process;
 
                     trigger OnAction()
                     begin
-                        IF Rec.ChangeStatus() THEN
-                            CurrPage.CLOSE();
+                        if Rec.ChangeStatus() then
+                            CurrPage.Close();
                     end;
+                }
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Communication)
+            {
+                Caption = 'Comunicación';
+
+                actionref(ShowRequest_Promoted; ShowRequest)
+                {
+                }
+                actionref(ShowResponse_Promoted; ShowResponse)
+                {
+                }
+                actionref(ShowResponseQR_Promoted; ShowResponseQR)
+                {
+                }
+            }
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(ChangeStatus_Promoted; ChangeStatus)
+                {
                 }
             }
         }
@@ -266,10 +282,10 @@ page 90020 ZAMTicketBaiHistCard
 
     trigger OnOpenPage()
     begin
-        Rec.FILTERGROUP(100);
-        Rec.SETRANGE(ZAM_Company, COMPANYNAME());
-        Rec.SETFILTER(ZAM_Status, '%1|%2', Rec.ZAM_Status::Confirmed, Rec.ZAM_Status::Cancelled);
-        Rec.FILTERGROUP(0);
+        Rec.FilterGroup(100);
+        Rec.SetRange(ZAM_Company, CompanyName());
+        Rec.SetFilter(ZAM_Status, '%1|%2', Rec.ZAM_Status::Confirmed, Rec.ZAM_Status::Cancelled);
+        Rec.FilterGroup(0);
         VisibleEditableFields();
     end;
 
@@ -281,7 +297,6 @@ page 90020 ZAMTicketBaiHistCard
     local procedure VisibleEditableFields()
     begin
         CreditMemoTypeVisibleEnable := (Rec.ZAM_Type = Rec.ZAM_Type::SalesCrMemo);
-        PurchaseFieldVisible := (Rec.ZAM_Type IN [Rec.ZAM_Type::PurchaseCrMemo, Rec.ZAM_Type::PurchaseInvoice]);
+        PurchaseFieldVisible := (Rec.ZAM_Type in [Rec.ZAM_Type::PurchaseCrMemo, Rec.ZAM_Type::PurchaseInvoice]);
     end;
 }
-
