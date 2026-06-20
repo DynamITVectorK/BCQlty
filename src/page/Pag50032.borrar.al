@@ -2,8 +2,8 @@ page 50032 borrar
 {
     PageType = List;
     UsageCategory = Administration;
-    Permissions = TableData 7000002 = rimd;
-    SourceTable = 7000002;
+    Permissions = TableData "Cartera Doc." = rimd;
+    SourceTable = "Cartera Doc.";
 
     layout
     {
@@ -155,4 +155,3 @@ page 50032 borrar
     {
     }
 }
-

@@ -3,10 +3,10 @@ page 50034 "Procesar facturas1"
     CardPageID = "proceso de factura";
     PageType = List;
     UsageCategory = Administration;
-    SourceTable = 2000000026;
-    SourceTableView = SORTING (Number)
+    SourceTable = Integer;
+    SourceTableView = SORTING(Number)
                       ORDER(Ascending)
-                      WHERE (Number = FILTER (1));
+                      WHERE(Number = FILTER(1));
 
     layout
     {
@@ -26,4 +26,3 @@ page 50034 "Procesar facturas1"
     {
     }
 }
-

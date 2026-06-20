@@ -8,7 +8,7 @@ page 50035 "Expedientes - Lotes"
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 50011;
-    SourceTableView = SORTING (No. Expediente, Lote)
+    SourceTableView = SORTING("No. Expediente", Lote)
                       ORDER(Ascending);
 
     layout
@@ -113,80 +113,80 @@ page 50035 "Expedientes - Lotes"
                 {
                     ApplicationArea = All;
                 }
-                field(Ejercicio; Rec.Ejercicio)
+                field(Ejercicio; Ejercicio)
                 {
                     ApplicationArea = All;
                     Caption = 'Ejercicio';
                     Description = 'Ejercicio';
                     OptionCaption = 'Ejercicio';
-                    StyleExpr = TRUE;
+                    StyleExpr = true;
                 }
-                field(tipotrabajo; Rec.tipotrabajo)
+                field(tipotrabajo; tipotrabajo)
                 {
                     ApplicationArea = All;
                     Caption = 'Tipo trabajo';
                 }
-                field(dptosolicitante; Rec.dptosolicitante)
+                field(dptosolicitante; dptosolicitante)
                 {
                     ApplicationArea = All;
                     Caption = 'Dpto. solicitante';
                 }
-                field(estado; Rec.estado)
+                field(estado; estado)
                 {
                     ApplicationArea = All;
                     Caption = 'Estado';
                 }
-                field(fechapublicacion; Rec.fechapublicacion)
+                field(fechapublicacion; fechapublicacion)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha publicación';
                 }
-                field(fechapropuesta; Rec.fechapropuesta)
+                field(fechapropuesta; fechapropuesta)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha propuesta';
                 }
-                field(fechaaperturaplicas; Rec.fechaaperturaplicas)
+                field(fechaaperturaplicas; fechaaperturaplicas)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha apertura plicas';
                 }
-                field(importepresupuesto; Rec.importepresupuesto)
+                field(importepresupuesto; importepresupuesto)
                 {
                     ApplicationArea = All;
                     Caption = 'Importe del presupuesto';
                 }
-                field(basesexpediente; Rec.basesexpediente)
+                field(basesexpediente; basesexpediente)
                 {
                     ApplicationArea = All;
                     Caption = 'Bases expediente';
                 }
-                field(lotesnumero; Rec.lotesnumero)
+                field(lotesnumero; lotesnumero)
                 {
                     ApplicationArea = All;
                     Caption = 'Lotes';
                 }
-                field(importelotes; Rec.importelotes)
+                field(importelotes; importelotes)
                 {
                     ApplicationArea = All;
                     Caption = '<Total Importe Lotes>';
                 }
-                field(importeadjudicado; Rec.importeadjudicado)
+                field(importeadjudicado; importeadjudicado)
                 {
                     ApplicationArea = All;
                     Caption = 'Importe adjudicado';
                 }
-                field(fechainiciocontrato; Rec.fechainiciocontrato)
+                field(fechainiciocontrato; fechainiciocontrato)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha inicio del contrato';
                 }
-                field(fechafincontrato; Rec.fechafincontrato)
+                field(fechafincontrato; fechafincontrato)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha finalización contrato';
                 }
-                field(fechacierreexpediente; Rec.fechacierreexpediente)
+                field(fechacierreexpediente; fechacierreexpediente)
                 {
                     ApplicationArea = All;
                     Caption = 'Fecha cierre expediente';
@@ -201,15 +201,15 @@ page 50035 "Expedientes - Lotes"
 
     trigger OnAfterGetRecord()
     begin
-        CLEAR(tExpedientesadjudicacion);
-        tExpedientesadjudicacion.SETRANGE("Tipo Contratación", tExpedientesadjudicacion."Tipo Contratación"::Compras);
-        tExpedientesadjudicacion.SETRANGE(tExpedientesadjudicacion."No.", "No. Expediente");
-        IF tExpedientesadjudicacion.FINDFIRST THEN BEGIN
-            tExpedientesadjudicacion.CALCFIELDS("Num Lotes", "Total Importe Lotes");
+        Clear(tExpedientesadjudicacion);
+        tExpedientesadjudicacion.SetRange("Tipo Contratación", tExpedientesadjudicacion."Tipo Contratación"::Compras);
+        tExpedientesadjudicacion.SetRange("No.", Rec."No. Expediente");
+        if tExpedientesadjudicacion.FindFirst() then begin
+            tExpedientesadjudicacion.CalcFields("Num Lotes", "Total Importe Lotes");
             Ejercicio := tExpedientesadjudicacion.Ejercicio;
-            tipotrabajo := FORMAT(tExpedientesadjudicacion."Tipo trabajo");
+            tipotrabajo := Format(tExpedientesadjudicacion."Tipo trabajo");
             dptosolicitante := tExpedientesadjudicacion."Dpto. solicitante";
-            estado := FORMAT(tExpedientesadjudicacion.Estado);
+            estado := Format(tExpedientesadjudicacion.Estado);
             fechapublicacion := tExpedientesadjudicacion."Fecha publicación";
             fechapropuesta := tExpedientesadjudicacion."Fecha propuesta";
             fechaaperturaplicas := tExpedientesadjudicacion."Fecha apertura plicas";
@@ -221,8 +221,7 @@ page 50035 "Expedientes - Lotes"
             fechainiciocontrato := tExpedientesadjudicacion."Fecha inicio del contrato";
             fechafincontrato := tExpedientesadjudicacion."Fecha finalización contrato";
             fechacierreexpediente := tExpedientesadjudicacion."Fecha cierre expediente";
-
-        END;
+        end;
     end;
 
     var
@@ -243,4 +242,3 @@ page 50035 "Expedientes - Lotes"
         fechacierreexpediente: Date;
         tExpedientesadjudicacion: Record 50001;
 }
-
