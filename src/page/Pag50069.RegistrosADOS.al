@@ -1,5 +1,6 @@
 page 50069 "Registros ADOS"
 {
+    Caption = 'Registros ADOS';
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 50014;
@@ -142,4 +143,3 @@ page 50069 "Registros ADOS"
     {
     }
 }
-
