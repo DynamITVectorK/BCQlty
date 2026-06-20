@@ -1,5 +1,6 @@
 page 50012 "Nombres tarifa"
 {
+    Caption = 'Nombres tarifa';
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 50006;
@@ -30,4 +31,3 @@ page 50012 "Nombres tarifa"
     {
     }
 }
-
