@@ -10,7 +10,7 @@ page 50025 "WS Movimientos de cliente"
     PageType = List;
     UsageCategory = Administration;
     SourceTable = "Cust. Ledger Entry";
-    SourceTableView = WHERE (Document Type=FILTER(<>' '));
+    SourceTableView = WHERE("Document Type" = FILTER(<> ' '));
 
     layout
     {
@@ -60,10 +60,8 @@ page 50025 "WS Movimientos de cliente"
 
     trigger OnOpenPage()
     begin
-
-        Rec.CALCFIELDS(ClienteBloqueado,ContraseñaWeb);
-        Rec.SETRANGE(ClienteBloqueado,FALSE);
-        Rec.SETFILTER(ContraseñaWeb,'<>%1', '');
+        Rec.CalcFields(ClienteBloqueado, ContraseñaWeb);
+        Rec.SetRange(ClienteBloqueado, false);
+        Rec.SetFilter(ContraseñaWeb, '<>%1', '');
     end;
 }
-
