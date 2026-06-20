@@ -1,5 +1,6 @@
 page 50076 "Lineas hist abono venta"
 {
+    Caption = 'Lineas hist abono venta';
     PageType = List;
     UsageCategory = Administration;
     SourceTable = "Sales Cr.Memo Line";
@@ -167,9 +168,9 @@ page 50076 "Lineas hist abono venta"
                     ApplicationArea = All;
                 }
                 field(Area; Rec.Area)
-        {
-            ApplicationArea = All;
-        }
+                {
+                    ApplicationArea = All;
+                }
                 field("Transaction Specification"; Rec."Transaction Specification")
                 {
                     ApplicationArea = All;
@@ -286,7 +287,7 @@ page 50076 "Lineas hist abono venta"
                 {
                     ApplicationArea = All;
                 }
-                field("Quantity (Base)";Rec."Quantity (Base)")
+                field("Quantity (Base)"; Rec."Quantity (Base)")
                 {
                     ApplicationArea = All;
                 }
@@ -318,7 +319,7 @@ page 50076 "Lineas hist abono venta"
                 {
                     ApplicationArea = All;
                 }
-                field("Unit of Measure (Cross Ref.)";Rec."Unit of Measure (Cross Ref.)")
+                field("Unit of Measure (Cross Ref.)"; Rec."Unit of Measure (Cross Ref.)")
                 {
                     ApplicationArea = All;
                 }
@@ -390,4 +391,3 @@ page 50076 "Lineas hist abono venta"
     {
     }
 }
-
