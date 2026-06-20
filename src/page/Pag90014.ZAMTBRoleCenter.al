@@ -8,18 +8,21 @@ page 90014 ZAMTBRoleCenter
         {
             group(Control1900724808)
             {
-                part(; 90016)
+                part(TicketBaiRealEstateLines; ZAMTicketBaiSubPage2)
                 {
+                    ApplicationArea = All;
                 }
             }
             group(Control1900724708)
             {
-                part(; 675)
+                part(Control675; 675)
                 {
+                    ApplicationArea = All;
                     Visible = false;
                 }
-                part(; 681)
+                part(Control681; 681)
                 {
+                    ApplicationArea = All;
                 }
             }
         }
@@ -44,7 +47,7 @@ page 90014 ZAMTBRoleCenter
                 Caption = 'Enviado no facturado';
                 Image = OrderList;
                 RunObject = Page 9305;
-                RunPageView = WHERE (Shipped Not Invoiced=CONST(Yes));
+                RunPageView = WHERE("Shipped Not Invoiced" = CONST(Yes));
                 ToolTip = 'Permite ver las ventas enviadas que todavía no se han facturado.';
             }
             action(SalesOrdersComplShtNotInv)
@@ -53,8 +56,8 @@ page 90014 ZAMTBRoleCenter
                 Caption = 'Enviados por completo no facturados';
                 Image = Sales;
                 RunObject = Page 9305;
-                RunPageView = WHERE (Completely Shipped=CONST(Yes),
-                                    Invoice=CONST(No));
+                RunPageView = WHERE("Completely Shipped" = CONST(Yes),
+                                    Invoice = CONST(No));
                 ToolTip = 'Enviados por completo no facturados';
             }
             action("Dynamics CRM Sales Orders")
@@ -63,8 +66,8 @@ page 90014 ZAMTBRoleCenter
                 Caption = 'Pedidos de ventas de Dynamics CRM';
                 Image = SalesInvoice;
                 RunObject = Page 5353;
-                RunPageView = WHERE (StateCode = FILTER (Submitted),
-                                    LastBackofficeSubmit = FILTER (''));
+                RunPageView = WHERE(StateCode = FILTER(Submitted),
+                                    LastBackofficeSubmit = FILTER(''));
                 ToolTip = 'View sales orders in Dynamics CRM that are coupled with sales orders in Dynamics NAV.';
             }
             action("Sales Quotes")
@@ -127,8 +130,8 @@ page 90014 ZAMTBRoleCenter
                 Caption = 'Diarios de productos';
                 Image = Journals;
                 RunObject = Page 262;
-                RunPageView = WHERE (Template Type=CONST(Item),
-                                    Recurring=CONST(No));
+                RunPageView = WHERE("Template Type" = CONST(Item),
+                                    Recurring = CONST(No));
                 ToolTip = 'Abre una lista de diarios, donde puede ajustar la cantidad física de productos en stock.';
             }
             action(SalesJournals)
@@ -136,8 +139,8 @@ page 90014 ZAMTBRoleCenter
                 ApplicationArea = All;
                 Caption = 'Diarios de ventas';
                 RunObject = Page 251;
-                RunPageView = WHERE (Template Type=CONST(Sales),
-                                    Recurring=CONST(No));
+                RunPageView = WHERE("Template Type" = CONST(Sales),
+                                    Recurring = CONST(No));
             }
             action(CashReceiptJournals)
             {
@@ -145,8 +148,8 @@ page 90014 ZAMTBRoleCenter
                 Caption = 'Diarios de recibos de efectivo';
                 Image = CashReceiptJournal;
                 RunObject = Page 251;
-                RunPageView = WHERE (Template Type=CONST(Cash Receipts),
-                                    Recurring=CONST(No));
+                RunPageView = WHERE("Template Type" = CONST("Cash Receipts"),
+                                    Recurring = CONST(No));
             }
             group("Posted Documents")
             {
@@ -214,8 +217,6 @@ page 90014 ZAMTBRoleCenter
                     ApplicationArea = All;
                     Caption = 'Sales Quote';
                     Image = NewSalesQuote;
-                    Promoted = true;
-                    PromotedCategory = Process;
                     RunObject = Page 41;
                 }
                 action("Sales Invoice")
@@ -223,8 +224,6 @@ page 90014 ZAMTBRoleCenter
                     ApplicationArea = All;
                     Caption = 'Factura venta';
                     Image = NewSalesInvoice;
-                    Promoted = true;
-                    PromotedCategory = Process;
                     RunObject = Page 43;
                 }
                 action("Sales Order")
@@ -232,8 +231,6 @@ page 90014 ZAMTBRoleCenter
                     ApplicationArea = All;
                     Caption = 'Pedido venta';
                     Image = Document;
-                    Promoted = true;
-                    PromotedCategory = Process;
                     RunObject = Page 42;
                 }
                 action("Sales Return Order")
@@ -241,8 +238,6 @@ page 90014 ZAMTBRoleCenter
                     ApplicationArea = All;
                     Caption = 'Devolución venta';
                     Image = ReturnOrder;
-                    Promoted = true;
-                    PromotedCategory = Process;
                     RunObject = Page 6630;
                 }
                 action("Sales Credit Memo")
@@ -250,8 +245,6 @@ page 90014 ZAMTBRoleCenter
                     ApplicationArea = All;
                     Caption = 'Abono venta';
                     Image = CreditMemo;
-                    Promoted = true;
-                    PromotedCategory = Process;
                     RunObject = Page 44;
                 }
             }
@@ -359,6 +352,28 @@ page 90014 ZAMTBRoleCenter
                 }
             }
         }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(SalesQuote_Promoted; "Sales Quote")
+                {
+                }
+                actionref(SalesInvoice_Promoted; "Sales Invoice")
+                {
+                }
+                actionref(SalesOrder_Promoted; "Sales Order")
+                {
+                }
+                actionref(SalesReturnOrder_Promoted; "Sales Return Order")
+                {
+                }
+                actionref(SalesCreditMemo_Promoted; "Sales Credit Memo")
+                {
+                }
+            }
+        }
     }
 }
-
