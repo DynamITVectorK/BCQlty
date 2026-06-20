@@ -235,9 +235,9 @@ page 50013 "Lineas de venta"
                     ApplicationArea = All;
                 }
                 field(Area; Rec.Area)
-        {
-            ApplicationArea = All;
-        }
+                {
+                    ApplicationArea = All;
+                }
                 field("Transaction Specification"; Rec."Transaction Specification")
                 {
                     ApplicationArea = All;
@@ -258,10 +258,6 @@ page 50013 "Lineas de venta"
                 {
                     ApplicationArea = All;
                 }
-                field("VAT Clause Code"; Rec."VAT Clause Code")
-                {
-                    ApplicationArea = All;
-                }
                 field("VAT Bus. Posting Group"; Rec."VAT Bus. Posting Group")
                 {
                     ApplicationArea = All;
@@ -274,11 +270,11 @@ page 50013 "Lineas de venta"
                 {
                     ApplicationArea = All;
                 }
-                field("Outstanding Amount (LCY)";Rec."Outstanding Amount (LCY)")
+                field("Outstanding Amount (LCY)"; Rec."Outstanding Amount (LCY)")
                 {
                     ApplicationArea = All;
                 }
-                field("Shipped Not Invoiced (LCY)";Rec."Shipped Not Invoiced (LCY)")
+                field("Shipped Not Invoiced (LCY)"; Rec."Shipped Not Invoiced (LCY)")
                 {
                     ApplicationArea = All;
                 }
@@ -346,11 +342,11 @@ page 50013 "Lineas de venta"
                 {
                     ApplicationArea = All;
                 }
-                field("Quantity (Base)";Rec."Quantity (Base)")
+                field("Quantity (Base)"; Rec."Quantity (Base)")
                 {
                     ApplicationArea = All;
                 }
-                field("Qty. Invoiced (Base)";Rec."Qty. Invoiced (Base)")
+                field("Qty. Invoiced (Base)"; Rec."Qty. Invoiced (Base)")
                 {
                     ApplicationArea = All;
                 }
@@ -430,4 +426,3 @@ page 50013 "Lineas de venta"
     {
     }
 }
-
