@@ -1,8 +1,9 @@
 page 50999 "BORRAR_AVG"
 {
+    Caption = 'BORRAR_AVG';
     PageType = List;
     UsageCategory = Administration;
-    Permissions = TableData 21 = rimd;
+    Permissions = TableData "Cust. Ledger Entry" = rimd;
     SourceTable = "Cust. Ledger Entry";
 
     layout
@@ -367,4 +368,3 @@ page 50999 "BORRAR_AVG"
     {
     }
 }
-
