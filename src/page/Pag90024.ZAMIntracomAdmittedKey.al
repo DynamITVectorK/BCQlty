@@ -6,8 +6,8 @@ page 90024 ZAMIntracomAdmittedKey
     PageType = List;
     UsageCategory = Administration;
     SourceTable = 90002;
-    SourceTableView = SORTING (ZAM_Type, ZAM_Code)
-                      WHERE (ZAM_Type = FILTER (Intracom. Admitted Key));
+    SourceTableView = SORTING(ZAM_Type, ZAM_Code)
+                      WHERE(ZAM_Type = FILTER("Intracom. Admitted Key"));
 
     layout
     {
@@ -31,11 +31,13 @@ page 90024 ZAMIntracomAdmittedKey
         }
         area(factboxes)
         {
-            systempart(; Links)
+            systempart(Links; Links)
             {
+                ApplicationArea = All;
             }
-            systempart(; Notes)
+            systempart(Notes; Notes)
             {
+                ApplicationArea = All;
             }
         }
     }
@@ -61,10 +63,9 @@ page 90024 ZAMIntracomAdmittedKey
     trigger OnOpenPage()
     begin
         //Z0041GEN 13/12/21 PBS.INICIO
-        Rec.FILTERGROUP(100);
-        Rec.SETRANGE(ZAM_Type, Rec.ZAM_Type::"Intracom. Admitted Key");
-        Rec.FILTERGROUP(0);
+        Rec.FilterGroup(100);
+        Rec.SetRange(ZAM_Type, Rec.ZAM_Type::"Intracom. Admitted Key");
+        Rec.FilterGroup(0);
         //Z0041GEN 13/12/21 PBS.INICIO
     end;
 }
-
