@@ -3,12 +3,21 @@ page 50026 "WS Consumos Agua y Elect"
     // //***Z029 - AT - 16/01/18 - Area Privada WEB
     //                             WS5 - Consumos agua y electricidad
 
-    DeleteAllowed = false;
+    PageType = API;
+    SourceTable = 50003;
+    DelayedInsert = true;
     InsertAllowed = false;
     ModifyAllowed = false;
-    PageType = List;
-    UsageCategory = Administration;
-    SourceTable = 50003;
+    DeleteAllowed = false;
+    Editable = false;
+    Extensible = false;
+
+    APIPublisher = 'zamundi';
+    APIGroup = 'privateweb';
+    APIVersion = 'v1.0';
+    EntityName = 'waterElectricityConsumption';
+    EntitySetName = 'waterElectricityConsumptions';
+    ODataKeyFields = SystemId;
 
     layout
     {
@@ -16,67 +25,81 @@ page 50026 "WS Consumos Agua y Elect"
         {
             repeater(Group)
             {
-                field(Area; Rec.Area)
+                field(id; Rec.SystemId)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Id';
+                    Editable = false;
                 }
-                field("No. Contador"; Rec."No. Contador")
+                field(area; Rec.Area)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Area';
+                    Editable = false;
                 }
-                field("No. Puesto/Pabellon"; Rec."No. Puesto/Pabellon")
+                field(noContador; Rec."No. Contador")
                 {
-                    ApplicationArea = All;
+                    Caption = 'No. Contador';
+                    Editable = false;
                 }
-                field("Tarifa aplicada"; Rec."Tarifa aplicada")
+                field(noPuestoPabellon; Rec."No. Puesto/Pabellon")
                 {
-                    ApplicationArea = All;
+                    Caption = 'No. Puesto/Pabellon';
+                    Editable = false;
                 }
-                field("Potencia contratada"; Rec."Potencia contratada")
+                field(tarifaAplicada; Rec."Tarifa aplicada")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Tarifa aplicada';
+                    Editable = false;
                 }
-                field("Coeficiente TT"; Rec."Coeficiente TT")
+                field(potenciaContratada; Rec."Potencia contratada")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Potencia contratada';
+                    Editable = false;
                 }
-                field("Fecha lectura"; Rec."Fecha lectura")
+                field(coeficienteTT; Rec."Coeficiente TT")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Coeficiente TT';
+                    Editable = false;
                 }
-                field("Consumo HP"; Rec."Consumo HP")
+                field(fechaLectura; Rec."Fecha lectura")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Fecha lectura';
+                    Editable = false;
                 }
-                field("Consumo HLL"; Rec."Consumo HLL")
+                field(consumoHP; Rec."Consumo HP")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Consumo HP';
+                    Editable = false;
                 }
-                field("Consumo HV"; Rec."Consumo HV")
+                field(consumoHLL; Rec."Consumo HLL")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Consumo HLL';
+                    Editable = false;
                 }
-                field(Total; Rec.Total)
+                field(consumoHV; Rec."Consumo HV")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Consumo HV';
+                    Editable = false;
+                }
+                field(total; Rec.Total)
+                {
+                    Caption = 'Total';
+                    Editable = false;
                 }
             }
         }
     }
 
-    actions
-    {
-    }
-
     trigger OnOpenPage()
     var
-        vlLimitDate: Date;
+        LimitDate: Date;
     begin
-        Clear(tSalesReceivablesSetup);
-        tSalesReceivablesSetup.Get();
-        Clear(vlLimitDate);
-        vlLimitDate := CalcDate('-' + Format(tSalesReceivablesSetup."Plazo desde para lecturas WEB"), WorkDate());
-        Rec.SetFilter("Fecha lectura", '>%1', vlLimitDate);
+        Clear(SalesReceivablesSetup);
+        SalesReceivablesSetup.Get();
+
+        Clear(LimitDate);
+        LimitDate := CalcDate('-' + Format(SalesReceivablesSetup."Plazo desde para lecturas WEB"), WorkDate());
+
+        Rec.SetFilter("Fecha lectura", '>%1', LimitDate);
         Rec.SetFilter("Fecha factura registrada", '<>%1', 0D);
         Rec.CalcFields("No Cliente", ClienteBloqueado, ContraseñaWeb);
         Rec.SetRange(ClienteBloqueado, false);
@@ -84,7 +107,5 @@ page 50026 "WS Consumos Agua y Elect"
     end;
 
     var
-        tSalesReceivablesSetup: Record "Sales & Receivables Setup";
-        tCustomer: Record "Customer";
-        tSalesHeader: Record "Sales Header";
+        SalesReceivablesSetup: Record "Sales & Receivables Setup";
 }
