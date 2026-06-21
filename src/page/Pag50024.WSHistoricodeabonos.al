@@ -3,12 +3,21 @@ page 50024 "WS Historico de abonos"
     // //***Z029 - AT - 16/01/18 - Area Privada WEB
     //                             WS3.1 - Histórico de abonos
 
-    DeleteAllowed = false;
+    PageType = API;
+    SourceTable = "Sales Cr.Memo Header";
+    DelayedInsert = true;
     InsertAllowed = false;
     ModifyAllowed = false;
-    PageType = List;
-    UsageCategory = Administration;
-    SourceTable = "Sales Cr.Memo Header";
+    DeleteAllowed = false;
+    Editable = false;
+    Extensible = false;
+
+    APIPublisher = 'zamundi';
+    APIGroup = 'privateweb';
+    APIVersion = 'v1.0';
+    EntityName = 'salesCreditMemoHistory';
+    EntitySetName = 'salesCreditMemoHistories';
+    ODataKeyFields = SystemId;
 
     layout
     {
@@ -16,45 +25,48 @@ page 50024 "WS Historico de abonos"
         {
             repeater(Group)
             {
-                field("Bill-to Customer No."; Rec."Bill-to Customer No.")
+                field(id; Rec.SystemId)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Id';
+                    Editable = false;
                 }
-                field("Posting Date"; Rec."Posting Date")
+                field(billToCustomerNo; Rec."Bill-to Customer No.")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Bill-to Customer No.';
+                    Editable = false;
                 }
-                field("No."; Rec."No.")
+                field(postingDate; Rec."Posting Date")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Posting Date';
+                    Editable = false;
                 }
-                field(Amount; Rec.Amount)
+                field(no; Rec."No.")
                 {
-                    ApplicationArea = All;
+                    Caption = 'No.';
+                    Editable = false;
                 }
-                field("Importe IVA"; vIVA)
+                field(amount; Rec.Amount)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Amount';
+                    Editable = false;
                 }
-                field("Amount Including VAT"; Rec."Amount Including VAT")
+                field(importeIVA; vIVA)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Importe IVA';
+                    Editable = false;
                 }
-                field("Posting Description"; Rec."Posting Description")
+                field(amountIncludingVAT; Rec."Amount Including VAT")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Amount Including VAT';
+                    Editable = false;
                 }
-                field(Fichero_Base_64; vFicheroBase64)
+                field(postingDescription; Rec."Posting Description")
                 {
-                    ApplicationArea = All;
-                    Caption = 'Fichero_Base_64';
+                    Caption = 'Posting Description';
+                    Editable = false;
                 }
             }
         }
-    }
-
-    actions
-    {
     }
 
     trigger OnAfterGetRecord()
@@ -62,20 +74,19 @@ page 50024 "WS Historico de abonos"
         // Calcular Importe IVA
         Clear(vIVA);
         vIVA := Rec."Amount Including VAT" - Rec.Amount;
-
-        // Formato Base64
-        fConvertValueToBase64(vFicheroBase64);
     end;
 
     trigger OnOpenPage()
     var
-        vlLimitDate: Date;
+        LimitDate: Date;
     begin
-        Clear(tSalesReceivablesSetup);
-        tSalesReceivablesSetup.Get();
-        Clear(vlLimitDate);
-        vlLimitDate := CalcDate('-' + Format(tSalesReceivablesSetup."Plazo desde para docs WEB"), WorkDate());
-        Rec.SetFilter("Posting Date", '>%1', vlLimitDate);
+        Clear(SalesReceivablesSetup);
+        SalesReceivablesSetup.Get();
+
+        Clear(LimitDate);
+        LimitDate := CalcDate('-' + Format(SalesReceivablesSetup."Plazo desde para docs WEB"), WorkDate());
+        Rec.SetFilter("Posting Date", '>%1', LimitDate);
+
         Rec.CalcFields(ClienteBloqueado, ContraseñaWeb);
         Rec.SetRange(ClienteBloqueado, false);
         Rec.SetFilter(ContraseñaWeb, '<>%1', '');
@@ -83,6 +94,5 @@ page 50024 "WS Historico de abonos"
 
     var
         vIVA: Decimal;
-        vFicheroBase64: BigText;
-        tSalesReceivablesSetup: Record "Sales & Receivables Setup";
+        SalesReceivablesSetup: Record "Sales & Receivables Setup";
 }
