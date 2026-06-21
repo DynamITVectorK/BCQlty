@@ -3,13 +3,20 @@ page 50021 "WS Información cliente"
     // //***Z029 - AT - 16/01/18 - Area Privada WEB
     //                             WS1.1 - Información cliente
 
-    DeleteAllowed = false;
-    InsertAllowed = false;
-    PageType = Worksheet;
-    UsageCategory = Administration;
-    SaveValues = true;
-    SourceTable = "Customer";
+    PageType = API;
+    SourceTable = Customer;
     SourceTableView = WHERE("Bloqueado Web" = FILTER(No));
+    DelayedInsert = true;
+    InsertAllowed = false;
+    DeleteAllowed = false;
+    Extensible = false;
+
+    APIPublisher = 'zamundi';
+    APIGroup = 'privateweb';
+    APIVersion = 'v1.0';
+    EntityName = 'customerInformation';
+    EntitySetName = 'customerInformations';
+    ODataKeyFields = SystemId;
 
     layout
     {
@@ -17,97 +24,96 @@ page 50021 "WS Información cliente"
         {
             repeater(Group)
             {
-                field("No."; Rec."No.")
+                field(id; Rec.SystemId)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Id';
                     Editable = false;
                 }
-                field(Name; Rec.Name)
+                field(no; Rec."No.")
                 {
-                    ApplicationArea = All;
+                    Caption = 'No.';
                     Editable = false;
                 }
-                field("VAT Registration No."; Rec."VAT Registration No.")
+                field(name; Rec.Name)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Name';
                     Editable = false;
                 }
-                field(Address; Rec.Address)
+                field(vatRegistrationNo; Rec."VAT Registration No.")
                 {
-                    ApplicationArea = All;
+                    Caption = 'VAT Registration No.';
                     Editable = false;
                 }
-                field("Address 2"; Rec."Address 2")
+                field(address; Rec.Address)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Address';
                     Editable = false;
                 }
-                field(City; Rec.City)
+                field(address2; Rec."Address 2")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Address 2';
                     Editable = false;
                 }
-                field("Post Code"; Rec."Post Code")
+                field(city; Rec.City)
                 {
-                    ApplicationArea = All;
+                    Caption = 'City';
                     Editable = false;
                 }
-                field(County; Rec.County)
+                field(postCode; Rec."Post Code")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Post Code';
                     Editable = false;
                 }
-                field("Phone No."; Rec."Phone No.")
+                field(county; Rec.County)
                 {
-                    ApplicationArea = All;
-                }
-                field("Fax No."; Rec."Fax No.")
-                {
-                    ApplicationArea = All;
-                }
-                field("E-mail Comunicacion"; Rec."E-mail Comunicacion")
-                {
-                    ApplicationArea = All;
-                }
-                field("E-Mail"; Rec."E-Mail")
-                {
-                    ApplicationArea = All;
-                }
-                field(Contact; Rec.Contact)
-                {
-                    ApplicationArea = All;
-                }
-                field("Forma de pago"; vPaymentMethod)
-                {
-                    ApplicationArea = All;
-                }
-                field("Contraseña Web"; Rec."Contraseña Web")
-                {
-                    ApplicationArea = All;
+                    Caption = 'County';
                     Editable = false;
                 }
-                field("Balance (LCY)"; Rec."Balance (LCY)")
+                field(phoneNo; Rec."Phone No.")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Phone No.';
+                }
+                field(faxNo; Rec."Fax No.")
+                {
+                    Caption = 'Fax No.';
+                }
+                field(emailComunicacion; Rec."E-mail Comunicacion")
+                {
+                    Caption = 'E-mail Comunicacion';
+                }
+                field(email; Rec."E-Mail")
+                {
+                    Caption = 'E-Mail';
+                }
+                field(contact; Rec.Contact)
+                {
+                    Caption = 'Contact';
+                }
+                field(formaDePago; PaymentMethodDescription)
+                {
+                    Caption = 'Forma de pago';
+                    Editable = false;
+                }
+                field(balanceLCY; Rec."Balance (LCY)")
+                {
+                    Caption = 'Balance (LCY)';
                     Editable = false;
                 }
             }
         }
     }
 
-    actions
-    {
-    }
-
     trigger OnAfterGetRecord()
     begin
         Rec.CalcFields("Balance (LCY)");
-        Clear(tPaymentMethod);
-        tPaymentMethod.Get(Rec."Payment Method Code");
-        vPaymentMethod := tPaymentMethod.Description;
+
+        Clear(PaymentMethodDescription);
+        Clear(PaymentMethod);
+        if PaymentMethod.Get(Rec."Payment Method Code") then
+            PaymentMethodDescription := PaymentMethod.Description;
     end;
 
     var
-        tPaymentMethod: Record "Payment Method";
-        vPaymentMethod: Text;
+        PaymentMethod: Record "Payment Method";
+        PaymentMethodDescription: Text;
 }
