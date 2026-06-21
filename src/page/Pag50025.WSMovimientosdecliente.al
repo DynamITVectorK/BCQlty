@@ -3,14 +3,22 @@ page 50025 "WS Movimientos de cliente"
     // //***Z029 - AT - 16/01/18 - Area Privada WEB
     //                             WS4 - Movimientos de cliente
 
-    DelayedInsert = false;
-    DeleteAllowed = false;
-    InsertAllowed = false;
-    ModifyAllowed = false;
-    PageType = List;
-    UsageCategory = Administration;
+    PageType = API;
     SourceTable = "Cust. Ledger Entry";
     SourceTableView = WHERE("Document Type" = FILTER(<> ' '));
+    DelayedInsert = true;
+    InsertAllowed = false;
+    ModifyAllowed = false;
+    DeleteAllowed = false;
+    Editable = false;
+    Extensible = false;
+
+    APIPublisher = 'zamundi';
+    APIGroup = 'privateweb';
+    APIVersion = 'v1.0';
+    EntityName = 'customerLedgerMovement';
+    EntitySetName = 'customerLedgerMovements';
+    ODataKeyFields = SystemId;
 
     layout
     {
@@ -18,44 +26,53 @@ page 50025 "WS Movimientos de cliente"
         {
             repeater(Group)
             {
-                field("Customer No."; Rec."Customer No.")
+                field(id; Rec.SystemId)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Id';
+                    Editable = false;
                 }
-                field("Posting Date"; Rec."Posting Date")
+                field(customerNo; Rec."Customer No.")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Customer No.';
+                    Editable = false;
                 }
-                field("Document Type"; Rec."Document Type")
+                field(postingDate; Rec."Posting Date")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Posting Date';
+                    Editable = false;
                 }
-                field("Document No."; Rec."Document No.")
+                field(documentType; Rec."Document Type")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Document Type';
+                    Editable = false;
                 }
-                field(Description; Rec.Description)
+                field(documentNo; Rec."Document No.")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Document No.';
+                    Editable = false;
                 }
-                field(Amount; Rec.Amount)
+                field(description; Rec.Description)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Description';
+                    Editable = false;
                 }
-                field("Remaining Amount"; Rec."Remaining Amount")
+                field(amount; Rec.Amount)
                 {
-                    ApplicationArea = All;
+                    Caption = 'Amount';
+                    Editable = false;
                 }
-                field("Due Date"; Rec."Due Date")
+                field(remainingAmount; Rec."Remaining Amount")
                 {
-                    ApplicationArea = All;
+                    Caption = 'Remaining Amount';
+                    Editable = false;
+                }
+                field(dueDate; Rec."Due Date")
+                {
+                    Caption = 'Due Date';
+                    Editable = false;
                 }
             }
         }
-    }
-
-    actions
-    {
     }
 
     trigger OnOpenPage()
