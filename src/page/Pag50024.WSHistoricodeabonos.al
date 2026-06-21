@@ -65,6 +65,11 @@ page 50024 "WS Historico de abonos"
                     Caption = 'Posting Description';
                     Editable = false;
                 }
+                field(ficheroBase64; vFicheroBase64)
+                {
+                    Caption = 'Fichero_Base_64';
+                    Editable = false;
+                }
             }
         }
     }
@@ -74,6 +79,9 @@ page 50024 "WS Historico de abonos"
         // Calcular Importe IVA
         Clear(vIVA);
         vIVA := Rec."Amount Including VAT" - Rec.Amount;
+
+        // Formato Base64
+        fConvertValueToBase64(vFicheroBase64);
     end;
 
     trigger OnOpenPage()
@@ -94,5 +102,6 @@ page 50024 "WS Historico de abonos"
 
     var
         vIVA: Decimal;
+        vFicheroBase64: BigText;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
 }
